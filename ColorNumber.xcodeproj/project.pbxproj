@@ -23,6 +23,7 @@
 		BE31FC401FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC3E1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib */; };
 		BE31FC451FF218CE00CEACB1 /* ImportiPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC431FF218CE00CEACB1 /* ImportiPadViewController.swift */; };
 		BE31FC461FF218CE00CEACB1 /* ImportiPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC441FF218CE00CEACB1 /* ImportiPadViewController.xib */; };
+		BE31FC471FF21A5900CEACB1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBFA71FF1E5DE004341AB /* Info.plist */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -259,6 +260,7 @@
 				BE31FC461FF218CE00CEACB1 /* ImportiPadViewController.xib in Resources */,
 				FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */,
 				BE31FC401FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib in Resources */,
+				BE31FC471FF21A5900CEACB1 /* Info.plist in Resources */,
 				BE31FC291FF2174E00CEACB1 /* GallaryCollectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,7 +422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
-				INFOPLIST_FILE = ColorNumber/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ColorNumber/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,7 +437,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
-				INFOPLIST_FILE = ColorNumber/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ColorNumber/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
