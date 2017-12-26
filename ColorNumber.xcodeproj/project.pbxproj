@@ -7,8 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE31FC1F1FF20F1200CEACB1 /* SupportingFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC1E1FF20F1200CEACB1 /* SupportingFiles.swift */; };
+		BE31FC211FF20F3200CEACB1 /* PaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC201FF20F3200CEACB1 /* PaintViewController.swift */; };
+		BE31FC251FF2173300CEACB1 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC241FF2173300CEACB1 /* BaseCollectionViewController.swift */; };
+		BE31FC281FF2174E00CEACB1 /* GallaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC261FF2174E00CEACB1 /* GallaryCollectionViewController.swift */; };
+		BE31FC291FF2174E00CEACB1 /* GallaryCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC271FF2174E00CEACB1 /* GallaryCollectionViewController.xib */; };
+		BE31FC2C1FF2176900CEACB1 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC2A1FF2176900CEACB1 /* ImportViewController.swift */; };
+		BE31FC2D1FF2176900CEACB1 /* ImportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC2B1FF2176900CEACB1 /* ImportViewController.xib */; };
+		BE31FC301FF2177C00CEACB1 /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC2E1FF2177C00CEACB1 /* LibraryCollectionViewController.swift */; };
+		BE31FC311FF2177C00CEACB1 /* LibraryCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC2F1FF2177C00CEACB1 /* LibraryCollectionViewController.xib */; };
+		BE31FC331FF2179200CEACB1 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC321FF2179200CEACB1 /* DataProtocol.swift */; };
+		BE31FC3A1FF2186D00CEACB1 /* GallaryiPadCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC381FF2186D00CEACB1 /* GallaryiPadCollectionViewController.swift */; };
+		BE31FC3B1FF2186D00CEACB1 /* GallaryiPadCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC391FF2186D00CEACB1 /* GallaryiPadCollectionViewController.xib */; };
+		BE31FC3F1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC3D1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.swift */; };
+		BE31FC401FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC3E1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib */; };
+		BE31FC451FF218CE00CEACB1 /* ImportiPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31FC431FF218CE00CEACB1 /* ImportiPadViewController.swift */; };
+		BE31FC461FF218CE00CEACB1 /* ImportiPadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE31FC441FF218CE00CEACB1 /* ImportiPadViewController.xib */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
-		FF8EBF9B1FF1E5DE004341AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9A1FF1E5DE004341AB /* ViewController.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
 		FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */; };
@@ -16,9 +31,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE31FC1E1FF20F1200CEACB1 /* SupportingFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportingFiles.swift; sourceTree = "<group>"; };
+		BE31FC201FF20F3200CEACB1 /* PaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintViewController.swift; sourceTree = "<group>"; };
+		BE31FC241FF2173300CEACB1 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
+		BE31FC261FF2174E00CEACB1 /* GallaryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryCollectionViewController.swift; sourceTree = "<group>"; };
+		BE31FC271FF2174E00CEACB1 /* GallaryCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GallaryCollectionViewController.xib; sourceTree = "<group>"; };
+		BE31FC2A1FF2176900CEACB1 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		BE31FC2B1FF2176900CEACB1 /* ImportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImportViewController.xib; sourceTree = "<group>"; };
+		BE31FC2E1FF2177C00CEACB1 /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
+		BE31FC2F1FF2177C00CEACB1 /* LibraryCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryCollectionViewController.xib; sourceTree = "<group>"; };
+		BE31FC321FF2179200CEACB1 /* DataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
+		BE31FC381FF2186D00CEACB1 /* GallaryiPadCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallaryiPadCollectionViewController.swift; sourceTree = "<group>"; };
+		BE31FC391FF2186D00CEACB1 /* GallaryiPadCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GallaryiPadCollectionViewController.xib; sourceTree = "<group>"; };
+		BE31FC3D1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryiPadCollectionViewController.swift; sourceTree = "<group>"; };
+		BE31FC3E1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryiPadCollectionViewController.xib; sourceTree = "<group>"; };
+		BE31FC431FF218CE00CEACB1 /* ImportiPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportiPadViewController.swift; sourceTree = "<group>"; };
+		BE31FC441FF218CE00CEACB1 /* ImportiPadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImportiPadViewController.xib; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF8EBF9A1FF1E5DE004341AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF8EBFA01FF1E5DE004341AB /* ColorNumber.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ColorNumber.xcdatamodel; sourceTree = "<group>"; };
 		FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +67,99 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE31FC1B1FF20E9A00CEACB1 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC2E1FF2177C00CEACB1 /* LibraryCollectionViewController.swift */,
+				BE31FC2F1FF2177C00CEACB1 /* LibraryCollectionViewController.xib */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		BE31FC1C1FF20EB000CEACB1 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC2A1FF2176900CEACB1 /* ImportViewController.swift */,
+				BE31FC2B1FF2176900CEACB1 /* ImportViewController.xib */,
+			);
+			path = Import;
+			sourceTree = "<group>";
+		};
+		BE31FC1D1FF20EC200CEACB1 /* Gallary */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC261FF2174E00CEACB1 /* GallaryCollectionViewController.swift */,
+				BE31FC271FF2174E00CEACB1 /* GallaryCollectionViewController.xib */,
+			);
+			path = Gallary;
+			sourceTree = "<group>";
+		};
+		BE31FC341FF217B700CEACB1 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC1D1FF20EC200CEACB1 /* Gallary */,
+				BE31FC1C1FF20EB000CEACB1 /* Import */,
+				BE31FC1B1FF20E9A00CEACB1 /* Library */,
+			);
+			path = iPhone;
+			sourceTree = "<group>";
+		};
+		BE31FC351FF217DD00CEACB1 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC421FF218AE00CEACB1 /* Import */,
+				BE31FC3C1FF2187100CEACB1 /* Gallary */,
+				BE31FC411FF218A100CEACB1 /* Library */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		BE31FC361FF217FE00CEACB1 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC1E1FF20F1200CEACB1 /* SupportingFiles.swift */,
+				FF8EBFA71FF1E5DE004341AB /* Info.plist */,
+				FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */,
+				BE31FC371FF2181400CEACB1 /* Database */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		BE31FC371FF2181400CEACB1 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		BE31FC3C1FF2187100CEACB1 /* Gallary */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC381FF2186D00CEACB1 /* GallaryiPadCollectionViewController.swift */,
+				BE31FC391FF2186D00CEACB1 /* GallaryiPadCollectionViewController.xib */,
+			);
+			path = Gallary;
+			sourceTree = "<group>";
+		};
+		BE31FC411FF218A100CEACB1 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC3D1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.swift */,
+				BE31FC3E1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		BE31FC421FF218AE00CEACB1 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				BE31FC431FF218CE00CEACB1 /* ImportiPadViewController.swift */,
+				BE31FC441FF218CE00CEACB1 /* ImportiPadViewController.xib */,
+			);
+			path = Import;
+			sourceTree = "<group>";
+		};
 		FF8EBF8C1FF1E5DE004341AB = {
 			isa = PBXGroup;
 			children = (
@@ -57,12 +180,14 @@
 			isa = PBXGroup;
 			children = (
 				FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */,
-				FF8EBF9A1FF1E5DE004341AB /* ViewController.swift */,
+				BE31FC241FF2173300CEACB1 /* BaseCollectionViewController.swift */,
+				BE31FC321FF2179200CEACB1 /* DataProtocol.swift */,
+				BE31FC201FF20F3200CEACB1 /* PaintViewController.swift */,
+				BE31FC341FF217B700CEACB1 /* iPhone */,
+				BE31FC351FF217DD00CEACB1 /* iPad */,
 				FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */,
-				FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */,
 				FF8EBFA41FF1E5DE004341AB /* LaunchScreen.storyboard */,
-				FF8EBFA71FF1E5DE004341AB /* Info.plist */,
-				FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */,
+				BE31FC361FF217FE00CEACB1 /* SupportingFiles */,
 			);
 			path = ColorNumber;
 			sourceTree = "<group>";
@@ -126,9 +251,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE31FC3B1FF2186D00CEACB1 /* GallaryiPadCollectionViewController.xib in Resources */,
+				BE31FC2D1FF2176900CEACB1 /* ImportViewController.xib in Resources */,
 				FF8EBFA61FF1E5DE004341AB /* LaunchScreen.storyboard in Resources */,
+				BE31FC311FF2177C00CEACB1 /* LibraryCollectionViewController.xib in Resources */,
 				FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */,
+				BE31FC461FF218CE00CEACB1 /* ImportiPadViewController.xib in Resources */,
 				FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */,
+				BE31FC401FF2189D00CEACB1 /* LibraryiPadCollectionViewController.xib in Resources */,
+				BE31FC291FF2174E00CEACB1 /* GallaryCollectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +271,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
-				FF8EBF9B1FF1E5DE004341AB /* ViewController.swift in Sources */,
+				BE31FC451FF218CE00CEACB1 /* ImportiPadViewController.swift in Sources */,
+				BE31FC331FF2179200CEACB1 /* DataProtocol.swift in Sources */,
+				BE31FC301FF2177C00CEACB1 /* LibraryCollectionViewController.swift in Sources */,
+				BE31FC3F1FF2189D00CEACB1 /* LibraryiPadCollectionViewController.swift in Sources */,
+				BE31FC281FF2174E00CEACB1 /* GallaryCollectionViewController.swift in Sources */,
+				BE31FC1F1FF20F1200CEACB1 /* SupportingFiles.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
+				BE31FC251FF2173300CEACB1 /* BaseCollectionViewController.swift in Sources */,
+				BE31FC211FF20F3200CEACB1 /* PaintViewController.swift in Sources */,
+				BE31FC2C1FF2176900CEACB1 /* ImportViewController.swift in Sources */,
+				BE31FC3A1FF2186D00CEACB1 /* GallaryiPadCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
