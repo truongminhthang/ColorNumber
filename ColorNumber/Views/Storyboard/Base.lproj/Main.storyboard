@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,20 +35,57 @@
                     <view key="view" contentMode="scaleToFill" id="HRt-oR-tzi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8Q-rr-D5z" userLabel="NavigationView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_libary" translatesAutoresizingMaskIntoConstraints="NO" id="j5s-FY-IZZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_addthree" translatesAutoresizingMaskIntoConstraints="NO" id="b9g-Nx-FTN">
+                                        <rect key="frame" x="161.5" y="11" width="52.5" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="b9g-Nx-FTN" secondAttribute="height" multiplier="104:78" id="Rbn-6V-JEo"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_watchvideo" translatesAutoresizingMaskIntoConstraints="NO" id="l5R-qz-Dw5">
+                                        <rect key="frame" x="219" y="13" width="151" height="35"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="j5s-FY-IZZ" secondAttribute="bottom" id="CYj-Pi-OSS"/>
+                                    <constraint firstAttribute="trailing" secondItem="l5R-qz-Dw5" secondAttribute="trailing" constant="5" id="Nsh-pT-KJg"/>
+                                    <constraint firstItem="b9g-Nx-FTN" firstAttribute="centerY" secondItem="T8Q-rr-D5z" secondAttribute="centerY" id="Odq-RO-a3B"/>
+                                    <constraint firstItem="l5R-qz-Dw5" firstAttribute="centerY" secondItem="T8Q-rr-D5z" secondAttribute="centerY" id="PtT-gT-45B"/>
+                                    <constraint firstItem="l5R-qz-Dw5" firstAttribute="leading" secondItem="b9g-Nx-FTN" secondAttribute="trailing" constant="5" id="Vd8-8h-Ubs"/>
+                                    <constraint firstItem="j5s-FY-IZZ" firstAttribute="leading" secondItem="T8Q-rr-D5z" secondAttribute="leading" id="cTA-nD-HN3"/>
+                                    <constraint firstItem="j5s-FY-IZZ" firstAttribute="top" secondItem="T8Q-rr-D5z" secondAttribute="top" id="ij1-IN-Lgy"/>
+                                    <constraint firstAttribute="trailing" secondItem="j5s-FY-IZZ" secondAttribute="trailing" id="n58-4C-RXO"/>
+                                    <constraint firstItem="b9g-Nx-FTN" firstAttribute="centerX" secondItem="T8Q-rr-D5z" secondAttribute="centerX" id="zE6-ZW-ZDc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T8Q-rr-D5z" firstAttribute="leading" secondItem="56N-Vj-L3H" secondAttribute="leading" id="W7a-I0-C94"/>
+                            <constraint firstItem="T8Q-rr-D5z" firstAttribute="top" secondItem="HRt-oR-tzi" secondAttribute="top" id="WlU-0P-rop"/>
+                            <constraint firstItem="T8Q-rr-D5z" firstAttribute="height" secondItem="HRt-oR-tzi" secondAttribute="height" multiplier="1/11" id="bcF-aK-upW"/>
+                            <constraint firstItem="56N-Vj-L3H" firstAttribute="trailing" secondItem="T8Q-rr-D5z" secondAttribute="trailing" id="tAC-g7-BR8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="56N-Vj-L3H"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Library" image="ic_libarydark" id="2t3-V3-0GL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JlC-Js-tsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103" y="-406"/>
+            <point key="canvasLocation" x="-103.2" y="-406.14692653673166"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WuR-ip-eCO">
             <objects>
                 <tabBarController id="xLU-wP-fxD" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BEk-J2-W0t">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backgroundImage="ic_libary" id="BEk-J2-W0t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -74,7 +113,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My gallary" image="ic_mygallarydark" id="gDh-hj-tdB"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,7 +120,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bt_addthree" width="52" height="39"/>
+        <image name="bt_watchvideo" width="166" height="35"/>
         <image name="ic_importdark" width="30" height="27"/>
+        <image name="ic_libary" width="414" height="48"/>
         <image name="ic_libarydark" width="27" height="27"/>
         <image name="ic_mygallarydark" width="27" height="27"/>
     </resources>
