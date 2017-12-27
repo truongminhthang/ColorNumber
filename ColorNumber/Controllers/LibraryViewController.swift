@@ -35,7 +35,7 @@ class LibraryViewController: UIViewController {
     
     // MARK: Action view
     @objc func watchVideo(_ recogznier: UITapGestureRecognizer) {
-        let rootVC = UIStoryboard.main.instantiateViewController(withIdentifier: "RootViewController") as! RootViewController
+        let rootVC = UIStoryboard.main.instantiateViewController(withIdentifier: "WatchVideoViewController") as! WatchVideoViewController
         watchVideo.animate { (complete) in
             if complete {
                 self.present(rootVC, animated: true, completion: nil)

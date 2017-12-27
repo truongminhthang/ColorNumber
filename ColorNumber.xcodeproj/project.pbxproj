@@ -11,11 +11,10 @@
 		3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */; };
 		3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */; };
 		3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */; };
-		3B22F7E51FF35EA300A30505 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7E41FF35EA300A30505 /* ModelController.swift */; };
 		3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */; };
-		3B22F7E91FF3606500A30505 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7E81FF3606500A30505 /* RootViewController.swift */; };
 		3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */; };
 		3B22F7ED1FF3659600A30505 /* UIImageView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7EC1FF3659600A30505 /* UIImageView+Extention.swift */; };
+		3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -28,11 +27,10 @@
 		3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGallaryViewController.swift; sourceTree = "<group>"; };
-		3B22F7E41FF35EA300A30505 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchVideoViewController.swift; sourceTree = "<group>"; };
-		3B22F7E81FF3606500A30505 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		3B22F7EC1FF3659600A30505 /* UIImageView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extention.swift"; sourceTree = "<group>"; };
+		3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extention.swift"; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
-				3B22F7E81FF3606500A30505 /* RootViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -84,9 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */,
-				3B22F7E41FF35EA300A30505 /* ModelController.swift */,
 				3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */,
 				3B22F7EC1FF3659600A30505 /* UIImageView+Extention.swift */,
+				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -203,7 +200,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B22F7E91FF3606500A30505 /* RootViewController.swift in Sources */,
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
@@ -211,7 +207,7 @@
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
-				3B22F7E51FF35EA300A30505 /* ModelController.swift in Sources */,
+				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
 			);
