@@ -15,6 +15,8 @@
 		3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */; };
 		3B22F7ED1FF3659600A30505 /* UIImageView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7EC1FF3659600A30505 /* UIImageView+Extention.swift */; };
 		3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */; };
+		3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */; };
+		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -31,6 +33,8 @@
 		3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		3B22F7EC1FF3659600A30505 /* UIImageView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extention.swift"; sourceTree = "<group>"; };
 		3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extention.swift"; sourceTree = "<group>"; };
+		3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extention.swift"; sourceTree = "<group>"; };
+		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */,
 				3B22F7EC1FF3659600A30505 /* UIImageView+Extention.swift */,
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
+				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
+				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -202,7 +208,9 @@
 			files = (
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
+				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
+				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				3B22F7ED1FF3659600A30505 /* UIImageView+Extention.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,

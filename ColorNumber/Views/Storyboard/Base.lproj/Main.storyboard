@@ -152,15 +152,23 @@
             </objects>
             <point key="canvasLocation" x="646" y="-401"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tabbar Controller-->
         <scene sceneID="WuR-ip-eCO">
             <objects>
-                <tabBarController id="xLU-wP-fxD" sceneMemberID="viewController">
+                <tabBarController id="xLU-wP-fxD" customClass="CustomTabbarController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backgroundImage="ic_libary" id="BEk-J2-W0t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="itemNormalColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="itemSelectedColor">
+                            <color key="value" red="0.93027269840000004" green="0.2777306437" blue="0.24826529620000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="delegate" destination="aCe-7J-tJp" id="7L5-tU-F8u"/>
                         <segue destination="wyU-vL-a4B" kind="relationship" relationship="viewControllers" id="fUi-yj-InB"/>
@@ -180,7 +188,7 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.91755962369999999" green="0.91771018510000002" blue="0.91752761599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My gallary" image="ic_mygallarydark" id="gDh-hj-tdB"/>
