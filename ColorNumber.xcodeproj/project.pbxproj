@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */; };
+		3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */; };
+		3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */; };
+		3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
-		FF8EBF9B1FF1E5DE004341AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9A1FF1E5DE004341AB /* ViewController.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
 		FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */; };
@@ -16,9 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTabBarUtils.swift; sourceTree = "<group>"; };
+		3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGallaryViewController.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF8EBF9A1FF1E5DE004341AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF8EBFA01FF1E5DE004341AB /* ColorNumber.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ColorNumber.xcdatamodel; sourceTree = "<group>"; };
 		FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +43,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B22F7B11FF3417300A30505 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B22F7B51FF341C100A30505 /* Storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B22F7B21FF3417E00A30505 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */,
+				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
+				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3B22F7B31FF3418600A30505 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B22F7B41FF341AA00A30505 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3B22F7B51FF341C100A30505 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				FF8EBFA41FF1E5DE004341AB /* LaunchScreen.storyboard */,
+				FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		FF8EBF8C1FF1E5DE004341AB = {
 			isa = PBXGroup;
 			children = (
@@ -56,11 +104,12 @@
 		FF8EBF971FF1E5DE004341AB /* ColorNumber */ = {
 			isa = PBXGroup;
 			children = (
+				3B22F7B31FF3418600A30505 /* Models */,
+				3B22F7B11FF3417300A30505 /* Views */,
+				3B22F7B21FF3417E00A30505 /* Controllers */,
+				3B22F7B41FF341AA00A30505 /* Utilities */,
 				FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */,
-				FF8EBF9A1FF1E5DE004341AB /* ViewController.swift */,
-				FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */,
 				FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */,
-				FF8EBFA41FF1E5DE004341AB /* LaunchScreen.storyboard */,
 				FF8EBFA71FF1E5DE004341AB /* Info.plist */,
 				FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */,
 			);
@@ -140,8 +189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
-				FF8EBF9B1FF1E5DE004341AB /* ViewController.swift in Sources */,
+				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
+				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
+				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
+				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

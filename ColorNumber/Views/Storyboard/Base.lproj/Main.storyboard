@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xLU-wP-fxD">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Import-->
+        <scene sceneID="JkH-k1-aor">
+            <objects>
+                <viewController id="udh-68-Wzk" customClass="MyWorksViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5jn-gt-BhV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.36080265890000002" blue="0.29425046510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Z27-lm-cxb"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Import" image="ic_importdark" id="Pfh-lX-76G"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oed-jy-YYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-241" y="326"/>
+        </scene>
+        <!--Library-->
+        <scene sceneID="kn4-uI-Yic">
+            <objects>
+                <viewController id="wyU-vL-a4B" customClass="LibraryViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HRt-oR-tzi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="56N-Vj-L3H"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Library" image="ic_libarydark" id="2t3-V3-0GL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JlC-Js-tsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-103" y="-406"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="WuR-ip-eCO">
+            <objects>
+                <tabBarController id="xLU-wP-fxD" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BEk-J2-W0t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <outlet property="delegate" destination="aCe-7J-tJp" id="7L5-tU-F8u"/>
+                        <segue destination="wyU-vL-a4B" kind="relationship" relationship="viewControllers" id="fUi-yj-InB"/>
+                        <segue destination="udh-68-Wzk" kind="relationship" relationship="viewControllers" id="8j9-JA-2D4"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="i6o-Mt-04n"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oLe-87-J7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="aCe-7J-tJp" customClass="ScrollingTabBarControllerDelegate" customModule="ColorNumber" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="-1284" y="238"/>
+        </scene>
+        <!--My gallary-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MoreViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My gallary" image="ic_mygallarydark" id="gDh-hj-tdB"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-313" y="1066"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_importdark" width="30" height="27"/>
+        <image name="ic_libarydark" width="27" height="27"/>
+        <image name="ic_mygallarydark" width="27" height="27"/>
+    </resources>
+</document>
