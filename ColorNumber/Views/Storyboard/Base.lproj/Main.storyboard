@@ -42,13 +42,13 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_libary" translatesAutoresizingMaskIntoConstraints="NO" id="j5s-FY-IZZ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_addthree" translatesAutoresizingMaskIntoConstraints="NO" id="b9g-Nx-FTN">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_addthree" translatesAutoresizingMaskIntoConstraints="NO" id="b9g-Nx-FTN">
                                         <rect key="frame" x="161.5" y="11" width="52.5" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="b9g-Nx-FTN" secondAttribute="height" multiplier="104:78" id="Rbn-6V-JEo"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_watchvideo" translatesAutoresizingMaskIntoConstraints="NO" id="l5R-qz-Dw5">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_watchvideo" translatesAutoresizingMaskIntoConstraints="NO" id="l5R-qz-Dw5">
                                         <rect key="frame" x="219" y="13" width="151" height="35"/>
                                     </imageView>
                                 </subviews>
@@ -76,6 +76,10 @@
                         <viewLayoutGuide key="safeArea" id="56N-Vj-L3H"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Library" image="ic_libarydark" id="2t3-V3-0GL"/>
+                    <connections>
+                        <outlet property="addThree" destination="b9g-Nx-FTN" id="gPw-5B-1uV"/>
+                        <outlet property="watchVideo" destination="l5R-qz-Dw5" id="lSh-ao-9gZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JlC-Js-tsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
