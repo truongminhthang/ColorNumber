@@ -7,15 +7,6 @@
 //
 
 import UIKit
-//
-//  ScrollingTabBarUtils.swift
-//  ScrollingTabBarUtils
-//
-//  Created by Franklin Schrans on 24/12/2015.
-//  Copyright © 2015 Franklin Schrans. All rights reserved.
-//
-
-import UIKit
 
 class ScrollingTabBarControllerDelegate: NSObject, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
