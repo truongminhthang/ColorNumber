@@ -17,6 +17,8 @@
 		3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */; };
 		3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */; };
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
+		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
+		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -35,6 +37,8 @@
 		3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extention.swift"; sourceTree = "<group>"; };
 		3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extention.swift"; sourceTree = "<group>"; };
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
+		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
+		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */,
+				3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */,
+				3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */,
 				3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */,
 				3B22F7EC1FF3659600A30505 /* UIImageView+Extention.swift */,
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
@@ -215,7 +221,9 @@
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
+				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
+				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
 			);
