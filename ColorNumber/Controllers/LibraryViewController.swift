@@ -13,6 +13,8 @@ class LibraryViewController: UIViewController {
     
     @IBOutlet weak var addThree: UIImageView!
     @IBOutlet weak var watchVideo: UIImageView!
+    @IBOutlet weak var reviewLb: DesignableLabel!
+    @IBOutlet weak var feedbackLb: DesignableLabel!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -31,10 +33,16 @@ class LibraryViewController: UIViewController {
     
     // MARK: Setup view
     func setupView() {
+//        reviewLb.setFont(7, unit: 1)
+//        feedbackLb.setFont(7, unit: 1)
         let tapWatchVideoImage = UITapGestureRecognizer.init(target: self, action: #selector(self.watchVideo(_:)))
         watchVideo.addGestureRecognizer(tapWatchVideoImage)
         let tapAddThree = UITapGestureRecognizer.init(target: self, action: #selector(self.addThree(_:)))
         addThree.addGestureRecognizer(tapAddThree)
+        let tapReview = UITapGestureRecognizer.init(target: self, action: #selector(self.review(_:)))
+        reviewLb.addGestureRecognizer(tapReview)
+        let tapFeedback = UITapGestureRecognizer.init(target: self, action: #selector(self.feedback(_:)))
+        feedbackLb.addGestureRecognizer(tapFeedback)
     }
     
     // MARK: Action Navigation view
@@ -51,12 +59,16 @@ class LibraryViewController: UIViewController {
         
     }
     
-    @IBAction func review(_ sender: Any) {
-        getUserDefault()
+    @objc func review(_ recogznier: UITapGestureRecognizer) {
+        self.reviewLb.animate { (complete) in
+            self.getUserDefault()
+        }
     }
     
-    @IBAction func feedback(_ sender: Any) {
-        
+    @objc func feedback(_ recogznier: UITapGestureRecognizer) {
+        self.feedbackLb.animate { (complete) in
+            print("Feedback")
+        }
     }
     
     // MARK: - ReViewApp

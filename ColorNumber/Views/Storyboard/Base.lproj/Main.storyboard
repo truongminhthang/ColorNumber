@@ -56,51 +56,40 @@
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="widthClass=compact">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                </variation>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2fD-pI-di1">
                                                 <rect key="frame" x="10" y="34" width="129.5" height="17.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSf-mD-tfc" customClass="DesignableButton" customModule="ColorNumber" customModuleProvider="target">
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHN-9P-13z" customClass="DesignableLabel" customModule="ColorNumber" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="62.5" height="17.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                        <state key="normal" title="Review">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="5"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontWithScreen">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <variation key="widthClass=compact">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                        </variation>
-                                                        <connections>
-                                                            <action selector="review:" destination="wyU-vL-a4B" eventType="touchUpInside" id="ZIb-3W-xhj"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-cw-cXL" customClass="DesignableButton" customModule="ColorNumber" customModuleProvider="target">
+                                                    </label>
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6O7-Kt-Nei" customClass="DesignableLabel" customModule="ColorNumber" customModuleProvider="target">
                                                         <rect key="frame" x="67.5" y="0.0" width="62" height="17.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                        <state key="normal" title="Feedback">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="5"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontWithScreen">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <variation key="widthClass=compact">
-                                                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                        </variation>
-                                                        <connections>
-                                                            <action selector="feedback:" destination="wyU-vL-a4B" eventType="touchUpInside" id="Uow-ii-be2"/>
-                                                        </connections>
-                                                    </button>
+                                                    </label>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -170,6 +159,8 @@
                     <tabBarItem key="tabBarItem" title="Library" image="ic_libarydark" id="2t3-V3-0GL"/>
                     <connections>
                         <outlet property="addThree" destination="b9g-Nx-FTN" id="gPw-5B-1uV"/>
+                        <outlet property="feedbackLb" destination="6O7-Kt-Nei" id="124-1p-gAa"/>
+                        <outlet property="reviewLb" destination="YHN-9P-13z" id="udF-Gw-xMY"/>
                         <outlet property="watchVideo" destination="l5R-qz-Dw5" id="lSh-ao-9gZ"/>
                     </connections>
                 </viewController>
