@@ -18,6 +18,7 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
+		5F7454271FF5FBC000821249 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7454261FF5FBC000821249 /* PhotoViewController.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		5F7454261FF5FBC000821249 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */,
+				5F7454261FF5FBC000821249 /* PhotoViewController.swift */,
 				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
@@ -220,6 +223,7 @@
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
+				5F7454271FF5FBC000821249 /* PhotoViewController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
 			);
