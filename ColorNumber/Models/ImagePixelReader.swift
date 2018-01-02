@@ -35,7 +35,7 @@ class ImagePixelReader {
     private let pointer:UnsafePointer<UInt8>
     private let scale:Int
     
-    init?(image:UIImage){
+    init?(image:UIImage) {
         
         self.image = image
         guard let cfdata = self.image.cgImage?.dataProvider?.data,
@@ -47,7 +47,7 @@ class ImagePixelReader {
         self.pointer = pointer
     }
     
-    func componentAt(_ component:Component,x:Int,y:Int)->UInt8{
+    func componentAt(_ component:Component,x:Int,y:Int) -> UInt8{
         
         assert(CGFloat(x) < image.size.width)
         assert(CGFloat(y) < image.size.height)
@@ -57,7 +57,7 @@ class ImagePixelReader {
         return pointer[pixelPosition + component.rawValue]
     }
     
-    func colorAt(x:Int,y:Int)->Color{
+    func colorAt(x:Int,y:Int) -> Color{
         
         assert(CGFloat(x) < image.size.width)
         assert(CGFloat(y) < image.size.height)

@@ -66,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1096849E1FFBE7FD00B0573F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3B22F7B11FF3417300A30505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,13 +93,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		3B22F7B31FF3418600A30505 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		3B22F7B41FF341AA00A30505 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +107,6 @@
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
-				1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -139,7 +139,7 @@
 		FF8EBF971FF1E5DE004341AB /* ColorNumber */ = {
 			isa = PBXGroup;
 			children = (
-				3B22F7B31FF3418600A30505 /* Models */,
+				1096849E1FFBE7FD00B0573F /* Models */,
 				3B22F7B11FF3417300A30505 /* Views */,
 				3B22F7B21FF3417E00A30505 /* Controllers */,
 				3B22F7B41FF341AA00A30505 /* Utilities */,
