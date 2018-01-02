@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		104E8D341FFBB18100321B1C /* ImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 104E8D331FFBB18100321B1C /* ImageProcessor.m */; };
 		104E8D3F1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 104E8D3E1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m */; };
+		1096849B1FFBE59B00B0573F /* ImagePixelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */; };
 		3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */; };
 		3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */; };
 		3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */; };
@@ -33,6 +34,7 @@
 		104E8D361FFBB24F00321B1C /* ColorNumber-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorNumber-Bridging-Header.h"; sourceTree = "<group>"; };
 		104E8D3D1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+LogPixelsOfImage.h"; sourceTree = "<group>"; };
 		104E8D3E1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LogPixelsOfImage.m"; sourceTree = "<group>"; };
+		1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
 		3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTabBarUtils.swift; sourceTree = "<group>"; };
 		3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
+				1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				104E8D341FFBB18100321B1C /* ImageProcessor.m in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
+				1096849B1FFBE59B00B0573F /* ImagePixelReader.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
