@@ -8,17 +8,22 @@
 
 import UIKit
 
-@IBDesignable
-class DesignableView: UIView {}
+@IBDesignable class DesignableView: UIView {}
 
 extension UIView {
+
     @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
         set {
             layer.cornerRadius = newValue
-            layer.masksToBounds = newValue > 0
+            if newValue == -1 {
+                self.clipsToBounds = true
+                self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+            } else {
+                layer.masksToBounds = true
+            }
         }
     }
     

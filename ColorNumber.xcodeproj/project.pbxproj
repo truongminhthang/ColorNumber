@@ -10,6 +10,9 @@
 		104E8D341FFBB18100321B1C /* ImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 104E8D331FFBB18100321B1C /* ImageProcessor.m */; };
 		104E8D3F1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 104E8D3E1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m */; };
 		1096849B1FFBE59B00B0573F /* ImagePixelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */; };
+		109684A11FFBEBE700B0573F /* CustomImportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109684A01FFBEBE700B0573F /* CustomImportCell.swift */; };
+		109684A31FFBF2BC00B0573F /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109684A21FFBF2BC00B0573F /* DrawViewController.swift */; };
+		109684A51FFBF59000B0573F /* NumberColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109684A41FFBF59000B0573F /* NumberColorCell.swift */; };
 		3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */; };
 		3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */; };
 		3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */; };
@@ -35,6 +38,9 @@
 		104E8D3D1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+LogPixelsOfImage.h"; sourceTree = "<group>"; };
 		104E8D3E1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LogPixelsOfImage.m"; sourceTree = "<group>"; };
 		1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
+		109684A01FFBEBE700B0573F /* CustomImportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImportCell.swift; sourceTree = "<group>"; };
+		109684A21FFBF2BC00B0573F /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
+		109684A41FFBF59000B0573F /* NumberColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberColorCell.swift; sourceTree = "<group>"; };
 		3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTabBarUtils.swift; sourceTree = "<group>"; };
 		3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
@@ -74,9 +80,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		1096849F1FFBEB2200B0573F /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				109684A01FFBEBE700B0573F /* CustomImportCell.swift */,
+				109684A41FFBF59000B0573F /* NumberColorCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
 		3B22F7B11FF3417300A30505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1096849F1FFBEB2200B0573F /* CustomCell */,
 				3B22F7B51FF341C100A30505 /* Storyboard */,
 			);
 			path = Views;
@@ -89,6 +105,7 @@
 				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
+				109684A21FFBF2BC00B0573F /* DrawViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -230,12 +247,15 @@
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
+				109684A51FFBF59000B0573F /* NumberColorCell.swift in Sources */,
 				104E8D3F1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				104E8D341FFBB18100321B1C /* ImageProcessor.m in Sources */,
+				109684A11FFBEBE700B0573F /* CustomImportCell.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				1096849B1FFBE59B00B0573F /* ImagePixelReader.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
+				109684A31FFBF2BC00B0573F /* DrawViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,

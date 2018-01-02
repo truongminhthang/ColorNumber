@@ -33,8 +33,6 @@ class LibraryViewController: UIViewController {
     
     // MARK: Setup view
     func setupView() {
-//        reviewLb.setFont(7, unit: 1)
-//        feedbackLb.setFont(7, unit: 1)
         let tapWatchVideoImage = UITapGestureRecognizer.init(target: self, action: #selector(self.watchVideo(_:)))
         watchVideo.addGestureRecognizer(tapWatchVideoImage)
         let tapAddThree = UITapGestureRecognizer.init(target: self, action: #selector(self.addThree(_:)))
