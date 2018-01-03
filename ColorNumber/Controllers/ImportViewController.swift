@@ -16,9 +16,9 @@ class ImportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        if let image = UIImage(named: "ghost_tiny") {
-        //            setupWithImage(image)
-        //        }
+        if let image = UIImage(named: "ghost_tiny") {
+            setupWithImage(image)
+        }
         
         if let image = UIImage(named: "ghost_tiny") {
             if let reader = ImagePixelReader(image: image) {

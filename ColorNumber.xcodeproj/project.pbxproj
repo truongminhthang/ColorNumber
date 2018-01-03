@@ -24,6 +24,8 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
+		541BB15C1FFC5F5800435669 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541BB15B1FFC5F5800435669 /* ImageServices.swift */; };
+		541BB1611FFC639900435669 /* ImagePixel.m in Sources */ = {isa = PBXBuildFile; fileRef = 541BB1601FFC639900435669 /* ImagePixel.m */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -52,6 +54,9 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		541BB15B1FFC5F5800435669 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
+		541BB15F1FFC639900435669 /* ImagePixel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePixel.h; sourceTree = "<group>"; };
+		541BB1601FFC639900435669 /* ImagePixel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePixel.m; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,7 +80,10 @@
 		1096849E1FFBE7FD00B0573F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				541BB15A1FFC5F4400435669 /* Services */,
 				1096849A1FFBE59B00B0573F /* ImagePixelReader.swift */,
+				541BB15F1FFC639900435669 /* ImagePixel.h */,
+				541BB1601FFC639900435669 /* ImagePixel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,6 +143,14 @@
 				FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		541BB15A1FFC5F4400435669 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				541BB15B1FFC5F5800435669 /* ImageServices.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		FF8EBF8C1FF1E5DE004341AB = {
@@ -249,7 +265,9 @@
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				109684A51FFBF59000B0573F /* NumberColorCell.swift in Sources */,
 				104E8D3F1FFBB8B700321B1C /* UIImage+LogPixelsOfImage.m in Sources */,
+				541BB1611FFC639900435669 /* ImagePixel.m in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
+				541BB15C1FFC5F5800435669 /* ImageServices.swift in Sources */,
 				104E8D341FFBB18100321B1C /* ImageProcessor.m in Sources */,
 				109684A11FFBEBE700B0573F /* CustomImportCell.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,

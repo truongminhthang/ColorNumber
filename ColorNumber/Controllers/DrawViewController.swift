@@ -64,27 +64,27 @@ extension DrawViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 // MARK: UICollectionViewDataSource, UICollectionViewDelegate
-extension DrawViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let collectionHeight = collectionView.frame.size.height
-        let padding = cellPadding
-//        let availableWidth = collectionWidth - CGFloat(padding)
-        let cellWidth:Int = Int(collectionHeight) + 2*padding
-        let cellHeight = Int(collectionHeight)
-        return CGSize.init(width: cellWidth, height: cellHeight)
-    }
+//extension DrawViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let collectionHeight = collectionView.frame.size.height
+//        let padding = cellPadding
+////        let availableWidth = collectionWidth - CGFloat(padding)
+//        let cellWidth:Int = Int(collectionHeight) - 2*padding
+//        let cellHeight = Int(collectionHeight) - 2*padding
+//        return CGSize.init(width: cellWidth, height: cellHeight)
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(cellPadding)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(cellPadding)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: CGFloat(cellPadding), left: CGFloat(cellPadding), bottom: CGFloat(cellPadding), right: CGFloat(cellPadding))
-    }
-}
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return CGFloat(cellPadding)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return CGFloat(cellPadding)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: CGFloat(cellPadding), left: CGFloat(cellPadding), bottom: CGFloat(cellPadding), right: CGFloat(cellPadding))
+//    }
+//}
 

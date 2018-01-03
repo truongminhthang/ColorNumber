@@ -11,5 +11,6 @@
 
 #import "ImageProcessor.h"
 #import "UIImage+LogPixelsOfImage.h"
+#import "ImagePixel.h"
 
 #endif /* ColorNumber_Bridging_Header_h */
