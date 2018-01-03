@@ -23,10 +23,10 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     var isTakePhoto: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        setupDevice()
-        //        setupCaptureSession()
-        //        setupPreviewLayer()
-        //        startingRunningCaptureSession()
+        setupDevice()
+        setupCaptureSession()
+        setupPreviewLayer()
+        startingRunningCaptureSession()
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,10 +69,24 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         cameraPreviewLayer?.frame = self.cameraView.frame
-        self.view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
+        self.cameraView.layer.insertSublayer(cameraPreviewLayer!, at: 0)
     }
     func startingRunningCaptureSession() {
         captureSession.startRunning()
+        let dataOutput = AVCaptureVideoDataOutput()
+        dataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value:kCVPixelFormatType_32BGRA)]
+        
+        dataOutput.alwaysDiscardsLateVideoFrames = true
+        
+        if captureSession.canAddOutput(dataOutput) {
+            captureSession.addOutput(dataOutput)
+        }
+        
+        captureSession.commitConfiguration()
+        
+        
+        let queue = DispatchQueue(label: "captureQueue")
+        dataOutput.setSampleBufferDelegate(self, queue: queue)
     }
     
     @IBAction func switchCamera(_ sender: UIButton) {
@@ -84,7 +98,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         
         //Remove existing input
         let currentCameraInput:AVCaptureInput = session.inputs.first as! AVCaptureInput
-        ;           session.removeInput(currentCameraInput)
+        ;            session.removeInput(currentCameraInput)
         
         //Get new input
         var newCamera:AVCaptureDevice! = nil
@@ -158,15 +172,15 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if isTakePhoto {
+        if isTakePhoto == true {
             isTakePhoto = false
             if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer ) {
-                 let photoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
+                let photoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
                 photoVC.imageTaken = image
                 
                 DispatchQueue.main.async {
-                self.present(photoVC, animated: true, completion: nil)
-                  
+                    self.present(photoVC, animated: true, completion: nil)
+                    
                 }
             }
         }
