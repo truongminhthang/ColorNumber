@@ -56,7 +56,12 @@ class LibraryViewController: UIViewController {
     }
     
     @objc func addThree(_ recogznier: UITapGestureRecognizer) {
-        
+        let rootVC = UIStoryboard.main.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsViewController
+        watchVideo.animate { (complete) in
+            if complete {
+                self.present(rootVC, animated: true, completion: nil)
+            }
+        }
     }
     
     @objc func review(_ recogznier: UITapGestureRecognizer) {

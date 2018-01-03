@@ -18,6 +18,11 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
+		BE49E40A1FF89EDD00CBB304 /* PixelGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE49E4091FF89EDD00CBB304 /* PixelGridView.swift */; };
+		BEFF0CDE1FF801D000C4B151 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF0CDC1FF801D000C4B151 /* DetailsViewController.swift */; };
+		BEFF0CE71FF802A200C4B151 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF0CE61FF802A200C4B151 /* Pixel.swift */; };
+		BEFF0CEF1FF80E0B00C4B151 /* AnalysisImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF0CEE1FF80E0B00C4B151 /* AnalysisImage.swift */; };
+		BEFF0CF11FF80F0300C4B151 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF0CF01FF80F0300C4B151 /* Color+Extensions.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -37,6 +42,11 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		BE49E4091FF89EDD00CBB304 /* PixelGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelGridView.swift; sourceTree = "<group>"; };
+		BEFF0CDC1FF801D000C4B151 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		BEFF0CE61FF802A200C4B151 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		BEFF0CEE1FF80E0B00C4B151 /* AnalysisImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisImage.swift; sourceTree = "<group>"; };
+		BEFF0CF01FF80F0300C4B151 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +70,7 @@
 		3B22F7B11FF3417300A30505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE49E40B1FF8A31400CBB304 /* PixelGridView */,
 				3B22F7B51FF341C100A30505 /* Storyboard */,
 			);
 			path = Views;
@@ -68,19 +79,13 @@
 		3B22F7B21FF3417E00A30505 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BEFF0CDC1FF801D000C4B151 /* DetailsViewController.swift */,
 				3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */,
 				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		3B22F7B31FF3418600A30505 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		3B22F7B41FF341AA00A30505 /* Utilities */ = {
@@ -93,6 +98,8 @@
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
+				BEFF0CEE1FF80E0B00C4B151 /* AnalysisImage.swift */,
+				BEFF0CF01FF80F0300C4B151 /* Color+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -104,6 +111,22 @@
 				FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		BE49E40B1FF8A31400CBB304 /* PixelGridView */ = {
+			isa = PBXGroup;
+			children = (
+				BE49E4091FF89EDD00CBB304 /* PixelGridView.swift */,
+			);
+			name = PixelGridView;
+			sourceTree = "<group>";
+		};
+		BEFF0CE31FF8029100C4B151 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BEFF0CE61FF802A200C4B151 /* Pixel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FF8EBF8C1FF1E5DE004341AB = {
@@ -125,7 +148,7 @@
 		FF8EBF971FF1E5DE004341AB /* ColorNumber */ = {
 			isa = PBXGroup;
 			children = (
-				3B22F7B31FF3418600A30505 /* Models */,
+				BEFF0CE31FF8029100C4B151 /* Models */,
 				3B22F7B11FF3417300A30505 /* Views */,
 				3B22F7B21FF3417E00A30505 /* Controllers */,
 				3B22F7B41FF341AA00A30505 /* Utilities */,
@@ -213,13 +236,18 @@
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
+				BEFF0CEF1FF80E0B00C4B151 /* AnalysisImage.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
+				BEFF0CE71FF802A200C4B151 /* Pixel.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
+				BE49E40A1FF89EDD00CBB304 /* PixelGridView.swift in Sources */,
+				BEFF0CDE1FF801D000C4B151 /* DetailsViewController.swift in Sources */,
+				BEFF0CF11FF80F0300C4B151 /* Color+Extensions.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
 			);
@@ -359,7 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
@@ -374,7 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
