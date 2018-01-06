@@ -18,6 +18,13 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
+		5E3DD7E82000A1CE00CE4934 /* DataLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3DD7E72000A1CA00CE4934 /* DataLibrary.swift */; };
+		5E3DD7E92000A1D000CE4934 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3DD7E62000A1CA00CE4934 /* DataService.swift */; };
+		5E3DD7EA2000A1D300CE4934 /* Library.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E3DD7E52000A1CA00CE4934 /* Library.plist */; };
+		5E3DD7EE2000A28100CE4934 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3DD7EC2000A22100CE4934 /* CollectionViewCell.swift */; };
+		5E3DD7EF2000A28300CE4934 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3DD7ED2000A22100CE4934 /* TableViewCell.swift */; };
+		5E3DD7F12000B16300CE4934 /* DetailLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3DD7F02000B16300CE4934 /* DetailLibraryViewController.swift */; };
+		5E3DD7F32000BF1C00CE4934 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3DD7F22000BF1C00CE4934 /* UIColor+Extention.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -37,6 +44,13 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		5E3DD7E52000A1CA00CE4934 /* Library.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Library.plist; sourceTree = "<group>"; };
+		5E3DD7E62000A1CA00CE4934 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		5E3DD7E72000A1CA00CE4934 /* DataLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLibrary.swift; sourceTree = "<group>"; };
+		5E3DD7EC2000A22100CE4934 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5E3DD7ED2000A22100CE4934 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		5E3DD7F02000B16300CE4934 /* DetailLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailLibraryViewController.swift; path = ColorNumber/Controllers/DetailLibraryViewController.swift; sourceTree = SOURCE_ROOT; };
+		5E3DD7F22000BF1C00CE4934 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,7 +82,9 @@
 		3B22F7B21FF3417E00A30505 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5E3DD7EB2000A21000CE4934 /* libraryCell */,
 				3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */,
+				5E3DD7F02000B16300CE4934 /* DetailLibraryViewController.swift */,
 				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
@@ -79,6 +95,7 @@
 		3B22F7B31FF3418600A30505 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5E3DD7E42000A1A600CE4934 /* Library */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -93,6 +110,7 @@
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
+				5E3DD7F22000BF1C00CE4934 /* UIColor+Extention.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -104,6 +122,25 @@
 				FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		5E3DD7E42000A1A600CE4934 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				5E3DD7E72000A1CA00CE4934 /* DataLibrary.swift */,
+				5E3DD7E62000A1CA00CE4934 /* DataService.swift */,
+				5E3DD7E52000A1CA00CE4934 /* Library.plist */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		5E3DD7EB2000A21000CE4934 /* libraryCell */ = {
+			isa = PBXGroup;
+			children = (
+				5E3DD7EC2000A22100CE4934 /* CollectionViewCell.swift */,
+				5E3DD7ED2000A22100CE4934 /* TableViewCell.swift */,
+			);
+			path = libraryCell;
 			sourceTree = "<group>";
 		};
 		FF8EBF8C1FF1E5DE004341AB = {
@@ -169,7 +206,7 @@
 				TargetAttributes = {
 					FF8EBF941FF1E5DE004341AB = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -196,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E3DD7EA2000A1D300CE4934 /* Library.plist in Resources */,
 				FF8EBFA61FF1E5DE004341AB /* LaunchScreen.storyboard in Resources */,
 				FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */,
 				FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */,
@@ -210,18 +248,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
+				5E3DD7F12000B16300CE4934 /* DetailLibraryViewController.swift in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
+				5E3DD7F32000BF1C00CE4934 /* UIColor+Extention.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
+				5E3DD7E92000A1D000CE4934 /* DataService.swift in Sources */,
+				5E3DD7EE2000A28100CE4934 /* CollectionViewCell.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
+				5E3DD7EF2000A28300CE4934 /* TableViewCell.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
+				5E3DD7E82000A1CE00CE4934 /* DataLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -346,7 +390,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -358,12 +402,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ColorNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -373,12 +419,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ColorNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

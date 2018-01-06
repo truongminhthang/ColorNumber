@@ -15,6 +15,7 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var watchVideo: UIImageView!
     @IBOutlet weak var reviewLb: DesignableLabel!
     @IBOutlet weak var feedbackLb: DesignableLabel!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -24,6 +25,14 @@ class LibraryViewController: UIViewController {
             UserDefaults.standard.set(false, forKey: "Key")
         }
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //MARK: Reload row have selected
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            tableView.reloadRows(at: [selectedRow], with: .none)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -116,4 +125,91 @@ class LibraryViewController: UIViewController {
         alert.addAction(reviewAction)
     }
     
+}
+
+//MARK: TableViewController
+
+extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return DataService.share.dataLibrary.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! TableViewCell
+        
+        cell.titleHead.text = DataService.share.dataLibrary[indexPath.row].titleHeader
+        cell.titleHead.textColor = DataService.share.dataLibrary[indexPath.row].colorTitle
+        cell.imageHeader.image = DataService.share.dataLibrary[indexPath.row].iconHeader
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? TableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let heightCell = view.frame.height / 2
+        return heightCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DataService.share.selectedHead = indexPath.row
+    }
+}
+
+
+//MARK: CollectionViewController
+
+extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    // ConllectionViewDelegateFlowLayout.
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let itemsPerRow: CGFloat = 3
+        
+        let paddingSpace = DataService.share.sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return DataService.share.sectionInsets
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return DataService.share.sectionInsets.left
+    }
+    
+    // CollectionViewDataSource.
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return DataService.share.dataLibrary[collectionView.tag].listImage.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReusableCell", for: indexPath) as! CollectionViewCell
+        
+        switch collectionView.tag {
+        case 0:
+            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
+        case 1:
+            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
+        case 2:
+            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
+        case 3:
+            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
+        default:
+            cell.imageIcon.image = UIImage(named: "default")
+        }
+        return cell
+    }
 }
