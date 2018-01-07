@@ -18,6 +18,10 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
+		E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D02001ED790064716F /* ImagePixelReader.swift */; };
+		E2E767D42001EDDC0064716F /* PixelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D32001EDDC0064716F /* PixelState.swift */; };
+		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
+		E2E767D92001EED60064716F /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D82001EED60064716F /* ImageServices.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -37,6 +41,10 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		E2E767D02001ED790064716F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
+		E2E767D32001EDDC0064716F /* PixelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelState.swift; sourceTree = "<group>"; };
+		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
+		E2E767D82001EED60064716F /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +68,7 @@
 		3B22F7B11FF3417300A30505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E2E767D52001EE580064716F /* CollectionView */,
 				3B22F7B51FF341C100A30505 /* Storyboard */,
 			);
 			path = Views;
@@ -76,13 +85,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		3B22F7B31FF3418600A30505 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		3B22F7B41FF341AA00A30505 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +94,7 @@
 				3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */,
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
+				E2E767D02001ED790064716F /* ImagePixelReader.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
 			);
 			path = Utilities;
@@ -104,6 +107,23 @@
 				FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		E2E767D22001EDD10064716F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2E767D32001EDDC0064716F /* PixelState.swift */,
+				E2E767D82001EED60064716F /* ImageServices.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E2E767D52001EE580064716F /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		FF8EBF8C1FF1E5DE004341AB = {
@@ -125,7 +145,7 @@
 		FF8EBF971FF1E5DE004341AB /* ColorNumber */ = {
 			isa = PBXGroup;
 			children = (
-				3B22F7B31FF3418600A30505 /* Models */,
+				E2E767D22001EDD10064716F /* Models */,
 				3B22F7B11FF3417300A30505 /* Views */,
 				3B22F7B21FF3417E00A30505 /* Controllers */,
 				3B22F7B41FF341AA00A30505 /* Utilities */,
@@ -211,9 +231,13 @@
 			files = (
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
+				E2E767D92001EED60064716F /* ImageServices.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
+				E2E767D42001EDDC0064716F /* PixelState.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
+				E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
+				E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
