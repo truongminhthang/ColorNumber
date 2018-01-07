@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class DataService{
-    static let share = DataService()
+    static let share: DataService = DataService()
     
     //MARK: Index Seleced Cell.
     var selectedHead: Int?
@@ -33,6 +33,19 @@ class DataService{
             return _dataLibrary
         }
     }
+    // MARK: - data Paint color
+    var _dataPaintColor: [PaintColorPlist]?
+    var dataPaintColor: [PaintColorPlist] {
+        get {
+            if _dataPaintColor == nil {
+                loadPaintColor()
+            }
+            return _dataPaintColor ?? []
+        }
+        set {
+            _dataPaintColor = newValue
+        }
+    }
     
     //MARK: load data from file plist.
     func loadFilePlist() {
@@ -52,6 +65,16 @@ class DataService{
             }
         }
     }
-    
+    // MARK: - load data from PainColor.Plist
+    func loadPaintColor() {
+        guard let dictionary = PlistService().getDictionaryFrom(plist: "PaintColor.plist") else { return  }
+        guard let paintDictionaries = dictionary["PaintColor"] as? [JSON] else { return  }
+        _dataPaintColor = []
+        for paintDictionary in paintDictionaries {
+            if let paintColor = PaintColorPlist(dictionary: paintDictionary) {
+                _dataPaintColor?.append(paintColor)
+            }
+        }
+    }
     
 }
