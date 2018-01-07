@@ -12,8 +12,9 @@ class ImageServices {
     
     static let shared: ImageServices = ImageServices()
     
+    var colors = [[UIColor]]()
     // MARK: Rendering
-    fileprivate func renderingImage(_ image: UIImage, complete: @escaping ([PixelState], Int, Int) -> Void) {
+    func renderingImage(_ image: UIImage, complete: @escaping ([PixelState], Int, Int) -> Void) {
         let row = Int(image.size.width)
         let column = Int(image.size.height)
         var pixelsState: [PixelState] = []
