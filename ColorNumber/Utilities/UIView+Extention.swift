@@ -19,6 +19,12 @@ extension UIView {
         set {
             layer.cornerRadius = newValue
             layer.masksToBounds = newValue > 0
+            if newValue == -1 {
+                self.clipsToBounds = true
+                self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+            } else {
+                layer.masksToBounds = true
+            }
         }
     }
     

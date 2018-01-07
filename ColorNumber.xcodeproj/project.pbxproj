@@ -18,6 +18,13 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
+		56F4F093200210AD00B1736D /* PaintColorPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4F092200210AD00B1736D /* PaintColorPlist.swift */; };
+		56F4F095200210B500B1736D /* PlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4F094200210B500B1736D /* PlistService.swift */; };
+		56F4F097200210C900B1736D /* PaintColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4F096200210C900B1736D /* PaintColorVC.swift */; };
+		56F4F09A2002112D00B1736D /* PaintColorCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4F0992002111600B1736D /* PaintColorCVC.swift */; };
+		56F4F09C2002126800B1736D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4F09B2002126800B1736D /* DataService.swift */; };
+		56F4F09E200213AB00B1736D /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4F09D200213AB00B1736D /* UIColor+Extention.swift */; };
+		56F4F0A02002197000B1736D /* PaintColor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56F4F0912002109900B1736D /* PaintColor.plist */; };
 		E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D02001ED790064716F /* ImagePixelReader.swift */; };
 		E2E767D42001EDDC0064716F /* PixelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D32001EDDC0064716F /* PixelState.swift */; };
 		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
@@ -49,6 +56,13 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		56F4F0912002109900B1736D /* PaintColor.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PaintColor.plist; sourceTree = "<group>"; };
+		56F4F092200210AD00B1736D /* PaintColorPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorPlist.swift; sourceTree = "<group>"; };
+		56F4F094200210B500B1736D /* PlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistService.swift; sourceTree = "<group>"; };
+		56F4F096200210C900B1736D /* PaintColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorVC.swift; sourceTree = "<group>"; };
+		56F4F0992002111600B1736D /* PaintColorCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorCVC.swift; sourceTree = "<group>"; };
+		56F4F09B2002126800B1736D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		56F4F09D200213AB00B1736D /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		E2E767D02001ED790064716F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
 		E2E767D32001EDDC0064716F /* PixelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelState.swift; sourceTree = "<group>"; };
 		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
@@ -84,6 +98,7 @@
 		3B22F7B11FF3417300A30505 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				56F4F0982002110700B1736D /* PaintColor */,
 				E2E767D52001EE580064716F /* CollectionView */,
 				3B22F7B51FF341C100A30505 /* Storyboard */,
 			);
@@ -93,6 +108,7 @@
 		3B22F7B21FF3417E00A30505 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				56F4F096200210C900B1736D /* PaintColorVC.swift */,
 				3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */,
 				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
@@ -113,6 +129,7 @@
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
 				E2E767D02001ED790064716F /* ImagePixelReader.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
+				56F4F09D200213AB00B1736D /* UIColor+Extention.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -126,11 +143,22 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		56F4F0982002110700B1736D /* PaintColor */ = {
+			isa = PBXGroup;
+			children = (
+				56F4F0992002111600B1736D /* PaintColorCVC.swift */,
+			);
+			path = PaintColor;
+			sourceTree = "<group>";
+		};
 		E2E767D22001EDD10064716F /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E2E767D32001EDDC0064716F /* PixelState.swift */,
 				E2E767D82001EED60064716F /* ImageServices.swift */,
+				56F4F092200210AD00B1736D /* PaintColorPlist.swift */,
+				56F4F094200210B500B1736D /* PlistService.swift */,
+				56F4F09B2002126800B1736D /* DataService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +212,7 @@
 				E2E767E32001F9380064716F /* Constants.swift */,
 				FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */,
 				FF8EBFA71FF1E5DE004341AB /* Info.plist */,
+				56F4F0912002109900B1736D /* PaintColor.plist */,
 				FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */,
 			);
 			path = ColorNumber;
@@ -249,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EBFA61FF1E5DE004341AB /* LaunchScreen.storyboard in Resources */,
+				56F4F0A02002197000B1736D /* PaintColor.plist in Resources */,
 				FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */,
 				E2E767E22001F8070064716F /* ImageProcessHeadCell.xib in Resources */,
 				FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */,
@@ -268,6 +298,7 @@
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
 				E2E767D92001EED60064716F /* ImageServices.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
+				56F4F097200210C900B1736D /* PaintColorVC.swift in Sources */,
 				E2E767D42001EDDC0064716F /* PixelState.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
 				E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */,
@@ -277,7 +308,9 @@
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				E2E767E12001F8070064716F /* ImageProcessHeadCell.swift in Sources */,
+				56F4F09C2002126800B1736D /* DataService.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
+				56F4F09E200213AB00B1736D /* UIColor+Extention.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				E2E767E42001F9380064716F /* Constants.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
@@ -285,7 +318,10 @@
 				E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
 				E2E767E82001FA900064716F /* CustomCollectionViewLayout.swift in Sources */,
+				56F4F095200210B500B1736D /* PlistService.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
+				56F4F09A2002112D00B1736D /* PaintColorCVC.swift in Sources */,
+				56F4F093200210AD00B1736D /* PaintColorPlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -440,6 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
