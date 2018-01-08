@@ -14,11 +14,11 @@ class ImageServices {
     
     fileprivate let font: UIFont = UIFont.systemFont(ofSize: 7)
     
-    lazy var symbols: [String] = self.loadSymbols()
+    fileprivate lazy var symbols: [String] = self.loadSymbols()
     
     fileprivate let maxImageSize = CGSize(width: 300, height: 300)
     
-    func createSymbolAsciiMatrix(_ image: UIImage, complete: @escaping([[String]]) -> Void) {
+    func createSymbolAsciiMatrix(_ image: UIImage, complete: @escaping([[String]], [String]) -> Void) {
         
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             let imageProcess   = image.cropIfNeed(aspectFillToSize: self.maxImageSize) ?? image,
@@ -31,7 +31,7 @@ class ImageServices {
                 intensities  = self.intensityMatrixFromPixelPointer(pixelPointer!, width: width, height: height),
                 symbolMatrix = self.symbolMatrixFromIntensityMatrix(intensities)
             DispatchQueue.main.async {
-                complete(symbolMatrix)
+                complete(symbolMatrix, self.symbols)
             }
         }
     }
