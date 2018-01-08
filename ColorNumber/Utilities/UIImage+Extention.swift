@@ -88,10 +88,44 @@ extension UIImage {
         return UIImage(cgImage: cgImage)
     }
     
-    func scaledImage(_ maximumWidth: CGFloat) -> UIImage {
-        let rect: CGRect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-        let cgImage: CGImage = self.cgImage!.cropping(to: rect)!
-        return UIImage(cgImage: cgImage, scale: self.size.width / maximumWidth, orientation: self.imageOrientation)
+    class func imageOfSymbol(_ symbol: String, _ font: UIFont) -> UIImage {
+        let
+        length = font.pointSize * 2,
+        size   = CGSize(width: length, height: length),
+        rect   = CGRect(origin: CGPoint.zero, size: size)
+        
+        UIGraphicsBeginImageContext(size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Fill the background with white.
+        context?.setFillColor(UIColor.white.cgColor)
+        context?.fill(rect)
+        
+        // Draw the character with black.
+        let nsString = NSString(string: symbol)
+        nsString.draw(at: rect.origin, withAttributes: [
+            NSAttributedStringKey.font: font,
+            NSAttributedStringKey.foregroundColor: UIColor.black
+            ])
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
+    // MARK: - Crop Image Aspect Fill
+    func cropIfNeed(aspectFillToSize size: CGSize) -> UIImage? {
+        guard self.size > size else {return self}
+        UIGraphicsBeginImageContextWithOptions(size, false , 0.0)
+        let rect = CGRect(origin: CGPoint.zero, size: size)
+        self.draw(in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 }
-
+extension CGSize {
+    static func > (first: CGSize, second: CGSize) -> Bool {
+        return first.width > second.width || first.height > second.height
+    }
+}

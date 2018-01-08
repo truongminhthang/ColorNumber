@@ -18,6 +18,7 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
+		E2C3C6A0200373E600ED47DF /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3C69F200373E600ED47DF /* Pixel.swift */; };
 		E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D02001ED790064716F /* ImagePixelReader.swift */; };
 		E2E767D42001EDDC0064716F /* PixelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D32001EDDC0064716F /* PixelState.swift */; };
 		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
@@ -49,6 +50,7 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		E2C3C69F200373E600ED47DF /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		E2E767D02001ED790064716F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
 		E2E767D32001EDDC0064716F /* PixelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelState.swift; sourceTree = "<group>"; };
 		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				E2E767D32001EDDC0064716F /* PixelState.swift */,
 				E2E767D82001EED60064716F /* ImageServices.swift */,
+				E2C3C69F200373E600ED47DF /* Pixel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				E2E767E12001F8070064716F /* ImageProcessHeadCell.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
+				E2C3C6A0200373E600ED47DF /* Pixel.swift in Sources */,
 				E2E767E42001F9380064716F /* Constants.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
