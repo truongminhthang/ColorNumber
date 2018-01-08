@@ -290,37 +290,11 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pEO-TK-ahk">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-Q5-BSu">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fu-u4-2h2" userLabel="contentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6P-Zt-TPW" userLabel="imageContainer" customClass="PixelGridView" customModule="ColorByNumber" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="7fu-u4-2h2" secondAttribute="trailing" id="QJG-Xd-nHc"/>
-                                            <constraint firstItem="7fu-u4-2h2" firstAttribute="top" secondItem="bDZ-Q5-BSu" secondAttribute="top" id="Wz7-2z-xSN"/>
-                                            <constraint firstItem="7fu-u4-2h2" firstAttribute="leading" secondItem="bDZ-Q5-BSu" secondAttribute="leading" id="heb-N9-JJN"/>
-                                            <constraint firstAttribute="bottom" secondItem="7fu-u4-2h2" secondAttribute="bottom" id="lDx-SR-dfg"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="bDZ-Q5-BSu" firstAttribute="leading" secondItem="pEO-TK-ahk" secondAttribute="leading" id="YLw-sW-9nE"/>
-                                    <constraint firstItem="bDZ-Q5-BSu" firstAttribute="top" secondItem="pEO-TK-ahk" secondAttribute="top" id="ZcD-6C-3uU"/>
-                                    <constraint firstAttribute="trailing" secondItem="bDZ-Q5-BSu" secondAttribute="trailing" id="kHm-KS-DlW"/>
-                                    <constraint firstAttribute="bottom" secondItem="bDZ-Q5-BSu" secondAttribute="bottom" id="lai-tT-GFJ"/>
-                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="t7Q-LK-3J6" id="pT5-Zw-s1K"/>
                                 </connections>
@@ -404,11 +378,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSX-Kw-5JJ">
-                                                <rect key="frame" x="19" y="19" width="37.5" height="37.5"/>
+                                                <rect key="frame" x="19.5" y="19.5" width="37.5" height="37.5"/>
                                                 <state key="normal" image="eraser"/>
-                                                <connections>
-                                                    <action selector="abtnRemove:" destination="t7Q-LK-3J6" eventType="touchUpInside" id="3Ty-4j-Vg1"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -438,27 +409,23 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xME-il-AhU" firstAttribute="leading" secondItem="775-iw-cQV" secondAttribute="leading" id="22w-Rd-dOH"/>
-                            <constraint firstItem="bDZ-Q5-BSu" firstAttribute="height" secondItem="775-iw-cQV" secondAttribute="height" id="4PC-L7-8Ki"/>
-                            <constraint firstItem="pEO-TK-ahk" firstAttribute="width" secondItem="775-iw-cQV" secondAttribute="width" id="950-WW-sBz"/>
+                            <constraint firstItem="pEO-TK-ahk" firstAttribute="trailing" secondItem="775-iw-cQV" secondAttribute="trailing" id="A6B-8H-8XP"/>
+                            <constraint firstItem="pEO-TK-ahk" firstAttribute="height" secondItem="775-iw-cQV" secondAttribute="height" id="Dke-vp-f4b"/>
                             <constraint firstItem="775-iw-cQV" firstAttribute="bottom" secondItem="xME-il-AhU" secondAttribute="bottom" id="G1R-KI-BUp"/>
-                            <constraint firstItem="pEO-TK-ahk" firstAttribute="trailing" secondItem="775-iw-cQV" secondAttribute="trailing" id="GUz-2y-JBX"/>
+                            <constraint firstItem="pEO-TK-ahk" firstAttribute="width" secondItem="775-iw-cQV" secondAttribute="width" id="MB2-eR-GN0"/>
+                            <constraint firstItem="pEO-TK-ahk" firstAttribute="top" secondItem="775-iw-cQV" secondAttribute="top" id="Naw-nV-CKi"/>
                             <constraint firstItem="on9-Lx-vfI" firstAttribute="top" secondItem="775-iw-cQV" secondAttribute="top" id="NmK-iY-k9c"/>
-                            <constraint firstItem="pEO-TK-ahk" firstAttribute="height" secondItem="775-iw-cQV" secondAttribute="height" id="Spb-y1-ro2"/>
-                            <constraint firstItem="775-iw-cQV" firstAttribute="bottom" secondItem="pEO-TK-ahk" secondAttribute="bottom" id="T4M-TT-EwD"/>
-                            <constraint firstItem="pEO-TK-ahk" firstAttribute="top" secondItem="775-iw-cQV" secondAttribute="top" id="TLG-vG-GHD"/>
+                            <constraint firstItem="pEO-TK-ahk" firstAttribute="bottom" secondItem="775-iw-cQV" secondAttribute="bottom" id="PAP-hX-YNS"/>
                             <constraint firstItem="on9-Lx-vfI" firstAttribute="leading" secondItem="775-iw-cQV" secondAttribute="leading" id="XFd-Jm-5BG"/>
-                            <constraint firstItem="pEO-TK-ahk" firstAttribute="leading" secondItem="775-iw-cQV" secondAttribute="leading" id="cjt-tb-WQs"/>
-                            <constraint firstItem="bDZ-Q5-BSu" firstAttribute="width" secondItem="775-iw-cQV" secondAttribute="width" id="hur-Hp-qkz"/>
                             <constraint firstItem="xME-il-AhU" firstAttribute="trailing" secondItem="775-iw-cQV" secondAttribute="trailing" id="uIt-BR-day"/>
                             <constraint firstItem="on9-Lx-vfI" firstAttribute="trailing" secondItem="775-iw-cQV" secondAttribute="trailing" id="uiy-aj-OJP"/>
+                            <constraint firstItem="pEO-TK-ahk" firstAttribute="leading" secondItem="775-iw-cQV" secondAttribute="leading" id="yKR-lW-FTn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="775-iw-cQV"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="kEs-4v-tcC" id="ugy-RK-hZQ"/>
-                        <outlet property="imageContainer" destination="u6P-Zt-TPW" id="00g-oQ-pgQ"/>
                         <outlet property="scrollView" destination="pEO-TK-ahk" id="BX7-Jq-MMb"/>
-                        <outlet property="scrollviewContentView" destination="7fu-u4-2h2" id="yIe-0i-BPq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yvm-d1-zPh" sceneMemberID="firstResponder"/>

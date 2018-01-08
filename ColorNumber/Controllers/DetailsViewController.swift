@@ -8,42 +8,41 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+
+class DetailsViewController: UIViewController, UIScrollViewDelegate{
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollviewContentView: UIView!
-    @IBOutlet weak var imageContainer: PixelGridView!
-    let image = #imageLiteral(resourceName: "love_pixel-1")
+    var contentView: PixelGridView!
+    let image = #imageLiteral(resourceName: "cat3").imageConstrainedToMaxSize(CGSize(width: 50, height: 50))
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.imageContainer.setup(with: self.image)
-        self.scrollView.minimumZoomScale = 1.0
-        self.scrollView.maximumZoomScale = 5.0
-        self.scrollView.zoomScale = 3.0
+        contentView = PixelGridView()
+        self.contentView.setup(with: image)
+        self.scrollView.maximumZoomScale = 3.0
+        self.scrollView.delegate = self
+        self.scrollView.addSubview(contentView)
         self.collectionView.dataSource = self
+        scrollView.minimumZoomScale = 0.1
+        scrollView.setZoomScale(0.095, animated: true)
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.scrollviewContentView
+        return contentView
     }
-    
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-    }
-    
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        print("Da vao day")
         
-        
-    }
-    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-        if scale == 1.0 {
+        scrollView.contentSize = contentView.frame.size
+        if contentView.frame.size.width >= UIScreen.main.bounds.width || contentView.frame.size.height >= UIScreen.main.bounds.height {
             
+            contentView.center.x = scrollView.contentSize.width / 2
+            contentView.center.y = scrollView.contentSize.height / 2
+        } else {
+            contentView.center = scrollView.center
         }
-        print("da het zomm")
+       
     }
-    
 }
 
 extension DetailsViewController: UICollectionViewDataSource {
@@ -51,7 +50,7 @@ extension DetailsViewController: UICollectionViewDataSource {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return image.pixelData().count
+        return Set(image.pixelData()).count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let color = self.image.pixelData()

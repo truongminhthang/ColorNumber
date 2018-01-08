@@ -11,23 +11,22 @@ import UIKit
 
 class PixelGridView : UIView {
     
-    public var pixelSelected = -1 {
-        didSet {
-            let selectedPixel = self.uniquePixels[pixelSelected]
-            
-            // First clear all of them
-            for labels in self.pixelsToLabels.values {
-                for label in labels {
-                    label.backgroundColor = UIColor.clear
-                }
-            }
-            
-            // Then highlight the selected ones
-            for label in self.pixelsToLabels[selectedPixel]! {
-                label.backgroundColor = UIColor.lightGray
-            }
-        }
-    }
+//    public var pixelSelected = -1 {
+//        didSet {
+//            var selectedPixel = self.uniquePixels[pixelSelected]
+//            // First clear all of them
+//            for labels in self.pixelsToLabels.values {
+//                for label in labels {
+//                    label.backgroundColor = UIColor.clear
+//                }
+//            }
+//
+//            // Then highlight the selected ones
+////            for label in self.pixelsToLabels[selectedPixel]! {
+////                label.backgroundColor = UIColor.lightGray
+////            }
+//        }
+//    }
     
     private var pixels: [Pixel] = []
     private var uniquePixels: [Pixel] = []
@@ -38,19 +37,19 @@ class PixelGridView : UIView {
     }
     
     private var pixelsToLabels: Dictionary <Pixel, [UILabel]> = Dictionary <Pixel, [UILabel]> ()
-    
+
     public func setup(with image: UIImage!) {
         self.pixels = image.pixelData()
         self.uniquePixels = Set<Pixel>(pixels).sorted()
-        
-        let originX = Int(self.frame.size.width / 2 - (image.size.width * 50.0) / 2)
-        let originY = Int(self.frame.size.height / 2 - (image.size.height * 50.0) / 2)
+    
+        let originX = 0
+        let originY = 0
         
         for i in 0..<Int(image.size.width) {
             for j in 0..<Int(image.size.height) {
                 let thePixel = self.pixels[i * Int(image.size.width) + j]
-                
-                let label = UILabel(frame: CGRect(x: 50 * i + originX, y: 50 * j + originY, width: 50, height: 50))
+                if thePixel.red != 0 && thePixel.green != 0 && thePixel.blue != 0 && thePixel.alpha != 0 {
+                let label = UILabel(frame: CGRect(x: 50 * j + originX, y: 50 * i + originY, width: 50, height: 50))
                 label.text = String(describing: self.uniquePixels.index(of: thePixel)! + 1)
                 label.textAlignment = .center
                 
@@ -78,7 +77,7 @@ class PixelGridView : UIView {
                 }
                 
                 self.addSubview(label)
-                
+                self.frame.size = CGSize(width: label.frame.size.width * image.size.width, height: label.frame.size.height * image.size.height)
                 // Maintain our pixels -> labels map
                 if var arr = self.pixelsToLabels[thePixel] {
                     arr.append(label)
@@ -87,10 +86,11 @@ class PixelGridView : UIView {
                     self.pixelsToLabels[thePixel] = [label]
                 }
             }
-            
-            self.pixelSelected = 0
         }
     }
+        //self.pixelSelected = 10
+        
+}
     
     @objc
     private func labelWasTapped(_ tapGestureRecognizer: UITapGestureRecognizer!) {
@@ -105,6 +105,6 @@ class PixelGridView : UIView {
         }
         
         // Then update the currently selected pixel
-        self.pixelSelected = self.uniquePixels.index(of: thePixel!)!
+       // self.pixelSelected = self.uniquePixels.index(of: thePixel!)!
     }
 }
