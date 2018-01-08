@@ -9,24 +9,64 @@
 import UIKit
 
 
-class DetailsViewController: UIViewController, UIScrollViewDelegate{
-    
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var scrollView: UIScrollView!
+class DetailsViewController: UIViewController{
+    // MARK: - Properties
+    /// Variables
     var contentView: PixelGridView!
     let image = #imageLiteral(resourceName: "cat3").imageConstrainedToMaxSize(CGSize(width: 50, height: 50))
+    
+    /// Outlets
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            self.collectionView.dataSource = self
+        }
+    }
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            self.scrollView.delegate = self
+        }
+    }
+    /// Life cyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        findColors(image) { (result) in
+           // print(result)
+        }
+    }
+    
+    /// MARK: - Private Function
+    fileprivate func setupUI() {
         contentView = PixelGridView()
         self.contentView.setup(with: image)
-        self.scrollView.maximumZoomScale = 3.0
-        self.scrollView.delegate = self
         self.scrollView.addSubview(contentView)
-        self.collectionView.dataSource = self
+        self.scrollView.maximumZoomScale = 3.0
         scrollView.minimumZoomScale = 0.1
         scrollView.setZoomScale(0.095, animated: true)
+        
     }
+}
+
+// MARK: - Collection View DataSource
+extension DetailsViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return (ColorThief.getPalette(from: image, colorCount: 20)?.count)!
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let color = ColorThief.getPalette(from: image, colorCount: 20)
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = color![indexPath.row].makeUIColor()
+        return cell
+    }
+}
+
+
+/// Implement ScrollViewDelegate
+extension DetailsViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return contentView
@@ -41,23 +81,5 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate{
         } else {
             contentView.center = scrollView.center
         }
-       
     }
 }
-
-extension DetailsViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Set(image.pixelData()).count
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let color = self.image.pixelData()
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = color[indexPath.row].color
-        return cell
-    }
-}
-

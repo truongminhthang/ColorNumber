@@ -86,6 +86,7 @@ extension UIImage {
             data = data.advanced(by: 1)
             a = data.pointee
             data = data.advanced(by: 1)
+            
             pixels.append(Pixel(red: r, green: g, blue: b, alpha: a))
         }
         return pixels

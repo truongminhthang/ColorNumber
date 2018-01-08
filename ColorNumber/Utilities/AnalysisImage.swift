@@ -9,15 +9,14 @@
 import Foundation
 import UIKit
 
-func findColors(_ image: UIImage, _ pixelThinner: Int, completion: @escaping ([String: Int]) -> Void) {
+func findColors(_ image: UIImage, completion: @escaping ([String: Int]) -> Void) {
     guard let pixelData = image.cgImage?.dataProvider?.data else { completion([:]); return }
     let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-    
+    let pixelThinner = 5
     var countedColors: [String: Int] = [:]
     
     let pixelsWide = Int(image.size.width * image.scale)
     let pixelsHigh = Int(image.size.height * image.scale)
-    
     
     let widthThinner = Int(pixelsWide / pixelThinner) + 1
     let heightThinner = Int(pixelsHigh / pixelThinner) + 1
@@ -35,7 +34,6 @@ func findColors(_ image: UIImage, _ pixelThinner: Int, completion: @escaping ([S
             }
         }
     }
-    
     completion(countedColors)
 }
 

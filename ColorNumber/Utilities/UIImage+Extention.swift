@@ -107,9 +107,5 @@ extension UIImage {
         }
         return self
     }
-    
-    
-    
-    
 }
 

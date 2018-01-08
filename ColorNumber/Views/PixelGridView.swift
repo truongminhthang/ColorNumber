@@ -10,24 +10,7 @@ import Foundation
 import UIKit
 
 class PixelGridView : UIView {
-    
-//    public var pixelSelected = -1 {
-//        didSet {
-//            var selectedPixel = self.uniquePixels[pixelSelected]
-//            // First clear all of them
-//            for labels in self.pixelsToLabels.values {
-//                for label in labels {
-//                    label.backgroundColor = UIColor.clear
-//                }
-//            }
-//
-//            // Then highlight the selected ones
-////            for label in self.pixelsToLabels[selectedPixel]! {
-////                label.backgroundColor = UIColor.lightGray
-////            }
-//        }
-//    }
-    
+    // MARK: - Variable
     private var pixels: [Pixel] = []
     private var uniquePixels: [Pixel] = []
     public var uniquePixelCount: Int {
@@ -37,18 +20,18 @@ class PixelGridView : UIView {
     }
     
     private var pixelsToLabels: Dictionary <Pixel, [UILabel]> = Dictionary <Pixel, [UILabel]> ()
-
+    // MARK: - Function
     public func setup(with image: UIImage!) {
         self.pixels = image.pixelData()
         self.uniquePixels = Set<Pixel>(pixels).sorted()
-    
+
         let originX = 0
         let originY = 0
         
         for i in 0..<Int(image.size.width) {
             for j in 0..<Int(image.size.height) {
                 let thePixel = self.pixels[i * Int(image.size.width) + j]
-                if thePixel.red != 0 && thePixel.green != 0 && thePixel.blue != 0 && thePixel.alpha != 0 {
+               if thePixel.red != 0 && thePixel.green != 0 && thePixel.blue != 0 && thePixel.alpha != 0 {
                 let label = UILabel(frame: CGRect(x: 50 * j + originX, y: 50 * i + originY, width: 50, height: 50))
                 label.text = String(describing: self.uniquePixels.index(of: thePixel)! + 1)
                 label.textAlignment = .center
@@ -60,11 +43,11 @@ class PixelGridView : UIView {
                 /// Create the borders
                 var borders = [UIView]()
                 
-                borders.append(UIView(frame: CGRect(x: 0, y: 0, width: label.frame.size.width, height: 1))) // Top
-                borders.append(UIView(frame: CGRect(x: 0, y: 0, width: 1, height: label.frame.size.height))) // Left
+                borders.append(UIView(frame: CGRect(x: 0, y: 0, width: label.frame.size.width, height: 0.2))) // Top
+                borders.append(UIView(frame: CGRect(x: 0, y: 0, width: 0.2, height: label.frame.size.height))) // Left
                 if j == Int(image.size.height) - 1 {
                     // Bottom
-                    borders.append(UIView(frame: CGRect(x: 0, y: label.frame.size.height - 1, width: label.frame.size.width, height: 1)))
+                    borders.append(UIView(frame: CGRect(x: 0, y: label.frame.size.height - 1, width: label.frame.size.width, height: 0.2)))
                 }
                 if i == Int(image.size.width) - 1{
                     // Right
