@@ -19,16 +19,8 @@
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
 		E2C3C6A0200373E600ED47DF /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3C69F200373E600ED47DF /* Pixel.swift */; };
-		E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D02001ED790064716F /* ImagePixelReader.swift */; };
-		E2E767D42001EDDC0064716F /* PixelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D32001EDDC0064716F /* PixelState.swift */; };
 		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
-		E2E767DD2001F7DF0064716F /* ImageProcessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767DB2001F7DF0064716F /* ImageProcessCell.swift */; };
-		E2E767DE2001F7DF0064716F /* ImageProcessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E767DC2001F7DF0064716F /* ImageProcessCell.xib */; };
-		E2E767E12001F8070064716F /* ImageProcessHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767DF2001F8070064716F /* ImageProcessHeadCell.swift */; };
-		E2E767E22001F8070064716F /* ImageProcessHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E767E02001F8070064716F /* ImageProcessHeadCell.xib */; };
 		E2E767E42001F9380064716F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E32001F9380064716F /* Constants.swift */; };
-		E2E767E62001FA3C0064716F /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E52001FA3C0064716F /* CollectionView.swift */; };
-		E2E767E82001FA900064716F /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E72001FA900064716F /* CustomCollectionViewLayout.swift */; };
 		E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E920020DC90064716F /* DetailImageController.swift */; };
 		E2F263FD2004BBF7006E4DA1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FC2004BBF7006E4DA1 /* Canvas.swift */; };
 		E2F264002004BE34006E4DA1 /* AsciiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */; };
@@ -53,16 +45,8 @@
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
 		E2C3C69F200373E600ED47DF /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
-		E2E767D02001ED790064716F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
-		E2E767D32001EDDC0064716F /* PixelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelState.swift; sourceTree = "<group>"; };
 		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
-		E2E767DB2001F7DF0064716F /* ImageProcessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessCell.swift; sourceTree = "<group>"; };
-		E2E767DC2001F7DF0064716F /* ImageProcessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessCell.xib; sourceTree = "<group>"; };
-		E2E767DF2001F8070064716F /* ImageProcessHeadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessHeadCell.swift; sourceTree = "<group>"; };
-		E2E767E02001F8070064716F /* ImageProcessHeadCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessHeadCell.xib; sourceTree = "<group>"; };
 		E2E767E32001F9380064716F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E2E767E52001FA3C0064716F /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
-		E2E767E72001FA900064716F /* CustomCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewLayout.swift; sourceTree = "<group>"; };
 		E2E767E920020DC90064716F /* DetailImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageController.swift; sourceTree = "<group>"; };
 		E2F263FC2004BBF7006E4DA1 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsciiPalette.swift; sourceTree = "<group>"; };
@@ -118,7 +102,6 @@
 				3B22F7EA1FF3637500A30505 /* UIStoryboard+Extension.swift */,
 				3B5D20BD1FF387C800B1744C /* UIView+Extention.swift */,
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
-				E2E767D02001ED790064716F /* ImagePixelReader.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
 			);
 			path = Utilities;
@@ -137,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				E2F263FE2004BE1C006E4DA1 /* ImageServices */,
-				E2E767D32001EDDC0064716F /* PixelState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,22 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */,
-				E2E767E52001FA3C0064716F /* CollectionView.swift */,
-				E2E767E72001FA900064716F /* CustomCollectionViewLayout.swift */,
-				E2E767DA2001F7710064716F /* ImageProcessCell */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		E2E767DA2001F7710064716F /* ImageProcessCell */ = {
-			isa = PBXGroup;
-			children = (
-				E2E767DB2001F7DF0064716F /* ImageProcessCell.swift */,
-				E2E767DC2001F7DF0064716F /* ImageProcessCell.xib */,
-				E2E767DF2001F8070064716F /* ImageProcessHeadCell.swift */,
-				E2E767E02001F8070064716F /* ImageProcessHeadCell.xib */,
-			);
-			path = ImageProcessCell;
 			sourceTree = "<group>";
 		};
 		E2F263FE2004BE1C006E4DA1 /* ImageServices */ = {
@@ -267,9 +235,7 @@
 			files = (
 				FF8EBFA61FF1E5DE004341AB /* LaunchScreen.storyboard in Resources */,
 				FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */,
-				E2E767E22001F8070064716F /* ImageProcessHeadCell.xib in Resources */,
 				FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */,
-				E2E767DE2001F7DF0064716F /* ImageProcessCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,20 +247,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
-				E2E767DD2001F7DF0064716F /* ImageProcessCell.swift in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
-				E2E767D42001EDDC0064716F /* PixelState.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
 				E2F264002004BE34006E4DA1 /* AsciiPalette.swift in Sources */,
 				E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
-				E2E767E62001FA3C0064716F /* CollectionView.swift in Sources */,
-				E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				E2F263FD2004BBF7006E4DA1 /* Canvas.swift in Sources */,
-				E2E767E12001F8070064716F /* ImageProcessHeadCell.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				E2C3C6A0200373E600ED47DF /* Pixel.swift in Sources */,
@@ -304,7 +265,6 @@
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
 				E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
-				E2E767E82001FA900064716F /* CustomCollectionViewLayout.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
