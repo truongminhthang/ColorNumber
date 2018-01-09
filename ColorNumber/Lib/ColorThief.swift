@@ -36,7 +36,7 @@ open class ColorThief {
     ///              color.
     ///   - ignoreWhite: if true, white pixels are ignored
     /// - Returns: the dominant color
-    open static func getColor(from image: UIImage, quality: Int = defaultQuality, ignoreWhite: Bool = defaultIgnoreWhite) -> MMCQ.Color? {
+    open static func getColor(from image: UIImage, quality: Int = defaultQuality, ignoreWhite: Bool = defaultIgnoreWhite) -> Pixel? {
         guard let palette = getPalette(from: image, colorCount: 5, quality: quality, ignoreWhite: ignoreWhite) else {
             return nil
         }
@@ -57,7 +57,7 @@ open class ColorThief {
     ///              likelihood that colors will be missed.
     ///   - ignoreWhite: if true, white pixels are ignored
     /// - Returns: the palette
-    open static func getPalette(from image: UIImage, colorCount: Int, quality: Int = defaultQuality, ignoreWhite: Bool = defaultIgnoreWhite) -> [MMCQ.Color]? {
+    open static func getPalette(from image: UIImage, colorCount: Int, quality: Int = defaultQuality, ignoreWhite: Bool = defaultIgnoreWhite) -> [Pixel]? {
         guard let colorMap = getColorMap(from: image, colorCount: colorCount, quality: quality, ignoreWhite: ignoreWhite) else {
             return nil
         }

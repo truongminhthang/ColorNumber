@@ -30,9 +30,7 @@ class DetailsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        findColors(image) { (result) in
-           // print(result)
-        }
+        
     }
     
     /// MARK: - Private Function
@@ -59,7 +57,7 @@ extension DetailsViewController: UICollectionViewDataSource {
         let color = ColorThief.getPalette(from: image, colorCount: 20)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = color![indexPath.row].makeUIColor()
+        cell.backgroundColor = color?[indexPath.row].color
         return cell
     }
 }

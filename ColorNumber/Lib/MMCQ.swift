@@ -54,8 +54,8 @@ open class MMCQ {
             self.b = b
         }
 
-        public func makeUIColor() -> UIColor {
-            return UIColor(red: CGFloat(r) / CGFloat(255), green: CGFloat(g) / CGFloat(255), blue: CGFloat(b) / CGFloat(255), alpha: CGFloat(1))
+        public func makeUIColor() -> Pixel {
+            return Pixel(red: r, green: g , blue: b, alpha: 1)
         }
     }
 
@@ -77,7 +77,7 @@ open class MMCQ {
 
         private let histogram: [Int]
 
-        private var average: Color?
+        private var average: Pixel?
         private var volume: Int?
         private var count: Int?
 
@@ -149,7 +149,7 @@ open class MMCQ {
             }
         }
 
-        func getAverage(forceRecalculate force: Bool = false) -> Color {
+        func getAverage(forceRecalculate force: Bool = false) -> Pixel {
             if let average = average, !force {
                 return average
             } else {
@@ -172,17 +172,17 @@ open class MMCQ {
                     }
                 }
 
-                let average: Color
+                let average: Pixel
                 if ntot > 0 {
                     let r = UInt8(rSum / ntot)
                     let g = UInt8(gSum / ntot)
                     let b = UInt8(bSum / ntot)
-                    average = Color(r: r, g: g, b: b)
+                    average = Pixel(red: r, green: g, blue: b, alpha: 1)
                 } else {
                     let r = UInt8(min(MMCQ.multiplier * (Int(rMin) + Int(rMax) + 1) / 2, 255))
                     let g = UInt8(min(MMCQ.multiplier * (Int(gMin) + Int(gMax) + 1) / 2, 255))
                     let b = UInt8(min(MMCQ.multiplier * (Int(bMin) + Int(bMax) + 1) / 2, 255))
-                    average = Color(r: r, g: g, b: b)
+                    average = Pixel(red: r, green: g, blue: b, alpha: 1)
                 }
 
                 self.average = average
@@ -215,19 +215,19 @@ open class MMCQ {
             vboxes.append(vbox)
         }
 
-        open func makePalette() -> [Color] {
+        open func makePalette() -> [Pixel] {
             return vboxes.map { $0.getAverage() }
         }
 
-        open func makeNearestColor(to color: Color) -> Color {
+        open func makeNearestColor(to color: Color) -> Pixel {
             var nearestDistance = Int.max
-            var nearestColor = Color(r: 0, g: 0, b: 0)
+            var nearestColor = Pixel(red: 0, green: 0, blue: 0, alpha: 1)
 
             for vbox in vboxes {
                 let vbColor = vbox.getAverage()
-                let dr = abs(Int(color.r) - Int(vbColor.r))
-                let dg = abs(Int(color.g) - Int(vbColor.g))
-                let db = abs(Int(color.b) - Int(vbColor.b))
+                let dr = abs(Int(color.r) - Int(vbColor.red))
+                let dg = abs(Int(color.g) - Int(vbColor.green))
+                let db = abs(Int(color.b) - Int(vbColor.blue))
                 let distance = dr + dg + db
                 if distance < nearestDistance {
                     nearestDistance = distance

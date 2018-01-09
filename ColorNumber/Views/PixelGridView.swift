@@ -62,12 +62,12 @@ class PixelGridView : UIView {
                 self.addSubview(label)
                 self.frame.size = CGSize(width: label.frame.size.width * image.size.width, height: label.frame.size.height * image.size.height)
                 // Maintain our pixels -> labels map
-                if var arr = self.pixelsToLabels[thePixel] {
-                    arr.append(label)
-                    self.pixelsToLabels[thePixel] = arr
-                } else {
-                    self.pixelsToLabels[thePixel] = [label]
-                }
+//                if var arr = self.pixelsToLabels[thePixel] {
+//                    arr.append(label)
+//                    self.pixelsToLabels[thePixel] = arr
+//                } else {
+//                    self.pixelsToLabels[thePixel] = [label]
+//                }
             }
         }
     }

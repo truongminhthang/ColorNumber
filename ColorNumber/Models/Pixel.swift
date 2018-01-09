@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Pixel {
+public struct Pixel {
     var red, green, blue, alpha: UInt8
     
     init(red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8) {
@@ -79,15 +79,20 @@ extension UIImage {
         
         for _ in 0..<Int(self.size.height)*Int(self.size.width) {
             r = data.pointee
+    
             data = data.advanced(by: 1)
             g = data.pointee
+          
             data = data.advanced(by: 1)
             b = data.pointee
+           
             data = data.advanced(by: 1)
             a = data.pointee
             data = data.advanced(by: 1)
+            //let pixel = Pixel(red: r, green: g, blue: b, alpha: a)
+            let color = MMCQ.Color(r: r, g: g, b: b).makeUIColor()
             
-            pixels.append(Pixel(red: r, green: g, blue: b, alpha: a))
+            pixels.append(color)
         }
         return pixels
     }
