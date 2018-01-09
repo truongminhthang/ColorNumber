@@ -61,4 +61,8 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
         
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "PaintViewController") as! PaintViewController
+        self.present(vc, animated: true, completion: nil)
+    }
 }

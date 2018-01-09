@@ -10,13 +10,11 @@ import UIKit
 
 class PaintColorCVC: UICollectionViewCell {
     @IBOutlet weak var backGroundView: DesignableView!
-    @IBOutlet weak var eraserView: UIImageView!
     @IBOutlet weak var labelNumberText: UILabel!
     
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        eraserView.image = nil
         labelNumberText.text = ""
     }
 }

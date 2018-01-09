@@ -18,7 +18,7 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
-		5647BAC82005279900100FD3 /* PaintColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BAC72005279900100FD3 /* PaintColorVC.swift */; };
+		5647BAC82005279900100FD3 /* PaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BAC72005279900100FD3 /* PaintViewController.swift */; };
 		5647BACB200527E500100FD3 /* PlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BACA200527AD00100FD3 /* PlistService.swift */; };
 		5647BACC200527E700100FD3 /* PaintColorPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BAC9200527A400100FD3 /* PaintColorPlist.swift */; };
 		5647BACE2005281F00100FD3 /* PaintColorCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BACD2005281F00100FD3 /* PaintColorCVC.swift */; };
@@ -31,12 +31,12 @@
 		5C76248720021BA500404D73 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248620021BA500404D73 /* UIColor+Extention.swift */; };
 		5C76248920021C3C00404D73 /* DetailLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */; };
 		E200D6CD20050462004D4D89 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FC2004BBF7006E4DA1 /* Canvas.swift */; };
+		E285055C200531BE00279D6D /* PaintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E285055B200531BE00279D6D /* PaintSection.swift */; };
 		E2A5941E200503D300049078 /* AsciiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941B200503D300049078 /* AsciiPalette.swift */; };
 		E2A5941F200503D300049078 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941C200503D300049078 /* Pixel.swift */; };
 		E2A59420200503D300049078 /* AsciiArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941D200503D300049078 /* AsciiArtist.swift */; };
 		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
 		E2E767E42001F9380064716F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E32001F9380064716F /* Constants.swift */; };
-		E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E920020DC90064716F /* DetailImageController.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -57,7 +57,7 @@
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
 		5647BAC62005278E00100FD3 /* PaintColor.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PaintColor.plist; sourceTree = "<group>"; };
-		5647BAC72005279900100FD3 /* PaintColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorVC.swift; sourceTree = "<group>"; };
+		5647BAC72005279900100FD3 /* PaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintViewController.swift; sourceTree = "<group>"; };
 		5647BAC9200527A400100FD3 /* PaintColorPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorPlist.swift; sourceTree = "<group>"; };
 		5647BACA200527AD00100FD3 /* PlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistService.swift; sourceTree = "<group>"; };
 		5647BACD2005281F00100FD3 /* PaintColorCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorCVC.swift; sourceTree = "<group>"; };
@@ -68,12 +68,12 @@
 		5C39E592200216EC00993E40 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5C76248620021BA500404D73 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLibraryViewController.swift; sourceTree = "<group>"; };
+		E285055B200531BE00279D6D /* PaintSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintSection.swift; sourceTree = "<group>"; };
 		E2A5941B200503D300049078 /* AsciiPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiPalette.swift; sourceTree = "<group>"; };
 		E2A5941C200503D300049078 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		E2A5941D200503D300049078 /* AsciiArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiArtist.swift; sourceTree = "<group>"; };
 		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		E2E767E32001F9380064716F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E2E767E920020DC90064716F /* DetailImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageController.swift; sourceTree = "<group>"; };
 		E2F263FC2004BBF7006E4DA1 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,8 +114,7 @@
 				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
-				E2E767E920020DC90064716F /* DetailImageController.swift */,
-				5647BAC72005279900100FD3 /* PaintColorVC.swift */,
+				5647BAC72005279900100FD3 /* PaintViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,6 +197,7 @@
 			children = (
 				E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */,
 				5647BACD2005281F00100FD3 /* PaintColorCVC.swift */,
+				E285055B200531BE00279D6D /* PaintSection.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -321,8 +321,9 @@
 				5C39E594200216F900993E40 /* DataService.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
+				E285055C200531BE00279D6D /* PaintSection.swift in Sources */,
 				5647BACE2005281F00100FD3 /* PaintColorCVC.swift in Sources */,
-				5647BAC82005279900100FD3 /* PaintColorVC.swift in Sources */,
+				5647BAC82005279900100FD3 /* PaintViewController.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				5C39E593200216F600993E40 /* DataLibrary.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
@@ -334,7 +335,6 @@
 				E2A59420200503D300049078 /* AsciiArtist.swift in Sources */,
 				5C39E58E2002161D00993E40 /* LibraryTableViewCell.swift in Sources */,
 				5C76248920021C3C00404D73 /* DetailLibraryViewController.swift in Sources */,
-				E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
 				5647BACB200527E500100FD3 /* PlistService.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
