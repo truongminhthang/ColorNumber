@@ -9,15 +9,30 @@
 import UIKit
 
 @IBDesignable
-class DesignableView: UIView {}
+class DesignableView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if cornerRadius == -1 {
+            self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+        }
+    }
+}
 
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get {
-            return layer.cornerRadius
+            return CGFloat(tag)
+            
         }
         set {
             layer.cornerRadius = newValue
+            tag = Int(newValue)
+            if newValue == -1 {
+                self.clipsToBounds = true
+                self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+            } else {
+                layer.masksToBounds = true
+            }
             layer.masksToBounds = newValue > 0
         }
     }

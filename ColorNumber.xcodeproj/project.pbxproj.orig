@@ -18,19 +18,25 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
-		5C39E58D2002161A00993E40 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58C2002161300993E40 /* CollectionViewCell.swift */; };
-		5C39E58E2002161D00993E40 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58B2002161300993E40 /* TableViewCell.swift */; };
+		5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58C2002161300993E40 /* LibraryCollectionViewCell.swift */; };
+		5C39E58E2002161D00993E40 /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58B2002161300993E40 /* LibraryTableViewCell.swift */; };
+		5647BAC82005279900100FD3 /* PaintColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BAC72005279900100FD3 /* PaintColorVC.swift */; };
+		5647BACB200527E500100FD3 /* PlistService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BACA200527AD00100FD3 /* PlistService.swift */; };
+		5647BACC200527E700100FD3 /* PaintColorPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BAC9200527A400100FD3 /* PaintColorPlist.swift */; };
+		5647BACE2005281F00100FD3 /* PaintColorCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5647BACD2005281F00100FD3 /* PaintColorCVC.swift */; };
+		5647BACF200528ED00100FD3 /* PaintColor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5647BAC62005278E00100FD3 /* PaintColor.plist */; };
 		5C39E593200216F600993E40 /* DataLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E590200216EB00993E40 /* DataLibrary.swift */; };
 		5C39E594200216F900993E40 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E592200216EC00993E40 /* DataService.swift */; };
 		5C39E595200216FC00993E40 /* Library.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C39E591200216EC00993E40 /* Library.plist */; };
 		5C76248720021BA500404D73 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248620021BA500404D73 /* UIColor+Extention.swift */; };
 		5C76248920021C3C00404D73 /* DetailLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */; };
+		E200D6CD20050462004D4D89 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FC2004BBF7006E4DA1 /* Canvas.swift */; };
+		E2A5941E200503D300049078 /* AsciiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941B200503D300049078 /* AsciiPalette.swift */; };
+		E2A5941F200503D300049078 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941C200503D300049078 /* Pixel.swift */; };
+		E2A59420200503D300049078 /* AsciiArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941D200503D300049078 /* AsciiArtist.swift */; };
 		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
 		E2E767E42001F9380064716F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E32001F9380064716F /* Constants.swift */; };
 		E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E920020DC90064716F /* DetailImageController.swift */; };
-		E2F263FD2004BBF7006E4DA1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FC2004BBF7006E4DA1 /* Canvas.swift */; };
-		E2F264002004BE34006E4DA1 /* AsciiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */; };
-		E2F264022004BE5F006E4DA1 /* AsciiArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F264012004BE5F006E4DA1 /* AsciiArtist.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -50,21 +56,25 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
-		5C39E58B2002161300993E40 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		5C39E58C2002161300993E40 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5C39E58B2002161300993E40 /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCell.swift; sourceTree = "<group>"; };
+		5C39E58C2002161300993E40 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
+		5647BAC62005278E00100FD3 /* PaintColor.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PaintColor.plist; sourceTree = "<group>"; };
+		5647BAC72005279900100FD3 /* PaintColorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorVC.swift; sourceTree = "<group>"; };
+		5647BAC9200527A400100FD3 /* PaintColorPlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorPlist.swift; sourceTree = "<group>"; };
+		5647BACA200527AD00100FD3 /* PlistService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistService.swift; sourceTree = "<group>"; };
+		5647BACD2005281F00100FD3 /* PaintColorCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintColorCVC.swift; sourceTree = "<group>"; };
 		5C39E590200216EB00993E40 /* DataLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLibrary.swift; sourceTree = "<group>"; };
 		5C39E591200216EC00993E40 /* Library.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Library.plist; sourceTree = "<group>"; };
 		5C39E592200216EC00993E40 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5C76248620021BA500404D73 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLibraryViewController.swift; sourceTree = "<group>"; };
-		E2E767D02001ED790064716F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
-		E2E767D32001EDDC0064716F /* PixelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelState.swift; sourceTree = "<group>"; };
+		E2A5941B200503D300049078 /* AsciiPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiPalette.swift; sourceTree = "<group>"; };
+		E2A5941C200503D300049078 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		E2A5941D200503D300049078 /* AsciiArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiArtist.swift; sourceTree = "<group>"; };
 		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		E2E767E32001F9380064716F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2E767E920020DC90064716F /* DetailImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageController.swift; sourceTree = "<group>"; };
 		E2F263FC2004BBF7006E4DA1 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsciiPalette.swift; sourceTree = "<group>"; };
-		E2F264012004BE5F006E4DA1 /* AsciiArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsciiArtist.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +115,7 @@
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
 				E2E767E920020DC90064716F /* DetailImageController.swift */,
+				5647BAC72005279900100FD3 /* PaintColorVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -133,11 +144,20 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		5647BAC52005277700100FD3 /* PaintColor */ = {
+			isa = PBXGroup;
+			children = (
+				5647BAC9200527A400100FD3 /* PaintColorPlist.swift */,
+				5647BACA200527AD00100FD3 /* PlistService.swift */,
+			);
+			path = PaintColor;
+			sourceTree = "<group>";
+		};
 		5C39E58A2002116900993E40 /* LibraryCell */ = {
 			isa = PBXGroup;
 			children = (
-				5C39E58C2002161300993E40 /* CollectionViewCell.swift */,
-				5C39E58B2002161300993E40 /* TableViewCell.swift */,
+				5C39E58C2002161300993E40 /* LibraryCollectionViewCell.swift */,
+				5C39E58B2002161300993E40 /* LibraryTableViewCell.swift */,
 			);
 			path = LibraryCell;
 			sourceTree = "<group>";
@@ -152,12 +172,22 @@
 			path = LibraryModels;
 			sourceTree = "<group>";
 		};
+		E2A5941A200503D300049078 /* ImageServices */ = {
+			isa = PBXGroup;
+			children = (
+				E2A5941B200503D300049078 /* AsciiPalette.swift */,
+				E2A5941C200503D300049078 /* Pixel.swift */,
+				E2A5941D200503D300049078 /* AsciiArtist.swift */,
+			);
+			path = ImageServices;
+			sourceTree = "<group>";
+		};
 		E2E767D22001EDD10064716F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5647BAC52005277700100FD3 /* PaintColor */,
+				E2A5941A200503D300049078 /* ImageServices */,
 				5C39E58F2002169900993E40 /* LibraryModels */,
-				E2E767D32001EDDC0064716F /* PixelState.swift */,
-				E2E767D82001EED60064716F /* ImageServices.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,18 +196,9 @@
 			isa = PBXGroup;
 			children = (
 				E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */,
+				5647BACD2005281F00100FD3 /* PaintColorCVC.swift */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		E2F263FE2004BE1C006E4DA1 /* ImageServices */ = {
-			isa = PBXGroup;
-			children = (
-				E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */,
-				E2F264012004BE5F006E4DA1 /* AsciiArtist.swift */,
-				E2C3C69F200373E600ED47DF /* Pixel.swift */,
-			);
-			path = ImageServices;
 			sourceTree = "<group>";
 		};
 		FF8EBF8C1FF1E5DE004341AB = {
@@ -207,6 +228,7 @@
 				E2E767E32001F9380064716F /* Constants.swift */,
 				FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */,
 				FF8EBFA71FF1E5DE004341AB /* Info.plist */,
+				5647BAC62005278E00100FD3 /* PaintColor.plist */,
 				FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */,
 			);
 			path = ColorNumber;
@@ -244,7 +266,7 @@
 				TargetAttributes = {
 					FF8EBF941FF1E5DE004341AB = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -274,8 +296,8 @@
 				FF8EBFA61FF1E5DE004341AB /* LaunchScreen.storyboard in Resources */,
 				FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */,
 				5C39E595200216FC00993E40 /* Library.plist in Resources */,
-				E2E767E22001F8070064716F /* ImageProcessHeadCell.xib in Resources */,
 				FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */,
+				5647BACF200528ED00100FD3 /* PaintColor.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,32 +308,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2A5941E200503D300049078 /* AsciiPalette.swift in Sources */,
+				E200D6CD20050462004D4D89 /* Canvas.swift in Sources */,
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
-				E2E767DD2001F7DF0064716F /* ImageProcessCell.swift in Sources */,
-				5C39E58D2002161A00993E40 /* CollectionViewCell.swift in Sources */,
+				5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
+				E2A5941F200503D300049078 /* Pixel.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
+				5647BACC200527E700100FD3 /* PaintColorPlist.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
-				E2F264002004BE34006E4DA1 /* AsciiPalette.swift in Sources */,
 				E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */,
 				5C39E594200216F900993E40 /* DataService.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
+				5647BACE2005281F00100FD3 /* PaintColorCVC.swift in Sources */,
+				5647BAC82005279900100FD3 /* PaintColorVC.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
-				E2E767E12001F8070064716F /* ImageProcessHeadCell.swift in Sources */,
 				5C39E593200216F600993E40 /* DataLibrary.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
-				E2C3C6A0200373E600ED47DF /* Pixel.swift in Sources */,
 				E2E767E42001F9380064716F /* Constants.swift in Sources */,
 				5C76248720021BA500404D73 /* UIColor+Extention.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
-				E2F264022004BE5F006E4DA1 /* AsciiArtist.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
-				5C39E58E2002161D00993E40 /* TableViewCell.swift in Sources */,
+				E2A59420200503D300049078 /* AsciiArtist.swift in Sources */,
+				5C39E58E2002161D00993E40 /* LibraryTableViewCell.swift in Sources */,
 				5C76248920021C3C00404D73 /* DetailLibraryViewController.swift in Sources */,
 				E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
+				5647BACB200527E500100FD3 /* PlistService.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,13 +474,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -465,13 +492,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
