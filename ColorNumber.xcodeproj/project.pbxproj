@@ -22,7 +22,6 @@
 		E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D02001ED790064716F /* ImagePixelReader.swift */; };
 		E2E767D42001EDDC0064716F /* PixelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D32001EDDC0064716F /* PixelState.swift */; };
 		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
-		E2E767D92001EED60064716F /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D82001EED60064716F /* ImageServices.swift */; };
 		E2E767DD2001F7DF0064716F /* ImageProcessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767DB2001F7DF0064716F /* ImageProcessCell.swift */; };
 		E2E767DE2001F7DF0064716F /* ImageProcessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2E767DC2001F7DF0064716F /* ImageProcessCell.xib */; };
 		E2E767E12001F8070064716F /* ImageProcessHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767DF2001F8070064716F /* ImageProcessHeadCell.swift */; };
@@ -31,6 +30,9 @@
 		E2E767E62001FA3C0064716F /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E52001FA3C0064716F /* CollectionView.swift */; };
 		E2E767E82001FA900064716F /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E72001FA900064716F /* CustomCollectionViewLayout.swift */; };
 		E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E920020DC90064716F /* DetailImageController.swift */; };
+		E2F263FD2004BBF7006E4DA1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FC2004BBF7006E4DA1 /* Canvas.swift */; };
+		E2F264002004BE34006E4DA1 /* AsciiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */; };
+		E2F264022004BE5F006E4DA1 /* AsciiArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F264012004BE5F006E4DA1 /* AsciiArtist.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -54,7 +56,6 @@
 		E2E767D02001ED790064716F /* ImagePixelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePixelReader.swift; sourceTree = "<group>"; };
 		E2E767D32001EDDC0064716F /* PixelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelState.swift; sourceTree = "<group>"; };
 		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
-		E2E767D82001EED60064716F /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 		E2E767DB2001F7DF0064716F /* ImageProcessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessCell.swift; sourceTree = "<group>"; };
 		E2E767DC2001F7DF0064716F /* ImageProcessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessCell.xib; sourceTree = "<group>"; };
 		E2E767DF2001F8070064716F /* ImageProcessHeadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessHeadCell.swift; sourceTree = "<group>"; };
@@ -63,6 +64,9 @@
 		E2E767E52001FA3C0064716F /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		E2E767E72001FA900064716F /* CustomCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewLayout.swift; sourceTree = "<group>"; };
 		E2E767E920020DC90064716F /* DetailImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageController.swift; sourceTree = "<group>"; };
+		E2F263FC2004BBF7006E4DA1 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsciiPalette.swift; sourceTree = "<group>"; };
+		E2F264012004BE5F006E4DA1 /* AsciiArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsciiArtist.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 			children = (
 				E2E767D52001EE580064716F /* CollectionView */,
 				3B22F7B51FF341C100A30505 /* Storyboard */,
+				E2F263FC2004BBF7006E4DA1 /* Canvas.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -131,9 +136,8 @@
 		E2E767D22001EDD10064716F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E2F263FE2004BE1C006E4DA1 /* ImageServices */,
 				E2E767D32001EDDC0064716F /* PixelState.swift */,
-				E2E767D82001EED60064716F /* ImageServices.swift */,
-				E2C3C69F200373E600ED47DF /* Pixel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -158,6 +162,16 @@
 				E2E767E02001F8070064716F /* ImageProcessHeadCell.xib */,
 			);
 			path = ImageProcessCell;
+			sourceTree = "<group>";
+		};
+		E2F263FE2004BE1C006E4DA1 /* ImageServices */ = {
+			isa = PBXGroup;
+			children = (
+				E2F263FF2004BE34006E4DA1 /* AsciiPalette.swift */,
+				E2F264012004BE5F006E4DA1 /* AsciiArtist.swift */,
+				E2C3C69F200373E600ED47DF /* Pixel.swift */,
+			);
+			path = ImageServices;
 			sourceTree = "<group>";
 		};
 		FF8EBF8C1FF1E5DE004341AB = {
@@ -269,22 +283,24 @@
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				E2E767DD2001F7DF0064716F /* ImageProcessCell.swift in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
-				E2E767D92001EED60064716F /* ImageServices.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
 				E2E767D42001EDDC0064716F /* PixelState.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
+				E2F264002004BE34006E4DA1 /* AsciiPalette.swift in Sources */,
 				E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				E2E767E62001FA3C0064716F /* CollectionView.swift in Sources */,
 				E2E767D12001ED790064716F /* ImagePixelReader.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
+				E2F263FD2004BBF7006E4DA1 /* Canvas.swift in Sources */,
 				E2E767E12001F8070064716F /* ImageProcessHeadCell.swift in Sources */,
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				E2C3C6A0200373E600ED47DF /* Pixel.swift in Sources */,
 				E2E767E42001F9380064716F /* Constants.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
+				E2F264022004BE5F006E4DA1 /* AsciiArtist.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
 				E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,

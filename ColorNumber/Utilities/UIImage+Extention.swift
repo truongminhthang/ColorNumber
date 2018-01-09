@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 extension UIImage {
     
@@ -88,6 +89,7 @@ extension UIImage {
         return UIImage(cgImage: cgImage)
     }
     
+    
     class func imageOfSymbol(_ symbol: String, _ font: UIFont) -> UIImage {
         let
         length = font.pointSize * 2,
@@ -113,19 +115,39 @@ extension UIImage {
         return image
     }
     
-    // MARK: - Crop Image Aspect Fill
-    func cropIfNeed(aspectFillToSize size: CGSize) -> UIImage? {
-        guard self.size > size else {return self}
-        UIGraphicsBeginImageContextWithOptions(size, false , 0.0)
-        let rect = CGRect(origin: CGPoint.zero, size: size)
-        self.draw(in: rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-}
-extension CGSize {
-    static func > (first: CGSize, second: CGSize) -> Bool {
-        return first.width > second.width || first.height > second.height
+    func imageConstrainedToMaxSize(_ maxSize: CGSize) -> UIImage {
+        let isTooBig = size.width  > maxSize.width || size.height > maxSize.height
+        if isTooBig {
+            let
+            maxRect       = CGRect(origin: CGPoint.zero, size: maxSize),
+            scaledRect    = AVMakeRect(aspectRatio: self.size, insideRect: maxRect),
+            scaledSize    = scaledRect.size,
+            targetRect    = CGRect(origin: CGPoint.zero, size: scaledSize),
+            width         = Int(scaledSize.width),
+            height        = Int(scaledSize.height),
+            cgImage       = self.cgImage,
+            bitsPerComp   = cgImage?.bitsPerComponent,
+            compsPerPixel = 4, // RGBA
+            bytesPerRow   = width * compsPerPixel,
+            colorSpace    = cgImage?.colorSpace,
+            bitmapInfo    = cgImage?.bitmapInfo,
+            context       = CGContext(
+                data: nil,
+                width: width,
+                height: height,
+                bitsPerComponent: bitsPerComp!,
+                bytesPerRow: bytesPerRow,
+                space: colorSpace!,
+                bitmapInfo: (bitmapInfo?.rawValue)!)
+            
+            if context != nil {
+                context!.interpolationQuality = CGInterpolationQuality.low
+                context?.draw(cgImage!, in: targetRect)
+                if let scaledCGImage = context?.makeImage() {
+                    return UIImage(cgImage: scaledCGImage)
+                }
+            }
+        }
+        return self
     }
 }
