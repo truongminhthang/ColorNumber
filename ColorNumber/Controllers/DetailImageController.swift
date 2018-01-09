@@ -13,7 +13,7 @@ class DetailImageController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     fileprivate let labelFont = UIFont(name: "Menlo", size: 7)!
-    fileprivate let maxImageSize = CGSize(width: 200, height: 200)
+    fileprivate let maxImageSize = CGSize(width: 100, height: 100)
     fileprivate lazy var palette: AsciiPalette = AsciiPalette(font: self.labelFont)
     fileprivate var currentView: Canvas?
     
