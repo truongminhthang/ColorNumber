@@ -12,8 +12,8 @@ class Constants {
     
     static let shared: Constants = Constants()
     
-    let IMAGE_PROCESS_CELL_IDENTIFIER = "ImageProcessCell"
-    let IMAGE_PROCESS_HEAD_CELL_IDENTIFIER = "ImageProcessHeadCell"
-    let CELL_HEIGHT: CGFloat = 30
-    let CELL_WIDTH: CGFloat = 30
+    let DETAIL_LIBRARY_COLLECTION_VIEW_CELL = "DetailLibraryCollectionViewCell"
+    let LIBRARY_TABLE_VIEW_CELL = "LibraryTableViewCell"
+    let LIBRARY_COLLECTION_VIEW_CELL = "LibraryCollectionViewCell"
+    let UIEDGEINSETS = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
 }

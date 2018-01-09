@@ -8,10 +8,9 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class LibraryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageIcon: UIImageView!
-    
     override func prepareForReuse() {
     }
 }

@@ -136,7 +136,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.shared.LIBRARY_TABLE_VIEW_CELL, for: indexPath) as! LibraryTableViewCell
         cell.titleHead.text = DataService.share.dataLibrary[indexPath.row].titleHeader
         cell.titleHead.textColor = DataService.share.dataLibrary[indexPath.row].colorTitle
         cell.imageHeader.image = DataService.share.dataLibrary[indexPath.row].iconHeader
@@ -145,8 +145,8 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? TableViewCell else { return }
-        tableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
+        guard let libraryTableViewCell = cell as? LibraryTableViewCell else { return }
+        libraryTableViewCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -170,7 +170,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let itemsPerRow: CGFloat = 3
         
-        let paddingSpace = DataService.share.sectionInsets.left * (itemsPerRow + 1)
+        let paddingSpace = Constants.shared.UIEDGEINSETS.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
@@ -180,12 +180,12 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return DataService.share.sectionInsets
+        return Constants.shared.UIEDGEINSETS
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return DataService.share.sectionInsets.left
+        return Constants.shared.UIEDGEINSETS.left
     }
     
     // CollectionViewDataSource.
@@ -195,20 +195,8 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReusableCell", for: indexPath) as! CollectionViewCell
-        
-        switch collectionView.tag {
-        case 0:
-            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
-        case 1:
-            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
-        case 2:
-            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
-        case 3:
-            cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
-        default:
-            cell.imageIcon.image = UIImage(named: "default")
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.LIBRARY_COLLECTION_VIEW_CELL, for: indexPath) as! LibraryCollectionViewCell
+        cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
         return cell
     }
     

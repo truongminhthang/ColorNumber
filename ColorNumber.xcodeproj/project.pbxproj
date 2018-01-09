@@ -18,8 +18,8 @@
 		3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */; };
 		3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */; };
 		3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */; };
-		5C39E58D2002161A00993E40 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58C2002161300993E40 /* CollectionViewCell.swift */; };
-		5C39E58E2002161D00993E40 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58B2002161300993E40 /* TableViewCell.swift */; };
+		5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58C2002161300993E40 /* LibraryCollectionViewCell.swift */; };
+		5C39E58E2002161D00993E40 /* LibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E58B2002161300993E40 /* LibraryTableViewCell.swift */; };
 		5C39E593200216F600993E40 /* DataLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E590200216EB00993E40 /* DataLibrary.swift */; };
 		5C39E594200216F900993E40 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39E592200216EC00993E40 /* DataService.swift */; };
 		5C39E595200216FC00993E40 /* Library.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C39E591200216EC00993E40 /* Library.plist */; };
@@ -51,8 +51,8 @@
 		3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		3B6BC6841FF4D12900B6BCB1 /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		3B6BC6861FF4D13400B6BCB1 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
-		5C39E58B2002161300993E40 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		5C39E58C2002161300993E40 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5C39E58B2002161300993E40 /* LibraryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTableViewCell.swift; sourceTree = "<group>"; };
+		5C39E58C2002161300993E40 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5C39E590200216EB00993E40 /* DataLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLibrary.swift; sourceTree = "<group>"; };
 		5C39E591200216EC00993E40 /* Library.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Library.plist; sourceTree = "<group>"; };
 		5C39E592200216EC00993E40 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 		5C39E58A2002116900993E40 /* LibraryCell */ = {
 			isa = PBXGroup;
 			children = (
-				5C39E58C2002161300993E40 /* CollectionViewCell.swift */,
-				5C39E58B2002161300993E40 /* TableViewCell.swift */,
+				5C39E58C2002161300993E40 /* LibraryCollectionViewCell.swift */,
+				5C39E58B2002161300993E40 /* LibraryTableViewCell.swift */,
 			);
 			path = LibraryCell;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 				E2A5941E200503D300049078 /* AsciiPalette.swift in Sources */,
 				E200D6CD20050462004D4D89 /* Canvas.swift in Sources */,
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
-				5C39E58D2002161A00993E40 /* CollectionViewCell.swift in Sources */,
+				5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
 				E2A5941F200503D300049078 /* Pixel.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
@@ -305,7 +305,7 @@
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,
 				E2A59420200503D300049078 /* AsciiArtist.swift in Sources */,
-				5C39E58E2002161D00993E40 /* TableViewCell.swift in Sources */,
+				5C39E58E2002161D00993E40 /* LibraryTableViewCell.swift in Sources */,
 				5C76248920021C3C00404D73 /* DetailLibraryViewController.swift in Sources */,
 				E2E767EA20020DC90064716F /* DetailImageController.swift in Sources */,
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,

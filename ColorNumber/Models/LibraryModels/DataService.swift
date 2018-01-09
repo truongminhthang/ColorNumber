@@ -14,11 +14,7 @@ class DataService{
     
     //MARK: Index Seleced Cell.
     var selectedHead: Int?
-    
-    //MARK: Set number CollectionViewCell in CollectionViewController.
-    let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
-    
-    
+
     //MARK: data
     private var _dataLibrary: [DataLibrary]!
     
