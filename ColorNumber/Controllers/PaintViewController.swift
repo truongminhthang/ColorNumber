@@ -8,16 +8,18 @@
 
 import UIKit
 
-class PaintViewController: UIViewController, UIScrollViewDelegate {
+class PaintViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var image: UIImage?
+    var symbols = [String]()
     let cellPadding: Int = 10
-    var dataService = DataService.share.dataPaintColor
+    var colors = DataService.share.dataPaintColor
     fileprivate let labelFont = UIFont(name: "Menlo", size: 7)!
-    fileprivate let maxImageSize = CGSize(width: 100, height: 100)
+    fileprivate let maxImageSize = CGSize(width: 50, height: 50)
     fileprivate lazy var palette: AsciiPalette = AsciiPalette(font: self.labelFont)
     fileprivate var currentView: Canvas?
     
@@ -26,7 +28,12 @@ class PaintViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        displayImageNamed("kermit")
+        if image != nil {
+            displayImage(image!)
+        } else {
+            displayImageNamed("kermit")
+        }
+        configureZoomSupport()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,11 +50,11 @@ class PaintViewController: UIViewController, UIScrollViewDelegate {
     
     fileprivate func displayImageNamed(_ imageName: String) {
         let image = UIImage(named: imageName)!
-        configureZoomSupport()
         displayImage(image)
     }
     
     fileprivate func displayImage(_ image: UIImage) {
+//        collectionView.isHidden = true
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             
             let // Rotate first because the orientation is lost when resizing.
@@ -55,9 +62,12 @@ class PaintViewController: UIViewController, UIScrollViewDelegate {
             resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize),
             asciiArtist  = AsciiArtist(resizedImage, self.palette),
             symbolsMatix = asciiArtist.createAsciiArt()
-            
+            self.symbols = self.palette.symbols.sorted(by: >)
             DispatchQueue.main.async {
                 self.displayAsciiArt(symbolsMatix)
+//                print(self.symbols)
+                self.collectionView.reloadData()
+//                self.collectionView.isHidden = false
             }
         }
     }
@@ -87,7 +97,15 @@ class PaintViewController: UIViewController, UIScrollViewDelegate {
         scrollView.setZoomScale(scale, animated: animated)
     }
     
-    // MARK: - UIScrollViewDelegate
+    @IBAction func dismissVC(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension PaintViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         setCenterScrollView(scrollView, currentView)
@@ -106,27 +124,24 @@ class PaintViewController: UIViewController, UIScrollViewDelegate {
             subView!.center = CGPoint(x: scrollView.contentSize.width * 0.5 + CGFloat(offsetX),y: scrollView.contentSize.height * 0.5 + CGFloat(offsetY))
         }
     }
-    
-    @IBAction func dismissVC(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
 }
+
 // MARK: - CollectionView delegate, CollectionView DataSource
 extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataService.count
+        return symbols.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.PAINT_SECTION, for: indexPath) as! PaintSection
-            cell.imageView.image = UIImage(named: "\(dataService[indexPath.row].hex)")
+            cell.imageView.image = UIImage(named: "\(colors[indexPath.row].hex)")
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.PAINT_CELL, for: indexPath) as! PaintColorCVC
-            cell.labelNumberText.text = String(dataService[indexPath.row].number)
-            cell.backGroundView.backgroundColor = UIColor.color(fromHexString: "\(dataService[indexPath.row].hex)")
+            cell.labelNumberText.text = String(symbols[indexPath.row - 1])
+            cell.labelNumberText.textColor = UIColor.red
+//            cell.backGroundView.backgroundColor = UIColor.color(fromHexString: "\(colors[indexPath.row].hex)")
             return cell
         }
     }
@@ -135,7 +150,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             view.backgroundColor = UIColor.white
         }
         else {
-            view.backgroundColor = UIColor.color(fromHexString: "\(dataService[indexPath.row].hex)")
+            view.backgroundColor = UIColor.blue
         }
     }
     

@@ -55,7 +55,7 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.DETAIL_LIBRARY_COLLECTION_VIEW_CELL, for: indexPath) as! LibraryCollectionViewCell
         
-        if let indexSelected = DataService.share.selectedHead{
+        if let indexSelected = DataService.share.selectedHead {
             cell.imageIcon.image = DataService.share.dataLibrary[indexSelected].listImage[indexPath.row]
         }
         
@@ -63,6 +63,9 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "PaintViewController") as! PaintViewController
+        if let indexSelected = DataService.share.selectedHead {
+            vc.image = DataService.share.dataLibrary[indexSelected].listImage[indexPath.row]
+        }
         self.present(vc, animated: true, completion: nil)
     }
 }

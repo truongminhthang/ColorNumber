@@ -17,10 +17,11 @@ class AsciiPalette {
     lazy var symbols: [String] = self.loadSymbols()
     
     fileprivate func loadSymbols() -> [String] {
-        return symbolsSortedByIntensityForAsciiCodes(32...126) // from ' ' to '~'
+        return symbolsSortedByIntensityForAsciiCodes(0...16)  //(32...126) // from ' ' to '~'
     }
     
     fileprivate func symbolsSortedByIntensityForAsciiCodes(_ codes: CountableClosedRange<Int>) -> [String] {
+        print(codes)
         let symbols          = codes.map { self.symbolFromAsciiCode($0) },
             symbolImages     = symbols.map { UIImage.imageOfSymbol($0, self.font) },
             whitePixelCounts = symbolImages.map { self.countWhitePixelsInImage($0) },
@@ -29,7 +30,8 @@ class AsciiPalette {
     }
     
     fileprivate func symbolFromAsciiCode(_ code: Int) -> String {
-        return String(Character(UnicodeScalar(code)!))
+        let symbol = code == 0 ? " " : String(code)
+        return symbol//String(Character(UnicodeScalar(code)!))
     }
     
     fileprivate func countWhitePixelsInImage(_ image: UIImage) -> Int {
@@ -55,6 +57,7 @@ class AsciiPalette {
         uniqueCounts  = Set(whitePixelCounts),
         sortedCounts  = uniqueCounts.sorted(),
         sortedSymbols = sortedCounts.map { mappings[$0] as! String }
+//        print("symbols: \(symbols), mappings: \(mappings), uniqueCounts: \(uniqueCounts), sortedCounts: \(sortedCounts), sortedSymbols: \(sortedSymbols), whitePixelCounts: \(whitePixelCounts)")
         return sortedSymbols
     }
 }
