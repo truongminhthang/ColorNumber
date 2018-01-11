@@ -16,6 +16,7 @@ public class Canvas: UIView {
     var height: Int
     var width: Int
     var pixels = Array<Array<UILabel>>()
+    public var paintBrushColor: UIColor = UIColor.blue
     public init(itemSize: CGFloat, symbolsMatix: [[String]]){
         self.itemSize = itemSize
         self.symbolsMatix = symbolsMatix
@@ -79,7 +80,7 @@ public class Canvas: UIView {
         let x = Int(point.y / itemSize)
         let y = Int(point.x / itemSize)
         guard y < width && x < height && y >= 0 && x >= 0 else { return }
-        self.pixels[x][y].backgroundColor = UIColor.blue
+        self.pixels[x][y].backgroundColor = self.paintBrushColor
     }
 }
 extension Canvas: UIGestureRecognizerDelegate {

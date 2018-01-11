@@ -14,6 +14,7 @@ class PaintViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    let color: [String: String] = ["1": "C11ADB", "2": "6049FE", "3": "24DDC9", "4": "35EA64", "5": "FF7C60", "6":"F74747", "7": "EA1717", "8": "B50101", "9": "390122", "10": "097564", "11": "0DA890", "12": "B4780E", "13": "27D9BD", "14": "30B653", "15": "DA654C", "16": "B23232"]
     var image: UIImage?
     var symbols = [String]()
     let cellPadding: Int = 10
@@ -62,7 +63,7 @@ class PaintViewController: UIViewController {
             resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize),
             asciiArtist  = AsciiArtist(resizedImage, self.palette),
             symbolsMatix = asciiArtist.createAsciiArt()
-            self.symbols = self.palette.symbols.sorted(by: >)
+            self.symbols = self.palette.symbols.filter { $0 != " " }
             DispatchQueue.main.async {
                 self.displayAsciiArt(symbolsMatix)
 //                print(self.symbols)
@@ -111,7 +112,6 @@ extension PaintViewController: UIScrollViewDelegate {
         if scrollView != scrollView as? UICollectionView {
             setCenterScrollView(scrollView, currentView)
         }
-        
         return currentView
     }
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
@@ -144,16 +144,16 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.PAINT_CELL, for: indexPath) as! PaintColorCVC
             cell.labelNumberText.text = String(symbols[indexPath.row - 1])
             cell.labelNumberText.textColor = UIColor.red
-//            cell.backGroundView.backgroundColor = UIColor.color(fromHexString: "\(colors[indexPath.row].hex)")
+            cell.backGroundView.backgroundColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
             return cell
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            view.backgroundColor = UIColor.white
+            self.currentView!.paintBrushColor = UIColor.white
         }
         else {
-            view.backgroundColor = UIColor.blue
+            self.currentView!.paintBrushColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
         }
     }
     
