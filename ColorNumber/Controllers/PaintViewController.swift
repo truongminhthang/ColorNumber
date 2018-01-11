@@ -108,7 +108,10 @@ class PaintViewController: UIViewController {
 extension PaintViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        setCenterScrollView(scrollView, currentView)
+        if scrollView != scrollView as? UICollectionView {
+            setCenterScrollView(scrollView, currentView)
+        }
+        
         return currentView
     }
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
