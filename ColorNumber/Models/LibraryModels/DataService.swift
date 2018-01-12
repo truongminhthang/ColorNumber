@@ -12,6 +12,15 @@ import UIKit
 class DataService{
     static let share = DataService()
     
+    //MARK: return image from indexPathCollectionCell
+    var selectedIndexPath : IndexPath?
+    var selectedImage: UIImage? {
+        if let indexPath = selectedIndexPath {
+            return dataLibrary[indexPath.section][indexPath.row]
+        }
+        return nil
+    }
+    
     //MARK: Index Seleced Cell.
     var selectedHead: Int?
 

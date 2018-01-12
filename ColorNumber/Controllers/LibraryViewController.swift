@@ -157,6 +157,8 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DataService.share.selectedHead = indexPath.row
     }
+    
+    
 }
 
 
@@ -199,5 +201,10 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        DataService.share.selectedIndexPath = [collectionView.tag, indexPath.row]
+    }
+    
     
 }

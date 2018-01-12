@@ -64,9 +64,10 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "PaintViewController") as! PaintViewController
-        if let indexSelected = DataService.share.selectedHead {
-            vc.image = DataService.share.dataLibrary[indexSelected].listImage[indexPath.row]
-        }
+//        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: "PaintViewController") as! PaintViewController
+//        if let indexSelected = DataService.share.selectedHead {
+//            vc.image = DataService.share.dataLibrary[indexSelected].listImage[indexPath.row]
+//        }
+        DataService.share.selectedIndexPath = indexPath
     }
 }

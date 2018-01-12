@@ -15,7 +15,9 @@ class DataLibrary {
     var titleHeader: String = ""
     var listImage: [UIImage?] = []
     var colorTitle: UIColor = UIColor.color(fromHexString: "#000000")
-    
+    subscript (imageIndex: Int) -> UIImage? {
+        return listImage[imageIndex]
+    }
     
     init?(dict: JSON) {
         guard let iconHeader = dict["iconHeader"] as? String,
