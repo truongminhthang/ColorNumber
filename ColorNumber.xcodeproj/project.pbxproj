@@ -35,7 +35,6 @@
 		E2A5941E200503D300049078 /* AsciiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941B200503D300049078 /* AsciiPalette.swift */; };
 		E2A5941F200503D300049078 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941C200503D300049078 /* Pixel.swift */; };
 		E2A59420200503D300049078 /* AsciiArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941D200503D300049078 /* AsciiArtist.swift */; };
-		E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */; };
 		E2E767E42001F9380064716F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E32001F9380064716F /* Constants.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
@@ -72,7 +71,6 @@
 		E2A5941B200503D300049078 /* AsciiPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiPalette.swift; sourceTree = "<group>"; };
 		E2A5941C200503D300049078 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		E2A5941D200503D300049078 /* AsciiArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciiArtist.swift; sourceTree = "<group>"; };
-		E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		E2E767E32001F9380064716F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2F263FC2004BBF7006E4DA1 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,7 +193,6 @@
 		E2E767D52001EE580064716F /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				E2E767D62001EE6C0064716F /* ColumnFlowLayout.swift */,
 				5647BACD2005281F00100FD3 /* PaintColorCVC.swift */,
 				E285055B200531BE00279D6D /* PaintSection.swift */,
 			);
@@ -266,7 +263,7 @@
 				TargetAttributes = {
 					FF8EBF941FF1E5DE004341AB = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -317,7 +314,6 @@
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
 				5647BACC200527E700100FD3 /* PaintColorPlist.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,
-				E2E767D72001EE6C0064716F /* ColumnFlowLayout.swift in Sources */,
 				5C39E594200216F900993E40 /* DataService.swift in Sources */,
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
@@ -474,8 +470,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -492,8 +489,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

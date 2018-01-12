@@ -12,12 +12,14 @@ class DetailLibraryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleHead: UILabel!
-    
-    let layout = ColumnFlowLayout(cellsPerRow: 2, minimumInteritemSpacing: 10, minimumLineSpacing: 10, sectionInset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+    let numbersOfItemInRow :CGFloat = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.collectionViewLayout = layout
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemWidth = (view.frame.width - 10 /*left*/ - 10 /*right*/ - 10 * (numbersOfItemInRow - 1)) / numbersOfItemInRow
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +68,5 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
         if let indexSelected = DataService.share.selectedHead {
             vc.image = DataService.share.dataLibrary[indexSelected].listImage[indexPath.row]
         }
-        self.present(vc, animated: true, completion: nil)
     }
 }

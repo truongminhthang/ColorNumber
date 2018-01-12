@@ -19,9 +19,8 @@ class PaintViewController: UIViewController {
     var symbols = [String]()
     let cellPadding: Int = 10
     var colors = DataService.share.dataPaintColor
-    fileprivate let labelFont = UIFont(name: "Menlo", size: 7)!
     fileprivate let maxImageSize = CGSize(width: 50, height: 50)
-    fileprivate lazy var palette: AsciiPalette = AsciiPalette(font: self.labelFont)
+    fileprivate lazy var palette: AsciiPalette = AsciiPalette()
     fileprivate var currentView: Canvas?
     
     var pixels = Array<Array<UILabel>>()

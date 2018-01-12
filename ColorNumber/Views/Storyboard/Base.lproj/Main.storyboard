@@ -221,6 +221,7 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="imageIcon" destination="Ihf-9a-TS1" id="dSQ-Yi-78Z"/>
+                                                                <segue destination="Jjb-VX-w6j" kind="presentation" id="GG1-9q-k66"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -437,15 +438,15 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-tf-ext">
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" red="0.91755962369999999" green="0.91771018510000002" blue="0.91752761599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Smd-OB-tiW">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Smd-OB-tiW">
                                     <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DetailLibraryCollectionViewCell" id="UcU-BF-acE" customClass="LibraryCollectionViewCell" customModule="ColorNumber" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <rect key="frame" x="10" y="10" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -475,6 +476,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="imageIcon" destination="az9-N1-0BX" id="sob-qS-ewB"/>
+                                            <segue destination="Jjb-VX-w6j" kind="presentation" id="BUZ-2V-l1e"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -685,7 +687,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77A-8M-CaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740" y="335"/>
+            <point key="canvasLocation" x="793" y="412"/>
         </scene>
     </scenes>
     <resources>
@@ -701,4 +703,7 @@
         <image name="ic_next" width="14" height="30"/>
         <image name="ic_trending" width="27" height="27"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="BUZ-2V-l1e"/>
+    </inferredMetricsTieBreakers>
 </document>

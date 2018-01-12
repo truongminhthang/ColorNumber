@@ -12,7 +12,7 @@ import UIKit
 class AsciiPalette {
     fileprivate let font: UIFont
     
-    init(font: UIFont) { self.font = font }
+    init(font: UIFont = UIFont(name: "Menlo", size: 7)!) { self.font = font }
     
     lazy var symbols: [String] = self.loadSymbols()
     
