@@ -8,6 +8,8 @@
 
 import UIKit
 fileprivate let _main: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+fileprivate let _import: UIStoryboard = UIStoryboard(name: "Import", bundle: nil)
+fileprivate let _library: UIStoryboard = UIStoryboard(name: "Library", bundle: nil)
 
 extension UIStoryboard {
     
@@ -17,11 +19,11 @@ extension UIStoryboard {
         }
     }
     
-    func viewControllerOf<T: UIViewController>(_ type: T.Type) -> T {
-        return viewControllerOf(String(describing: type)) as! T
+    func viewControllerOf<T: UIViewController>(type: T.Type) -> T {
+        return viewControllerOf(withIdentifier: String(describing: type)) as! T
     }
     
-    func viewControllerOf(_ identifier: String) -> UIViewController {
+    func viewControllerOf(withIdentifier identifier: String) -> UIViewController {
         return instantiateViewController(withIdentifier: identifier)
     }
     

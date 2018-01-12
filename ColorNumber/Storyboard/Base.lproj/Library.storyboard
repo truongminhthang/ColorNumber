@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xLU-wP-fxD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -12,26 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Import-->
-        <scene sceneID="JkH-k1-aor">
-            <objects>
-                <viewController id="udh-68-Wzk" customClass="ImportViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5jn-gt-BhV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.91755962369999999" green="0.91771018510000002" blue="0.91752761599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="Z27-lm-cxb"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Import" image="ic_importdark" id="Pfh-lX-76G"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Oed-jy-YYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-241" y="326"/>
-        </scene>
         <!--Library-->
         <scene sceneID="kn4-uI-Yic">
             <objects>
-                <viewController id="wyU-vL-a4B" customClass="LibraryViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UIViewController-wyU-vL-a4B" id="wyU-vL-a4B" customClass="LibraryViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HRt-oR-tzi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,7 +131,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="400" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cWk-LK-x00">
-                                <rect key="frame" x="0.0" y="80.5" width="375" height="537.5"/>
+                                <rect key="frame" x="0.0" y="80.5" width="375" height="586.5"/>
                                 <color key="backgroundColor" red="0.91755962369999999" green="0.91771018510000002" blue="0.91752761599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -284,118 +268,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JlC-Js-tsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-242.40000000000001" y="-400.74962518740631"/>
-        </scene>
-        <!--Watch Video View Controller-->
-        <scene sceneID="Y6f-AU-Bb7">
-            <objects>
-                <viewController storyboardIdentifier="WatchVideoViewController" id="fLo-0g-PRq" customClass="WatchVideoViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vZs-4k-mbN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0_start_screen" translatesAutoresizingMaskIntoConstraints="NO" id="lR9-3o-93G">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GLT-kx-rJO">
-                                <rect key="frame" x="62.5" y="167" width="250" height="333.5"/>
-                            </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XiZ-nx-MTj">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="vgf-Ys-bMr">
-                                <rect key="frame" x="160" y="510.5" width="55" height="37"/>
-                            </pageControl>
-                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Gy-ms-4a4">
-                                <rect key="frame" x="94" y="557.5" width="187.5" height="34"/>
-                                <color key="backgroundColor" red="0.93027269840000004" green="0.2777306437" blue="0.24826529620000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Continue"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="continueAction:" destination="fLo-0g-PRq" eventType="touchUpInside" id="Y6D-kQ-Cza"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="lR9-3o-93G" firstAttribute="leading" secondItem="Hbh-Yg-bnX" secondAttribute="leading" id="0Tz-KH-AJx"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="bottom" secondItem="XiZ-nx-MTj" secondAttribute="bottom" id="5Lv-Hr-q8L"/>
-                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="leading" secondItem="Hbh-Yg-bnX" secondAttribute="leading" id="DgV-xS-i6J"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="trailing" secondItem="lR9-3o-93G" secondAttribute="trailing" id="G4y-L9-Pui"/>
-                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="top" secondItem="Hbh-Yg-bnX" secondAttribute="top" id="GJb-CV-Us4"/>
-                            <constraint firstItem="GLT-kx-rJO" firstAttribute="height" secondItem="vZs-4k-mbN" secondAttribute="height" multiplier="1/2" id="ImD-Gk-XLV"/>
-                            <constraint firstItem="vgf-Ys-bMr" firstAttribute="centerX" secondItem="vZs-4k-mbN" secondAttribute="centerX" id="Jhg-9u-DZp"/>
-                            <constraint firstItem="GLT-kx-rJO" firstAttribute="width" secondItem="vZs-4k-mbN" secondAttribute="width" multiplier="2/3" id="M71-3W-bK0"/>
-                            <constraint firstItem="lR9-3o-93G" firstAttribute="top" secondItem="Hbh-Yg-bnX" secondAttribute="top" id="Odd-O9-bqK"/>
-                            <constraint firstItem="2Gy-ms-4a4" firstAttribute="top" secondItem="vgf-Ys-bMr" secondAttribute="bottom" constant="10" id="P94-fC-vVs"/>
-                            <constraint firstItem="GLT-kx-rJO" firstAttribute="centerY" secondItem="vZs-4k-mbN" secondAttribute="centerY" id="Sl4-Xc-Yqc"/>
-                            <constraint firstItem="GLT-kx-rJO" firstAttribute="centerX" secondItem="vZs-4k-mbN" secondAttribute="centerX" id="cbv-5Y-qfh"/>
-                            <constraint firstItem="vgf-Ys-bMr" firstAttribute="top" secondItem="GLT-kx-rJO" secondAttribute="bottom" constant="10" id="dJY-0e-ynh"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="trailing" secondItem="XiZ-nx-MTj" secondAttribute="trailing" id="mfZ-NQ-sZf"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="bottom" secondItem="lR9-3o-93G" secondAttribute="bottom" id="oF1-Sj-XvJ"/>
-                            <constraint firstItem="2Gy-ms-4a4" firstAttribute="width" secondItem="vZs-4k-mbN" secondAttribute="width" multiplier="1/2" id="xaH-wH-9Lt"/>
-                            <constraint firstItem="2Gy-ms-4a4" firstAttribute="centerX" secondItem="vZs-4k-mbN" secondAttribute="centerX" id="z05-dH-GTN"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Hbh-Yg-bnX"/>
-                    </view>
-                    <connections>
-                        <outlet property="btnContinue" destination="2Gy-ms-4a4" id="KXC-Hf-yLU"/>
-                        <outlet property="imageTutorial" destination="GLT-kx-rJO" id="39p-4l-oJ8"/>
-                        <outlet property="pageControl" destination="vgf-Ys-bMr" id="YNZ-Ge-pOG"/>
-                        <outlet property="scrollView" destination="XiZ-nx-MTj" id="EGR-sS-edL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZwL-OS-eZ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="422" y="-1258"/>
-        </scene>
-        <!--Custom Tabbar Controller-->
-        <scene sceneID="WuR-ip-eCO">
-            <objects>
-                <tabBarController id="xLU-wP-fxD" customClass="CustomTabbarController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" backgroundImage="ic_libary" id="BEk-J2-W0t">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="itemNormalColor">
-                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="itemSelectedColor">
-                            <color key="value" red="0.93027269840000004" green="0.2777306437" blue="0.24826529620000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outlet property="delegate" destination="aCe-7J-tJp" id="7L5-tU-F8u"/>
-                        <segue destination="wyU-vL-a4B" kind="relationship" relationship="viewControllers" id="fUi-yj-InB"/>
-                        <segue destination="udh-68-Wzk" kind="relationship" relationship="viewControllers" id="8j9-JA-2D4"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="i6o-Mt-04n"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oLe-87-J7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="aCe-7J-tJp" customClass="ScrollingTabBarControllerDelegate" customModule="ColorNumber" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="-1284" y="238"/>
-        </scene>
-        <!--My gallary-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="MyGallaryViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="My gallary" image="ic_mygallarydark" id="gDh-hj-tdB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-242" y="1074"/>
         </scene>
         <!--Detail Library View Controller-->
         <scene sceneID="I9F-K4-lFg">
@@ -687,23 +559,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77A-8M-CaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="793" y="412"/>
+            <point key="canvasLocation" x="172" y="428"/>
         </scene>
     </scenes>
     <resources>
-        <image name="0_start_screen" width="414" height="736"/>
         <image name="bt_addthree" width="52" height="39"/>
         <image name="bt_watchvideo" width="166" height="35"/>
         <image name="button_01" width="414" height="63"/>
         <image name="ic_back" width="14" height="25"/>
-        <image name="ic_importdark" width="30" height="27"/>
         <image name="ic_libary" width="414" height="48"/>
         <image name="ic_libarydark" width="27" height="27"/>
-        <image name="ic_mygallarydark" width="27" height="27"/>
         <image name="ic_next" width="14" height="30"/>
         <image name="ic_trending" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BUZ-2V-l1e"/>
+        <segue reference="GG1-9q-k66"/>
     </inferredMetricsTieBreakers>
 </document>

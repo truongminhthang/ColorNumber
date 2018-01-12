@@ -15,9 +15,9 @@ class CustomTabbarController: UITabBarController {
     @IBInspectable var itemNormalColor: UIColor = UIColor.lightGray {
         didSet {
             UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: itemNormalColor], for:UIControlState());
-            let items = tabBar.items! ;
+            let items = tabBar.items ?? [] ;
             for item in items {
-                item.image = item.image!.imageWithColor(tintColor: itemNormalColor).withRenderingMode(UIImageRenderingMode.alwaysOriginal);
+                item.image = item.image?.imageWithColor(tintColor: itemNormalColor).withRenderingMode(UIImageRenderingMode.alwaysOriginal);
             }
             
         }

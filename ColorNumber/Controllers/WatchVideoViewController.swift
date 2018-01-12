@@ -10,6 +10,11 @@ import UIKit
 
 class WatchVideoViewController: UIViewController {
     
+    static var instance : WatchVideoViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "WatchVideoViewController") as! WatchVideoViewController
+    }
+    
     var images = ["img_001", "img_002", "img_003", "img_004"]
     
     @IBOutlet weak var pageControl: UIPageControl!
