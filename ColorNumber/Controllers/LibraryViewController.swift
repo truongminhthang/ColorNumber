@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 import StoreKit
 
 class LibraryViewController: UIViewController {
@@ -124,6 +125,18 @@ class LibraryViewController: UIViewController {
         })
         alert.addAction(reviewAction)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier ?? "" {
+            case "showDetailLibrary":
+                let vc = segue.destination as? DetailLibraryViewController
+                vc?.indexFromLibrary = tableView.indexPathForSelectedRow?.row
+            case "showPaitnVC":
+                debugPrint("not action")
+            
+        default:
+            fatalError("not segue")
+        }
+    }
     
 }
 
@@ -153,11 +166,6 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
         let heightCell = view.frame.height / 2
         return heightCell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        DataService.share.selectedHead = indexPath.row
-    }
-    
     
 }
 

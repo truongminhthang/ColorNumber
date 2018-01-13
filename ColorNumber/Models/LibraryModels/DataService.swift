@@ -21,9 +21,6 @@ class DataService{
         return nil
     }
     
-    //MARK: Index Seleced Cell.
-    var selectedHead: Int?
-
     //MARK: data
     private var _dataLibrary: [DataLibrary]!
     

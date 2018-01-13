@@ -205,7 +205,7 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="imageIcon" destination="Ihf-9a-TS1" id="dSQ-Yi-78Z"/>
-                                                                <segue destination="Jjb-VX-w6j" kind="presentation" id="GG1-9q-k66"/>
+                                                                <segue destination="Jjb-VX-w6j" kind="presentation" identifier="showPaitnVC" id="GG1-9q-k66"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -233,7 +233,7 @@
                                             <outlet property="collectionView" destination="ihc-oh-JDn" id="b0G-fP-rWL"/>
                                             <outlet property="imageHeader" destination="roe-hG-PLx" id="mTU-Vn-h2q"/>
                                             <outlet property="titleHead" destination="g1O-nL-epI" id="M49-AP-0Gt"/>
-                                            <segue destination="8WJ-kn-cLo" kind="show" id="4NJ-T9-Wop"/>
+                                            <segue destination="8WJ-kn-cLo" kind="show" identifier="showDetailLibrary" id="4NJ-T9-Wop"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
