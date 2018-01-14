@@ -6,7 +6,7 @@
 //  Copyright © 2018 BigZero. All rights reserved.
 //
 
-import Foundation
+import UIKit
 /** Represents the memory address of a pixel. */
 typealias PixelPointer = UnsafePointer<UInt8>
 
@@ -33,6 +33,8 @@ struct Pixel {
         red   = pointer[offset + 0],
         green = pointer[offset + 1],
         blue  = pointer[offset + 2]
+//        alpha = pointer[offset + 3]
+        print(Pixel.calculateIntensity(red, green, blue))
         return Pixel.calculateIntensity(red, green, blue)
     }
     
@@ -49,6 +51,7 @@ struct Pixel {
         weightedSum = Double(r) * redWeight   +
             Double(g) * greenWeight +
             Double(b) * blueWeight
+//        print(String(format: "#%02x%02x%02x",r,g,b))
         return weightedSum / weightedMax
     }
 }

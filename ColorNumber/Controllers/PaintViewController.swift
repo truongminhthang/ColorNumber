@@ -148,7 +148,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.PAINT_CELL, for: indexPath) as! PaintColorCVC
-            cell.labelNumberText.text = String(symbols[indexPath.row - 1])
+            cell.labelNumberText.text = symbols[indexPath.row - 1]
             cell.labelNumberText.textColor = UIColor.red
             cell.backGroundView.backgroundColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
             return cell
@@ -160,6 +160,8 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
         }
         else {
             self.currentView!.paintBrushColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
+            self.currentView!.selectedPaintBrushColor(symbols[indexPath.row - 1])
+            self.currentView!.idPaintBrushColor = symbols[indexPath.row - 1]
         }
     }
     

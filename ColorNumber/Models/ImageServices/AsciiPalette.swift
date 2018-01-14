@@ -26,6 +26,7 @@ class AsciiPalette {
             symbolImages     = symbols.map { UIImage.imageOfSymbol($0, self.font) },
             whitePixelCounts = symbolImages.map { self.countWhitePixelsInImage($0) },
             sortedSymbols    = sortByIntensity(symbols, whitePixelCounts)
+        print("symbolImages: \(symbolImages)")
         return sortedSymbols
     }
     
@@ -57,7 +58,7 @@ class AsciiPalette {
         uniqueCounts  = Set(whitePixelCounts),
         sortedCounts  = uniqueCounts.sorted(),
         sortedSymbols = sortedCounts.map { mappings[$0] as! String }
-//        print("symbols: \(symbols), mappings: \(mappings), uniqueCounts: \(uniqueCounts), sortedCounts: \(sortedCounts), sortedSymbols: \(sortedSymbols), whitePixelCounts: \(whitePixelCounts)")
+        print("symbols: \(symbols), mappings: \(mappings), uniqueCounts: \(uniqueCounts), sortedCounts: \(sortedCounts), sortedSymbols: \(sortedSymbols), whitePixelCounts: \(whitePixelCounts)")
         return sortedSymbols
     }
 }

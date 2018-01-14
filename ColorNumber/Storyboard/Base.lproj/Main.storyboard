@@ -46,25 +46,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lR9-3o-93G" firstAttribute="leading" secondItem="Hbh-Yg-bnX" secondAttribute="leading" id="0Tz-KH-AJx"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="bottom" secondItem="XiZ-nx-MTj" secondAttribute="bottom" id="5Lv-Hr-q8L"/>
-                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="leading" secondItem="Hbh-Yg-bnX" secondAttribute="leading" id="DgV-xS-i6J"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="trailing" secondItem="lR9-3o-93G" secondAttribute="trailing" id="G4y-L9-Pui"/>
-                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="top" secondItem="Hbh-Yg-bnX" secondAttribute="top" id="GJb-CV-Us4"/>
+                            <constraint firstItem="lR9-3o-93G" firstAttribute="leading" secondItem="a0J-S7-qDe" secondAttribute="leading" id="0Tz-KH-AJx"/>
+                            <constraint firstItem="a0J-S7-qDe" firstAttribute="bottom" secondItem="XiZ-nx-MTj" secondAttribute="bottom" id="5Lv-Hr-q8L"/>
+                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="leading" secondItem="a0J-S7-qDe" secondAttribute="leading" id="DgV-xS-i6J"/>
+                            <constraint firstItem="a0J-S7-qDe" firstAttribute="trailing" secondItem="lR9-3o-93G" secondAttribute="trailing" id="G4y-L9-Pui"/>
+                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="top" secondItem="a0J-S7-qDe" secondAttribute="top" id="GJb-CV-Us4"/>
                             <constraint firstItem="GLT-kx-rJO" firstAttribute="height" secondItem="vZs-4k-mbN" secondAttribute="height" multiplier="1/2" id="ImD-Gk-XLV"/>
-                            <constraint firstItem="vgf-Ys-bMr" firstAttribute="centerX" secondItem="vZs-4k-mbN" secondAttribute="centerX" id="Jhg-9u-DZp"/>
+                            <constraint firstItem="vgf-Ys-bMr" firstAttribute="centerX" secondItem="a0J-S7-qDe" secondAttribute="centerX" id="Jhg-9u-DZp"/>
                             <constraint firstItem="GLT-kx-rJO" firstAttribute="width" secondItem="vZs-4k-mbN" secondAttribute="width" multiplier="2/3" id="M71-3W-bK0"/>
-                            <constraint firstItem="lR9-3o-93G" firstAttribute="top" secondItem="Hbh-Yg-bnX" secondAttribute="top" id="Odd-O9-bqK"/>
+                            <constraint firstItem="lR9-3o-93G" firstAttribute="top" secondItem="a0J-S7-qDe" secondAttribute="top" id="Odd-O9-bqK"/>
                             <constraint firstItem="2Gy-ms-4a4" firstAttribute="top" secondItem="vgf-Ys-bMr" secondAttribute="bottom" constant="10" id="P94-fC-vVs"/>
                             <constraint firstItem="GLT-kx-rJO" firstAttribute="centerY" secondItem="vZs-4k-mbN" secondAttribute="centerY" id="Sl4-Xc-Yqc"/>
-                            <constraint firstItem="GLT-kx-rJO" firstAttribute="centerX" secondItem="vZs-4k-mbN" secondAttribute="centerX" id="cbv-5Y-qfh"/>
+                            <constraint firstItem="GLT-kx-rJO" firstAttribute="centerX" secondItem="a0J-S7-qDe" secondAttribute="centerX" id="cbv-5Y-qfh"/>
                             <constraint firstItem="vgf-Ys-bMr" firstAttribute="top" secondItem="GLT-kx-rJO" secondAttribute="bottom" constant="10" id="dJY-0e-ynh"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="trailing" secondItem="XiZ-nx-MTj" secondAttribute="trailing" id="mfZ-NQ-sZf"/>
-                            <constraint firstItem="Hbh-Yg-bnX" firstAttribute="bottom" secondItem="lR9-3o-93G" secondAttribute="bottom" id="oF1-Sj-XvJ"/>
+                            <constraint firstItem="a0J-S7-qDe" firstAttribute="trailing" secondItem="XiZ-nx-MTj" secondAttribute="trailing" id="mfZ-NQ-sZf"/>
+                            <constraint firstItem="a0J-S7-qDe" firstAttribute="bottom" secondItem="lR9-3o-93G" secondAttribute="bottom" id="oF1-Sj-XvJ"/>
                             <constraint firstItem="2Gy-ms-4a4" firstAttribute="width" secondItem="vZs-4k-mbN" secondAttribute="width" multiplier="1/2" id="xaH-wH-9Lt"/>
-                            <constraint firstItem="2Gy-ms-4a4" firstAttribute="centerX" secondItem="vZs-4k-mbN" secondAttribute="centerX" id="z05-dH-GTN"/>
+                            <constraint firstItem="2Gy-ms-4a4" firstAttribute="centerX" secondItem="a0J-S7-qDe" secondAttribute="centerX" id="z05-dH-GTN"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Hbh-Yg-bnX"/>
+                        <viewLayoutGuide key="safeArea" id="a0J-S7-qDe"/>
                     </view>
                     <connections>
                         <outlet property="btnContinue" destination="2Gy-ms-4a4" id="KXC-Hf-yLU"/>
@@ -114,7 +114,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="DDG-O0-FIb"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My gallary" image="ic_mygallarydark" id="gDh-hj-tdB"/>
                 </viewController>

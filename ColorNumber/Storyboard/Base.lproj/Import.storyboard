@@ -216,9 +216,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gallery" width="16" height="16"/>
+        <image name="gallery" width="50" height="50"/>
         <image name="ic_importdark" width="30" height="27"/>
-        <image name="switch camera" width="16" height="16"/>
-        <image name="take-photo" width="16" height="16"/>
+        <image name="switch camera" width="50" height="50"/>
+        <image name="take-photo" width="50" height="50"/>
     </resources>
 </document>
