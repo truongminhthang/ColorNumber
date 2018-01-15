@@ -14,8 +14,8 @@ class CustomTabbarController: UITabBarController {
     ///
     @IBInspectable var itemNormalColor: UIColor = UIColor.lightGray {
         didSet {
-            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: itemNormalColor], for:UIControlState());
-            let items = tabBar.items ?? [] ;
+            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: itemNormalColor], for:UIControlState())
+            let items = tabBar.items ?? []
             for item in items {
                 item.image = item.image?.imageWithColor(tintColor: itemNormalColor).withRenderingMode(UIImageRenderingMode.alwaysOriginal);
             }
@@ -28,13 +28,11 @@ class CustomTabbarController: UITabBarController {
     ///
     @IBInspectable var itemSelectedColor: UIColor = UIColor.white {
         didSet {
-            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: itemSelectedColor], for:UIControlState.selected);
-            let items = tabBar.items! ;
+            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor: itemSelectedColor], for:UIControlState.selected)
+            let items = tabBar.items!
             for item in items {
                 item.selectedImage = item.image?.imageWithColor(tintColor: itemSelectedColor).withRenderingMode(.alwaysOriginal)
             }
         }
     }
 }
-
-

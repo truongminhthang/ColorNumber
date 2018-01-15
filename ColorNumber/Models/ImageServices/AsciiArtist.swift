@@ -29,30 +29,36 @@ class AsciiArtist {
         return symbolsMatrix
     }
     
-    fileprivate func intensityMatrixFromPixelPointer(_ pointer: PixelPointer) -> [[Double]] {
+    fileprivate func intensityMatrixFromPixelPointer(_ pointer: PixelPointer) -> [Double:UIColor] {
         let
         width  = Int(image.size.width),
         height = Int(image.size.height),
         matrix = Pixel.createPixelMatrix(width, height)
-        return matrix.map { pixelRow in
-            pixelRow.map { pixel in
-                pixel.intensityFromPixelPointer(pointer)
-            }
-        }
+        return [:]
+
+        
+//        return matrix.map { pixelRow in
+//            pixelRow.map { pixel in
+//                pixel.intensityFromPixelPointer(pointer)
+//            }
+//        }
     }
     
-    fileprivate func matrixSymbol(_ matrix: [[Double]]) -> [[String]] {
+    fileprivate func matrixSymbol(_ matrix: [Double:UIColor]) -> [[String]] {
         return matrix.map { intensityRow in
-            intensityRow.map { self.symbolFromIntensity($0) }
+            print(intensityRow)
+           // intensityRow.map { self.symbolFromIntensity($0) }
+            return [""]
         }
     }
     
     fileprivate func symbolFromIntensity(_ intensity: Double) -> String {
         assert(0.0 <= intensity && intensity <= 1.0)
-        
+//        print(intensity)
         let factor = palette.symbols.count - 1,
         value  = round(intensity * Double(factor)),
         index  = Int(value)
+        print(palette.symbols)
         return palette.symbols[index]
     }
 }

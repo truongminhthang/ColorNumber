@@ -1,4 +1,4 @@
-//
+    //
 //  AsciiPalette.swift
 //  ColorNumber
 //
@@ -14,21 +14,21 @@ class AsciiPalette {
     
     init(font: UIFont = UIFont(name: "Menlo", size: 7)!) { self.font = font }
     
-    lazy var symbols: [String] = self.loadSymbols()
+    lazy var symbols: [String] = ["1","2","3","4","5","6","7","8","9", " "]
     
     fileprivate func loadSymbols() -> [String] {
-        return symbolsSortedByIntensityForAsciiCodes(0...16)  //(32...126) // from ' ' to '~'
+        return symbolsSortedByIntensityForAsciiCodes(0...15)  //(32...126) // from ' ' to '~'
     }
     
     fileprivate func symbolsSortedByIntensityForAsciiCodes(_ codes: CountableClosedRange<Int>) -> [String] {
-        print(codes)
         let symbols          = codes.map { self.symbolFromAsciiCode($0) },
             symbolImages     = symbols.map { UIImage.imageOfSymbol($0, self.font) },
             whitePixelCounts = symbolImages.map { self.countWhitePixelsInImage($0) },
             sortedSymbols    = sortByIntensity(symbols, whitePixelCounts)
+//        print("symbolImages: \(symbolImages)")
         return sortedSymbols
     }
-    
+    /// Return a symbol code.
     fileprivate func symbolFromAsciiCode(_ code: Int) -> String {
         let symbol = code == 0 ? " " : String(code)
         return symbol//String(Character(UnicodeScalar(code)!))
@@ -43,10 +43,10 @@ class AsciiPalette {
         pixelOffsets = stride(from: 0, to: byteCount, by: Pixel.bytesPerPixel)
         return pixelOffsets.reduce(0) { (count, offset) -> Int in
             let
-            r = pixelPointer?[offset + 0],
-            g = pixelPointer?[offset + 1],
-            b = pixelPointer?[offset + 2],
-            isWhite = (r == 255) && (g == 255) && (b == 255)
+            r = (pixelPointer?[offset + 0])! / 255,
+            g = (pixelPointer?[offset + 1])! / 255,
+            b = (pixelPointer?[offset + 2])! / 255,
+            isWhite = (r == 1) && (g == 1) && (b == 1)
             return isWhite ? count + 1 : count
         }
     }

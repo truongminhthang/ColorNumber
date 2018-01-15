@@ -6,7 +6,7 @@
 //  Copyright © 2018 BigZero. All rights reserved.
 //
 
-import Foundation
+import UIKit
 /** Represents the memory address of a pixel. */
 typealias PixelPointer = UnsafePointer<UInt8>
 
@@ -28,15 +28,18 @@ struct Pixel {
         }
     }
     
-    func intensityFromPixelPointer(_ pointer: PixelPointer) -> Double {
+    func intensityFromPixelPointer(_ pointer: PixelPointer) -> [Double:UIColor] {
         let
         red   = pointer[offset + 0],
         green = pointer[offset + 1],
         blue  = pointer[offset + 2]
-        return Pixel.calculateIntensity(red, green, blue)
+        guard let pixelOutput = Pixel.calculateIntensity(red, green, blue) else {
+            fatalError("Error to get intensity form PixelPointer")
+        }
+        return pixelOutput
     }
     
-    fileprivate static func calculateIntensity(_ r: UInt8, _ g: UInt8, _ b: UInt8) -> Double {
+    fileprivate static func calculateIntensity(_ r: UInt8, _ g: UInt8, _ b: UInt8) -> [Double:UIColor]? {
         // Normalize the pixel's grayscale value to between 0 and 1.
         // Weights from http://en.wikipedia.org/wiki/Grayscale#Luma_coding_in_video_systems
         let
@@ -49,6 +52,11 @@ struct Pixel {
         weightedSum = Double(r) * redWeight   +
             Double(g) * greenWeight +
             Double(b) * blueWeight
-        return weightedSum / weightedMax
+
+        guard let color = UIColor(named: String(format: "#%02x%02x%02x",r,g,b)) else {
+            return nil
+        }
+        let intensity = weightedSum / weightedMax
+        return [intensity:color]
     }
 }

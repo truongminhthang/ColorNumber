@@ -15,7 +15,7 @@ class PaintViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     let color: [String: String] = ["1": "C11ADB", "2": "6049FE", "3": "24DDC9", "4": "35EA64", "5": "FF7C60", "6":"F74747", "7": "EA1717", "8": "B50101", "9": "390122", "10": "097564", "11": "0DA890", "12": "B4780E", "13": "27D9BD", "14": "30B653", "15": "DA654C", "16": "B23232"]
-//    var image: UIImage?
+    var image: UIImage?
     var symbols = [String]()
     let cellPadding: Int = 10
     var colors = DataService.share.dataPaintColor
@@ -28,12 +28,12 @@ class PaintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        if image != nil {
-//            displayImage(image!)
-//        } else {
-//            displayImageNamed("kermit")
-//        }
-//        configureZoomSupport()
+        if image != nil {
+            displayImage(image!)
+        } else {
+            displayImageNamed("kermit")
+        }
+        configureZoomSupport()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +42,7 @@ class PaintViewController: UIViewController {
         if DataService.share.selectedImage != nil {
             displayImage(DataService.share.selectedImage!)
         }else{
-            displayImageNamed("kermit")
+            displayImageNamed("white")
         }
         configureZoomSupport()
     }
@@ -148,7 +148,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.PAINT_CELL, for: indexPath) as! PaintColorCVC
-            cell.labelNumberText.text = String(symbols[indexPath.row - 1])
+            cell.labelNumberText.text = symbols[indexPath.row - 1]
             cell.labelNumberText.textColor = UIColor.red
             cell.backGroundView.backgroundColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
             return cell
@@ -160,6 +160,8 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
         }
         else {
             self.currentView!.paintBrushColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
+            self.currentView!.selectedPaintBrushColor(symbols[indexPath.row - 1])
+            self.currentView!.idPaintBrushColor = symbols[indexPath.row - 1]
         }
     }
     
