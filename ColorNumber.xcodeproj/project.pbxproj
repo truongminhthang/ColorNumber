@@ -30,6 +30,7 @@
 		5C39E595200216FC00993E40 /* Library.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C39E591200216EC00993E40 /* Library.plist */; };
 		5C76248720021BA500404D73 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248620021BA500404D73 /* UIColor+Extention.swift */; };
 		5C76248920021C3C00404D73 /* DetailLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */; };
+		98760179200C3B7C0011228C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98760178200C3B7C0011228C /* Image.swift */; };
 		988975AB2008E81B0010A332 /* Import.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988975A72008E81B0010A332 /* Import.storyboard */; };
 		988975AC2008E81B0010A332 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988975A92008E81B0010A332 /* Library.storyboard */; };
 		98F9D6652008E34C00843FC8 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9D6642008E34C00843FC8 /* PhotoViewController.swift */; };
@@ -70,6 +71,7 @@
 		5C39E592200216EC00993E40 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5C76248620021BA500404D73 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLibraryViewController.swift; sourceTree = "<group>"; };
+		98760178200C3B7C0011228C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		988975A82008E81B0010A332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Import.storyboard; sourceTree = "<group>"; };
 		988975AA2008E81B0010A332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Library.storyboard; sourceTree = "<group>"; };
 		98F9D6642008E34C00843FC8 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				5C39E590200216EB00993E40 /* DataLibrary.swift */,
+				98760178200C3B7C0011228C /* Image.swift */,
 				5C39E592200216EC00993E40 /* DataService.swift */,
 				5C39E591200216EC00993E40 /* Library.plist */,
 			);
@@ -318,6 +321,7 @@
 			files = (
 				E2A5941E200503D300049078 /* AsciiPalette.swift in Sources */,
 				E200D6CD20050462004D4D89 /* Canvas.swift in Sources */,
+				98760179200C3B7C0011228C /* Image.swift in Sources */,
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
