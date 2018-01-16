@@ -18,84 +18,77 @@ enum PixelType {
 class Pixel : UILabel {
     /** The number of bytes a pixel occupies. 1 byte per channel (RGBA). */
     static var size = CGSize(width: 10, height: 10)
+    weak var delegateToImage: PixelDelegate? {
+        didSet {
+            delegateToImage?.arrangePatternColor(pixel: self)
+        }
+    }
     var type: PixelType
-    var rowIndex: Int
-    var columnIndex: Int
-    var red: UInt8 = 0
-    var green: UInt8 = 0
-    var blue: UInt8 = 0
+    var coordinate: Coordinate
+    var color: Color
+    var grayColor: UIColor
     var intensity: Double
-    var isFillColor = false
+    var intensityNumber : Int = 0
+    var isEmpharse: Bool = false {
+        didSet {
+            backgroundColor = isEmpharse ? UIColor.green : grayColor
+        }
+    }
+    var fillColorNumber : Int? {
+        didSet {
+            guard let fillNumber = fillColorNumber  else {return}
+            if fillNumber == intensityNumber {
+                text = ""
+            }
+        }
+    }
         
-    init(red: UInt8, green: UInt8, blue: UInt8, intensity: Double, row: Int, col: Int, type: PixelType) {
+    init(color: Color, coordinate: Coordinate, intensity: Double, type: PixelType) {
         self.type = type
-        rowIndex = row
-        columnIndex = col
-        self.red = red
-        self.blue = blue
-        self.green = green
+        self.coordinate = coordinate
+        self.color = color
         self.intensity = intensity
-        let frame = CGRect(origin: CGPoint(x: CGFloat(col) * Pixel.size.width, y: CGFloat(row) * Pixel.size.height), size: Pixel.size)
+        self.intensityNumber = Int(intensity * 10)
+        let frame = CGRect(origin: coordinate.originPoint, size: Pixel.size)
+        grayColor = UIColor.black.withAlphaComponent(1-CGFloat(intensityNumber)/CGFloat(10))
         super.init(frame: frame)
+        
         self.textAlignment = .center
         self.font = UIFont.systemFont(ofSize: 5)
         switch type {
         case .number:
-            let displayIntensity = Int(intensity * 10)
-            if displayIntensity == 10 {
+            if intensityNumber == 10 {
                 layer.borderColor = UIColor.lightGray.cgColor
                 layer.borderWidth = 0.1
                 text = ""
             } else {
                 layer.borderColor = UIColor.black.cgColor
                 layer.borderWidth = 0.1
-                text = String(displayIntensity)
+                text = String(intensityNumber)
             }
             
         case .color:
             text = ""
-            fillGrayColor()
+            backgroundColor = grayColor
         }
        
-        
-
-       
     }
-    convenience init(pointer: PixelPointer, offset: Int, row: Int, col: Int, type: PixelType) {
-        
+    convenience init(pointer: PixelPointer, offset: Int, coordinate: Coordinate, type: PixelType) {
         let red   =  pointer[offset + 0]
         let green =  pointer[offset + 1]
         let blue  =  pointer[offset + 2]
+        let color = Color(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
         let intensity = Pixel.calculateIntensity(red: red, green: green, blue: blue)
-        self.init(red: red, green: green, blue: blue, intensity: intensity, row: row, col: col, type: type)
-
-        
+        self.init(color: color, coordinate: coordinate, intensity: intensity, type: type)
     }
     
     convenience init(_ pixel: Pixel) {
-        self.init(red: pixel.red, green: pixel.green, blue: pixel.blue, intensity: pixel.intensity, row: pixel.rowIndex, col: pixel.columnIndex, type: .color)
+        self.init(color: pixel.color, coordinate: pixel.coordinate, intensity: pixel.intensity, type: .color)
     }
     
-    func copy() -> Pixel
+    func makeDuplicate() -> Pixel
     {
         return Pixel(self)
-    }
-    
-    
-    func redrawFixel() {
-        if isFillColor == false {
-                fillGrayColor()
-        } else {
-            fillActualColor()
-        }
-    }
-    
-    fileprivate func fillGrayColor() {
-        backgroundColor = UIColor.black.withAlphaComponent(1-CGFloat(Int(intensity * 10))/CGFloat(10))
-    }
-    
-    fileprivate func fillActualColor() {
-        backgroundColor = UIColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {

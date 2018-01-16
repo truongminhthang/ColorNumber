@@ -8,37 +8,81 @@
 
 import UIKit
 
+struct Coordinate {
+    var col: Int
+    var row: Int
+    
+    var originPoint: CGPoint {
+        return CGPoint(x: CGFloat(col) * Pixel.size.width, y: CGFloat(row) * Pixel.size.height)
+    }
+}
+
 struct Color {
+    var red: CGFloat
+    var green: CGFloat
+    var blue: CGFloat
+    var uiColor: UIColor {
+        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
+    }
+    
+    init(red: CGFloat, green: CGFloat, blue: CGFloat) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+    }
     
 }
 
 
 
-struct MapIntensityColor {
+class MapIntensityColor {
+    var colorOrder: Int
     var count : CGFloat = 0
     var color: UIColor = UIColor(red:1, green: 1, blue: 1, alpha: 1)
     var totalRedColor: CGFloat = 0
     var totalBlueColor: CGFloat = 0
     var totalGreenColor: CGFloat = 0
-    mutating func addColor (red: UInt8, green: UInt8, blue: UInt8) {
-        count += 1
-        totalRedColor += CGFloat(red)
-        totalGreenColor += CGFloat(green)
-        totalBlueColor += CGFloat(blue)
-        color = UIColor(red: totalRedColor  / (count * 255), green: totalGreenColor  / (count * 255), blue: totalBlueColor / (count * 255), alpha: 1)
+    var isEmpharse = false {
+        didSet {
+            guard isEmpharse != oldValue else {return}
+            pixels.forEach{$0.isEmpharse = isEmpharse}
+        }
     }
+    var pixels : [Pixel] = []
+    func addFixel(_ pixel: Pixel) {
+        guard pixel.intensityNumber == colorOrder else { return }
+        count += 1
+        let color = pixel.color
+        totalRedColor += color.red
+        totalGreenColor += color.green
+        totalBlueColor += color.blue
+        pixels.append(pixel)
+        self.color = Color(red: totalRedColor / count, green: totalGreenColor / count, blue: totalBlueColor / count).uiColor
+    }
+    
+    init(order: Int) {
+        colorOrder = order
+    }
+    
 }
 
+protocol PixelDelegate: class {
+    func arrangePatternColor(pixel: Pixel)
+}
 
+class PixelImageView : UIView, PixelDelegate{
 
-class PixelImageView : UIView {
     var isEdited = false
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
     var image : UIImage
     var width: Int
     var height: Int
-    var patternColors = [UIColor](repeating: UIColor.white, count: 11)
+    var patternColors : [MapIntensityColor] = {
+        return (0...10).map{index in
+            MapIntensityColor(order: index)
+        }
+    }()
     subscript (rowIndex: Int, heightIndex:Int) -> Pixel {
         return pixelsNumber[rowIndex][heightIndex]
     }
@@ -95,11 +139,15 @@ class PixelImageView : UIView {
             pixelColor.append([])
             for col in (0..<self.width) {
                 let offset = ((self.width * row) + col) * bytesPerPixel
-                let numberPixel = Pixel(pointer: pixelPointer!, offset: offset, row: row,  col: col, type: .number)
+                let coordinate = Coordinate(col: col, row: row)
+                let numberPixel = Pixel(pointer: pixelPointer!, offset: offset, coordinate: coordinate, type: .number)
+                let colorPixel = numberPixel.makeDuplicate()
+                numberPixel.delegateToImage = self
+                colorPixel.delegateToImage = self
                 numberView.addSubview(numberPixel)
-                colorView.addSubview(numberPixel.copy())
+                colorView.addSubview(colorPixel)
                 pixelsNumber[row].append(numberPixel)
-                pixelColor[row].append(numberPixel.copy())
+                pixelColor[row].append(colorPixel)
                 
             }
         }
@@ -115,6 +163,16 @@ class PixelImageView : UIView {
         numberView.frame = self.bounds
         self.addSubview(colorView)
         self.insertSubview(numberView, aboveSubview: colorView)
+    }
+    
+    func arrangePatternColor(pixel: Pixel) {
+//        for index in 0..<patternColors.count {
+//            if pixel.intensityNumber == index {
+//                patternColors[index].addFixel(pixel)
+//            }
+//        }
+        patternColors[pixel.intensityNumber].addFixel(pixel)
+//        print(pixel.intensityNumber)
     }
     
     private func setupGesture() {
