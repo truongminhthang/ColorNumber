@@ -31,16 +31,39 @@ class Pixel : UILabel {
     var intensityNumber : Int = 0
     var isEmpharse: Bool = false {
         didSet {
-            backgroundColor = isEmpharse ? UIColor.green : grayColor
+            if isEmpharse {
+                backgroundColor = UIColor.green
+            } else {
+                if type == .color {
+                    backgroundColor = grayColor
+                } else if type == .number {
+                    backgroundColor = UIColor.clear
+                }
+            }
         }
     }
-    var fillColorNumber : Int? {
+    
+    var _fillColorNumber : Int? {
         didSet {
             guard let fillNumber = fillColorNumber  else {return}
             if fillNumber == intensityNumber {
                 text = ""
+                backgroundColor = delegateToImage!.patternColors[fillNumber].color.uiColor
+            } else {
+                backgroundColor = delegateToImage!.patternColors[fillNumber].color.tranperentColor
             }
         }
+    }
+    var fillColorNumber : Int? {
+        set {
+            if intensityNumber != 10 {
+                _fillColorNumber = newValue
+            }
+        }
+        get {
+            return _fillColorNumber
+        }
+        
     }
         
     init(color: Color, coordinate: Coordinate, intensity: Double, type: PixelType) {

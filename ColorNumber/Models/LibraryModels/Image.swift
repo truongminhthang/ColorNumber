@@ -18,18 +18,25 @@ struct Coordinate {
 }
 
 struct Color {
-    var red: CGFloat
-    var green: CGFloat
-    var blue: CGFloat
+     var red: CGFloat
+     var green: CGFloat
+     var blue: CGFloat
     var uiColor: UIColor {
         return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
     
-    init(red: CGFloat, green: CGFloat, blue: CGFloat) {
+    var tranperentColor: UIColor {
+        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 0.7)
+
+    }
+    
+    init(red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0) {
         self.red = red
         self.green = green
         self.blue = blue
     }
+    
+    
     
 }
 
@@ -38,7 +45,7 @@ struct Color {
 class MapIntensityColor {
     var colorOrder: Int
     var count : CGFloat = 0
-    var color: UIColor = UIColor(red:1, green: 1, blue: 1, alpha: 1)
+    var color: Color = Color()
     var totalRedColor: CGFloat = 0
     var totalBlueColor: CGFloat = 0
     var totalGreenColor: CGFloat = 0
@@ -57,7 +64,7 @@ class MapIntensityColor {
         totalGreenColor += color.green
         totalBlueColor += color.blue
         pixels.append(pixel)
-        self.color = Color(red: totalRedColor / count, green: totalGreenColor / count, blue: totalBlueColor / count).uiColor
+        self.color = Color(red: totalRedColor / count, green: totalGreenColor / count, blue: totalBlueColor / count)
     }
     
     init(order: Int) {
@@ -68,6 +75,7 @@ class MapIntensityColor {
 
 protocol PixelDelegate: class {
     func arrangePatternColor(pixel: Pixel)
+    var patternColors: [MapIntensityColor] {get set}
 }
 
 class PixelImageView : UIView, PixelDelegate{
@@ -166,13 +174,7 @@ class PixelImageView : UIView, PixelDelegate{
     }
     
     func arrangePatternColor(pixel: Pixel) {
-//        for index in 0..<patternColors.count {
-//            if pixel.intensityNumber == index {
-//                patternColors[index].addFixel(pixel)
-//            }
-//        }
         patternColors[pixel.intensityNumber].addFixel(pixel)
-//        print(pixel.intensityNumber)
     }
     
     private func setupGesture() {
@@ -200,8 +202,8 @@ class PixelImageView : UIView, PixelDelegate{
         let y = Int(point.y / Pixel.size.height)
         let x = Int(point.x / Pixel.size.width)
         guard x < self.pixelsNumber[0].count && y < self.pixelsNumber.count && y >= 0 && x >= 0 else { return }
-        pixelsNumber[y][x].backgroundColor = UIColor.red
-        pixelColor[y][x].backgroundColor = UIColor.red
+        pixelsNumber[y][x].fillColorNumber = 4
+        pixelColor[y][x].fillColorNumber = 4
     }
 }
 
