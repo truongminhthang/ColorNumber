@@ -22,14 +22,102 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var pickImageBT: UIButton!
     var isTakePhoto: Bool = false
-
+    private let sessionQueue = DispatchQueue(label: "session queue")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDevice()
-        setupCaptureSession()
-        setupPreviewLayer()
-        startingRunningCaptureSession()
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            break
+            
+        case .notDetermined:
+            sessionQueue.suspend()
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
+                if !granted {
+                    self.setupResult = .notAuthorized
+                }
+                self.sessionQueue.resume()
+                
+            })
+            
+        default:
+            setupResult = .notAuthorized
+        }
+        sessionQueue.async {
+            switch self.setupResult {
+            case .success:
+                self.setupDevice()
+                self.setupCaptureSession()
+                self.setupPreviewLayer()
+                self.startingRunningCaptureSession()
+                
+            case .notAuthorized:
+                break
+            case .configurationFailed:
+                break
+            }
+        }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        sessionQueue.async {
+            switch self.setupResult {
+            case .success:
+                self.setupDevice()
+                self.setupCaptureSession()
+                self.setupPreviewLayer()
+                self.startingRunningCaptureSession()
+                
+            case .notAuthorized:
+                DispatchQueue.main.async {
+                    let changePrivacySetting = "Color Number doesn't have permission to use the camera, please change privacy settings"
+                    let message = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to the camera")
+                    let alertController = UIAlertController(title: "Color Number", message: message, preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                                                            style: .cancel,
+                                                            handler: nil))
+                    
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"),
+                                                            style: .`default`,
+                                                            handler: { _ in
+                                                                UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                    }))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                
+            case .configurationFailed:
+                DispatchQueue.main.async {
+                    let alertMsg = "Alert message when something goes wrong during capture session configuration"
+                    let message = NSLocalizedString("Unable to capture media", comment: alertMsg)
+                    let alertController = UIAlertController(title: "Color Number", message: message, preferredStyle: .alert)
+                    
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                                                            style: .cancel,
+                                                            handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        self.captureSession.stopRunning()
+        
+        
+        super.viewWillDisappear(animated)
+    }
+    
+    private enum SessionSetupResult {
+        case success
+        case notAuthorized
+        case configurationFailed
+    }
+    
+    private var setupResult: SessionSetupResult = .success
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,46 +181,49 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     
     @IBAction func switchCamera(_ sender: UIButton) {
         //Change camera source
-        let session = captureSession
-        //Indicate that some changes will be made to the session
-        //Remove existing input
-        guard let currentCameraInput:AVCaptureInput = session.inputs.first else { return }
-        session.beginConfiguration()
-        switchCameraBt.isEnabled = false
-        session.removeInput(currentCameraInput)
-
-        //Get new input
-        var newCamera:AVCaptureDevice! = nil
-        if let input = currentCameraInput as? AVCaptureDeviceInput {
-            if (input.device.position == .back) {
-                newCamera = frontCamera
+        sessionQueue.async {
+            
+            let session = self.captureSession
+            //Indicate that some changes will be made to the session
+            //Remove existing input
+            guard let currentCameraInput:AVCaptureInput = session.inputs.first else { return }
+            session.beginConfiguration()
+            self.switchCameraBt.isEnabled = false
+            session.removeInput(currentCameraInput)
+            
+            //Get new input
+            var newCamera:AVCaptureDevice! = nil
+            if let input = currentCameraInput as? AVCaptureDeviceInput {
+                if (input.device.position == .back) {
+                    newCamera = self.frontCamera
+                }
+                else {
+                    newCamera = self.backCamera
+                }
+            }
+            
+            //Add input to session
+            var err: NSError?
+            var newVideoInput: AVCaptureDeviceInput!
+            do {
+                newVideoInput = try AVCaptureDeviceInput(device: newCamera)
+            } catch let err1 as NSError {
+                err = err1
+                newVideoInput = nil
+            }
+            
+            if(newVideoInput == nil || err != nil) {
+                print("Error creating capture device input: \(err!.localizedDescription)")
             }
             else {
-                newCamera = backCamera
+                session.addInput(newVideoInput)
             }
+            
+            //Commit all the configuration changes at once
+            session.commitConfiguration()
+            
+            self.switchCameraBt.isEnabled = true
         }
-        
-        //Add input to session
-        var err: NSError?
-        var newVideoInput: AVCaptureDeviceInput!
-        do {
-            newVideoInput = try AVCaptureDeviceInput(device: newCamera)
-        } catch let err1 as NSError {
-            err = err1
-            newVideoInput = nil
-        }
-        
-        if(newVideoInput == nil || err != nil) {
-            print("Error creating capture device input: \(err!.localizedDescription)")
-        }
-        else {
-            session.addInput(newVideoInput)
-        }
-        
-        //Commit all the configuration changes at once
-        session.commitConfiguration()
-        
-        switchCameraBt.isEnabled = true
     }
     
     
@@ -197,6 +288,9 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
             }
         }
         return nil
+    }
+    deinit {
+        print("!")
     }
 }
 
