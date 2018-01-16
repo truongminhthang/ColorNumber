@@ -42,21 +42,30 @@ class Pixel : UILabel {
             }
         }
     }
-    
     var _fillColorNumber : Int? {
         didSet {
             guard let fillNumber = fillColorNumber  else {return}
             if fillNumber == intensityNumber {
                 text = ""
                 backgroundColor = delegateToImage!.patternColors[fillNumber].color.uiColor
+                delegateToImage!.patternColors[intensityNumber].count -= 1
+                print(delegateToImage!.patternColors[intensityNumber].count)
+                if delegateToImage!.patternColors[intensityNumber].count == 0 {
+                    showAlert(title: "het roi", message: "Cút")
+                }
+                layer.borderColor = nil
+                layer.borderWidth = 0
+                
             } else {
                 backgroundColor = delegateToImage!.patternColors[fillNumber].color.tranperentColor
+                delegateToImage!.patternColors[intensityNumber].count += 1
+
             }
         }
     }
     var fillColorNumber : Int? {
         set {
-            if intensityNumber != 10 {
+            if intensityNumber != 10 && _fillColorNumber != newValue {
                 _fillColorNumber = newValue
             }
         }
@@ -135,4 +144,14 @@ class Pixel : UILabel {
         
 //        PixelImageView.patternColors[Int(intensity * 10)] = UIColor(red: CGFloat(pixel.red) / 255, green: CGFloat(pixel.green) / 255, blue: CGFloat(pixel.blue) / 255, alpha: 1)
     }
+}
+func showAlert(title:String, message: String) {
+    
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    
+    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in}
+    
+    alertController.addAction(okAction)
+    
+    AppDelegate.shared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
 }
