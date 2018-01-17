@@ -102,7 +102,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! PaintColorCVC
             cell.labelNumberText.text = "\(indexPath.row - 1)"
             cell.labelNumberText.textColor = UIColor.red
-            cell.backGroundView.backgroundColor = AppDelegate.shared.patternColors[indexPath.row - 1].color.uiColor
+            cell.labelNumberText.backgroundColor = AppDelegate.shared.patternColors[indexPath.row - 1].color.uiColor
             return cell
         }
     }
@@ -112,6 +112,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
         }
         else {
             pixelImageView?.selectedColorNumber = indexPath.row - 1
+            let cell = collectionView.cellForItem(at: indexPath) as! PaintColorCVC
         }
     }
     
@@ -120,7 +121,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
 extension PaintViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionWidth = collectionView.frame.size.width
-        let numberCellRow = 9
+        let numberCellRow = 7
         let padding = (numberCellRow - 1) * cellPadding + 2 * cellPadding
         let availabelWidth = collectionWidth - CGFloat(padding)
         let cellWith: Int = Int(availabelWidth) / numberCellRow

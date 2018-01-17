@@ -18,6 +18,18 @@ class DesignableView: UIView {
     }
 }
 
+@IBDesignable
+class Label: UILabel {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if cornerRadius == -1 {
+            self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+        }
+        self.clipsToBounds = true
+    }
+}
+
+
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get {
@@ -112,5 +124,16 @@ extension UIView {
         })
         
     }
-
+    func animateToSmaller(animations: @escaping (Bool) -> ()) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.layer.transform = CATransform3DMakeScale(0.75, 0.75, 1);
+        }, completion: { (completed) in
+            UIView.animate(withDuration: 0.2, animations: {
+                self.layer.transform = CATransform3DMakeScale(1, 1, 1);
+            }, completion: { (completed) in
+                animations(completed)
+            })
+        })
+        
+    }
 }

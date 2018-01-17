@@ -98,12 +98,12 @@ class PixelImageView : UIView, PixelDelegate{
     var pixelColor: [[Pixel]] = []
     
     var zoomScaleForRemovingColor : CGFloat = 0.5
-    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
+//    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
     
-    var _selectedColorNumber : Int? {
+    private var _selectedColorNumber : Int? {
         didSet {
-            guard _selectedColorNumber != nil else {return}
             patternColors.forEach{$0.isEmpharse = false}
+            guard _selectedColorNumber != nil else {return}
             patternColors[selectedColorNumber!].isEmpharse = true
         }
     }
@@ -116,7 +116,6 @@ class PixelImageView : UIView, PixelDelegate{
                 }
             } else {
                 _selectedColorNumber = nil
-
             }
         }
         get {

@@ -56,7 +56,7 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.DETAIL_LIBRARY_COLLECTION_VIEW_CELL, for: indexPath) as! LibraryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailLibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
         
         if let indexSelected = indexFromLibrary {
             cell.imageIcon.image = DataService.share.dataLibrary[indexSelected].listImage[indexPath.row]

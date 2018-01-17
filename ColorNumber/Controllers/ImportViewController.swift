@@ -105,8 +105,6 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     override func viewWillDisappear(_ animated: Bool) {
         
         self.captureSession.stopRunning()
-        
-        
         super.viewWillDisappear(animated)
     }
     

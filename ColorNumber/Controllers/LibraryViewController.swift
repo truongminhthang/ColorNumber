@@ -18,6 +18,7 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var feedbackLb: DesignableLabel!
     @IBOutlet weak var tableView: UITableView!
     
+    let itemPadding: CGFloat = 10
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +44,6 @@ class LibraryViewController: UIViewController {
     
     // MARK: Setup view
     func setupView() {
-//        reviewLb.setFont(7, unit: 1)
-//        feedbackLb.setFont(7, unit: 1)
         let tapWatchVideoImage = UITapGestureRecognizer.init(target: self, action: #selector(self.watchVideo(_:)))
         watchVideo.addGestureRecognizer(tapWatchVideoImage)
         let tapAddThree = UITapGestureRecognizer.init(target: self, action: #selector(self.addThree(_:)))
@@ -140,7 +139,7 @@ class LibraryViewController: UIViewController {
     
 }
 
-//MARK: TableViewController
+//MARK: - TableViewController
 
 extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -149,7 +148,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.shared.LIBRARY_TABLE_VIEW_CELL, for: indexPath) as! LibraryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LibraryTableViewCell", for: indexPath) as! LibraryTableViewCell
         cell.titleHead.text = DataService.share.dataLibrary[indexPath.row].titleHeader
         cell.titleHead.textColor = DataService.share.dataLibrary[indexPath.row].colorTitle
         cell.imageHeader.image = DataService.share.dataLibrary[indexPath.row].iconHeader
@@ -170,7 +169,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 
-//MARK: CollectionViewController
+//MARK: - CollectionViewController
 
 extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
@@ -180,7 +179,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let itemsPerRow: CGFloat = 3
         
-        let paddingSpace = Constants.shared.UIEDGEINSETS.left * (itemsPerRow + 1)
+        let paddingSpace = itemPadding * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
@@ -190,12 +189,12 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Constants.shared.UIEDGEINSETS
+        return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return Constants.shared.UIEDGEINSETS.left
+        return itemPadding
     }
     
     // CollectionViewDataSource.
@@ -205,7 +204,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.LIBRARY_COLLECTION_VIEW_CELL, for: indexPath) as! LibraryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
         cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
         return cell
     }

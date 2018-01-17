@@ -31,10 +31,8 @@
 		988975AB2008E81B0010A332 /* Import.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988975A72008E81B0010A332 /* Import.storyboard */; };
 		988975AC2008E81B0010A332 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988975A92008E81B0010A332 /* Library.storyboard */; };
 		98F9D6652008E34C00843FC8 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9D6642008E34C00843FC8 /* PhotoViewController.swift */; };
-		E200D6CD20050462004D4D89 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FC2004BBF7006E4DA1 /* Canvas.swift */; };
 		E285055C200531BE00279D6D /* PaintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E285055B200531BE00279D6D /* PaintSection.swift */; };
 		E2A5941F200503D300049078 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941C200503D300049078 /* Pixel.swift */; };
-		E2E767E42001F9380064716F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E767E32001F9380064716F /* Constants.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -69,8 +67,6 @@
 		98F9D6642008E34C00843FC8 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E285055B200531BE00279D6D /* PaintSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintSection.swift; sourceTree = "<group>"; };
 		E2A5941C200503D300049078 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
-		E2E767E32001F9380064716F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E2F263FC2004BBF7006E4DA1 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,7 +92,6 @@
 			children = (
 				5C39E58A2002116900993E40 /* LibraryCell */,
 				E2E767D52001EE580064716F /* CollectionView */,
-				E2F263FC2004BBF7006E4DA1 /* Canvas.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,7 +207,6 @@
 				3B22F7B21FF3417E00A30505 /* Controllers */,
 				3B22F7B41FF341AA00A30505 /* Utilities */,
 				FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */,
-				E2E767E32001F9380064716F /* Constants.swift */,
 				FF8EBFA21FF1E5DE004341AB /* Assets.xcassets */,
 				FF8EBFA71FF1E5DE004341AB /* Info.plist */,
 				FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */,
@@ -295,7 +289,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E200D6CD20050462004D4D89 /* Canvas.swift in Sources */,
 				98760179200C3B7C0011228C /* Image.swift in Sources */,
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */,
@@ -313,7 +306,6 @@
 				3B22F7BD1FF3433F00A30505 /* ImportViewController.swift in Sources */,
 				3B6BC6871FF4D13400B6BCB1 /* UILabel+Extention.swift in Sources */,
 				98708CA2200EFC70009D544E /* PaintViewController.swift in Sources */,
-				E2E767E42001F9380064716F /* Constants.swift in Sources */,
 				5C76248720021BA500404D73 /* UIColor+Extention.swift in Sources */,
 				3B5D20BE1FF387C800B1744C /* UIView+Extention.swift in Sources */,
 				3B6BC6851FF4D12900B6BCB1 /* UIButton+Extention.swift in Sources */,

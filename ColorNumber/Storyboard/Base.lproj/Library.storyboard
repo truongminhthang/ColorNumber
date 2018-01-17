@@ -416,28 +416,16 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpX-df-DgK" customClass="DesignableView" customModule="ColorNumber" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tsM-pD-hQS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                </imageView>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstItem="tsM-pD-hQS" firstAttribute="top" secondItem="GpX-df-DgK" secondAttribute="top" id="4ul-pe-CSc"/>
-                                                                <constraint firstAttribute="trailing" secondItem="tsM-pD-hQS" secondAttribute="trailing" id="Ket-D9-QXE"/>
-                                                                <constraint firstItem="tsM-pD-hQS" firstAttribute="leading" secondItem="GpX-df-DgK" secondAttribute="leading" id="Srz-Af-IrS"/>
-                                                                <constraint firstAttribute="bottom" secondItem="tsM-pD-hQS" secondAttribute="bottom" id="yeY-dQ-cr6"/>
-                                                            </constraints>
-                                                        </view>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tsM-pD-hQS">
+                                                            <rect key="frame" x="8" y="8" width="34" height="34"/>
+                                                        </imageView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="GpX-df-DgK" secondAttribute="trailing" id="G3h-CA-cvo"/>
-                                                    <constraint firstItem="GpX-df-DgK" firstAttribute="top" secondItem="bSz-9w-IF3" secondAttribute="top" id="L3Q-KG-fIR"/>
-                                                    <constraint firstAttribute="bottom" secondItem="GpX-df-DgK" secondAttribute="bottom" id="LPO-O4-DOl"/>
-                                                    <constraint firstItem="GpX-df-DgK" firstAttribute="leading" secondItem="bSz-9w-IF3" secondAttribute="leading" id="jYe-dv-RAJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tsM-pD-hQS" secondAttribute="trailing" constant="8" id="0nH-Jo-bDH"/>
+                                                    <constraint firstItem="tsM-pD-hQS" firstAttribute="leading" secondItem="bSz-9w-IF3" secondAttribute="leading" constant="8" id="dxF-6R-chR"/>
+                                                    <constraint firstItem="tsM-pD-hQS" firstAttribute="top" secondItem="bSz-9w-IF3" secondAttribute="top" constant="8" id="iGe-VD-U8l"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tsM-pD-hQS" secondAttribute="bottom" constant="8" id="m3d-pT-vKr"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="imageView" destination="tsM-pD-hQS" id="73Q-0e-o01"/>
@@ -450,46 +438,54 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWj-KO-UzS" customClass="DesignableView" customModule="ColorNumber" customModuleProvider="target">
+                                                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TK3-H9-h0h" customClass="DesignableView" customModule="ColorNumber" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy3-Dv-kZ9">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="Sy3-Dv-kZ9" secondAttribute="trailing" id="1HX-Sc-CHc"/>
-                                                                <constraint firstAttribute="bottom" secondItem="Sy3-Dv-kZ9" secondAttribute="bottom" id="3eg-bc-waZ"/>
-                                                                <constraint firstItem="Sy3-Dv-kZ9" firstAttribute="leading" secondItem="GWj-KO-UzS" secondAttribute="leading" id="aLE-dt-sXy"/>
-                                                                <constraint firstItem="Sy3-Dv-kZ9" firstAttribute="top" secondItem="GWj-KO-UzS" secondAttribute="top" id="oT4-Ib-cTa"/>
-                                                            </constraints>
+                                                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="-1"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="2"/>
+                                                                </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                    <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="value" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy3-Dv-kZ9" customClass="Label" customModule="ColorNumber" customModuleProvider="target">
+                                                            <rect key="frame" x="4" y="4" width="42" height="42"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="-1"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                     <real key="value" value="2"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
-                                                        </view>
+                                                        </label>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="GWj-KO-UzS" secondAttribute="trailing" id="14c-nd-4eh"/>
-                                                    <constraint firstItem="GWj-KO-UzS" firstAttribute="leading" secondItem="Qc9-Y3-qwH" secondAttribute="leading" id="Bpd-b9-6lg"/>
-                                                    <constraint firstItem="GWj-KO-UzS" firstAttribute="top" secondItem="Qc9-Y3-qwH" secondAttribute="top" id="jKf-ct-KKg"/>
-                                                    <constraint firstAttribute="bottom" secondItem="GWj-KO-UzS" secondAttribute="bottom" id="tdr-3D-9cY"/>
+                                                    <constraint firstItem="TK3-H9-h0h" firstAttribute="top" secondItem="Qc9-Y3-qwH" secondAttribute="top" id="0zw-xb-DhP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="TK3-H9-h0h" secondAttribute="bottom" id="8Jt-FG-Q7C"/>
+                                                    <constraint firstItem="Sy3-Dv-kZ9" firstAttribute="top" secondItem="Qc9-Y3-qwH" secondAttribute="top" constant="4" id="Bso-8G-eBi"/>
+                                                    <constraint firstItem="Sy3-Dv-kZ9" firstAttribute="leading" secondItem="Qc9-Y3-qwH" secondAttribute="leading" constant="4" id="K04-Wo-K7e"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Sy3-Dv-kZ9" secondAttribute="bottom" constant="4" id="RrB-bX-od8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="TK3-H9-h0h" secondAttribute="trailing" id="eew-39-qsg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Sy3-Dv-kZ9" secondAttribute="trailing" constant="4" id="vqT-9n-vni"/>
+                                                    <constraint firstItem="TK3-H9-h0h" firstAttribute="leading" secondItem="Qc9-Y3-qwH" secondAttribute="leading" id="wMM-7A-nDE"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="backGroundView" destination="GWj-KO-UzS" id="Xmw-q1-Em2"/>
                                                     <outlet property="labelNumberText" destination="Sy3-Dv-kZ9" id="cqQ-Ni-B9K"/>
+                                                    <outlet property="selectedView" destination="TK3-H9-h0h" id="SVw-Au-bS2"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

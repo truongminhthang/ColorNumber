@@ -9,9 +9,20 @@
 import UIKit
 
 class PaintColorCVC: UICollectionViewCell {
-    @IBOutlet weak var backGroundView: DesignableView!
     @IBOutlet weak var labelNumberText: UILabel!
+    @IBOutlet weak var selectedView: UIView!
     
+    override var isSelected: Bool {
+        didSet {
+            labelNumberText.animateToSmaller { [unowned self] (sucess) in
+                self.selectedView.isHidden = !self.isSelected
+            }
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
