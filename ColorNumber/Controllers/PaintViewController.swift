@@ -1,50 +1,38 @@
 //
-//  PaintColorVC.swift
+//  PaintViewController.swift
 //  ColorNumber
 //
-//  Created by HoangLuyen on 1/9/18.
+//  Created by Thang Hoa on 1/17/18.
 //  Copyright © 2018 BigZero. All rights reserved.
 //
 
 import UIKit
 
 class PaintViewController: UIViewController {
+
+    fileprivate let maxImageSize = CGSize(width: 50, height: 50)
+    
+    let cellPadding: Int = 10
+    
+    var image: UIImage = #imageLiteral(resourceName: "kermit")
+    var pixelImageView: PixelImageView?
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    let color: [String: String] = ["1": "C11ADB", "2": "6049FE", "3": "24DDC9", "4": "35EA64", "5": "FF7C60", "6":"F74747", "7": "EA1717", "8": "B50101", "9": "390122", "10": "097564", "11": "0DA890", "12": "B4780E", "13": "27D9BD", "14": "30B653", "15": "DA654C", "16": "B23232"]
-    var image: UIImage?
-    var symbols = [String]()
-    let cellPadding: Int = 10
-    var colors = DataService.share.dataPaintColor
-    fileprivate let maxImageSize = CGSize(width: 50, height: 50)
-    fileprivate lazy var palette: AsciiPalette = AsciiPalette()
-    fileprivate var currentView: Canvas?
-    
-    var pixels = Array<Array<UILabel>>()
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.maximumZoomScale = 5
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        if image != nil {
-            displayImage(image!)
-        } else {
-            displayImageNamed("kermit")
-        }
-        configureZoomSupport()
+            renderingImage(image)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.updateZoomSettings(animated: true)
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //image from library
-        if DataService.share.selectedImage != nil {
-            displayImage(DataService.share.selectedImage!)
-        }else{
-            displayImageNamed("white")
-        }
-        configureZoomSupport()
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,79 +40,44 @@ class PaintViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     // MARK: - Rendering
     
-    fileprivate func displayImageNamed(_ imageName: String) {
-        let image = UIImage(named: imageName)!
-        displayImage(image)
-    }
-    
-    fileprivate func displayImage(_ image: UIImage) {
-//        collectionView.isHidden = true
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            
-            let // Rotate first because the orientation is lost when resizing.
-            rotatedImage = image.imageWithFixedOrientation(),
-            resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize),
-            asciiArtist  = AsciiArtist(resizedImage, self.palette),
-            symbolsMatix = asciiArtist.createAsciiArt()
-            self.symbols = self.palette.symbols.filter { $0 != " " }
-            DispatchQueue.main.async {
-                self.displayAsciiArt(symbolsMatix)
-//                print(self.symbols)
-                self.collectionView.reloadData()
-//                self.collectionView.isHidden = false
-            }
-        }
-    }
-    
-    fileprivate func displayAsciiArt(_ matrix: [[String]]) {
-        self.currentView?.removeFromSuperview()
-        self.currentView = Canvas(itemSize: 10, symbolsMatix: matrix)
-        self.scrollView.addSubview(currentView!)
-        self.scrollView.contentSize = self.currentView!.frame.size
-        self.updateZoomSettings(animated: true)
-    }
-    // MARK: - Zooming support
-    
-    fileprivate func configureZoomSupport() {
-        scrollView.delegate = self
-        scrollView.maximumZoomScale = 5
-    }
-    
-    fileprivate func updateZoomSettings(animated: Bool) {
-        let
-        scrollSize  = scrollView.frame.size,
-        contentSize = scrollView.contentSize,
-        scaleWidth  = scrollSize.width / contentSize.width,
-        scaleHeight = scrollSize.height / contentSize.height,
-        scale       = min(scaleWidth, scaleHeight)
-        scrollView.minimumZoomScale = scale/2
-        scrollView.setZoomScale(scale, animated: animated)
+    fileprivate func renderingImage(_ image: UIImage) {
+        let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
+        let resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize)
+        pixelImageView = PixelImageView(image: resizedImage)
+        scrollView.contentSize = pixelImageView!.bounds.size
+        scrollView.addSubview(pixelImageView!)
     }
     
     @IBAction func dismissVC(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 // MARK: - UIScrollViewDelegate
 
 extension PaintViewController: UIScrollViewDelegate {
-    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         if scrollView != scrollView as? UICollectionView {
-            setCenterScrollView(scrollView, currentView)
+            setCenterScrollView(scrollView, pixelImageView)
         }
-        return currentView
+        return pixelImageView
     }
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        let subView = scrollView.subviews[0]
-        setCenterScrollView(scrollView, subView)
+        pixelImageView!.actualScalingParamter = scrollView.zoomScale
+        setCenterScrollView(scrollView, pixelImageView)
     }
-    
+    fileprivate func updateZoomSettings(animated: Bool) {
+        let scrollSize  = scrollView.frame.size
+        let contentSize = scrollView.contentSize
+        let scaleWidth  = scrollSize.width / contentSize.width
+        let scaleHeight = scrollSize.height / contentSize.height
+        let scale       = min(scaleWidth, scaleHeight)
+        pixelImageView!.zoomScaleForRemovingColor = scale
+        scrollView.minimumZoomScale = scale
+        scrollView.setZoomScale(scale, animated: animated)
+    }
     func setCenterScrollView(_ scrollView: UIScrollView,_ subView: UIView?) {
         if subView != nil {
             let offsetX = max(Double(scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5,0.0)
@@ -134,34 +87,31 @@ extension PaintViewController: UIScrollViewDelegate {
         }
     }
 }
-
 // MARK: - CollectionView delegate, CollectionView DataSource
 extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return symbols.count + 1
+        return AppDelegate.shared.patternColors.count - 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.PAINT_SECTION, for: indexPath) as! PaintSection
-            cell.imageView.image = UIImage(named: "\(colors[indexPath.row].hex)")
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorSection", for: indexPath) as! PaintSection
+            cell.imageView.image = #imageLiteral(resourceName: "ic_delete")
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.shared.PAINT_CELL, for: indexPath) as! PaintColorCVC
-            cell.labelNumberText.text = symbols[indexPath.row - 1]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! PaintColorCVC
+            cell.labelNumberText.text = "\(indexPath.row - 1)"
             cell.labelNumberText.textColor = UIColor.red
-            cell.backGroundView.backgroundColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
+            cell.backGroundView.backgroundColor = AppDelegate.shared.patternColors[indexPath.row - 1].color.uiColor
             return cell
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0 {
-            self.currentView!.paintBrushColor = UIColor.white
+            pixelImageView?.selectedColorNumber = nil
         }
         else {
-            self.currentView!.paintBrushColor = UIColor.color(fromHexString: color["\(indexPath.row)"]!)
-            self.currentView!.selectedPaintBrushColor(symbols[indexPath.row - 1])
-            self.currentView!.idPaintBrushColor = symbols[indexPath.row - 1]
+            pixelImageView?.selectedColorNumber = indexPath.row - 1
         }
     }
     

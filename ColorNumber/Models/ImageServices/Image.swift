@@ -43,7 +43,7 @@ struct Color {
 
 
 class MapIntensityColor {
-    var colorOrder: Int
+    private var colorOrder: Int
     var count : CGFloat = 0
     var color: Color = Color()
     var totalRedColor: CGFloat = 0
@@ -100,17 +100,23 @@ class PixelImageView : UIView, PixelDelegate{
     var zoomScaleForRemovingColor : CGFloat = 0.5
     var zoomScaleForRemovingTextLabel: CGFloat = 0.8
     
-    var _selectedColorNumber : Int = 0 {
+    var _selectedColorNumber : Int? {
         didSet {
+            guard _selectedColorNumber != nil else {return}
             patternColors.forEach{$0.isEmpharse = false}
-            patternColors[selectedColorNumber].isEmpharse = true
+            patternColors[selectedColorNumber!].isEmpharse = true
         }
     }
     
-    var selectedColorNumber: Int {
+    var selectedColorNumber: Int? {
         set {
-            if newValue >= 0 && newValue < patternColors.count - 1 {
-                _selectedColorNumber = newValue
+            if let value = newValue {
+                if value >= 0 && value < patternColors.count - 1 {
+                    _selectedColorNumber = newValue
+                }
+            } else {
+                _selectedColorNumber = nil
+
             }
         }
         get {
@@ -223,8 +229,6 @@ class PixelImageView : UIView, PixelDelegate{
         guard x < self.pixelsNumber[0].count && y < self.pixelsNumber.count && y >= 0 && x >= 0 else { return }
             pixelsNumber[y][x].fillColorNumber = selectedColorNumber
             pixelColor[y][x].fillColorNumber = selectedColorNumber
- 
-        
     }
 }
 

@@ -34,7 +34,6 @@ class Pixel : UILabel {
         didSet {
             if isEmpharse {
                  effectBackgroundColor = UIColor.green
-
             } else {
                 if type == .color {
                     effectBackgroundColor = grayColor
@@ -46,11 +45,14 @@ class Pixel : UILabel {
     }
     private var _fillColorNumber : Int? {
         didSet {
-            guard let fillNumber = fillColorNumber  else {return}
-            if fillNumber == intensityNumber {
-                drawWhenFillRight()
+            if let fillNumber = fillColorNumber  {
+                if fillNumber == intensityNumber {
+                    drawWhenFillRight()
+                } else {
+                    drawWhenFillWrong(at: fillNumber)
+                }
             } else {
-                drawWhenFillWrong(at: fillNumber)
+               setupBorderAndText()
             }
         }
     }
@@ -76,8 +78,6 @@ class Pixel : UILabel {
             return backgroundColor
         }
     }
-    
-    
     
     func drawWhenFillRight() {
         text = ""
@@ -149,8 +149,6 @@ class Pixel : UILabel {
             Double(green ) * greenWeight +
             Double(blue) * blueWeight
         return weightedSum / weightedMax
-        
-//        PixelImageView.patternColors[Int(intensity * 10)] = UIColor(red: CGFloat(pixel.red) / 255, green: CGFloat(pixel.green) / 255, blue: CGFloat(pixel.blue) / 255, alpha: 1)
     }
     
     func setupBorderAndText() {
@@ -165,7 +163,7 @@ class Pixel : UILabel {
                 layer.borderWidth = 0.1
                 text = String(intensityNumber)
             }
-            
+            effectBackgroundColor = UIColor.clear
         case .color:
             text = ""
             effectBackgroundColor = grayColor
