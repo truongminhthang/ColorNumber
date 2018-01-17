@@ -23,43 +23,34 @@ class Pixel : UILabel {
             delegateToImage?.arrangePatternColor(pixel: self)
         }
     }
-    var type: PixelType
-    var coordinate: Coordinate
+    private var type: PixelType
+    private var coordinate: Coordinate
     var color: Color
     var grayColor: UIColor
-    var intensity: Double
+    private var intensity: Double
     var intensityNumber : Int = 0
+    
     var isEmpharse: Bool = false {
         didSet {
             if isEmpharse {
-                backgroundColor = UIColor.green
+                 effectBackgroundColor = UIColor.green
+
             } else {
                 if type == .color {
-                    backgroundColor = grayColor
+                    effectBackgroundColor = grayColor
                 } else if type == .number {
-                    backgroundColor = UIColor.clear
+                    effectBackgroundColor = UIColor.clear
                 }
             }
         }
     }
-    var _fillColorNumber : Int? {
+    private var _fillColorNumber : Int? {
         didSet {
             guard let fillNumber = fillColorNumber  else {return}
             if fillNumber == intensityNumber {
-                text = ""
-                backgroundColor = delegateToImage!.patternColors[fillNumber].color.uiColor
-                delegateToImage!.patternColors[intensityNumber].count -= 1
-                print(delegateToImage!.patternColors[intensityNumber].count)
-                if delegateToImage!.patternColors[intensityNumber].count == 0 {
-                    showAlert(title: "het roi", message: "Cút")
-                }
-                layer.borderColor = nil
-                layer.borderWidth = 0
-                
+                drawWhenFillRight()
             } else {
-                backgroundColor = delegateToImage!.patternColors[fillNumber].color.tranperentColor
-                delegateToImage!.patternColors[intensityNumber].count += 1
-
+                drawWhenFillWrong(at: fillNumber)
             }
         }
     }
@@ -74,6 +65,40 @@ class Pixel : UILabel {
         }
         
     }
+    
+    var effectBackgroundColor: UIColor? {
+        set {
+            guard _fillColorNumber == nil else {return}
+            backgroundColor = newValue
+        }
+        get {
+           
+            return backgroundColor
+        }
+    }
+    
+    
+    
+    func drawWhenFillRight() {
+        text = ""
+        backgroundColor = delegateToImage!.patternColors[_fillColorNumber!].color.uiColor
+        delegateToImage!.patternColors[intensityNumber].count -= 1
+        checkIfAllColorFilled()
+        layer.borderColor = nil
+        layer.borderWidth = 0
+    }
+    
+    func drawWhenFillWrong(at fillNumber: Int) {
+        backgroundColor = delegateToImage!.patternColors[fillNumber].color.tranperentColor
+        delegateToImage!.patternColors[intensityNumber].count += 1
+        text = "\(intensityNumber)"
+    }
+    
+    func checkIfAllColorFilled() {
+        if delegateToImage!.patternColors[intensityNumber].count == 0 {
+            showAlert(title: "het roi", message: "Cút")
+        }
+    }
         
     init(color: Color, coordinate: Coordinate, intensity: Double, type: PixelType) {
         self.type = type
@@ -83,28 +108,11 @@ class Pixel : UILabel {
         self.intensityNumber = Int(intensity * 10)
         let frame = CGRect(origin: coordinate.originPoint, size: Pixel.size)
         grayColor = UIColor.black.withAlphaComponent(1-CGFloat(intensityNumber)/CGFloat(10))
-        super.init(frame: frame)
         
-        self.textAlignment = .center
-        self.font = UIFont.systemFont(ofSize: 5)
-        switch type {
-        case .number:
-            if intensityNumber == 10 {
-                layer.borderColor = UIColor.lightGray.cgColor
-                layer.borderWidth = 0.1
-                text = ""
-            } else {
-                layer.borderColor = UIColor.black.cgColor
-                layer.borderWidth = 0.1
-                text = String(intensityNumber)
-            }
-            
-        case .color:
-            text = ""
-            backgroundColor = grayColor
-        }
-       
+        super.init(frame: frame)
+        setupBorderAndText()
     }
+    
     convenience init(pointer: PixelPointer, offset: Int, coordinate: Coordinate, type: PixelType) {
         let red   =  pointer[offset + 0]
         let green =  pointer[offset + 1]
@@ -144,6 +152,28 @@ class Pixel : UILabel {
         
 //        PixelImageView.patternColors[Int(intensity * 10)] = UIColor(red: CGFloat(pixel.red) / 255, green: CGFloat(pixel.green) / 255, blue: CGFloat(pixel.blue) / 255, alpha: 1)
     }
+    
+    func setupBorderAndText() {
+        switch type {
+        case .number:
+            if intensityNumber == 10 {
+                layer.borderColor = UIColor.lightGray.cgColor
+                layer.borderWidth = 0.1
+                text = ""
+            } else {
+                layer.borderColor = UIColor.black.cgColor
+                layer.borderWidth = 0.1
+                text = String(intensityNumber)
+            }
+            
+        case .color:
+            text = ""
+            effectBackgroundColor = grayColor
+        }
+        self.textAlignment = .center
+        self.font = UIFont.systemFont(ofSize: 5)
+    }
+    
 }
 func showAlert(title:String, message: String) {
     

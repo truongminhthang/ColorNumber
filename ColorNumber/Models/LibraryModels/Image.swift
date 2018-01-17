@@ -100,6 +100,24 @@ class PixelImageView : UIView, PixelDelegate{
     var zoomScaleForRemovingColor : CGFloat = 0.5
     var zoomScaleForRemovingTextLabel: CGFloat = 0.8
     
+    var _selectedColorNumber : Int = 0 {
+        didSet {
+            patternColors.forEach{$0.isEmpharse = false}
+            patternColors[selectedColorNumber].isEmpharse = true
+        }
+    }
+    
+    var selectedColorNumber: Int {
+        set {
+            if newValue >= 0 && newValue < patternColors.count - 1 {
+                _selectedColorNumber = newValue
+            }
+        }
+        get {
+            return _selectedColorNumber
+        }
+    }
+    
     // Zoom in - Zoom out logic
     var actualScalingParamter : CGFloat = 0 {
         didSet {
@@ -135,6 +153,7 @@ class PixelImageView : UIView, PixelDelegate{
         setupSubview()
         createPixelMatrix()
         setupGesture()
+        AppDelegate.shared.patternColors = patternColors
     }
     
     func createPixelMatrix() {
@@ -202,8 +221,10 @@ class PixelImageView : UIView, PixelDelegate{
         let y = Int(point.y / Pixel.size.height)
         let x = Int(point.x / Pixel.size.width)
         guard x < self.pixelsNumber[0].count && y < self.pixelsNumber.count && y >= 0 && x >= 0 else { return }
-        pixelsNumber[y][x].fillColorNumber = 4
-        pixelColor[y][x].fillColorNumber = 4
+            pixelsNumber[y][x].fillColorNumber = selectedColorNumber
+            pixelColor[y][x].fillColorNumber = selectedColorNumber
+ 
+        
     }
 }
 
