@@ -13,13 +13,17 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    var patternColors: [MapIntensityColor] = []
-    
     static var shared = {
         return UIApplication.shared.delegate as! AppDelegate
     }()
     
+
+    var patternColors: [MapIntensityColor] = []
+    
+    func arrangePatternColor(pixel: Pixel) {
+        guard patternColors.count > 0 else { return }
+        patternColors[pixel.intensityNumber].addFixel(pixel)
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

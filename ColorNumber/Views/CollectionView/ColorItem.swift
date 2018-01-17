@@ -1,5 +1,5 @@
 //
-//  PaintColorCVC.swift
+//  ColorItem.swift
 //  ColorNumber
 //
 //  Created by HoangLuyen on 1/9/18.
@@ -8,9 +8,11 @@
 
 import UIKit
 
-class PaintColorCVC: UICollectionViewCell {
+class ColorItem: UICollectionViewCell {
     @IBOutlet weak var labelNumberText: UILabel!
     @IBOutlet weak var selectedView: UIView!
+    @IBOutlet weak var doneImage: UIImageView!
+
     
     override var isSelected: Bool {
         didSet {
@@ -20,8 +22,15 @@ class PaintColorCVC: UICollectionViewCell {
         }
     }
     
+    var isDone: Bool = false {
+        didSet {
+            doneImage.isHidden = !isDone
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        isDone = true
     }
     
     override func prepareForReuse() {

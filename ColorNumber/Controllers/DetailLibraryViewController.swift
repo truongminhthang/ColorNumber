@@ -67,6 +67,7 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let selected = indexFromLibrary {
             DataService.share.selectedIndexPath = [selected, indexPath.row]
+            self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
         }
     }
 }

@@ -210,7 +210,8 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DataService.share.selectedIndexPath = [collectionView.tag, indexPath.row]
+        DataService.share.selectedIndexPath = IndexPath(row: indexPath.row, section: collectionView.tag)
+        self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
     }
     
     

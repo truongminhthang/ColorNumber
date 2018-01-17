@@ -14,7 +14,6 @@ class PaintViewController: UIViewController {
     
     let cellPadding: Int = 10
     
-    var image: UIImage = #imageLiteral(resourceName: "kermit")
     var pixelImageView: PixelImageView?
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,7 +25,8 @@ class PaintViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            renderingImage(image)
+        registerNotification()
+        renderingImage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,9 +40,47 @@ class PaintViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(colorFillDone), name: .fillColorDone, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(colorFillNotDone), name: .fillColorNotDone, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(gameCompleted), name: .gameCompleted, object: nil)
+
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc
+    func colorFillDone(_ notification: Notification) {
+        guard let intensityNumber = notification.object as? Int else {return}
+        if let cell = collectionView.cellForItem(at: IndexPath(item: intensityNumber + 1, section: 0)) as? ColorItem {
+            cell.isDone = true
+        } else {
+            collectionView.reloadData()
+        }
+    }
+    
+    @objc
+    func colorFillNotDone(_ notification: Notification) {
+        guard let intensityNumber = notification.object as? Int else {return}
+        if let cell = collectionView.cellForItem(at: IndexPath(item: intensityNumber + 1, section: 0)) as? ColorItem {
+            cell.isDone = false
+        } else {
+            collectionView.reloadData()
+        }
+        
+    }
+    @objc
+    func gameCompleted(_ notification: Notification) {
+       showAlert(vc: self, title: "Mission Complete!", message: "Congratuation!")
+    }
+
+    
     // MARK: - Rendering
     
-    fileprivate func renderingImage(_ image: UIImage) {
+    fileprivate func renderingImage() {
+        guard let image = DataService.share.selectedImage else { return }
         let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
         let resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize)
         pixelImageView = PixelImageView(image: resizedImage)
@@ -50,8 +88,11 @@ class PaintViewController: UIViewController {
         scrollView.addSubview(pixelImageView!)
     }
     
-    @IBAction func dismissVC(_ sender: UIButton) {
+    @IBAction func dismissVC(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    @IBAction func fillAll(_ sender: Any) {
+        AppDelegate.shared.patternColors.forEach{$0.pixels.forEach{$0.fillColorNumber = $0.intensityNumber}}
     }
 }
 
@@ -90,7 +131,7 @@ extension PaintViewController: UIScrollViewDelegate {
 // MARK: - CollectionView delegate, CollectionView DataSource
 extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AppDelegate.shared.patternColors.count - 1
+        return AppDelegate.shared.patternColors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -99,10 +140,11 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             cell.imageView.image = #imageLiteral(resourceName: "ic_delete")
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! PaintColorCVC
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorItem
             cell.labelNumberText.text = "\(indexPath.row - 1)"
             cell.labelNumberText.textColor = UIColor.red
             cell.labelNumberText.backgroundColor = AppDelegate.shared.patternColors[indexPath.row - 1].color.uiColor
+            cell.isDone = AppDelegate.shared.patternColors[indexPath.row - 1].count == 0
             return cell
         }
     }
@@ -112,9 +154,9 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
         }
         else {
             pixelImageView?.selectedColorNumber = indexPath.row - 1
-            let cell = collectionView.cellForItem(at: indexPath) as! PaintColorCVC
         }
     }
+    
     
 }
 // MARK: - Layout CollectionView Cell

@@ -8,79 +8,8 @@
 
 import UIKit
 
-struct Coordinate {
-    var col: Int
-    var row: Int
-    
-    var originPoint: CGPoint {
-        return CGPoint(x: CGFloat(col) * Pixel.size.width, y: CGFloat(row) * Pixel.size.height)
-    }
-}
-
-struct Color {
-     var red: CGFloat
-     var green: CGFloat
-     var blue: CGFloat
-    var uiColor: UIColor {
-        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
-    }
-    
-    var tranperentColor: UIColor {
-        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 0.7)
-
-    }
-    
-    init(red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0) {
-        self.red = red
-        self.green = green
-        self.blue = blue
-    }
-    
-    
-    
-}
-
-
-
-class MapIntensityColor {
-    private var colorOrder: Int
-    var count : CGFloat = 0
-    var color: Color = Color()
-    var totalRedColor: CGFloat = 0
-    var totalBlueColor: CGFloat = 0
-    var totalGreenColor: CGFloat = 0
-    var isEmpharse = false {
-        didSet {
-            guard isEmpharse != oldValue else {return}
-            pixels.forEach{$0.isEmpharse = isEmpharse}
-        }
-    }
-    var pixels : [Pixel] = []
-    func addFixel(_ pixel: Pixel) {
-        guard pixel.intensityNumber == colorOrder else { return }
-        count += 1
-        let color = pixel.color
-        totalRedColor += color.red
-        totalGreenColor += color.green
-        totalBlueColor += color.blue
-        pixels.append(pixel)
-        self.color = Color(red: totalRedColor / count, green: totalGreenColor / count, blue: totalBlueColor / count)
-    }
-    
-    init(order: Int) {
-        colorOrder = order
-    }
-    
-}
-
-protocol PixelDelegate: class {
-    func arrangePatternColor(pixel: Pixel)
-    var patternColors: [MapIntensityColor] {get set}
-}
-
-class PixelImageView : UIView, PixelDelegate{
-
-    var isEdited = false
+class PixelImageView : UIView{
+//    var isEdited = false
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
     var image : UIImage
@@ -155,10 +84,10 @@ class PixelImageView : UIView, PixelDelegate{
         let height = (image.size.height) * Pixel.size.height
         let imageSize = CGRect(origin: .zero, size: CGSize(width: width, height: height))
         super.init(frame: imageSize)
+        AppDelegate.shared.patternColors = patternColors
         setupSubview()
         createPixelMatrix()
         setupGesture()
-        AppDelegate.shared.patternColors = patternColors
     }
     
     func createPixelMatrix() {
@@ -174,8 +103,8 @@ class PixelImageView : UIView, PixelDelegate{
                 let coordinate = Coordinate(col: col, row: row)
                 let numberPixel = Pixel(pointer: pixelPointer!, offset: offset, coordinate: coordinate, type: .number)
                 let colorPixel = numberPixel.makeDuplicate()
-                numberPixel.delegateToImage = self
-                colorPixel.delegateToImage = self
+                AppDelegate.shared.arrangePatternColor(pixel: numberPixel)
+                AppDelegate.shared.arrangePatternColor(pixel: colorPixel)
                 numberView.addSubview(numberPixel)
                 colorView.addSubview(colorPixel)
                 pixelsNumber[row].append(numberPixel)
@@ -197,16 +126,12 @@ class PixelImageView : UIView, PixelDelegate{
         self.insertSubview(numberView, aboveSubview: colorView)
     }
     
-    func arrangePatternColor(pixel: Pixel) {
-        patternColors[pixel.intensityNumber].addFixel(pixel)
-    }
-    
     private func setupGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
         tapGestureRecognizer.delegate = self
         addGestureRecognizer(tapGestureRecognizer)
         let dragGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleDrag(sender:)))
-        dragGestureRecognizer.minimumPressDuration = 0.25
+        dragGestureRecognizer.minimumPressDuration = 0.15
         addGestureRecognizer(dragGestureRecognizer)
     }
     

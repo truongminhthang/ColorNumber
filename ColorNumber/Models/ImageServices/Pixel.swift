@@ -18,11 +18,6 @@ enum PixelType {
 class Pixel : UILabel {
     /** The number of bytes a pixel occupies. 1 byte per channel (RGBA). */
     static var size = CGSize(width: 10, height: 10)
-    weak var delegateToImage: PixelDelegate? {
-        didSet {
-            delegateToImage?.arrangePatternColor(pixel: self)
-        }
-    }
     private var type: PixelType
     private var coordinate: Coordinate
     var color: Color
@@ -47,15 +42,35 @@ class Pixel : UILabel {
         didSet {
             if let fillNumber = fillColorNumber  {
                 if fillNumber == intensityNumber {
+                    // Dung
                     drawWhenFillRight()
+                    AppDelegate.shared.patternColors[intensityNumber].count -= 1
+                   
                 } else {
+                    // Sai
                     drawWhenFillWrong(at: fillNumber)
+                    if oldValue != nil {
+                        AppDelegate.shared.patternColors[intensityNumber].count += 1
+                    }
                 }
             } else {
-               setupBorderAndText()
+                // Earse
+                setupBorderAndText()
+                if oldValue == intensityNumber { //dang dung tay di
+                    AppDelegate.shared.patternColors[intensityNumber].count += 1
+                }
             }
         }
     }
+    
+    // Test case 1:  dung -> sai -> xoa             cout ko doi            : pass
+    // Test case 2:  dung -> xoa -> sai             cout ko doi             : pass
+    // Test case 3:  sai ->  dung -> xoa            count ko doi             : pass
+        // Test case 5: xoa -> dung -> sai            count ko doi              : pass
+    // Test case 4:  sai -> xoa  -> dung             count - 1              : pass
+    // Test case 6: xoa -> sai -> dung            count - 1                  : pass
+
+
     var fillColorNumber : Int? {
         set {
             if intensityNumber != 10 && _fillColorNumber != newValue {
@@ -81,24 +96,17 @@ class Pixel : UILabel {
     
     func drawWhenFillRight() {
         text = ""
-        backgroundColor = delegateToImage!.patternColors[_fillColorNumber!].color.uiColor
-        delegateToImage!.patternColors[intensityNumber].count -= 1
-        checkIfAllColorFilled()
+        backgroundColor = AppDelegate.shared.patternColors[_fillColorNumber!].color.uiColor
         layer.borderColor = nil
         layer.borderWidth = 0
     }
     
     func drawWhenFillWrong(at fillNumber: Int) {
-        backgroundColor = delegateToImage!.patternColors[fillNumber].color.tranperentColor
-        delegateToImage!.patternColors[intensityNumber].count += 1
+        backgroundColor = AppDelegate.shared.patternColors[fillNumber].color.tranperentColor
         text = "\(intensityNumber)"
     }
     
-    func checkIfAllColorFilled() {
-        if delegateToImage!.patternColors[intensityNumber].count == 0 {
-            showAlert(title: "het roi", message: "Cút")
-        }
-    }
+   
         
     init(color: Color, coordinate: Coordinate, intensity: Double, type: PixelType) {
         self.type = type
@@ -173,13 +181,4 @@ class Pixel : UILabel {
     }
     
 }
-func showAlert(title:String, message: String) {
-    
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    
-    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in}
-    
-    alertController.addAction(okAction)
-    
-    AppDelegate.shared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
-}
+

@@ -205,7 +205,6 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="imageIcon" destination="Ihf-9a-TS1" id="dSQ-Yi-78Z"/>
-                                                                <segue destination="Jjb-VX-w6j" kind="presentation" identifier="showPaitnVC" id="GG1-9q-k66"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -263,6 +262,7 @@
                         <outlet property="reviewLb" destination="YHN-9P-13z" id="udF-Gw-xMY"/>
                         <outlet property="tableView" destination="cWk-LK-x00" id="rQj-CX-x5I"/>
                         <outlet property="watchVideo" destination="l5R-qz-Dw5" id="lSh-ao-9gZ"/>
+                        <segue destination="rqN-e5-t8F" kind="presentation" identifier="showPaitnVC" id="qSD-kW-L2R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JlC-Js-tsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -348,7 +348,6 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="imageIcon" destination="az9-N1-0BX" id="sob-qS-ewB"/>
-                                            <segue destination="Jjb-VX-w6j" kind="presentation" id="BUZ-2V-l1e"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -374,6 +373,7 @@
                     <connections>
                         <outlet property="collectionView" destination="hRj-tf-ext" id="JDM-23-ieM"/>
                         <outlet property="titleHead" destination="gM8-2z-7IT" id="wVD-4M-puX"/>
+                        <segue destination="rqN-e5-t8F" kind="presentation" identifier="showPaitnVC" id="zUl-kO-Flf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXK-oQ-Clc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -431,7 +431,7 @@
                                                     <outlet property="imageView" destination="tsM-pD-hQS" id="73Q-0e-o01"/>
                                                 </connections>
                                             </collectionViewCell>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCell" id="Qc9-Y3-qwH" customClass="PaintColorCVC" customModule="ColorNumber" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCell" id="Qc9-Y3-qwH" customClass="ColorItem" customModule="ColorNumber" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -471,6 +471,13 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-ok" translatesAutoresizingMaskIntoConstraints="NO" id="rdN-se-qIJ">
+                                                            <rect key="frame" x="27" y="0.0" width="23" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="23" id="YaY-9c-ITM"/>
+                                                                <constraint firstAttribute="width" secondItem="rdN-se-qIJ" secondAttribute="height" id="aqi-5Y-G0A"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
@@ -479,11 +486,14 @@
                                                     <constraint firstItem="Sy3-Dv-kZ9" firstAttribute="top" secondItem="Qc9-Y3-qwH" secondAttribute="top" constant="4" id="Bso-8G-eBi"/>
                                                     <constraint firstItem="Sy3-Dv-kZ9" firstAttribute="leading" secondItem="Qc9-Y3-qwH" secondAttribute="leading" constant="4" id="K04-Wo-K7e"/>
                                                     <constraint firstAttribute="bottom" secondItem="Sy3-Dv-kZ9" secondAttribute="bottom" constant="4" id="RrB-bX-od8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rdN-se-qIJ" secondAttribute="trailing" id="ZMj-aq-IEJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="TK3-H9-h0h" secondAttribute="trailing" id="eew-39-qsg"/>
+                                                    <constraint firstItem="rdN-se-qIJ" firstAttribute="top" secondItem="Qc9-Y3-qwH" secondAttribute="top" id="oKp-7x-aau"/>
                                                     <constraint firstAttribute="trailing" secondItem="Sy3-Dv-kZ9" secondAttribute="trailing" constant="4" id="vqT-9n-vni"/>
                                                     <constraint firstItem="TK3-H9-h0h" firstAttribute="leading" secondItem="Qc9-Y3-qwH" secondAttribute="leading" id="wMM-7A-nDE"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="doneImage" destination="rdN-se-qIJ" id="zGI-1T-cU6"/>
                                                     <outlet property="labelNumberText" destination="Sy3-Dv-kZ9" id="cqQ-Ni-B9K"/>
                                                     <outlet property="selectedView" destination="TK3-H9-h0h" id="SVw-Au-bS2"/>
                                                 </connections>
@@ -508,28 +518,8 @@
                                     <constraint firstAttribute="bottom" secondItem="mz7-zB-hXN" secondAttribute="bottom" id="wfT-gj-OCV"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urK-7F-1BL">
-                                <rect key="frame" x="0.0" y="20" width="375" height="55.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8t-D4-CDy">
-                                        <rect key="frame" x="10" y="15" width="30" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="qrY-nc-KGj"/>
-                                        </constraints>
-                                        <state key="normal" image="ic_back"/>
-                                        <connections>
-                                            <action selector="dismissVC:" destination="Jjb-VX-w6j" eventType="touchUpInside" id="9PT-wb-SfR"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="p8t-D4-CDy" firstAttribute="centerY" secondItem="urK-7F-1BL" secondAttribute="centerY" id="GDz-S6-bUH"/>
-                                    <constraint firstItem="p8t-D4-CDy" firstAttribute="leading" secondItem="urK-7F-1BL" secondAttribute="leading" constant="10" id="ceV-qg-Tt0"/>
-                                </constraints>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXF-Ky-HPm">
-                                <rect key="frame" x="0.0" y="75.5" width="375" height="491.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="503"/>
                                 <connections>
                                     <outlet property="delegate" destination="Jjb-VX-w6j" id="WDX-U7-vBJ"/>
                                 </connections>
@@ -538,19 +528,27 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lXF-Ky-HPm" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="5kk-Y2-DZZ"/>
-                            <constraint firstItem="urK-7F-1BL" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="E6I-qv-kUb"/>
-                            <constraint firstItem="urK-7F-1BL" firstAttribute="top" secondItem="hVm-ZS-mha" secondAttribute="top" id="FDB-fa-9SG"/>
                             <constraint firstItem="fOj-4i-cEk" firstAttribute="top" secondItem="lXF-Ky-HPm" secondAttribute="bottom" id="He9-wh-QOw"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="bottom" secondItem="fOj-4i-cEk" secondAttribute="bottom" constant="50" id="OHO-rg-YYf"/>
-                            <constraint firstItem="urK-7F-1BL" firstAttribute="height" secondItem="6uZ-Qq-nsJ" secondAttribute="height" multiplier="1/12" id="WfX-Fr-tEn"/>
-                            <constraint firstItem="lXF-Ky-HPm" firstAttribute="top" secondItem="urK-7F-1BL" secondAttribute="bottom" id="fmF-RJ-0hV"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="fOj-4i-cEk" secondAttribute="trailing" id="g2B-cB-3R5"/>
                             <constraint firstItem="fOj-4i-cEk" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="h3H-9c-LG1"/>
-                            <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="urK-7F-1BL" secondAttribute="trailing" id="haJ-Fu-oTx"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="lXF-Ky-HPm" secondAttribute="trailing" id="o5I-tl-s3s"/>
+                            <constraint firstItem="lXF-Ky-HPm" firstAttribute="top" secondItem="hVm-ZS-mha" secondAttribute="top" id="pMs-ct-fDP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hVm-ZS-mha"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bh7-SD-zkd">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="aKb-GM-kUv">
+                            <connections>
+                                <action selector="dismissVC:" destination="Jjb-VX-w6j" id="kxT-LV-Hkn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Fill All" id="rrA-Td-rgL">
+                            <connections>
+                                <action selector="fillAll:" destination="Jjb-VX-w6j" id="Rsx-H7-zAf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="mz7-zB-hXN" id="ukc-Ln-Xqa"/>
                         <outlet property="scrollView" destination="lXF-Ky-HPm" id="zEo-je-ha0"/>
@@ -558,7 +556,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77A-8M-CaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="172" y="428"/>
+            <point key="canvasLocation" x="702" y="427"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DXu-6e-mAl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rqN-e5-t8F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="okn-os-GmT">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jjb-VX-w6j" kind="relationship" relationship="rootViewController" id="amv-lv-vtl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qQh-JA-tsX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-44" y="427"/>
         </scene>
     </scenes>
     <resources>
@@ -570,8 +586,9 @@
         <image name="ic_libarydark" width="27" height="27"/>
         <image name="ic_next" width="14" height="30"/>
         <image name="ic_trending" width="27" height="27"/>
+        <image name="icons8-ok" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BUZ-2V-l1e"/>
+        <segue reference="zUl-kO-Flf"/>
     </inferredMetricsTieBreakers>
 </document>
