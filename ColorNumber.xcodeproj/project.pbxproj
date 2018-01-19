@@ -109,10 +109,10 @@
 			children = (
 				5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */,
 				3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */,
-				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
 				98708CA1200EFC70009D544E /* PaintViewController.swift */,
+				3B22F7BC1FF3433F00A30505 /* ImportViewController.swift */,
 				98F9D6642008E34C00843FC8 /* PhotoViewController.swift */,
 			);
 			path = Controllers;
@@ -484,12 +484,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				DEVELOPMENT_TEAM = S63993FAG8;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -503,12 +503,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				DEVELOPMENT_TEAM = S63993FAG8;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = ColorNumber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BigZero.ColorNumber1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

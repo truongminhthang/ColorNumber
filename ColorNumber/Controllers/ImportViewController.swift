@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import CoreVideo
+import CoreImage
 
 class ImportViewController: UIViewController, UIImagePickerControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UINavigationControllerDelegate {
     
@@ -16,14 +18,27 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     var frontCamera: AVCaptureDevice?
     var currentCamera: AVCaptureDevice?
     var photoOutput : AVCapturePhotoOutput?
+    var videoInput: AVCaptureInput?
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
-    
+    var fakeLayer: CALayer?
+    var monoLayer: CALayer?
+    var monoFilterName: String = "CIPhotoEffectMono"
+    var pixelFilterName: String = "CIPixellate"
+    var pixelFilter: CIFilter?
+    var monoFilter: CIFilter?
+    var scale: Int? = 30
+    var ciImage: CIImage?
     @IBOutlet weak var switchCameraBt: UIButton!
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var pickImageBT: UIButton!
+    @IBOutlet weak var slider: UISlider!
     var isTakePhoto: Bool = false
     private let sessionQueue = DispatchQueue(label: "session queue")
-    
+    lazy var context: CIContext = {
+        let eaglContext = EAGLContext(api: EAGLRenderingAPI.openGLES2)
+        let options = [kCIContextWorkingColorSpace:NSNull()]
+        return CIContext(eaglContext: eaglContext!, options: options)
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         switch AVCaptureDevice.authorizationStatus(for: .video) {
@@ -43,20 +58,6 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         default:
             setupResult = .notAuthorized
         }
-        sessionQueue.async {
-            switch self.setupResult {
-            case .success:
-                self.setupDevice()
-                self.setupCaptureSession()
-                self.setupPreviewLayer()
-                self.startingRunningCaptureSession()
-                
-            case .notAuthorized:
-                break
-            case .configurationFailed:
-                break
-            }
-        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -70,6 +71,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
                 
             case .notAuthorized:
                 DispatchQueue.main.async {
+                    self.switchCameraBt.isEnabled = false
                     let changePrivacySetting = "Color Number doesn't have permission to use the camera, please change privacy settings"
                     let message = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to the camera")
                     let alertController = UIAlertController(title: "Color Number", message: message, preferredStyle: .alert)
@@ -83,11 +85,11 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
                                                             handler: { _ in
                                                                 UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
                     }))
-                    
                     self.present(alertController, animated: true, completion: nil)
                 }
                 
             case .configurationFailed:
+                self.switchCameraBt.isEnabled = false
                 DispatchQueue.main.async {
                     let alertMsg = "Alert message when something goes wrong during capture session configuration"
                     let message = NSLocalizedString("Unable to capture media", comment: alertMsg)
@@ -98,6 +100,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
                                                             handler: nil))
                     
                     self.present(alertController, animated: true, completion: nil)
+                    
                 }
             }
         }
@@ -140,9 +143,17 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         
     }
     func setupInputOutput() {
+        if setupResult != .success {
+            return
+        }
+        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+        
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
-            captureSession.addInput(captureDeviceInput)
+            if captureSession.canAddInput(captureDeviceInput) {
+                captureSession.addInput(captureDeviceInput)
+            }
+            
             if #available(iOS 11.0, *) {
                 photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
             } else {
@@ -153,17 +164,30 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         }
     }
     func setupPreviewLayer() {
-        cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-        cameraPreviewLayer?.frame = self.cameraView.frame
-        self.cameraView.layer.insertSublayer(cameraPreviewLayer!, at: 0)
+
+        self.cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
+        self.cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        self.cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
+        fakeLayer = CALayer()
+        monoLayer = CALayer()
+
+        DispatchQueue.main.async {
+            self.cameraPreviewLayer?.frame = self.cameraView.frame
+            self.monoLayer?.frame = CGRect(x: (self.cameraPreviewLayer?.frame.origin.x)! - 10.0, y:  (self.cameraPreviewLayer?.frame.origin.y)! - 10.0, width: (self.cameraPreviewLayer?.frame.width)! + 50, height: (self.cameraPreviewLayer?.frame.height)! + 50)
+            self.fakeLayer?.frame = CGRect(x: (self.cameraPreviewLayer?.frame.origin.x)! - 10.0, y:  (self.cameraPreviewLayer?.frame.origin.y)! - 10.0 , width: (self.cameraPreviewLayer?.frame.width)! + 50, height: (self.cameraPreviewLayer?.frame.height)! + 50)
+            self.cameraView.layer.insertSublayer(self.cameraPreviewLayer!, at: 0)
+            self.cameraView?.layer.sublayers?.append(self.fakeLayer!)
+            self.cameraView?.layer.sublayers?.append(self.monoLayer!)
+           
+        }
+        
+        
+        
     }
     func startingRunningCaptureSession() {
         captureSession.startRunning()
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value:kCVPixelFormatType_32BGRA)]
-        
         dataOutput.alwaysDiscardsLateVideoFrames = true
         
         if captureSession.canAddOutput(dataOutput) {
@@ -179,49 +203,49 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     
     @IBAction func switchCamera(_ sender: UIButton) {
         //Change camera source
-        sessionQueue.async {
-            
-            let session = self.captureSession
-            //Indicate that some changes will be made to the session
-            //Remove existing input
-            guard let currentCameraInput:AVCaptureInput = session.inputs.first else { return }
-            session.beginConfiguration()
-            self.switchCameraBt.isEnabled = false
-            session.removeInput(currentCameraInput)
-            
-            //Get new input
-            var newCamera:AVCaptureDevice! = nil
-            if let input = currentCameraInput as? AVCaptureDeviceInput {
-                if (input.device.position == .back) {
-                    newCamera = self.frontCamera
-                }
-                else {
-                    newCamera = self.backCamera
-                }
-            }
-            
-            //Add input to session
-            var err: NSError?
-            var newVideoInput: AVCaptureDeviceInput!
-            do {
-                newVideoInput = try AVCaptureDeviceInput(device: newCamera)
-            } catch let err1 as NSError {
-                err = err1
-                newVideoInput = nil
-            }
-            
-            if(newVideoInput == nil || err != nil) {
-                print("Error creating capture device input: \(err!.localizedDescription)")
+        
+        
+        let session = self.captureSession
+        //Indicate that some changes will be made to the session
+        //Remove existing input
+        guard let currentCameraInput:AVCaptureInput = session.inputs.first else { return }
+        session.beginConfiguration()
+        self.switchCameraBt.isEnabled = false
+        session.removeInput(currentCameraInput)
+        
+        //Get new input
+        var newCamera:AVCaptureDevice! = nil
+        if let input = currentCameraInput as? AVCaptureDeviceInput {
+            if (input.device.position == .back) {
+                newCamera = self.frontCamera
             }
             else {
-                session.addInput(newVideoInput)
+                newCamera = self.backCamera
             }
-            
-            //Commit all the configuration changes at once
-            session.commitConfiguration()
-            
-            self.switchCameraBt.isEnabled = true
         }
+        
+        //Add input to session
+        var err: NSError?
+        var newVideoInput: AVCaptureDeviceInput!
+        do {
+            newVideoInput = try AVCaptureDeviceInput(device: newCamera)
+        } catch let err1 as NSError {
+            err = err1
+            newVideoInput = nil
+        }
+        
+        if(newVideoInput == nil || err != nil) {
+            print("Error creating capture device input: \(err!.localizedDescription)")
+        }
+        else {
+            session.addInput(newVideoInput)
+        }
+        
+        //Commit all the configuration changes at once
+        session.commitConfiguration()
+        
+        self.switchCameraBt.isEnabled = true
+        
     }
     
     
@@ -239,17 +263,11 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         dismiss(animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         guard let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
-            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-        }
-        
-        
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)") }
         let photoVC = PhotoViewController.instance
         photoVC.imageTaken = selectedImage
-        // Set photoImageView to display the selected image.
-        
-        //  photoImageView.image = selectedImage
+        photoVC.scale = scale
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
@@ -258,37 +276,66 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         }
     }
     
+    //MARK: Take a Photo
     @IBAction func takePhoto(_ sender: UIButton) {
         isTakePhoto = true
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
+        var outputImage = CIImage(cvImageBuffer: imageBuffer)
+        let transform = getOrientation()
+        outputImage = outputImage.transformed(by: transform)
+        ciImage = outputImage
+        addPixelFilter(outputImage: outputImage, scale: scale!)
+        outputImage = (self.pixelFilter?.outputImage)!
+        addMonoFilter(outputImage: outputImage)
+        outputImage = (self.monoFilter?.outputImage)!
+        let cgImage = self.context.createCGImage(outputImage, from: outputImage.extent)
+        DispatchQueue.main.sync {
+            monoLayer?.contents = cgImage
+            fakeLayer?.contents = cgImage
+        }
         if isTakePhoto == true {
-            isTakePhoto = false
-            if let image = self.getImageFromSampleBuffer(buffer: sampleBuffer ) {
-                let photoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
-                photoVC.imageTaken = image
-                
-                DispatchQueue.main.async {
-                    self.present(photoVC, animated: true, completion: nil)
-                    
-                }
-            }
+            takeAPhoto(sampleBuffer: sampleBuffer)
         }
     }
-    func getImageFromSampleBuffer (buffer: CMSampleBuffer) -> UIImage? {
-        if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
-            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-            let context = CIContext()
-            let imageRect = CGRect(x: 0, y: 0, width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
-            if let image = context.createCGImage(ciImage, from: imageRect) {
-                return UIImage(cgImage: image, scale: UIScreen.main.scale, orientation: .right)
+    func takeAPhoto(sampleBuffer: CMSampleBuffer) {
+        isTakePhoto = false
+            let photoVC = UIStoryboard(name: "Import", bundle: nil).instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
+            photoVC.imageTaken = UIImage(ciImage: ciImage!)
+            photoVC.scale = scale
+            DispatchQueue.main.async {
+                self.present(photoVC, animated: true, completion: nil)
             }
+        
+    }
+    func addPixelFilter(outputImage: Any?, scale: Int ) {
+        self.pixelFilter = CIFilter(name: pixelFilterName)
+        self.pixelFilter?.setValue(outputImage, forKey: kCIInputImageKey)
+        self.pixelFilter?.setValue(scale, forKey: "inputScale")
+    }
+    func addMonoFilter(outputImage: Any? ) {
+        self.monoFilter = CIFilter(name: monoFilterName)
+        self.monoFilter?.setValue(outputImage, forKey: kCIInputImageKey)
+    }
+    
+    
+    func getOrientation() -> CGAffineTransform {
+        let angle: CGFloat = CGFloat(-M_PI/2)
+        if let latestInput = captureSession.inputs.first as? AVCaptureDeviceInput {
+            let camPosition = latestInput.device.position
+            return(camPosition == .front) ? CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(scaleX: -1, y: 1)) : CGAffineTransform(rotationAngle: angle)
         }
-        return nil
+        return CGAffineTransform(rotationAngle: angle)
     }
     deinit {
         print("!")
+    }
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        let currentValue = Int(sender.value)
+        let reverseValue = (Int(sender.maximumValue) - currentValue) + Int(sender.minimumValue)
+        scale = reverseValue
     }
 }
 
