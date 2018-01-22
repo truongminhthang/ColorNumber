@@ -144,14 +144,14 @@ class LibraryViewController: UIViewController {
 extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataService.share.dataLibrary.count
+        return DataService.share.categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LibraryTableViewCell", for: indexPath) as! LibraryTableViewCell
-        cell.titleHead.text = DataService.share.dataLibrary[indexPath.row].titleHeader
-        cell.titleHead.textColor = DataService.share.dataLibrary[indexPath.row].colorTitle
-        cell.imageHeader.image = DataService.share.dataLibrary[indexPath.row].iconHeader
+        cell.titleHead.text = DataService.share.categories[indexPath.row].titleHeader
+        cell.titleHead.textColor = DataService.share.categories[indexPath.row].colorTitle
+        cell.imageHeader.image = DataService.share.categories[indexPath.row].iconHeader
         
         return cell
     }
@@ -200,12 +200,12 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     // CollectionViewDataSource.
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataService.share.dataLibrary[collectionView.tag].listImage.count
+        return DataService.share.categories[collectionView.tag].listImage.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        cell.imageIcon.image = DataService.share.dataLibrary[collectionView.tag].listImage[indexPath.row]
+        cell.imageIcon.image = DataService.share.categories[collectionView.tag].listImage[indexPath.row]
         return cell
     }
     

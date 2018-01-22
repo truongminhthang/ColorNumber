@@ -26,8 +26,8 @@ class DetailLibraryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let select = indexFromLibrary {
-            titleHead.text = DataService.share.dataLibrary[select].titleHeader
-            titleHead.textColor = DataService.share.dataLibrary[select].colorTitle
+            titleHead.text = DataService.share.categories[select].titleHeader
+            titleHead.textColor = DataService.share.categories[select].colorTitle
         }
     }
     
@@ -52,14 +52,14 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let indexSelected = indexFromLibrary else { return 0 }
-        return DataService.share.dataLibrary[indexSelected].listImage.count
+        return DataService.share.categories[indexSelected].listImage.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailLibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
         
         if let indexSelected = indexFromLibrary {
-            cell.imageIcon.image = DataService.share.dataLibrary[indexSelected].listImage[indexPath.row]
+            cell.imageIcon.image = DataService.share.categories[indexSelected].listImage[indexPath.row]
         }
         
         return cell

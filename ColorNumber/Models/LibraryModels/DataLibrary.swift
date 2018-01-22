@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 typealias JSON = Dictionary<String, Any>
 
-class DataLibrary {
+class Category {
     var iconHeader: UIImage? = UIImage(named: "default")
     var titleHeader: String = ""
     var listImage: [UIImage?] = []
