@@ -205,12 +205,19 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        cell.imageIcon.image = DataService.share.categories[collectionView.tag].listImage[indexPath.row]
+        cell.imageIcon.image = DataService.share.categories[collectionView.tag][indexPath.row]?.image
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DataService.share.selectedIndexPath = IndexPath(row: indexPath.row, section: collectionView.tag)
+        if let image = DataService.share.selectedImage {
+            AppDelegate.shared.patternColors = image.patternColors
+            if image.pixelsNumber.count == 0 {
+                image.createPixelMatrix()
+            }
+        }
+
         self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
     }
     

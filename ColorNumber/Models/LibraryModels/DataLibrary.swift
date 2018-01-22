@@ -13,9 +13,12 @@ typealias JSON = Dictionary<String, Any>
 class Category {
     var iconHeader: UIImage? = UIImage(named: "default")
     var titleHeader: String = ""
-    var listImage: [UIImage?] = []
+    var listImage: [PixelImageView] = []
     var colorTitle: UIColor = UIColor.color(fromHexString: "#000000")
-    subscript (imageIndex: Int) -> UIImage? {
+    subscript (imageIndex: Int) -> PixelImageView? {
+        guard imageIndex < listImage.count else {
+            return nil
+        }
         return listImage[imageIndex]
     }
     
@@ -29,7 +32,9 @@ class Category {
         self.titleHeader = titleHeader
         self.colorTitle = UIColor.color(fromHexString: colorHead)
         for image in listImage {
-            self.listImage.append(UIImage(named: image))
+            if let img = UIImage(named: image) {
+                self.listImage.append(PixelImageView(image:img))
+            }
         }
     }
     

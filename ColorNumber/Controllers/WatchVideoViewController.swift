@@ -34,7 +34,7 @@ class WatchVideoViewController: UIViewController {
 //        scrollView.contentSize = CGSize(width: self.scrollView.frame.width * 4, height: self.scrollView.frame.height)
         scrollView.delegate = self
 //        pageControl.currentPage = 0
-        viewColor = DataService.share.pixelImageView
+        viewColor = DataService.share.selectedImage
 //        AppDelegate.shared.patternColors.forEach{$0.pixels.forEach{$0.fillColorNumber = nil}}
     }
  
@@ -45,7 +45,6 @@ class WatchVideoViewController: UIViewController {
             scrollView.addSubview(viewColor!)
             updateZoomSettings(animated: true)
         }
-        print(DataService.share.getColorFromDataBase().count)
     }
     @IBAction func continueAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)

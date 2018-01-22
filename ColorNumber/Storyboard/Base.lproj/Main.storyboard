@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -81,29 +82,13 @@
                         <outlet property="delegate" destination="aCe-7J-tJp" id="7L5-tU-F8u"/>
                         <segue destination="E2I-1L-dyI" kind="relationship" relationship="viewControllers" id="fUi-yj-InB"/>
                         <segue destination="yAG-yl-cfZ" kind="relationship" relationship="viewControllers" id="P7p-3o-gta"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="i6o-Mt-04n"/>
+                        <segue destination="jgK-Q1-ok4" kind="relationship" relationship="viewControllers" id="i6o-Mt-04n"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLe-87-J7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="aCe-7J-tJp" customClass="ScrollingTabBarControllerDelegate" customModule="ColorNumber" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-1284" y="238"/>
-        </scene>
-        <!--My gallary-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="MyGallaryViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="DDG-O0-FIb"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="My gallary" image="ic_mygallarydark" id="gDh-hj-tdB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-162" y="619"/>
         </scene>
         <!--UIViewController-wyU-vL-a4B-->
         <scene sceneID="v8F-FC-4XS">
@@ -125,10 +110,19 @@
             </objects>
             <point key="canvasLocation" x="-358" y="237"/>
         </scene>
+        <!--Gallary-->
+        <scene sceneID="tmD-l2-LQn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Gallary" id="jgK-Q1-ok4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="YhS-Mf-u9f"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bou-Xe-qEn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-162" y="619"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_back" width="14" height="25"/>
         <image name="ic_libary" width="414" height="48"/>
-        <image name="ic_mygallarydark" width="27" height="27"/>
     </resources>
 </document>

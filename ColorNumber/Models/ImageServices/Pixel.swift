@@ -46,7 +46,8 @@ class Pixel : UILabel {
                     drawWhenFillRight()
                     AppDelegate.shared.patternColors[intensityNumber].count -= 1
                     if self.type == .color {
-                        DataService.share.insertColor(red: color.red, green: color.green, blu: color.blue, x: coordinate.col, y: coordinate.row)
+                        // insert To Stack
+                        
                     }
                     
                 } else {
@@ -55,7 +56,7 @@ class Pixel : UILabel {
                     if oldValue != nil {
                         AppDelegate.shared.patternColors[intensityNumber].count += 1
                         if self.type == .color {
-                            DataService.share.removeColorFromDataBase(x: coordinate.col, y: coordinate.row)
+                            // Remove from Stack
                         }
                     }
                 }
@@ -65,7 +66,7 @@ class Pixel : UILabel {
                 if oldValue == intensityNumber { //dang dung tay di
                     AppDelegate.shared.patternColors[intensityNumber].count += 1
                     if self.type == .color {
-                        DataService.share.removeColorFromDataBase(x: coordinate.col, y: coordinate.row)
+                        // Remove from Stack
                     }
                 }
             }
@@ -187,6 +188,10 @@ class Pixel : UILabel {
         }
         self.textAlignment = .center
         self.font = UIFont.systemFont(ofSize: 5)
+    }
+    
+    static func ==(lhs: Pixel, rhs: Pixel) -> Bool {
+        return (lhs.coordinate.col == rhs.coordinate.col) && (lhs.coordinate.row == rhs.coordinate.row)
     }
     
 }

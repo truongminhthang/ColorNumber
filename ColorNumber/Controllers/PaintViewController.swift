@@ -9,12 +9,10 @@
 import UIKit
 
 class PaintViewController: UIViewController {
-
-    fileprivate let maxImageSize = CGSize(width: 50, height: 50)
     
     let cellPadding: Int = 10
     
-    var pixelImageView: PixelImageView?
+    var pixelImageView: PixelImageView? = DataService.share.selectedImage
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scrollView: UIScrollView! {
@@ -84,12 +82,9 @@ class PaintViewController: UIViewController {
     // MARK: - Rendering
     
     fileprivate func renderingImage() {
-        guard let image = DataService.share.selectedImage else { return }
-        let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
-        let resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize)
-        pixelImageView = PixelImageView(image: resizedImage)
-        scrollView.contentSize = pixelImageView!.bounds.size
-        scrollView.addSubview(pixelImageView!)
+        guard let image = pixelImageView else { return }
+        scrollView.contentSize = image.bounds.size
+        scrollView.addSubview(image)
     }
     
     @IBAction func dismissVC(_ sender: Any) {

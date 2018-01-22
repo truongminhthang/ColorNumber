@@ -8,13 +8,14 @@
 
 import UIKit
 
-class PixelImageView : UIView{
-    //    var isEdited = false
+class PixelImageView : UIView {
+    static let maxImageSize = CGSize(width: 50, height: 50)
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
     var image : UIImage
-    var width: Int
-    var height: Int
+    var editedImage: UIImage
+    var numberOfColumn: Int
+    var numberOfRow: Int
     var patternColors : [MapIntensityColor] = {
         return (0...10).map{index in
             MapIntensityColor(order: index)
@@ -24,7 +25,9 @@ class PixelImageView : UIView{
         return pixelsNumber[rowIndex][heightIndex]
     }
     var pixelsNumber : [[Pixel]] = []
+
     var pixelColor: [[Pixel]] = []
+    var pixelStack: [Pixel] = []
     
     var zoomScaleForRemovingColor : CGFloat = 0.5
     //    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
@@ -78,28 +81,35 @@ class PixelImageView : UIView{
     }
     init(image: UIImage) {
         self.image = image
-        self.width = Int(image.size.width)
-        self.height = Int(image.size.height)
-        let width = (image.size.width) * Pixel.size.width
-        let height = (image.size.height) * Pixel.size.height
+        
+        
+        let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
+        editedImage = rotatedImage.imageConstrainedToMaxSize(PixelImageView.maxImageSize)
+        
+        self.numberOfColumn = Int(editedImage.size.width)
+        self.numberOfRow = Int(editedImage.size.height)
+        let width = (editedImage.size.width) * Pixel.size.width
+        let height = (editedImage.size.height) * Pixel.size.height
         let imageSize = CGRect(origin: .zero, size: CGSize(width: width, height: height))
+        
         super.init(frame: imageSize)
-        AppDelegate.shared.patternColors = patternColors
         setupSubview()
-        createPixelMatrix()
         setupGesture()
     }
     
     func createPixelMatrix() {
-        let dataProvider = image.cgImage?.dataProvider
+        
+        pixelsNumber = []
+        pixelColor = []
+        let dataProvider = editedImage.cgImage?.dataProvider
         let pixelData    = dataProvider?.data
         let pixelPointer = CFDataGetBytePtr(pixelData)
         let bytesPerPixel = 4
-        for row in (0..<self.height) {
+        for row in (0..<self.numberOfRow) {
             pixelsNumber.append([])
             pixelColor.append([])
-            for col in (0..<self.width) {
-                let offset = ((self.width * row) + col) * bytesPerPixel
+            for col in (0..<self.numberOfColumn) {
+                let offset = ((self.numberOfColumn * row) + col) * bytesPerPixel
                 let coordinate = Coordinate(col: col, row: row)
                 let numberPixel = Pixel(pointer: pixelPointer!, offset: offset, coordinate: coordinate, type: .number)
                 let colorPixel = numberPixel.makeDuplicate()
@@ -109,7 +119,6 @@ class PixelImageView : UIView{
                 colorView.addSubview(colorPixel)
                 pixelsNumber[row].append(numberPixel)
                 pixelColor[row].append(colorPixel)
-                
             }
         }
         
@@ -159,5 +168,35 @@ class PixelImageView : UIView{
 extension PixelImageView: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+// MARK: - <#Mark#>
+
+extension PixelImageView {
+    
+    func insertColor(red: CGFloat, green: CGFloat, blu: CGFloat, coordinate: Coordinate) {
+        let colorFillterEntity = ColorFillter(context: AppDelegate.context)
+        colorFillterEntity.red = Float(red)
+        colorFillterEntity.green = Float(green)
+        colorFillterEntity.blu = Float(blu)
+        colorFillterEntity.x = Int32(coordinate.col)
+        colorFillterEntity.y = Int32(coordinate.row)
+        AppDelegate.saveContext()
+    }
+    
+    func removeColor(at coordinate: Coordinate) {
+//
+//
+//                for i in 0..<colorsFillter.count {
+//                    if colorsFillter[i].x == Int32(coordinate.col) && colorsFillter[i].y == Int32(coordinate.row) {
+//                        AppDelegate.context.delete(colorsFillter[i])
+//                        AppDelegate.saveContext()
+//                    }
+//                }
+    }
+    
+    func getColor() -> [ColorFillter] {
+        return try! AppDelegate.context.fetch(ColorFillter.fetchRequest()) as! [ColorFillter]
     }
 }

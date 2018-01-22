@@ -13,16 +13,15 @@ import CoreData
 class DataService{
     static let share = DataService()
     
-    var pixelImageView: PixelImageView?
-    
     //MARK: return image from indexPathCollectionCell
     var selectedIndexPath : IndexPath?
-    var selectedImage: UIImage? {
+    var selectedImage: PixelImageView? {
         if let indexPath = selectedIndexPath {
             return categories[indexPath.section][indexPath.row]
         }
         return nil
     }
+
     
     //MARK: data
     private var _categories: [Category]!
@@ -36,19 +35,6 @@ class DataService{
                 loadFilePlist()
             }
             return _categories
-        }
-    }
-    
-    private var _colorFillter: [ColorFillter]?
-    var colorFillter: [ColorFillter] {
-        get {
-            if _colorFillter == nil {
-                _colorFillter = getColorFromDataBase()
-            }
-            return _colorFillter ?? []
-        }
-        set {
-            _colorFillter = newValue
         }
     }
     
@@ -71,30 +57,5 @@ class DataService{
         }
     }
     
-    func insertColor(red: CGFloat, green: CGFloat, blu: CGFloat, x: Int, y: Int) {
-        
-        let colorFillterEntity = ColorFillter(context: AppDelegate.context)
-        colorFillterEntity.red = Float(red)
-        colorFillterEntity.green = Float(green)
-        colorFillterEntity.blu = Float(blu)
-        colorFillterEntity.x = Int32(x)
-        colorFillterEntity.y = Int32(y)
-        AppDelegate.shared.saveContext()
-        print(getColorFromDataBase().count)
-    }
-    
-    func removeColorFromDataBase(x: Int, y: Int) {
-        var colorsFillter = getColorFromDataBase()
-        for i in 0..<colorsFillter.count {
-            if colorsFillter[i].x == Int32(x) && colorsFillter[i].y == Int32(y) {
-                AppDelegate.context.delete(colorsFillter[i])
-            }
-        }
-        AppDelegate.shared.saveContext()
-        print(getColorFromDataBase().count)
-    }
-    
-    func getColorFromDataBase() -> [ColorFillter] {
-        return try! AppDelegate.context.fetch(ColorFillter.fetchRequest()) as! [ColorFillter]
-    }
+   
 }
