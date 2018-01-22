@@ -322,7 +322,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     
     
     func getOrientation() -> CGAffineTransform {
-        let angle: CGFloat = CGFloat(-M_PI/2)
+        let angle: CGFloat = -CGFloat.pi/2
         if let latestInput = captureSession.inputs.first as? AVCaptureDeviceInput {
             let camPosition = latestInput.device.position
             return(camPosition == .front) ? CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(scaleX: -1, y: 1)) : CGAffineTransform(rotationAngle: angle)
