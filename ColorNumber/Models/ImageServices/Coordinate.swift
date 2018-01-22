@@ -15,5 +15,8 @@ struct Coordinate {
     var originPoint: CGPoint {
         return CGPoint(x: CGFloat(col) * Pixel.size.width, y: CGFloat(row) * Pixel.size.height)
     }
+    var originVideo: CGPoint {
+        return CGPoint(x: CGFloat(col) * Pixel.size.width , y: UIScreen.main.bounds.size.width - (CGFloat(row) + 1) * Pixel.size.height)
+    }
 }
 
