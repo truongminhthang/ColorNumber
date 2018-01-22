@@ -103,7 +103,7 @@ class Pixel : UILabel {
     
     func drawWhenFillWrong(at fillNumber: Int) {
         backgroundColor = AppDelegate.shared.patternColors[fillNumber].color.tranperentColor
-        text = "\(intensityNumber)"
+        text = type == .number ? "\(intensityNumber)" : ""
     }
     
    

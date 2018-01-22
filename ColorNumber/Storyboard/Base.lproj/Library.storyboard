@@ -540,7 +540,7 @@
                     <navigationItem key="navigationItem" id="bh7-SD-zkd">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="aKb-GM-kUv">
                             <connections>
-                                <action selector="dismissVC:" destination="Jjb-VX-w6j" id="kxT-LV-Hkn"/>
+                                <action selector="dismissVC:" destination="Jjb-VX-w6j" id="GdQ-Zn-iuH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Fill All" id="rrA-Td-rgL">
@@ -552,11 +552,41 @@
                     <connections>
                         <outlet property="collectionView" destination="mz7-zB-hXN" id="ukc-Ln-Xqa"/>
                         <outlet property="scrollView" destination="lXF-Ky-HPm" id="zEo-je-ha0"/>
+                        <segue destination="DRa-ZN-bpV" kind="show" identifier="show" id="Ukn-G1-WAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77A-8M-CaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="702" y="427"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8Ek-bN-ISa">
+            <objects>
+                <viewController id="DRa-ZN-bpV" customClass="ViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yZ3-tS-SMk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i6Z-Oh-Zc5">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i6Z-Oh-Zc5" firstAttribute="leading" secondItem="ZiY-eK-tPg" secondAttribute="leading" id="EXF-0W-nLl"/>
+                            <constraint firstItem="ZiY-eK-tPg" firstAttribute="trailing" secondItem="i6Z-Oh-Zc5" secondAttribute="trailing" id="LVl-RC-Rj6"/>
+                            <constraint firstItem="i6Z-Oh-Zc5" firstAttribute="top" secondItem="ZiY-eK-tPg" secondAttribute="top" id="Qe6-E9-FcS"/>
+                            <constraint firstItem="ZiY-eK-tPg" firstAttribute="bottom" secondItem="i6Z-Oh-Zc5" secondAttribute="bottom" id="ec2-X0-ezk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZiY-eK-tPg"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="i6Z-Oh-Zc5" id="D7x-KF-p4B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pI1-hH-wRz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1452" y="437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DXu-6e-mAl">

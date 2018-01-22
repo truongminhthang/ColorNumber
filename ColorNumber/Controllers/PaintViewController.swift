@@ -9,8 +9,6 @@
 import UIKit
 
 class PaintViewController: UIViewController {
-
-    fileprivate let maxImageSize = CGSize(width: 50, height: 50)
     
     let cellPadding: Int = 10
     
@@ -81,16 +79,22 @@ class PaintViewController: UIViewController {
     
     fileprivate func renderingImage() {
         guard let image = DataService.share.selectedImage else { return }
-        let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
-        let resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize)
-        pixelImageView = PixelImageView(image: resizedImage)
         scrollView.contentSize = pixelImageView!.bounds.size
         scrollView.addSubview(pixelImageView!)
     }
     
     @IBAction func dismissVC(_ sender: Any) {
+        pixelImageView?.currentImage = createCurrentImage()
         dismiss(animated: true, completion: nil)
     }
+    
+    func createCurrentImage() -> UIImage {
+        pixelImageView?.selectedColorNumber = nil
+        pixelImageView?.colorView.alpha = 1
+        let createImage = UIImage(view: (pixelImageView?.colorView)!)
+        return createImage
+    }
+
     @IBAction func fillAll(_ sender: Any) {
         AppDelegate.shared.patternColors.forEach{$0.pixels.forEach{$0.fillColorNumber = $0.intensityNumber}}
     }

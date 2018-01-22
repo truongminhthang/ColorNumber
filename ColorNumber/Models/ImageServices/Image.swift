@@ -9,12 +9,13 @@
 import UIKit
 
 class PixelImageView : UIView{
-//    var isEdited = false
+    private let maxImageSize = CGSize(width: 50, height: 50)
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
+    private let sizeInt: (width: Int, height: Int)
     var image : UIImage
-    var width: Int
-    var height: Int
+    var currentImage: UIImage?
+    var categoryID : Int
     var patternColors : [MapIntensityColor] = {
         return (0...10).map{index in
             MapIntensityColor(order: index)
@@ -23,11 +24,50 @@ class PixelImageView : UIView{
     subscript (rowIndex: Int, heightIndex:Int) -> Pixel {
         return pixelsNumber[rowIndex][heightIndex]
     }
-    var pixelsNumber : [[Pixel]] = []
+    private var _pixelsNumber : [[Pixel]]?
     var pixelColor: [[Pixel]] = []
+    var pixelsNumber: [[Pixel]] {
+        set {
+            _pixelsNumber = newValue
+        }
+        get {
+            if _pixelsNumber == nil {
+                updatePixels()
+            }
+            return _pixelsNumber ?? []
+        }
+    }
+    
+    func updatePixels() {
+        _pixelsNumber = []
+        pixelColor = []
+        let dataProvider = image.cgImage?.dataProvider
+        let pixelData    = dataProvider?.data
+        let pixelPointer = CFDataGetBytePtr(pixelData)
+        let bytesPerPixel = 4
+        for row in (0..<self.sizeInt.height) {
+            pixelsNumber.append([])
+            pixelColor.append([])
+            for col in (0..<self.sizeInt.width) {
+                let offset = ((self.sizeInt.width * row) + col) * bytesPerPixel
+                let coordinate = Coordinate(col: col, row: row)
+                let numberPixel = Pixel(pointer: pixelPointer!, offset: offset, coordinate: coordinate, type: .number)
+                let colorPixel = numberPixel.makeDuplicate()
+                AppDelegate.shared.arrangePatternColor(pixel: numberPixel)
+                AppDelegate.shared.arrangePatternColor(pixel: colorPixel)
+                numberView.addSubview(numberPixel)
+                colorView.addSubview(colorPixel)
+                pixelsNumber[row].append(numberPixel)
+                pixelColor[row].append(colorPixel)
+                
+            }
+        }
+        NotificationCenter.default.post(name: .didUpdatePixel, object: nil)
+        
+    }
+
     
     var zoomScaleForRemovingColor : CGFloat = 0.5
-//    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
     
     private var _selectedColorNumber : Int? {
         didSet {
@@ -72,47 +112,26 @@ class PixelImageView : UIView{
                 numberView.alpha = 0
                 isUserInteractionEnabled = false
             }
-            
-            
         }
     }
-    init(image: UIImage) {
-        self.image = image
-        self.width = Int(image.size.width)
-        self.height = Int(image.size.height)
+    init(image: UIImage, categoryID: Int) {
+        self.categoryID = categoryID
+        self.sizeInt = (Int(image.size.width), Int(image.size.height))
         let width = (image.size.width) * Pixel.size.width
         let height = (image.size.height) * Pixel.size.height
         let imageSize = CGRect(origin: .zero, size: CGSize(width: width, height: height))
+        
+        // Process Image before using
+        // Rotate first because the orientation is lost when resizing.
+        
+        let rotatedImage = image.imageWithFixedOrientation()
+        let resizedImage = rotatedImage.cropImageIfNeed(maxImageSize)
+        self.image = resizedImage
+
         super.init(frame: imageSize)
         AppDelegate.shared.patternColors = patternColors
         setupSubview()
-        createPixelMatrix()
         setupGesture()
-    }
-    
-    func createPixelMatrix() {
-        let dataProvider = image.cgImage?.dataProvider
-        let pixelData    = dataProvider?.data
-        let pixelPointer = CFDataGetBytePtr(pixelData)
-        let bytesPerPixel = 4
-        for row in (0..<self.height) {
-            pixelsNumber.append([])
-            pixelColor.append([])
-            for col in (0..<self.width) {
-                let offset = ((self.width * row) + col) * bytesPerPixel
-                let coordinate = Coordinate(col: col, row: row)
-                let numberPixel = Pixel(pointer: pixelPointer!, offset: offset, coordinate: coordinate, type: .number)
-                let colorPixel = numberPixel.makeDuplicate()
-                AppDelegate.shared.arrangePatternColor(pixel: numberPixel)
-                AppDelegate.shared.arrangePatternColor(pixel: colorPixel)
-                numberView.addSubview(numberPixel)
-                colorView.addSubview(colorPixel)
-                pixelsNumber[row].append(numberPixel)
-                pixelColor[row].append(colorPixel)
-                
-            }
-        }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

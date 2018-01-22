@@ -26,6 +26,7 @@
 		5C39E595200216FC00993E40 /* Library.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C39E591200216EC00993E40 /* Library.plist */; };
 		5C76248720021BA500404D73 /* UIColor+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248620021BA500404D73 /* UIColor+Extention.swift */; };
 		5C76248920021C3C00404D73 /* DetailLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */; };
+		9841F9D520109EFD00C91B9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9841F9D420109EFD00C91B9F /* ViewController.swift */; };
 		98708CA2200EFC70009D544E /* PaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98708CA1200EFC70009D544E /* PaintViewController.swift */; };
 		98760179200C3B7C0011228C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98760178200C3B7C0011228C /* Image.swift */; };
 		988975AB2008E81B0010A332 /* Import.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988975A72008E81B0010A332 /* Import.storyboard */; };
@@ -64,6 +65,7 @@
 		5C39E592200216EC00993E40 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5C76248620021BA500404D73 /* UIColor+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extention.swift"; sourceTree = "<group>"; };
 		5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLibraryViewController.swift; sourceTree = "<group>"; };
+		9841F9D420109EFD00C91B9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		98708CA1200EFC70009D544E /* PaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintViewController.swift; sourceTree = "<group>"; };
 		98760178200C3B7C0011228C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		988975A82008E81B0010A332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Import.storyboard; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */,
+				9841F9D420109EFD00C91B9F /* ViewController.swift */,
 				3B22F7B61FF3422E00A30505 /* LibraryViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9841F9D520109EFD00C91B9F /* ViewController.swift in Sources */,
 				98B5E58F200F5E4F009E2080 /* MapIntensityColor.swift in Sources */,
 				98760179200C3B7C0011228C /* Image.swift in Sources */,
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,

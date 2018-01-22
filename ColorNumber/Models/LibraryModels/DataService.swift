@@ -15,30 +15,37 @@ class DataService{
     //MARK: return image from indexPathCollectionCell
     var selectedIndexPath : IndexPath?
     var selectedImage: UIImage? {
-        if let indexPath = selectedIndexPath {
-            return dataLibrary[indexPath.section][indexPath.row]
+        get {
+            if let indexPath = selectedIndexPath {
+                return category[indexPath.section][indexPath.row]
+            }
+            return nil
         }
-        return nil
+        set {
+            if let indexPath = selectedIndexPath {
+                 category[indexPath.section][indexPath.row] = newValue
+            }
+        }
     }
     
     //MARK: data
-    private var _dataLibrary: [DataLibrary]!
+    private var _category: [Category]!
     
-    var dataLibrary: [DataLibrary]{
+    var category: [Category]{
         set{
-            _dataLibrary = newValue
+            _category = newValue
         }
         get{
-            if _dataLibrary == nil {
+            if _category == nil {
                 loadFilePlist()
             }
-            return _dataLibrary
+            return _category
         }
     }
     
     //MARK: load data from file plist.
     func loadFilePlist() {
-        dataLibrary = []
+        category = []
         var myDict: NSDictionary?
         if let path = Bundle.main.path(forResource: "Library", ofType: "plist") {
             myDict = NSDictionary(contentsOfFile: path)
@@ -49,8 +56,8 @@ class DataService{
             else { return }
         
         for value in imageLibrary {
-            if let data = DataLibrary(dict: value){
-                _dataLibrary.append(data)
+            if let data = Category(dict: value){
+                _category.append(data)
             }
         }
     }

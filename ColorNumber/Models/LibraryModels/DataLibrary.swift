@@ -10,13 +10,18 @@ import Foundation
 import UIKit
 typealias JSON = Dictionary<String, Any>
 
-class DataLibrary {
+class Category {
     var iconHeader: UIImage? = UIImage(named: "default")
     var titleHeader: String = ""
     var listImage: [UIImage?] = []
     var colorTitle: UIColor = UIColor.color(fromHexString: "#000000")
     subscript (imageIndex: Int) -> UIImage? {
-        return listImage[imageIndex]
+        get {
+            return listImage[imageIndex]
+        }
+        set {
+            listImage[imageIndex] = newValue
+        }
     }
     
     init?(dict: JSON) {
