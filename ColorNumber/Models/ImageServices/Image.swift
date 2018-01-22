@@ -9,7 +9,7 @@
 import UIKit
 
 class PixelImageView : UIView{
-//    var isEdited = false
+    //    var isEdited = false
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
     var image : UIImage
@@ -27,7 +27,7 @@ class PixelImageView : UIView{
     var pixelColor: [[Pixel]] = []
     
     var zoomScaleForRemovingColor : CGFloat = 0.5
-//    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
+    //    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
     
     private var _selectedColorNumber : Int? {
         didSet {
@@ -151,8 +151,8 @@ class PixelImageView : UIView{
         let y = Int(point.y / Pixel.size.height)
         let x = Int(point.x / Pixel.size.width)
         guard x < self.pixelsNumber[0].count && y < self.pixelsNumber.count && y >= 0 && x >= 0 else { return }
-            pixelsNumber[y][x].fillColorNumber = selectedColorNumber
-            pixelColor[y][x].fillColorNumber = selectedColorNumber
+        pixelsNumber[y][x].fillColorNumber = selectedColorNumber
+        pixelColor[y][x].fillColorNumber = selectedColorNumber
     }
 }
 

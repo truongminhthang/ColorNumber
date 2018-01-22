@@ -157,10 +157,17 @@
 			isa = PBXGroup;
 			children = (
 				5C39E590200216EB00993E40 /* DataLibrary.swift */,
-				5C39E592200216EC00993E40 /* DataService.swift */,
 				5C39E591200216EC00993E40 /* Library.plist */,
 			);
 			path = LibraryModels;
+			sourceTree = "<group>";
+		};
+		E28F6BBF20142DDA0089B2A7 /* DataServices */ = {
+			isa = PBXGroup;
+			children = (
+				5C39E592200216EC00993E40 /* DataService.swift */,
+			);
+			path = DataServices;
 			sourceTree = "<group>";
 		};
 		E2A5941A200503D300049078 /* ImageServices */ = {
@@ -178,6 +185,7 @@
 		E2E767D22001EDD10064716F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E28F6BBF20142DDA0089B2A7 /* DataServices */,
 				E2A5941A200503D300049078 /* ImageServices */,
 				5C39E58F2002169900993E40 /* LibraryModels */,
 			);

@@ -45,12 +45,18 @@ class Pixel : UILabel {
                     // Dung
                     drawWhenFillRight()
                     AppDelegate.shared.patternColors[intensityNumber].count -= 1
-                   
+                    if self.type == .color {
+                        DataService.share.insertColor(red: color.red, green: color.green, blu: color.blue, x: coordinate.col, y: coordinate.row)
+                    }
+                    
                 } else {
                     // Sai
                     drawWhenFillWrong(at: fillNumber)
                     if oldValue != nil {
                         AppDelegate.shared.patternColors[intensityNumber].count += 1
+                        if self.type == .color {
+                            DataService.share.removeColorFromDataBase(x: coordinate.col, y: coordinate.row)
+                        }
                     }
                 }
             } else {
@@ -58,6 +64,9 @@ class Pixel : UILabel {
                 setupBorderAndText()
                 if oldValue == intensityNumber { //dang dung tay di
                     AppDelegate.shared.patternColors[intensityNumber].count += 1
+                    if self.type == .color {
+                        DataService.share.removeColorFromDataBase(x: coordinate.col, y: coordinate.row)
+                    }
                 }
             }
         }

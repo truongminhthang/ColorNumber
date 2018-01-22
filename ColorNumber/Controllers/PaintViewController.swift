@@ -26,6 +26,10 @@ class PaintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         renderingImage()
     }
     
