@@ -10,11 +10,11 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
-    let cellPadding: Int = 10
-    
+    let numbersOfItemInRow: Int = 7
     var pixelImageView: PixelImageView? = DataService.share.selectedImage
     
     @IBOutlet weak var collectionView: UICollectionView!
+       
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.maximumZoomScale = 5
@@ -24,6 +24,9 @@ class PaintViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNotification()
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemWidth = (view.frame.width - 10 /*left*/ - 10 /*right*/ - 10 * CGFloat(numbersOfItemInRow - 1)) / CGFloat(numbersOfItemInRow)
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +44,7 @@ class PaintViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(colorFillDone), name: .fillColorDone, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(colorFillNotDone), name: .fillColorNotDone, object: nil)
@@ -154,28 +157,5 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
         else {
             pixelImageView?.selectedColorNumber = indexPath.row - 1
         }
-    }
-    
-    
-}
-// MARK: - Layout CollectionView Cell
-extension PaintViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionWidth = collectionView.frame.size.width
-        let numberCellRow = 7
-        let padding = (numberCellRow - 1) * cellPadding + 2 * cellPadding
-        let availabelWidth = collectionWidth - CGFloat(padding)
-        let cellWith: Int = Int(availabelWidth) / numberCellRow
-        let cellHeight = cellWith
-        return CGSize.init(width: cellWith, height: cellHeight)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(cellPadding)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(cellPadding)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(CGFloat(cellPadding), CGFloat(cellPadding), CGFloat(cellPadding), CGFloat(cellPadding))
     }
 }
