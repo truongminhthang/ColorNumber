@@ -70,14 +70,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="itemNormalColor">
-                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="itemSelectedColor">
-                            <color key="value" red="0.93027269840000004" green="0.2777306437" blue="0.24826529620000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="delegate" destination="aCe-7J-tJp" id="7L5-tU-F8u"/>
                         <segue destination="E2I-1L-dyI" kind="relationship" relationship="viewControllers" id="fUi-yj-InB"/>
