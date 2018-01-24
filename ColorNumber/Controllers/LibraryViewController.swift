@@ -171,31 +171,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
 //MARK: - CollectionViewController
 
 extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-//    // ConllectionViewDelegateFlowLayout.
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let itemsPerRow: CGFloat = 3
-//
-//        let paddingSpace = itemPadding * (itemsPerRow + 1)
-//        let availableWidth = view.frame.width - paddingSpace
-//        let widthPerItem = availableWidth / itemsPerRow
-//
-//        return CGSize(width: widthPerItem, height: widthPerItem)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
-//    }
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return itemPadding
-//    }
-    
+
     // CollectionViewDataSource.
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

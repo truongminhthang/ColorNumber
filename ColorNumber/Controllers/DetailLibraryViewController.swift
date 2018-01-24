@@ -18,7 +18,7 @@ class DetailLibraryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UIScreen.main.bounds.width > 420 {
+        if UIScreen.main.bounds.width > 450 {
             numbersOfItemInRow = 3
             itemPadding = 20
         }

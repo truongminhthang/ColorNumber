@@ -19,7 +19,7 @@ class LibraryTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        if UIScreen.main.bounds.width > 420 {
+        if UIScreen.main.bounds.width > 450 {
             numbersOfItemInRow = 4
         }
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout

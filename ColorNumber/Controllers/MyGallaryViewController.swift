@@ -17,10 +17,12 @@ class MyGallaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if UIScreen.main.bounds.width > 420 {
+        
+        if UIScreen.main.bounds.width > 450 {
             numbersOfItemInRow = 3
             itemPadding = 20
         }
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemWidth = (UIScreen.main.bounds.width - itemPadding /*left*/ - itemPadding /*right*/ - itemPadding * (numbersOfItemInRow - 1)) / numbersOfItemInRow
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
@@ -63,25 +65,3 @@ extension MyGallaryViewController: UICollectionViewDataSource, UICollectionViewD
         print("Selected at index = \(indexPath.row)")
     }
 }
-//// MARK: - Layout CollectionView Cell
-//extension MyGallaryViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let collectionWidth = collectionView.frame.size.width
-//        let numberItemsForRow = 2
-//        let padding = (numberItemsForRow - 1) * itemPadding + 2 * itemPadding
-//        let availabelWidth = collectionWidth - CGFloat(padding)
-//        let cellWith: Int = Int(availabelWidth) / numberItemsForRow
-//        let cellHeight = cellWith
-//        return CGSize.init(width: cellWith, height: cellHeight)
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return CGFloat(itemPadding)
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return CGFloat(itemPadding)
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsetsMake(CGFloat(itemPadding), CGFloat(itemPadding), CGFloat(itemPadding), CGFloat(itemPadding))
-//    }
-//}
-
