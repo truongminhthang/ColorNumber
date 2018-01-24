@@ -10,7 +10,6 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
-    let numbersOfItemInRow: Int = 7
     var pixelImageView: PixelImageView? = DataService.share.selectedImage
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,8 +24,8 @@ class PaintViewController: UIViewController {
         super.viewDidLoad()
         registerNotification()
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let itemWidth = (view.frame.width - 10 /*left*/ - 10 /*right*/ - 10 * CGFloat(numbersOfItemInRow - 1)) / CGFloat(numbersOfItemInRow)
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        let itemHeight = view.frame.height/14 - 5
+        layout.itemSize = CGSize(width: itemHeight, height: itemHeight)
     }
     
     override func viewWillAppear(_ animated: Bool) {

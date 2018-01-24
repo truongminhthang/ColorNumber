@@ -11,12 +11,21 @@ import UIKit
 class MyGallaryViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    let itemPadding: Int = 10
+    var numbersOfItemInRow: CGFloat = 2
+    var itemPadding: CGFloat = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if UIScreen.main.bounds.width > 420 {
+            numbersOfItemInRow = 3
+            itemPadding = 20
+        }
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let itemWidth = (UIScreen.main.bounds.width - itemPadding /*left*/ - itemPadding /*right*/ - itemPadding * (numbersOfItemInRow - 1)) / numbersOfItemInRow
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        layout.sectionInset = UIEdgeInsets(top: itemPadding, left: itemPadding, bottom: itemPadding, right: itemPadding)
+        layout.minimumLineSpacing = itemPadding
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,25 +59,29 @@ extension MyGallaryViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
     }
-}
-// MARK: - Layout CollectionView Cell
-extension MyGallaryViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionWidth = collectionView.frame.size.width
-        let numberItemsForRow = 2
-        let padding = (numberItemsForRow - 1) * itemPadding + 2 * itemPadding
-        let availabelWidth = collectionWidth - CGFloat(padding)
-        let cellWith: Int = Int(availabelWidth) / numberItemsForRow
-        let cellHeight = cellWith
-        return CGSize.init(width: cellWith, height: cellHeight)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(itemPadding)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(itemPadding)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(CGFloat(itemPadding), CGFloat(itemPadding), CGFloat(itemPadding), CGFloat(itemPadding))
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("Selected at index = \(indexPath.row)")
     }
 }
+//// MARK: - Layout CollectionView Cell
+//extension MyGallaryViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let collectionWidth = collectionView.frame.size.width
+//        let numberItemsForRow = 2
+//        let padding = (numberItemsForRow - 1) * itemPadding + 2 * itemPadding
+//        let availabelWidth = collectionWidth - CGFloat(padding)
+//        let cellWith: Int = Int(availabelWidth) / numberItemsForRow
+//        let cellHeight = cellWith
+//        return CGSize.init(width: cellWith, height: cellHeight)
+//    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return CGFloat(itemPadding)
+//    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return CGFloat(itemPadding)
+//    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsetsMake(CGFloat(itemPadding), CGFloat(itemPadding), CGFloat(itemPadding), CGFloat(itemPadding))
+//    }
+//}
+

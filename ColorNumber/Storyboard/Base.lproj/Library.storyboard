@@ -209,6 +209,9 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="57O-J6-xx0" id="3AV-Px-xde"/>
+                                                    </connections>
                                                 </collectionView>
                                             </subviews>
                                             <constraints>
@@ -395,13 +398,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOj-4i-cEk">
-                                <rect key="frame" x="0.0" y="567" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="569.5" width="375" height="47.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_01" translatesAutoresizingMaskIntoConstraints="NO" id="N6H-3H-Xa6">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mz7-zB-hXN">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H0E-1O-TCa">
                                             <size key="itemSize" width="50" height="50"/>
@@ -411,7 +414,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorSection" id="bSz-9w-IF3" customClass="PaintSection" customModule="ColorNumber" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="0.0" y="-1.5" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -433,7 +436,7 @@
                                                 </connections>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCell" id="Qc9-Y3-qwH" customClass="ColorItem" customModule="ColorNumber" customModuleProvider="target">
-                                                <rect key="frame" x="60" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="60" y="-1.5" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -511,7 +514,6 @@
                                     <constraint firstItem="mz7-zB-hXN" firstAttribute="top" secondItem="fOj-4i-cEk" secondAttribute="top" id="63c-ta-jrg"/>
                                     <constraint firstItem="mz7-zB-hXN" firstAttribute="leading" secondItem="fOj-4i-cEk" secondAttribute="leading" id="CC7-tE-ioI"/>
                                     <constraint firstAttribute="bottom" secondItem="N6H-3H-Xa6" secondAttribute="bottom" id="Efg-RP-1VR"/>
-                                    <constraint firstAttribute="height" constant="50" id="K0Q-kQ-m81"/>
                                     <constraint firstItem="N6H-3H-Xa6" firstAttribute="leading" secondItem="fOj-4i-cEk" secondAttribute="leading" id="Ws2-f2-Ovj"/>
                                     <constraint firstAttribute="trailing" secondItem="mz7-zB-hXN" secondAttribute="trailing" id="gUN-0h-LGa"/>
                                     <constraint firstAttribute="trailing" secondItem="N6H-3H-Xa6" secondAttribute="trailing" id="j9n-ys-K5o"/>
@@ -520,7 +522,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXF-Ky-HPm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="503"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="505.5"/>
                                 <connections>
                                     <outlet property="delegate" destination="Jjb-VX-w6j" id="WDX-U7-vBJ"/>
                                 </connections>
@@ -531,6 +533,7 @@
                             <constraint firstItem="lXF-Ky-HPm" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="5kk-Y2-DZZ"/>
                             <constraint firstItem="fOj-4i-cEk" firstAttribute="top" secondItem="lXF-Ky-HPm" secondAttribute="bottom" id="He9-wh-QOw"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="bottom" secondItem="fOj-4i-cEk" secondAttribute="bottom" constant="50" id="OHO-rg-YYf"/>
+                            <constraint firstItem="fOj-4i-cEk" firstAttribute="height" secondItem="6uZ-Qq-nsJ" secondAttribute="height" multiplier="1/14" id="VBi-gV-hIl"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="fOj-4i-cEk" secondAttribute="trailing" id="g2B-cB-3R5"/>
                             <constraint firstItem="fOj-4i-cEk" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="h3H-9c-LG1"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="lXF-Ky-HPm" secondAttribute="trailing" id="o5I-tl-s3s"/>
@@ -590,6 +593,6 @@
         <image name="icons8-ok" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zUl-kO-Flf"/>
+        <segue reference="qSD-kW-L2R"/>
     </inferredMetricsTieBreakers>
 </document>

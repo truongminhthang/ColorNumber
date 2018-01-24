@@ -12,15 +12,21 @@ class DetailLibraryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleHead: UILabel!
-    let numbersOfItemInRow :CGFloat = 2
+    var numbersOfItemInRow: CGFloat = 2
+    var itemPadding: CGFloat = 10
     var indexFromLibrary: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIScreen.main.bounds.width > 420 {
+            numbersOfItemInRow = 3
+            itemPadding = 20
+        }
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let itemWidth = (view.frame.width - 10 /*left*/ - 10 /*right*/ - 10 * (numbersOfItemInRow - 1)) / numbersOfItemInRow
+        let itemWidth = (UIScreen.main.bounds.width - itemPadding /*left*/ - itemPadding /*right*/ - itemPadding * (numbersOfItemInRow - 1)) / numbersOfItemInRow
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        
+        layout.minimumLineSpacing = itemPadding
+        layout.sectionInset = UIEdgeInsets(top: itemPadding, left: itemPadding, bottom: itemPadding, right: itemPadding)
     }
     
     override func viewWillAppear(_ animated: Bool) {
