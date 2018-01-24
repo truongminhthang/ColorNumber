@@ -55,11 +55,9 @@ class LibraryViewController: UIViewController {
     
     // MARK: Action Navigation view
     @objc func watchVideo(_ recogznier: UITapGestureRecognizer) {
-        let rootVC = WatchVideoViewController.instance
+       
         watchVideo.animate { (complete) in
-            if complete {
-                self.present(rootVC, animated: true, completion: nil)
-            }
+            
         }
     }
     

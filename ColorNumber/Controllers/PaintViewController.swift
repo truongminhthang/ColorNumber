@@ -30,6 +30,7 @@ class PaintViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Pixel.size = CGSize(width: 10, height: 10)
         renderingImage()
     }
     
@@ -80,7 +81,7 @@ class PaintViewController: UIViewController {
     }
     @objc
     func gameCompleted(_ notification: Notification) {
-       showAlert(vc: self, title: "Mission Complete!", message: "Congratuation!")
+        performSegue(withIdentifier: "showVideo", sender: nil)
     }
 
     
@@ -94,9 +95,6 @@ class PaintViewController: UIViewController {
     
     @IBAction func dismissVC(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    }
-    @IBAction func fillAll(_ sender: Any) {
-        AppDelegate.shared.patternColors.forEach{$0.pixels.forEach{$0.fillColorNumber = $0.intensityNumber}}
     }
 }
 

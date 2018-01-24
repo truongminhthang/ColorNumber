@@ -17,9 +17,10 @@ enum PixelType {
 /** A point in an image converted to an ASCII character. */
 class Pixel : UILabel {
     /** The number of bytes a pixel occupies. 1 byte per channel (RGBA). */
-    static var size = CGSize(width: 10, height: 10)
     private var type: PixelType
-    private var coordinate: Coordinate
+    static var size = CGSize(width: 10, height: 10)
+
+    var coordinate: Coordinate
     var color: Color
     var grayColor: UIColor
     private var intensity: Double
@@ -47,9 +48,8 @@ class Pixel : UILabel {
                     AppDelegate.shared.patternColors[intensityNumber].count -= 1
                     if self.type == .color {
                         // insert To Stack
-                        
+                        DataService.share.selectedImage?.pixelStack.append(self)
                     }
-                    
                 } else {
                     // Sai
                     drawWhenFillWrong(at: fillNumber)
@@ -57,6 +57,7 @@ class Pixel : UILabel {
                         AppDelegate.shared.patternColors[intensityNumber].count += 1
                         if self.type == .color {
                             // Remove from Stack
+                            DataService.share.selectedImage?.pixelStack.remove(object:self)
                         }
                     }
                 }
@@ -67,6 +68,7 @@ class Pixel : UILabel {
                     AppDelegate.shared.patternColors[intensityNumber].count += 1
                     if self.type == .color {
                         // Remove from Stack
+                        DataService.share.selectedImage?.pixelStack.remove(object:self)
                     }
                 }
             }
@@ -136,6 +138,7 @@ class Pixel : UILabel {
         let green =  pointer[offset + 1]
         let blue  =  pointer[offset + 2]
         let color = Color(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
+        print("red: \(red), green \(green), blue: \(blue)")
         let intensity = Pixel.calculateIntensity(red: red, green: green, blue: blue)
         self.init(color: color, coordinate: coordinate, intensity: intensity, type: type)
     }
@@ -194,5 +197,15 @@ class Pixel : UILabel {
         return (lhs.coordinate.col == rhs.coordinate.col) && (lhs.coordinate.row == rhs.coordinate.row)
     }
     
+}
+
+extension Array where Element: Equatable {
+    
+    // Remove first collection element that is equal to the given `object`:
+    mutating func remove(object: Element) {
+        if let index = index(of: object) {
+            remove(at: index)
+        }
+    }
 }
 
