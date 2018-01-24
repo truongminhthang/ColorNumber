@@ -59,7 +59,7 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailLibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
         
         if let indexSelected = indexFromLibrary {
-            cell.imageIcon.image = DataService.share.categories[indexSelected].listImage[indexPath.row].image
+            cell.imageIcon.image = DataService.share.categories[indexSelected].listImage[indexPath.row].displayImage
         }
         
         return cell

@@ -36,8 +36,12 @@ class PaintViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.updateZoomSettings(animated: true)
-
+            self.updateZoomSettings(animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pixelImageView?.capture()
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,7 +53,6 @@ class PaintViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(colorFillDone), name: .fillColorDone, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(colorFillNotDone), name: .fillColorNotDone, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(gameCompleted), name: .gameCompleted, object: nil)
-
     }
     
     deinit {

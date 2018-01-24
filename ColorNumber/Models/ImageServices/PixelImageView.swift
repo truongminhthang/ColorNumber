@@ -10,10 +10,16 @@ import UIKit
 
 class PixelImageView : UIView {
     static let maxImageSize = CGSize(width: 50, height: 50)
-    var colorView: UIView = UIView()
-    var numberView: UIView = UIView()
-    var image : UIImage
-    var editedImage: UIImage
+    var isEdited = false
+    
+    private var image : UIImage
+    private var editedImage: UIImage
+    private var captureImage: UIImage?
+    var displayImage : UIImage {
+        get {
+            return captureImage ?? image
+        }
+    }
     var numberOfColumn: Int
     var numberOfRow: Int
     var patternColors : [MapIntensityColor] = {
@@ -24,13 +30,14 @@ class PixelImageView : UIView {
     subscript (rowIndex: Int, heightIndex:Int) -> Pixel {
         return pixelsNumber[rowIndex][heightIndex]
     }
+    var colorView: UIView = UIView()
+    var numberView: UIView = UIView()
     var pixelsNumber : [[Pixel]] = []
-
     var pixelColor: [[Pixel]] = []
     var pixelStack: [Pixel] = []
     
     var zoomScaleForRemovingColor : CGFloat = 0.5
-    //    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
+    var zoomScaleForRemovingTextLabel: CGFloat = 0.8
     
     private var _selectedColorNumber : Int? {
         didSet {
@@ -42,9 +49,13 @@ class PixelImageView : UIView {
     
     var selectedColorNumber: Int? {
         set {
+            
             if let value = newValue {
                 if value >= 0 && value < patternColors.count - 1 {
                     _selectedColorNumber = newValue
+                }
+                if isEdited == false {
+                    isEdited = true
                 }
             } else {
                 _selectedColorNumber = nil
@@ -75,16 +86,12 @@ class PixelImageView : UIView {
                 numberView.alpha = 0
                 isUserInteractionEnabled = false
             }
-            
-            
         }
     }
     init(image: UIImage) {
         self.image = image
-        
-        
         let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
-        editedImage = rotatedImage.imageConstrainedToMaxSize(PixelImageView.maxImageSize)
+        editedImage = rotatedImage.cropImageIfNeed(PixelImageView.maxImageSize)
         
         self.numberOfColumn = Int(editedImage.size.width)
         self.numberOfRow = Int(editedImage.size.height)
@@ -97,10 +104,15 @@ class PixelImageView : UIView {
         setupGesture()
     }
     
-    func createPixelMatrix() {
-        
-        pixelsNumber = []
-        pixelColor = []
+    func capture() {
+        _selectedColorNumber = nil
+        colorView.alpha = 1
+        numberView.alpha = 0
+        captureImage = UIImage(view:colorView)
+    }
+    
+    func createPixelMatrixIfNeed() {
+        guard pixelsNumber.count == 0 else { return }
         let dataProvider = editedImage.cgImage?.dataProvider
         let pixelData    = dataProvider?.data
         let pixelPointer = CFDataGetBytePtr(pixelData)
@@ -121,7 +133,6 @@ class PixelImageView : UIView {
                 pixelColor[row].append(colorPixel)
             }
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -186,14 +197,7 @@ extension PixelImageView {
     }
     
     func removeColor(at coordinate: Coordinate) {
-//
-//
-//                for i in 0..<colorsFillter.count {
-//                    if colorsFillter[i].x == Int32(coordinate.col) && colorsFillter[i].y == Int32(coordinate.row) {
-//                        AppDelegate.context.delete(colorsFillter[i])
-//                        AppDelegate.saveContext()
-//                    }
-//                }
+
     }
     
     func getColor() -> [ColorFillter] {

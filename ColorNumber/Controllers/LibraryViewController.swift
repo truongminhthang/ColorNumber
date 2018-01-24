@@ -32,9 +32,7 @@ class LibraryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //MARK: Reload row have selected
-        if let selectedRow = tableView.indexPathForSelectedRow {
-            tableView.reloadRows(at: [selectedRow], with: .none)
-        }
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -205,7 +203,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        cell.imageIcon.image = DataService.share.categories[collectionView.tag][indexPath.row]?.image
+        cell.imageIcon.image = DataService.share.categories[collectionView.tag][indexPath.row]?.displayImage
         return cell
     }
     
@@ -213,9 +211,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         DataService.share.selectedIndexPath = IndexPath(row: indexPath.row, section: collectionView.tag)
         if let image = DataService.share.selectedImage {
             AppDelegate.shared.patternColors = image.patternColors
-            if image.pixelsNumber.count == 0 {
-                image.createPixelMatrix()
-            }
+            image.createPixelMatrixIfNeed()
         }
 
         self.performSegue(withIdentifier: "showPaitnVC", sender: nil)

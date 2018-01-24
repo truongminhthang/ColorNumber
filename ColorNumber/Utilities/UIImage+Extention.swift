@@ -1,3 +1,4 @@
+
 //
 //  UIImage+Extention.swift
 //  ColorNumber
@@ -29,7 +30,10 @@ extension UIImage {
         
         return newImage
     }
-    public func imageWithFixedOrientation() -> UIImage {
+}
+
+extension UIImage {
+    func imageWithFixedOrientation() -> UIImage {
         
         if imageOrientation == UIImageOrientation.up {
             return self
@@ -88,34 +92,21 @@ extension UIImage {
         
         return UIImage(cgImage: cgImage)
     }
-    
-    
-    class func imageOfSymbol(_ symbol: String, _ font: UIFont) -> UIImage {
-        let
-        length = font.pointSize * 2,
-        size   = CGSize(width: length, height: length),
-        rect   = CGRect(origin: CGPoint.zero, size: size)
-        
-        UIGraphicsBeginImageContext(size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        // Fill the background with white.
-        context?.setFillColor(UIColor.white.cgColor)
-        context?.fill(rect)
-        
-        // Draw the character with black.
-        let nsString = NSString(string: symbol)
-        nsString.draw(at: rect.origin, withAttributes: [
-            NSAttributedStringKey.font: font,
-            NSAttributedStringKey.foregroundColor: UIColor.black
-            ])
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()!
+}
+
+extension UIImage {
+    convenience init(view: UIView) {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        self.init(cgImage: (image?.cgImage)!)
     }
-    
-    func imageConstrainedToMaxSize(_ maxSize: CGSize) -> UIImage {
+}
+
+
+extension UIImage {
+    func cropImageIfNeed(_ maxSize: CGSize) -> UIImage {
         let isTooBig = size.width  > maxSize.width || size.height > maxSize.height
         if isTooBig {
             let
