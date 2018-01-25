@@ -87,6 +87,17 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         container.layer.addSublayer(layer)
     }
     
+    //MARK: share Video
+    @IBAction func shareVideoService(_ sender: UIButton) {
+        let videoToShare = [videoService]
+        let activityViewController = UIActivityViewController(activityItems: videoToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        // services no use
+//        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook]
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
