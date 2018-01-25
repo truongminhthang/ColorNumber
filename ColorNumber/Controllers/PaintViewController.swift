@@ -13,6 +13,7 @@ class PaintViewController: UIViewController {
     var pixelImageView: PixelImageView? = DataService.share.selectedImage
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var doneButton: UIBarButtonItem!
        
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
@@ -30,6 +31,10 @@ class PaintViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
         Pixel.size = CGSize(width: 10, height: 10)
         renderingImage()
     }
@@ -81,7 +86,7 @@ class PaintViewController: UIViewController {
     }
     @objc
     func gameCompleted(_ notification: Notification) {
-        performSegue(withIdentifier: "showVideo", sender: nil)
+        navigationItem.rightBarButtonItem = doneButton
     }
 
     

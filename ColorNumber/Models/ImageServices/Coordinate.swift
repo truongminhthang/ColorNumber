@@ -13,7 +13,7 @@ struct Coordinate {
     var row: Int
     static var offSet = UIOffset.zero
     var originPoint: CGPoint {
-        return CGPoint(x: CGFloat(col) * Pixel.size.width, y: CGFloat(row) * Pixel.size.height)
+        return CGPoint(x: CGFloat(col) * Pixel.size.width +  Coordinate.offSet.horizontal, y: CGFloat(row) * Pixel.size.height + Coordinate.offSet.vertical)
     }
     var originVideo: CGPoint {
         return CGPoint(x: CGFloat(col) * Pixel.size.width + Coordinate.offSet.horizontal , y: UIScreen.main.bounds.size.width - (CGFloat(row) + 1) * Pixel.size.height - Coordinate.offSet.vertical)
