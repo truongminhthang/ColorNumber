@@ -10,14 +10,18 @@ import AVKit
 
 class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     @IBOutlet weak var container: UIView!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     let pixelImageView = DataService.share.selectedImage
     var duration = 0.05
+    var numberOfColumn :CGFloat = 0.0
+    var numberOfRow : CGFloat = 0.0
+    
+    
     var playerViewController: AVPlayerViewController?
     let documentsDirectoryURL : URL = {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first! as String
         return  URL(fileURLWithPath: path)
     }()
+
     
     var localBlankVideoPath: URL {
         get {
@@ -38,23 +42,37 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let pixelView = pixelImageView else {return}
         // Do any additional setup after loading the view, typically from a nib.
         videoExportService.delegate = self
-
+        numberOfColumn = CGFloat(pixelView.numberOfColumn)
+        numberOfRow = CGFloat(pixelView.numberOfRow)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let pixelView = pixelImageView else {return}
-        let widthHeight = container.bounds.size.width / CGFloat(pixelView.numberOfColumn)
-        Pixel.size = CGSize(width: widthHeight, height: widthHeight)
-        heightConstraint.constant = widthHeight * CGFloat(pixelView.numberOfRow)
+        let isWidthGreaterThanHeight =  numberOfColumn > numberOfRow
+        let pixelWidthHeight = container.frame.size.width / (isWidthGreaterThanHeight ? numberOfColumn : numberOfRow)
+        Pixel.size = CGSize(width: pixelWidthHeight, height: pixelWidthHeight)
+
+        if isWidthGreaterThanHeight {
+            // Move down
+            let videoHeight = container.frame.size.width
+            let deltaY = (videoHeight - (pixelWidthHeight * numberOfRow)) / 2
+            Coordinate.offSet = UIOffset(horizontal: 0, vertical: deltaY)
+        } else {
+            // Move Right
+            let videoWidth = container.frame.size.width
+            let deltaX = (videoWidth - pixelWidthHeight * numberOfColumn) / 2
+            Coordinate.offSet = UIOffset(horizontal: deltaX, vertical: 0)
+        }
         play()
-        fill()
     }
     
     @IBAction func fill() {
-        videoService.makeBlankVideo(blankImage: #imageLiteral(resourceName: "black"), videoSize: container.bounds.size, outputPath: localBlankVideoPath, duration: 15) { () -> Void in
+        guard let pixelView = pixelImageView else {return}
+        let endingTime = 2.5
+        videoService.makeBlankVideo(blankImage: #imageLiteral(resourceName: "whiteBg"), videoSize: container.bounds.size, outputPath: localBlankVideoPath, duration: duration * Double(pixelView.pixelStack.count) + endingTime) { () -> Void in
             print("localBlankVideoPath : \(self.localBlankVideoPath)")
             self.exportVideo()
         }
@@ -100,7 +118,7 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         
         let asset = AVAsset(url: self.localBlankVideoPath)
         input.videoAsset = asset
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             input.videoFrame = self.container.bounds
             input.range = CMTimeRangeMake(kCMTimeZero, asset.duration)
             let layer = self.createLayerAnimation(startTime: AVCoreAnimationBeginTimeAtZero, forExport: true)

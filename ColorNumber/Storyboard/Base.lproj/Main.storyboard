@@ -6,61 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Watch Video View Controller-->
-        <scene sceneID="Y6f-AU-Bb7">
-            <objects>
-                <viewController storyboardIdentifier="WatchVideoViewController" id="fLo-0g-PRq" customClass="WatchVideoViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vZs-4k-mbN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XiZ-nx-MTj">
-                                <rect key="frame" x="0.0" y="60.5" width="375" height="556.5"/>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AV7-Q4-LVW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcB-or-J9M">
-                                        <rect key="frame" x="10" y="18" width="14" height="25"/>
-                                        <state key="normal" image="ic_back"/>
-                                        <connections>
-                                            <action selector="continueAction:" destination="fLo-0g-PRq" eventType="touchUpInside" id="FV3-eB-CSR"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="PcB-or-J9M" firstAttribute="leading" secondItem="AV7-Q4-LVW" secondAttribute="leading" constant="10" id="8ll-iR-6Jn"/>
-                                    <constraint firstItem="PcB-or-J9M" firstAttribute="centerY" secondItem="AV7-Q4-LVW" secondAttribute="centerY" id="WeW-n6-6gr"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="top" secondItem="AV7-Q4-LVW" secondAttribute="bottom" id="1J6-Xr-Onf"/>
-                            <constraint firstItem="a0J-S7-qDe" firstAttribute="bottom" secondItem="XiZ-nx-MTj" secondAttribute="bottom" constant="50" id="5Lv-Hr-q8L"/>
-                            <constraint firstItem="AV7-Q4-LVW" firstAttribute="height" secondItem="vZs-4k-mbN" secondAttribute="height" multiplier="1/11" id="6Jb-MQ-nu8"/>
-                            <constraint firstItem="XiZ-nx-MTj" firstAttribute="leading" secondItem="a0J-S7-qDe" secondAttribute="leading" id="DgV-xS-i6J"/>
-                            <constraint firstItem="a0J-S7-qDe" firstAttribute="trailing" secondItem="AV7-Q4-LVW" secondAttribute="trailing" id="OdP-md-MKO"/>
-                            <constraint firstItem="AV7-Q4-LVW" firstAttribute="top" secondItem="vZs-4k-mbN" secondAttribute="top" id="PcC-G8-cSt"/>
-                            <constraint firstItem="AV7-Q4-LVW" firstAttribute="leading" secondItem="vZs-4k-mbN" secondAttribute="leading" id="Sry-Qm-BaT"/>
-                            <constraint firstItem="a0J-S7-qDe" firstAttribute="trailing" secondItem="XiZ-nx-MTj" secondAttribute="trailing" id="mfZ-NQ-sZf"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="a0J-S7-qDe"/>
-                    </view>
-                    <connections>
-                        <outlet property="scrollView" destination="XiZ-nx-MTj" id="EGR-sS-edL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZwL-OS-eZ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-116" y="-294.60269865067471"/>
-        </scene>
         <!--Custom Tabbar Controller-->
         <scene sceneID="WuR-ip-eCO">
             <objects>
@@ -110,11 +58,10 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bou-Xe-qEn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-162" y="619"/>
+            <point key="canvasLocation" x="-290" y="325"/>
         </scene>
     </scenes>
     <resources>
-        <image name="ic_back" width="14" height="25"/>
         <image name="ic_libary" width="414" height="48"/>
     </resources>
 </document>

@@ -31,6 +31,7 @@
 		984ACB4E2018767C00A135EF /* VideoExportInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984ACB4A2018767B00A135EF /* VideoExportInput.swift */; };
 		984ACB4F2018767C00A135EF /* VideoExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984ACB4B2018767C00A135EF /* VideoExportService.swift */; };
 		984ACB502018767C00A135EF /* VideoExportServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984ACB4C2018767C00A135EF /* VideoExportServiceDelegate.swift */; };
+		984D34A42019D12300AEBB34 /* Paint.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984D34A22019D12300AEBB34 /* Paint.storyboard */; };
 		98708CA2200EFC70009D544E /* PaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98708CA1200EFC70009D544E /* PaintViewController.swift */; };
 		98760179200C3B7C0011228C /* PixelImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98760178200C3B7C0011228C /* PixelImageView.swift */; };
 		988975AB2008E81B0010A332 /* Import.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988975A72008E81B0010A332 /* Import.storyboard */; };
@@ -74,6 +75,7 @@
 		984ACB4A2018767B00A135EF /* VideoExportInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExportInput.swift; sourceTree = "<group>"; };
 		984ACB4B2018767C00A135EF /* VideoExportService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExportService.swift; sourceTree = "<group>"; };
 		984ACB4C2018767C00A135EF /* VideoExportServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExportServiceDelegate.swift; sourceTree = "<group>"; };
+		984D34A32019D12300AEBB34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Paint.storyboard; sourceTree = "<group>"; };
 		98708CA1200EFC70009D544E /* PaintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintViewController.swift; sourceTree = "<group>"; };
 		98760178200C3B7C0011228C /* PixelImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelImageView.swift; sourceTree = "<group>"; };
 		988975A82008E81B0010A332 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Import.storyboard; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		3B22F7B51FF341C100A30505 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				984D34A22019D12300AEBB34 /* Paint.storyboard */,
 				988975A72008E81B0010A332 /* Import.storyboard */,
 				988975A92008E81B0010A332 /* Library.storyboard */,
 				FF8EBFA41FF1E5DE004341AB /* LaunchScreen.storyboard */,
@@ -319,6 +322,7 @@
 				FF8EBFA61FF1E5DE004341AB /* LaunchScreen.storyboard in Resources */,
 				FF8EBFA31FF1E5DE004341AB /* Assets.xcassets in Resources */,
 				9841AA1220163AB0002D5639 /* Gallary.storyboard in Resources */,
+				984D34A42019D12300AEBB34 /* Paint.storyboard in Resources */,
 				5C39E595200216FC00993E40 /* Library.plist in Resources */,
 				FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */,
 				988975AC2008E81B0010A332 /* Library.storyboard in Resources */,
@@ -378,6 +382,14 @@
 				9841AA1120163AB0002D5639 /* Base */,
 			);
 			name = Gallary.storyboard;
+			sourceTree = "<group>";
+		};
+		984D34A22019D12300AEBB34 /* Paint.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				984D34A32019D12300AEBB34 /* Base */,
+			);
+			name = Paint.storyboard;
 			sourceTree = "<group>";
 		};
 		988975A72008E81B0010A332 /* Import.storyboard */ = {

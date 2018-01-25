@@ -182,25 +182,3 @@ extension PixelImageView: UIGestureRecognizerDelegate {
     }
 }
 
-// MARK: - <#Mark#>
-
-extension PixelImageView {
-    
-    func insertColor(red: CGFloat, green: CGFloat, blu: CGFloat, coordinate: Coordinate) {
-        let colorFillterEntity = ColorFillter(context: AppDelegate.context)
-        colorFillterEntity.red = Float(red)
-        colorFillterEntity.green = Float(green)
-        colorFillterEntity.blu = Float(blu)
-        colorFillterEntity.x = Int32(coordinate.col)
-        colorFillterEntity.y = Int32(coordinate.row)
-        AppDelegate.saveContext()
-    }
-    
-    func removeColor(at coordinate: Coordinate) {
-
-    }
-    
-    func getColor() -> [ColorFillter] {
-        return try! AppDelegate.context.fetch(ColorFillter.fetchRequest()) as! [ColorFillter]
-    }
-}
