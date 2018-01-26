@@ -210,28 +210,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TqM-N7-WX0">
                                 <rect key="frame" x="0.0" y="521" width="375" height="146"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YRY-71-JGe">
-                                        <rect key="frame" x="67" y="59" width="241" height="28"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YRY-71-JGe">
+                                        <rect key="frame" x="93" y="48.5" width="190" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH9-Ci-Sxb">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="LƯU"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH9-Ci-Sxb">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <state key="normal" title="LƯU" image="save"/>
+                                                <connections>
+                                                    <action selector="saveVideoLibrary:" destination="wJQ-Ti-JNV" eventType="touchUpInside" id="h6R-Pa-ktk"/>
+                                                </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-yg-xwn">
-                                                <rect key="frame" x="83" y="0.0" width="75" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="INSTAGRAM"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-yg-xwn">
+                                                <rect key="frame" x="70" y="0.0" width="50" height="50"/>
+                                                <state key="normal" title="INSTAGRAM" image="shareInstagram"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4J-V1-hlL">
-                                                <rect key="frame" x="166" y="0.0" width="75" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="KHÁC"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4J-V1-hlL">
+                                                <rect key="frame" x="140" y="0.0" width="50" height="50"/>
+                                                <state key="normal" title="KHÁC" image="share"/>
                                                 <connections>
                                                     <action selector="shareVideoService:" destination="wJQ-Ti-JNV" eventType="touchUpInside" id="yak-n6-vwX"/>
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="YEH-Hc-dKy"/>
+                                            <constraint firstAttribute="height" constant="50" id="hcN-T1-TTs"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -241,6 +245,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" red="0.98958333333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="n6O-1s-Wyh" firstAttribute="trailing" secondItem="TqM-N7-WX0" secondAttribute="trailing" id="4Tx-CI-OAH"/>
                             <constraint firstItem="fcN-GE-9B8" firstAttribute="leading" secondItem="n6O-1s-Wyh" secondAttribute="leading" id="A1Z-8c-WkW"/>
@@ -292,5 +297,8 @@
         <image name="button_01" width="414" height="63"/>
         <image name="ic_back" width="14" height="25"/>
         <image name="icons8-ok" width="32" height="32"/>
+        <image name="save" width="50" height="50"/>
+        <image name="share" width="50" height="50"/>
+        <image name="shareInstagram" width="50" height="50"/>
     </resources>
 </document>

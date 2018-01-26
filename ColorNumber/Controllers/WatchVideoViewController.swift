@@ -7,6 +7,7 @@
 //
 import UIKit
 import AVKit
+import Photos
 
 class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     @IBOutlet weak var container: UIView!
@@ -72,6 +73,7 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     @IBAction func fill() {
         guard let pixelView = pixelImageView else {return}
         let endingTime = 2.5
+        
         videoService.makeBlankVideo(blankImage: #imageLiteral(resourceName: "whiteBg"), videoSize: container.bounds.size, outputPath: localBlankVideoPath, duration: duration * Double(pixelView.pixelStack.count) + endingTime) { () -> Void in
             print("localBlankVideoPath : \(self.localBlankVideoPath)")
             self.exportVideo()
@@ -97,6 +99,46 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
+
+    //MARK: Save video to library
+    @IBAction func saveVideoLibrary(_ sender: UIButton) {
+
+        PHPhotoLibrary.shared().performChanges({
+            // Anh xem phần atFileURL giup em
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.localVideoPath)
+        }) { saved, error in
+            if saved {
+                let fetchOptions = PHFetchOptions()
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+
+                // After uploading we fetch the PHAsset for most recent video and then get its current location url
+                let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
+                PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
+                    let newObj = avurlAsset as! AVURLAsset
+                    print(newObj.url)
+                    // This is the URL we need now to access the video from gallery directly.
+                })
+            }
+        }
+        
+        // Set image url asset library image camera
+//        func saveVideo(videoURL: URL, completion: @escaping (String) -> Void) {
+//            var placeHolder: PHObjectPlaceholder? = nil
+//            PHPhotoLibrary.shared().performChanges({
+//                let creationRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.localVideoPath)
+//                placeHolder = creationRequest?.placeholderForCreatedAsset!
+//            }, completionHandler: { success, error in
+//                guard success, let placeholder = placeHolder else {
+//                    return
+//                }
+//                let localID = placeholder.localIdentifier
+//                let assetID = localID.replacingOccurrences(of: "/.*", with: "", options: [.regularExpression], range: nil)
+//                let ext = "mp4"
+//                let assetURLStr = "assets-library://asset/asset.\(ext)?id=\(assetID)&ext=\(ext)"
+//                completion(assetURLStr)
+//            })
+//        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -119,7 +161,6 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         }
         return parentLayer
     }
-    
     
     
     func exportVideo() {
