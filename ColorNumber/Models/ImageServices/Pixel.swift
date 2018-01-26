@@ -47,7 +47,7 @@ class Pixel : UILabel {
                 if fillNumber == intensityNumber {
                     // Dung
                     drawWhenFillRight()
-                    AppDelegate.shared.patternColors[intensityNumber].count -= 1
+                    DataService.share.selectedImage!.patternColors[intensityNumber].count -= 1
                     if self.type == .color {
                         // insert To Stack
                         DataService.share.selectedImage?.pixelStack.append(self)
@@ -56,7 +56,7 @@ class Pixel : UILabel {
                     // Sai
                     drawWhenFillWrong(at: fillNumber)
                     if oldValue != nil {
-                        AppDelegate.shared.patternColors[intensityNumber].count += 1
+                        DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
                         if self.type == .color {
                             // Remove from Stack
                             DataService.share.selectedImage?.pixelStack.remove(object:self)
@@ -67,7 +67,7 @@ class Pixel : UILabel {
                 // Earse
                 setupBorderAndText()
                 if oldValue == intensityNumber { //dang dung tay di
-                    AppDelegate.shared.patternColors[intensityNumber].count += 1
+                    DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
                     if self.type == .color {
                         // Remove from Stack
                         DataService.share.selectedImage?.pixelStack.remove(object:self)
@@ -110,13 +110,13 @@ class Pixel : UILabel {
     
     func drawWhenFillRight() {
         text = ""
-        backgroundColor = AppDelegate.shared.patternColors[_fillColorNumber!].color.uiColor
+        backgroundColor = DataService.share.selectedImage!.patternColors[_fillColorNumber!].color.uiColor
         layer.borderColor = nil
         layer.borderWidth = 0
     }
     
     func drawWhenFillWrong(at fillNumber: Int) {
-        backgroundColor = AppDelegate.shared.patternColors[fillNumber].color.tranperentColor
+        backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.tranperentColor
         text = "\(intensityNumber)"
     }
     
@@ -140,7 +140,6 @@ class Pixel : UILabel {
         let green =  pointer[offset + 1]
         let blue  =  pointer[offset + 2]
         let color = Color(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
-        print("red: \(red), green \(green), blue: \(blue)")
         let intensity = Pixel.calculateIntensity(red: red, green: green, blue: blue)
         self.init(color: color, coordinate: coordinate, intensity: intensity, type: type)
     }

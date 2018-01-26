@@ -67,7 +67,14 @@ class PaintViewController: UIViewController {
     @objc
     func colorFillDone(_ notification: Notification) {
         guard let intensityNumber = notification.object as? Int else {return}
-        if let cell = collectionView.cellForItem(at: IndexPath(item: intensityNumber + 1, section: 0)) as? ColorItem {
+        var colorIndex = 0
+        for (index, item) in AppDelegate.shared.patternColors.enumerated() {
+            if item.colorOrder == intensityNumber {
+                colorIndex = index
+                break
+            }
+        }
+        if let cell = collectionView.cellForItem(at: IndexPath(item: colorIndex + 1, section: 0)) as? ColorItem {
             cell.isDone = true
         } else {
             collectionView.reloadData()
@@ -77,7 +84,14 @@ class PaintViewController: UIViewController {
     @objc
     func colorFillNotDone(_ notification: Notification) {
         guard let intensityNumber = notification.object as? Int else {return}
-        if let cell = collectionView.cellForItem(at: IndexPath(item: intensityNumber + 1, section: 0)) as? ColorItem {
+        var colorIndex = 0
+        for (index, item) in AppDelegate.shared.patternColors.enumerated() {
+            if item.colorOrder == intensityNumber {
+                colorIndex = index
+                break
+            }
+        }
+        if let cell = collectionView.cellForItem(at: IndexPath(item: colorIndex + 1, section: 0)) as? ColorItem {
             cell.isDone = false
         } else {
             collectionView.reloadData()
@@ -148,7 +162,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCell", for: indexPath) as! ColorItem
-            cell.labelNumberText.text = "\(indexPath.row - 1)"
+            cell.labelNumberText.text = String(AppDelegate.shared.patternColors[indexPath.row - 1].colorOrder)
             cell.labelNumberText.textColor = UIColor.red
             cell.labelNumberText.backgroundColor = AppDelegate.shared.patternColors[indexPath.row - 1].color.uiColor
             cell.isDone = AppDelegate.shared.patternColors[indexPath.row - 1].count == 0
@@ -160,7 +174,7 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
             pixelImageView?.selectedColorNumber = nil
         }
         else {
-            pixelImageView?.selectedColorNumber = indexPath.row - 1
+            pixelImageView?.selectedColorNumber = AppDelegate.shared.patternColors[indexPath.row - 1].colorOrder
         }
     }
 }

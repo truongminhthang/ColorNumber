@@ -109,7 +109,7 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         let indexsItem = pixelView.pixelStack.map{$0.coordinate}
         for (index,coordinate) in indexsItem.enumerated() {
             let layer = CALayer()
-            layer.backgroundColor = AppDelegate.shared.patternColors[pixelView.pixelStack[index].intensityNumber].color.uiColor.cgColor
+            layer.backgroundColor = DataService.share.selectedImage!.patternColors[pixelView.pixelStack[index].intensityNumber].color.uiColor.cgColor
             layer.opacity = 0
             layer.frame = CGRect(origin: forExport ? coordinate.originVideo : coordinate.originPoint , size: Pixel.size)
             let triggerTime = Double(index) * duration + startTime

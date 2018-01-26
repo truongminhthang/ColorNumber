@@ -133,6 +133,8 @@ class PixelImageView : UIView {
                 pixelColor[row].append(colorPixel)
             }
         }
+        AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

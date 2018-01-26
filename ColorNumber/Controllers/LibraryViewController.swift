@@ -127,8 +127,7 @@ class LibraryViewController: UIViewController {
                 let vc = segue.destination as? DetailLibraryViewController
                 vc?.indexFromLibrary = tableView.indexPathForSelectedRow?.row
             case "showPaitnVC":
-                debugPrint("not action")
-            
+                break
         default:
             fatalError("not segue")
         }
@@ -188,7 +187,6 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
             AppDelegate.shared.patternColors = image.patternColors
             image.createPixelMatrixIfNeed()
         }
-
         self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
     }
     

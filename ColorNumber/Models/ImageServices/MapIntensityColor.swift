@@ -10,7 +10,7 @@ import UIKit
 
 class MapIntensityColor {
  
-    private var colorOrder: Int
+    var colorOrder: Int
     var count : CGFloat = 0 {
         didSet {
             if count == 0 {
@@ -50,10 +50,7 @@ class MapIntensityColor {
     
     func checkIfCompleteGame(){
         var isComplete = true
-        for (index, patternColor) in AppDelegate.shared.patternColors.enumerated(){
-            if index == AppDelegate.shared.patternColors.count - 1 {
-                break
-            }
+        for  patternColor in AppDelegate.shared.patternColors {
             if patternColor.count != 0 {
                 isComplete = false
             }
