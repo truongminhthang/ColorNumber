@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func arrangePatternColor(pixel: Pixel) {
         guard patternColors.count > 0 else { return }
+        guard pixel.intensityNumber < Pixel.intensityToDisable else { return }
         patternColors[pixel.intensityNumber].addFixel(pixel)
     }
 

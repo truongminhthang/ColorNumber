@@ -138,7 +138,7 @@ extension PaintViewController: UIScrollViewDelegate {
 // MARK: - CollectionView delegate, CollectionView DataSource
 extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AppDelegate.shared.patternColors.count
+        return AppDelegate.shared.patternColors.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

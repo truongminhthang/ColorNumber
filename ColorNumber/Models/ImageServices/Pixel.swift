@@ -19,7 +19,9 @@ class Pixel : UILabel {
     /** The number of bytes a pixel occupies. 1 byte per channel (RGBA). */
     private var type: PixelType
     static var size = CGSize(width: 10, height: 10)
-
+    let maxIntensity :Double = 11
+    static let intensityToDisable = 10
+    
     var coordinate: Coordinate
     var color: Color
     var grayColor: UIColor
@@ -85,7 +87,7 @@ class Pixel : UILabel {
 
     var fillColorNumber : Int? {
         set {
-            if intensityNumber != 10 && _fillColorNumber != newValue {
+            if intensityNumber < Pixel.intensityToDisable && _fillColorNumber != newValue {
                 _fillColorNumber = newValue
             }
         }
@@ -125,9 +127,9 @@ class Pixel : UILabel {
         self.coordinate = coordinate
         self.color = color
         self.intensity = intensity
-        self.intensityNumber = Int(intensity * 10)
+        self.intensityNumber = Int(intensity * maxIntensity)
         let frame = CGRect(origin: coordinate.originPoint, size: Pixel.size)
-        grayColor = UIColor.black.withAlphaComponent(1-CGFloat(intensityNumber)/CGFloat(10))
+        grayColor = UIColor.black.withAlphaComponent(1-CGFloat(intensityNumber)/CGFloat(maxIntensity))
         
         super.init(frame: frame)
         setupBorderAndText()
@@ -175,7 +177,7 @@ class Pixel : UILabel {
     func setupBorderAndText() {
         switch type {
         case .number:
-            if intensityNumber == 10 {
+            if intensityNumber >= Pixel.intensityToDisable {
                 layer.borderColor = UIColor.lightGray.cgColor
                 layer.borderWidth = 0.1
                 text = ""
@@ -186,8 +188,13 @@ class Pixel : UILabel {
             }
             effectBackgroundColor = UIColor.clear
         case .color:
+            if intensityNumber >= Pixel.intensityToDisable {
+                effectBackgroundColor = UIColor.white
+            } else {
+                effectBackgroundColor = grayColor
+            }
+
             text = ""
-            effectBackgroundColor = grayColor
         }
         self.textAlignment = .center
         self.font = UIFont.systemFont(ofSize: 5)

@@ -23,7 +23,7 @@ class PixelImageView : UIView {
     var numberOfColumn: Int
     var numberOfRow: Int
     var patternColors : [MapIntensityColor] = {
-        return (0...10).map{index in
+        return (0..<Pixel.intensityToDisable).map{index in
             MapIntensityColor(order: index)
         }
     }()
@@ -51,7 +51,7 @@ class PixelImageView : UIView {
         set {
             
             if let value = newValue {
-                if value >= 0 && value < patternColors.count - 1 {
+                if value >= 0 && value < patternColors.count {
                     _selectedColorNumber = newValue
                 }
                 if isEdited == false {
