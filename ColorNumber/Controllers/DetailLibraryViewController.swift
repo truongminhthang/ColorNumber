@@ -53,28 +53,33 @@ class DetailLibraryViewController: UIViewController {
     }
     
 }
-/*
 extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
+ 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let indexSelected = indexFromLibrary else { return 0 }
-        return DataService.share.categories[indexSelected].listImage.count
+        return DataService.share.pixelImageViews[indexSelected].count
     }
-    
+ 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailLibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        
+ 
         if let indexSelected = indexFromLibrary {
-            cell.imageIcon.image = DataService.share.categories[indexSelected].listImage[indexPath.row].displayImage
+            cell.imageIcon.image = DataService.share.pixelImageViews[indexSelected][indexPath.row].displayImage
         }
-        
+ 
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let selected = indexFromLibrary {
-            DataService.share.selectedIndexPath = [selected, indexPath.row]
+            DataService.share.selectedIndexPath = IndexPath(row: indexPath.row, section: selected)
+            if let image = DataService.share.selectedImage {
+                AppDelegate.shared.patternColors = image.patternColors
+                image.reloadData()
+                AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
+                
+            }
             self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
         }
     }
 }
-*/
+

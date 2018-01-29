@@ -13,6 +13,7 @@ extension Notification.Name {
     static let fillColorNotDone                 = Notification.Name("fillColorNotDone")
     static let gameCompleted                 = Notification.Name("gameCompleted")
     static let loadSampleComplete                 = Notification.Name("loadSampleComplete")
+    static let updateEditedImages              = Notification.Name("updateEditedImages")
 
 
 }

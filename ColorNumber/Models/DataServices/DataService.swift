@@ -58,6 +58,36 @@ class DataService{
     
     var pixelImageViews: [[PixelImageView]] = Array(repeating: [], count: 4)
     
+    private var _editedImageView: [PixelImageView]?
+    
+    var editedImageView: [PixelImageView] {
+        set {
+            _editedImageView = newValue
+        }
+        get {
+            if _editedImageView == nil {
+                updateEditedImageView()
+            }
+            return _editedImageView ?? []
+        }
+    }
+    
+    func updateSelectedImage(pixelImage: PixelImageView) {
+        for rowIndex in (0..<pixelImageViews.count) {
+            for colIndex in (0..<pixelImageViews[rowIndex].count) {
+                if pixelImage == pixelImageViews[rowIndex][colIndex] {
+                    selectedIndexPath = IndexPath(row: colIndex, section: rowIndex)
+                    return
+                }
+            }
+        }
+    }
+    
+    func updateEditedImageView() {
+        _editedImageView = pixelImageViews.flatMap{$0}.filter{$0.pixelStack.count != 0}
+        NotificationCenter.default.post(name: .updateEditedImages, object: nil)
+    }
+    
     private var _fetchedResultsController: NSFetchedResultsController<PixelImageEntity>? = nil
 
     var fetchedResultsController: NSFetchedResultsController<PixelImageEntity> {

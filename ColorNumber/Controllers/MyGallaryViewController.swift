@@ -28,7 +28,27 @@ class MyGallaryViewController: UIViewController {
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         layout.sectionInset = UIEdgeInsets(top: itemPadding, left: itemPadding, bottom: itemPadding, right: itemPadding)
         layout.minimumLineSpacing = itemPadding
+        registerNotification()
     }
+    
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: .updateEditedImages, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc
+    func handleNotification(_ notification: Notification) {
+        collectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DataService.share.updateEditedImageView()
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,18 +70,21 @@ class MyGallaryViewController: UIViewController {
 extension MyGallaryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return DataService.share.editedImageView.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyGallaryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
+        cell.imageIcon.image = DataService.share.editedImageView[indexPath.row].image
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
+         let image = DataService.share.editedImageView[indexPath.row]
+        DataService.share.updateSelectedImage(pixelImage: image)
+            AppDelegate.shared.patternColors = image.patternColors
+            image.reloadData()
+            AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
+        self.performSegue(withIdentifier: "showPaint", sender: nil)
     }
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print("Selected at index = \(indexPath.row)")
-    }
+
 }
