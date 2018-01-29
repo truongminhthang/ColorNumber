@@ -53,7 +53,7 @@ class DetailLibraryViewController: UIViewController {
     }
     
 }
-
+/*
 extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -77,3 +77,4 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
         }
     }
 }
+*/

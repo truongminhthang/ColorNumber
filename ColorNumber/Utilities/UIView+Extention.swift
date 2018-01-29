@@ -137,3 +137,15 @@ extension UIView {
         
     }
 }
+
+
+// MARK: - <#Mark#>
+
+extension UIView {
+    func getRenderImage() -> UIImage {
+        let render = UIGraphicsImageRenderer(bounds: bounds)
+        return render.image(actions: { (ctx) in
+            layer.render(in: ctx.cgContext)
+        })
+    }
+}

@@ -17,7 +17,7 @@ class PixelModel: Equatable {
     let maxIntensity :Double = 11
     static let intensityToDisable = 10
     
-    var coordinate: Coordinate
+    var pixelAnatomic: PixelAnatomic
     var color: Color
     var grayColor: UIColor
     private var intensity: Double
@@ -49,20 +49,22 @@ class PixelModel: Equatable {
     }
     private var _fillColorNumber : Int? {
         didSet {
+            pixelAnatomic.fillColorNumber = _fillColorNumber
+
             if let fillNumber = fillColorNumber  {
                 if fillNumber == intensityNumber {
                     // Dung
                     drawWhenFillRight()
                     DataService.share.selectedImage!.patternColors[intensityNumber].count -= 1
                         // insert To Stack
-                        DataService.share.selectedImage?.pixelStack.append(self)
+                        DataService.share.selectedImage?.pixelStack.append(pixelAnatomic)
                 } else {
                     // Sai
                     drawWhenFillWrong(at: fillNumber)
                     if oldValue != nil {
                         DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
                             // Remove from Stack
-                            DataService.share.selectedImage?.pixelStack.remove(object:self)
+                            DataService.share.selectedImage?.pixelStack.remove(object:pixelAnatomic)
                     }
                 }
             } else {
@@ -71,7 +73,7 @@ class PixelModel: Equatable {
                 if oldValue == intensityNumber { //dang dung tay di
                     DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
                         // Remove from Stack
-                        DataService.share.selectedImage?.pixelStack.remove(object:self)
+                        DataService.share.selectedImage?.pixelStack.remove(object:pixelAnatomic)
                 }
             }
         }
@@ -113,25 +115,25 @@ class PixelModel: Equatable {
     
     
     
-    init(color: Color, coordinate: Coordinate, intensity: Double) {
-        self.coordinate = coordinate
+    init(color: Color, pixelAnatomic: PixelAnatomic, intensity: Double) {
+        self.pixelAnatomic = pixelAnatomic
         self.color = color
         self.intensity = intensity
         self.intensityNumber = Int(intensity * maxIntensity)
-        let frame = CGRect(origin: coordinate.originPoint, size: PixelModel.size)
+        let frame = CGRect(origin: pixelAnatomic.originPoint, size: PixelModel.size)
         grayColor = UIColor.black.withAlphaComponent(1-CGFloat(intensityNumber)/CGFloat(maxIntensity))
         numberLabel = UILabel(frame: frame)
         colorLabel = UILabel(frame: frame)
         setupBorderAndText()
     }
     
-    convenience init(pointer: PixelPointer, offset: Int, coordinate: Coordinate) {
+    convenience init(pointer: PixelPointer, offset: Int, pixelAnatomic: PixelAnatomic) {
         let red   =  pointer[offset + 0]
         let green =  pointer[offset + 1]
         let blue  =  pointer[offset + 2]
         let color = Color(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
         let intensity = PixelModel.calculateIntensity(red: red, green: green, blue: blue)
-        self.init(color: color, coordinate: coordinate, intensity: intensity)
+        self.init(color: color, pixelAnatomic: pixelAnatomic, intensity: intensity)
     }
     
     
@@ -185,7 +187,7 @@ class PixelModel: Equatable {
     }
     
     static func ==(lhs: PixelModel, rhs: PixelModel) -> Bool {
-        return (lhs.coordinate.col == rhs.coordinate.col) && (lhs.coordinate.row == rhs.coordinate.row)
+        return (lhs.pixelAnatomic.col == rhs.pixelAnatomic.col) && (lhs.pixelAnatomic.row == rhs.pixelAnatomic.row)
     }
     
 }

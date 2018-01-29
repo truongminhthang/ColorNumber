@@ -46,8 +46,8 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         guard let pixelView = pixelImageView else {return}
         // Do any additional setup after loading the view, typically from a nib.
         videoExportService.delegate = self
-        numberOfColumn = CGFloat(pixelView.numberOfColumn)
-        numberOfRow = CGFloat(pixelView.numberOfRow)
+        numberOfColumn = pixelView.croppedImage.size.width
+        numberOfRow = pixelView.croppedImage.size.height
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,12 +60,12 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
             // Move down
             let videoHeight = container.frame.size.width
             let deltaY = (videoHeight - (pixelWidthHeight * numberOfRow)) / 2
-            Coordinate.offSet = UIOffset(horizontal: 0, vertical: deltaY)
+            PixelAnatomic.offSet = UIOffset(horizontal: 0, vertical: deltaY)
         } else {
             // Move Right
             let videoWidth = container.frame.size.width
             let deltaX = (videoWidth - pixelWidthHeight * numberOfColumn) / 2
-            Coordinate.offSet = UIOffset(horizontal: deltaX, vertical: 0)
+            PixelAnatomic.offSet = UIOffset(horizontal: deltaX, vertical: 0)
         }
         play()
     }
@@ -148,10 +148,10 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     func createLayerAnimation(startTime: Double = CACurrentMediaTime(), forExport: Bool) -> CALayer {
         let parentLayer = CALayer()
         let pixelView = pixelImageView!
-        let indexsItem = pixelView.pixelStack.map{$0.coordinate}
+        let indexsItem = pixelView.pixelStack
         for (index,coordinate) in indexsItem.enumerated() {
             let layer = CALayer()
-            layer.backgroundColor = DataService.share.selectedImage!.patternColors[pixelView.pixelStack[index].intensityNumber].color.uiColor.cgColor
+            layer.backgroundColor = DataService.share.selectedImage!.patternColors[pixelView.pixelStack[index].fillColorNumber ?? 0].color.uiColor.cgColor
             layer.opacity = 0
             layer.frame = CGRect(origin: forExport ? coordinate.originVideo : coordinate.originPoint , size: PixelModel.size)
             let triggerTime = Double(index) * duration + startTime

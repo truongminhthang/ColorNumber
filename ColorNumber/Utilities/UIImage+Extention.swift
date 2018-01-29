@@ -95,14 +95,17 @@ extension UIImage {
 }
 
 extension UIImage {
-    convenience init(view: UIView) {
+    convenience init?(view: UIView) {
         UIGraphicsBeginImageContext(view.frame.size)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        guard let context = UIGraphicsGetCurrentContext() else {return nil}
+        view.layer.render(in: context)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {return nil}
         UIGraphicsEndImageContext()
-        self.init(cgImage: (image?.cgImage)!)
+        self.init(cgImage: image.cgImage!)
     }
 }
+
+
 
 
 extension UIImage {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Color {
+class Color: NSCoding {
     var red: CGFloat
     var green: CGFloat
     var blue: CGFloat
@@ -25,6 +25,25 @@ struct Color {
         self.red = red
         self.green = green
         self.blue = blue
+    }
+    
+    struct Key {
+        static let red = "red"
+        static let green = "green"
+        static let blue = "blue"
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(red, forKey: Key.red)
+        aCoder.encode(green, forKey: Key.green)
+        aCoder.encode(blue, forKey: Key.blue)
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.red = CGFloat(aDecoder.decodeFloat(forKey: Key.red))
+        self.green = CGFloat(aDecoder.decodeFloat(forKey: Key.green))
+        self.blue = CGFloat(aDecoder.decodeFloat(forKey: Key.blue))
     }
 }
 

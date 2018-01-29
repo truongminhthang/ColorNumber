@@ -39,7 +39,7 @@ class PaintViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
         PixelModel.size = CGSize(width: 10, height: 10)
-        Coordinate.offSet = UIOffset.zero
+        PixelAnatomic.offSet = UIOffset.zero
         MapIntensityColor.checkIfCompleteGame()
     }
     

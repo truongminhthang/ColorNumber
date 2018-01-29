@@ -8,7 +8,7 @@
 
 import UIKit
 import os.log
-import StoreKit
+import CoreData
 
 class LibraryViewController: UIViewController {
     
@@ -17,9 +17,10 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var reviewLb: DesignableLabel!
     @IBOutlet weak var feedbackLb: DesignableLabel!
     @IBOutlet weak var tableView: UITableView!
-    
+    var pixelImageViews = DataService.share.pixelImageViews
     let numbersOfItemInRow :CGFloat = 2
     let itemPadding: CGFloat = 10
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,22 @@ class LibraryViewController: UIViewController {
             UserDefaults.standard.set(false, forKey: "Key")
         }
         setupView()
+        registerNotification()
+        _ = DataService.share.fetchedResultsController
+    }
+    
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: .loadSampleComplete, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc
+    func handleNotification(_ notification: Notification) {
+         pixelImageViews = DataService.share.pixelImageViews
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,74 +70,7 @@ class LibraryViewController: UIViewController {
         feedbackLb.addGestureRecognizer(tapFeedback)
     }
     
-    // MARK: Action Navigation view
-    @objc func watchVideo(_ recogznier: UITapGestureRecognizer) {
-       
-        watchVideo.animate { (complete) in
-            
-        }
-    }
     
-    @objc func addThree(_ recogznier: UITapGestureRecognizer) {
-        
-    }
-    
-    @objc func review(_ recogznier: UITapGestureRecognizer) {
-        self.reviewLb.animate { (complete) in
-            self.getUserDefault()
-        }
-    }
-    
-    @objc func feedback(_ recogznier: UITapGestureRecognizer) {
-        self.feedbackLb.animate { (complete) in
-            print("Feedback")
-        }
-    }
-    
-    // MARK: - ReViewApp
-    private func getUserDefault() {
-        if UserDefaults.standard.bool(forKey: "Key") == false {
-            showReviewAlert()
-        }
-    }
-    
-    private func showReviewAlert() {
-        if #available(iOS 10.3, *) {
-            SKStoreReviewController.requestReview()
-        } else if let url = URL(string: "itms-apps://itunes.apple.com/app/id{ID App}?action=write-review") {
-            showAlertController(url: url)
-        }
-        
-    }
-    
-    private func showAlertController(url: URL) {
-        let alert = UIAlertController(title: "Review request",
-                                      message: "We are always grateful for your help!\nPlease review！",
-                                      preferredStyle: .alert)
-        self.present(alert, animated: true, completion: nil)
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel,
-                                         handler: {
-                                            (action:UIAlertAction!) -> Void in
-                                            UserDefaults.standard.set(false, forKey: "Key")
-        })
-        alert.addAction(cancelAction)
-        
-        let reviewAction = UIAlertAction(title: "Review",
-                                         style: .default,
-                                         handler: {
-                                            (action:UIAlertAction!) -> Void in
-                                            UserDefaults.standard.set(true, forKey: "Key")
-                                            if #available(iOS 10.0, *) {
-                                                UIApplication.shared.open(url, options: [:])
-                                            }
-                                            else {
-                                                UIApplication.shared.openURL(url)
-                                            }
-        })
-        alert.addAction(reviewAction)
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier ?? "" {
             case "showDetailLibrary":
@@ -172,12 +122,12 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
     // CollectionViewDataSource.
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataService.share.categories[collectionView.tag].listImage.count
+        return pixelImageViews[collectionView.tag].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        cell.imageIcon.image = DataService.share.categories[collectionView.tag][indexPath.row]?.displayImage
+        cell.imageIcon.image = pixelImageViews[collectionView.tag][indexPath.row].displayImage
         return cell
     }
     
@@ -185,7 +135,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         DataService.share.selectedIndexPath = IndexPath(row: indexPath.row, section: collectionView.tag)
         if let image = DataService.share.selectedImage {
             AppDelegate.shared.patternColors = image.patternColors
-            image.createPixelMatrixIfNeed()
+            image.reloadData()
             AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
 
         }

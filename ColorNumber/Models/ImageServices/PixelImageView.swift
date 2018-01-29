@@ -8,20 +8,24 @@
 
 import UIKit
 
+class PixelEntity {
+    var image = UIImage()
+    var pixelStack : [PixelAnatomic] = []
+}
+
 class PixelImageView : UIView {
     static let maxImageSize = CGSize(width: 50, height: 50)
+    var id :String? = UUID().uuidString
+    var categoryID : String?
     var isEdited = false
-    
-    private var image : UIImage
-    private var editedImage: UIImage
+    var image : UIImage
+    var croppedImage =  UIImage()
     private var captureImage: UIImage?
     var displayImage : UIImage {
         get {
             return captureImage ?? image
         }
     }
-    var numberOfColumn: Int
-    var numberOfRow: Int
     var patternColors : [MapIntensityColor] = {
         return (0..<PixelModel.intensityToDisable).map{index in
             MapIntensityColor(order: index)
@@ -33,7 +37,11 @@ class PixelImageView : UIView {
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
     var pixelModels: [[PixelModel]] = []
-    var pixelStack: [PixelModel] = []
+    var pixelStack: [PixelAnatomic] = [] {
+        didSet {
+            saveEntity()
+        }
+    }
     
     var zoomScaleForRemovingColor : CGFloat = 0.5
     var zoomScaleForRemovingTextLabel: CGFloat = 0.8
@@ -87,17 +95,10 @@ class PixelImageView : UIView {
             }
         }
     }
-    init(image: UIImage) {
+    init(image: UIImage, categoryID: String = "") {
         self.image = image
-        let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
-        editedImage = rotatedImage.cropImageIfNeed(PixelImageView.maxImageSize)
-        self.numberOfColumn = Int(editedImage.size.width)
-        self.numberOfRow = Int(editedImage.size.height)
-        let width = (editedImage.size.width) * PixelModel.size.width
-        let height = (editedImage.size.height) * PixelModel.size.height
-        let imageSize = CGRect(origin: .zero, size: CGSize(width: width, height: height))
-        
-        super.init(frame: imageSize)
+        self.categoryID = categoryID
+        super.init(frame: .zero)
         setupSubview()
         setupGesture()
     }
@@ -106,24 +107,29 @@ class PixelImageView : UIView {
         _selectedColorNumber = nil
         colorView.alpha = 1
         numberView.alpha = 0
-        captureImage = UIImage(view:colorView)
+        captureImage = UIImage(view: colorView)
     }
     
     func createPixelMatrixIfNeed() {
         guard pixelModels.count == 0 else { return }
         let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
-        editedImage = rotatedImage.cropImageIfNeed(PixelImageView.maxImageSize)
-        let dataProvider = editedImage.cgImage?.dataProvider
+        croppedImage = rotatedImage.cropImageIfNeed(PixelImageView.maxImageSize)
+        
+        let width = (croppedImage.size.width) * PixelModel.size.width
+        let height = (croppedImage.size.height) * PixelModel.size.height
+        frame = CGRect(origin: .zero, size: CGSize(width: width, height: height))
+        
+        let dataProvider = croppedImage.cgImage?.dataProvider
         let pixelData    = dataProvider?.data
         let pixelPointer = CFDataGetBytePtr(pixelData)
         let bytesPerPixel = 4
         pixelModels = []
-        for row in (0..<self.numberOfRow) {
+        for row in (0..<Int(croppedImage.size.height)) {
             pixelModels.append([])
-            for col in (0..<self.numberOfColumn) {
-                let offset = ((self.numberOfColumn * row) + col) * bytesPerPixel
-                let coordinate = Coordinate(col: col, row: row)
-                let pixelModel = PixelModel(pointer: pixelPointer!, offset: offset, coordinate: coordinate)
+            for col in (0..<Int(croppedImage.size.width)) {
+                let offset = ((Int(self.croppedImage.size.width) * row) + col) * bytesPerPixel
+                let pixelAnatomic = PixelAnatomic(col: col, row: row)
+                let pixelModel = PixelModel(pointer: pixelPointer!, offset: offset, pixelAnatomic: pixelAnatomic)
                 AppDelegate.shared.arrangePatternColor(pixel: pixelModel)
                 numberView.addSubview(pixelModel.numberLabel)
                 colorView.addSubview(pixelModel.colorLabel)

@@ -11,18 +11,6 @@
 			<string>ic_trending</string>
 			<key>titleHeader</key>
 			<string>Trending Pictures</string>
-			<key>listImage</key>
-			<array>
-				<string>Trending_1</string>
-				<string>Trending_2</string>
-				<string>Trending_3</string>
-				<string>Trending_4</string>
-				<string>Trending_5</string>
-				<string>Trending_6</string>
-				<string>Trending_7</string>
-				<string>Trending_8</string>
-				<string>Food_11</string>
-			</array>
 		</dict>
 		<dict>
 			<key>colorTitle</key>
@@ -31,19 +19,6 @@
 			<string>ic_holiday</string>
 			<key>titleHeader</key>
 			<string>Holiday</string>
-			<key>listImage</key>
-			<array>
-				<string>Holiday_1</string>
-				<string>Holiday_2</string>
-				<string>Holiday_3</string>
-				<string>Holiday_4</string>
-				<string>Holiday_5</string>
-				<string>Holiday_6</string>
-				<string>Holiday_7</string>
-				<string>Holiday_8</string>
-				<string>Holiday_9</string>
-				<string>Holiday_10</string>
-			</array>
 		</dict>
 		<dict>
 			<key>colorTitle</key>
@@ -52,16 +27,6 @@
 			<string>ic_people</string>
 			<key>titleHeader</key>
 			<string>People</string>
-			<key>listImage</key>
-			<array>
-				<string>People_1</string>
-				<string>People_2</string>
-				<string>People_3</string>
-				<string>People_4</string>
-				<string>People_5</string>
-				<string>People_6</string>
-				<string>People_7</string>
-			</array>
 		</dict>
 		<dict>
 			<key>colorTitle</key>
@@ -70,19 +35,6 @@
 			<string>ic_food</string>
 			<key>titleHeader</key>
 			<string>Food</string>
-			<key>listImage</key>
-			<array>
-				<string>Food_1</string>
-				<string>Food_2</string>
-				<string>Food_3</string>
-				<string>Food_4</string>
-				<string>Food_5</string>
-				<string>Food_6</string>
-				<string>Food_7</string>
-				<string>Food_8</string>
-				<string>Food_9</string>
-				<string>Food_10</string>
-			</array>
 		</dict>
 	</array>
 </dict>

@@ -13,29 +13,15 @@ typealias JSON = Dictionary<String, Any>
 class Category {
     var iconHeader: UIImage? = UIImage(named: "default")
     var titleHeader: String = ""
-    var listImage: [PixelImageView] = []
-    var colorTitle: UIColor = UIColor.color(fromHexString: "#000000")
-    subscript (imageIndex: Int) -> PixelImageView? {
-        guard imageIndex < listImage.count else {
-            return nil
-        }
-        return listImage[imageIndex]
-    }
-    
+    var colorTitle: UIColor = UIColor.color(fromHexString: "#000000")    
     init?(dict: JSON) {
         guard let iconHeader = dict["iconHeader"] as? String,
             let titleHeader = dict["titleHeader"] as? String,
-            let listImage = dict["listImage"] as? [String],
             let colorHead = dict["colorTitle"] as? String
         else { return nil }
         self.iconHeader = UIImage(named: iconHeader)
         self.titleHeader = titleHeader
         self.colorTitle = UIColor.color(fromHexString: colorHead)
-        for image in listImage {
-            if let img = UIImage(named: image) {
-                self.listImage.append(PixelImageView(image:img))
-            }
-        }
     }
     
 }
