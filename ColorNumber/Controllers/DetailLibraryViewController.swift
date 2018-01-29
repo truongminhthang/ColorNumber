@@ -32,7 +32,7 @@ class DetailLibraryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let select = indexFromLibrary {
-            titleHead.text = DataService.share.categories[select].titleHeader
+            titleHead.text = DataService.share.categories[select].nameCategory
             titleHead.textColor = DataService.share.categories[select].colorTitle
         }
     }

@@ -34,6 +34,21 @@ class LibraryViewController: UIViewController {
         super.viewWillAppear(animated)
         //MARK: Reload row have selected
         tableView.reloadData()
+        if let result = DataService.share.getEntityWithCategoryAndID(category: "Trending Pictures", and: "8") {
+            print("\(result.id ?? "")")
+            if let pixelsInfo = result.pixelsInfo {
+                print("//////////////////////////////////////////////////////////////////////////////////////////////////")
+                pixelsInfo.forEach{ pixelInfo in
+                    print("Pixel infomation: Origin(x: \(pixelInfo.originPoint.x), y: \(pixelInfo.originPoint.y)), Color(red: \(pixelInfo.red), green: \(pixelInfo.green), blu: \(pixelInfo.blu))")
+                }
+            }
+            if let pixelFiller = result.imagePixelFillter {
+                print("//////////////////////////////////////////////////////////////////////////////////////////////////")
+                pixelFiller.forEach { pixelInfo in
+                    print("Pixel infomation: Origin(x: \(pixelInfo.originPoint.x), y: \(pixelInfo.originPoint.y)), Color(red: \(pixelInfo.red), green: \(pixelInfo.green), blu: \(pixelInfo.blu))")
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -145,7 +160,7 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LibraryTableViewCell", for: indexPath) as! LibraryTableViewCell
-        cell.titleHead.text = DataService.share.categories[indexPath.row].titleHeader
+        cell.titleHead.text = DataService.share.categories[indexPath.row].nameCategory
         cell.titleHead.textColor = DataService.share.categories[indexPath.row].colorTitle
         cell.imageHeader.image = DataService.share.categories[indexPath.row].iconHeader
         

@@ -5,11 +5,11 @@
 	<key>ImageLibrary</key>
 	<array>
 		<dict>
-			<key>colorTitle</key>
+			<key>colorCategory</key>
 			<string>#5C1DDA</string>
-			<key>iconHeader</key>
+			<key>iconCategory</key>
 			<string>ic_trending</string>
-			<key>titleHeader</key>
+			<key>nameCategory</key>
 			<string>Trending Pictures</string>
 			<key>listImage</key>
 			<array>
@@ -25,11 +25,11 @@
 			</array>
 		</dict>
 		<dict>
-			<key>colorTitle</key>
+			<key>colorCategory</key>
 			<string>#41A9BD</string>
-			<key>iconHeader</key>
+			<key>iconCategory</key>
 			<string>ic_holiday</string>
-			<key>titleHeader</key>
+			<key>nameCategory</key>
 			<string>Holiday</string>
 			<key>listImage</key>
 			<array>
@@ -46,11 +46,11 @@
 			</array>
 		</dict>
 		<dict>
-			<key>colorTitle</key>
+			<key>colorCategory</key>
 			<string>#1C63F9</string>
-			<key>iconHeader</key>
+			<key>iconCategory</key>
 			<string>ic_people</string>
-			<key>titleHeader</key>
+			<key>nameCategory</key>
 			<string>People</string>
 			<key>listImage</key>
 			<array>
@@ -64,11 +64,11 @@
 			</array>
 		</dict>
 		<dict>
-			<key>colorTitle</key>
+			<key>colorCategory</key>
 			<string>#F92A00</string>
-			<key>iconHeader</key>
+			<key>iconCategory</key>
 			<string>ic_food</string>
-			<key>titleHeader</key>
+			<key>nameCategory</key>
 			<string>Food</string>
 			<key>listImage</key>
 			<array>

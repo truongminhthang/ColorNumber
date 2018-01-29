@@ -12,7 +12,7 @@ typealias JSON = Dictionary<String, Any>
 
 class Category {
     var iconHeader: UIImage? = UIImage(named: "default")
-    var titleHeader: String = ""
+    var nameCategory: String = ""
     var listImage: [PixelImageView] = []
     var colorTitle: UIColor = UIColor.color(fromHexString: "#000000")
     subscript (imageIndex: Int) -> PixelImageView? {
@@ -23,13 +23,13 @@ class Category {
     }
     
     init?(dict: JSON) {
-        guard let iconHeader = dict["iconHeader"] as? String,
-            let titleHeader = dict["titleHeader"] as? String,
+        guard let iconHeader = dict["iconCategory"] as? String,
+            let titleHeader = dict["nameCategory"] as? String,
             let listImage = dict["listImage"] as? [String],
-            let colorHead = dict["colorTitle"] as? String
+            let colorHead = dict["colorCategory"] as? String
         else { return nil }
         self.iconHeader = UIImage(named: iconHeader)
-        self.titleHeader = titleHeader
+        self.nameCategory = titleHeader
         self.colorTitle = UIColor.color(fromHexString: colorHead)
         for image in listImage {
             if let img = UIImage(named: image) {

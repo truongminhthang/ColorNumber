@@ -104,6 +104,20 @@ class PixelImageView : UIView {
         setupGesture()
     }
     
+    init(entity: ImagePixelEntity) {
+        self.image = entity.image
+        self.isEdited = entity.isEdited
+        self.editedImage = entity.editedImage
+        self.numberOfRow = entity.numberOfRow
+        self.numberOfColumn = entity.numberOfColumn
+        let width = (editedImage.size.width) * Pixel.size.width
+        let height = (editedImage.size.height) * Pixel.size.height
+        let imageSize = CGRect(origin: .zero, size: CGSize(width: width, height: height))
+        
+        self.pixelsNumber = entity.imagePixelFillter
+        super.init(frame: imageSize)
+    }
+    
     func capture() {
         _selectedColorNumber = nil
         colorView.alpha = 1

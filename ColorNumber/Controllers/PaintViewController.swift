@@ -14,7 +14,7 @@ class PaintViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var doneButton: UIBarButtonItem!
-       
+    
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.maximumZoomScale = 5
@@ -41,19 +41,22 @@ class PaintViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-            self.updateZoomSettings(animated: true)
+        self.updateZoomSettings(animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         pixelImageView?.capture()
+        //        saveImagePixel()
+        updatePixelFillter()
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(colorFillDone), name: .fillColorDone, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(colorFillNotDone), name: .fillColorNotDone, object: nil)
@@ -62,6 +65,24 @@ class PaintViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func updatePixelFillter() {
+        if pixelImageView != nil {
+            var imagePixelFillter: [PixelInfo] = []
+            pixelImageView!.pixelStack.forEach { pixel in
+                let pixelFillter = PixelInfo(intensity: pixel.intensityNumber, originPoint: pixel.coordinate.originPoint, originVideo: pixel.coordinate.originVideo, red: Double(pixel.color.red), green: Double(pixel.color.green), blu: Double(pixel.color.blue))
+                imagePixelFillter.append(pixelFillter)
+            }
+            var imagePixelsInfo: [PixelInfo] = []
+            pixelImageView!.pixelsNumber.forEach({ row in
+                row.forEach({ aPixel in
+                    let pixelInfo = PixelInfo(intensity: aPixel.intensityNumber, originPoint: aPixel.coordinate.originPoint, originVideo: aPixel.coordinate.originVideo, red: Double(aPixel.color.red), green: Double(aPixel.color.green), blu: Double(aPixel.color.blue))
+                    imagePixelsInfo.append(pixelInfo)
+                })
+            })
+            DataService.share.upadte(imagePixelsInfo: imagePixelsInfo, imagePixelFillter: imagePixelFillter, isComplete: false, category: DataService.share.categories[DataService.share.selectedIndexPath!.section].nameCategory, and: "\(DataService.share.selectedIndexPath!.row)")
+        }
     }
     
     @objc
@@ -102,7 +123,7 @@ class PaintViewController: UIViewController {
     func gameCompleted(_ notification: Notification) {
         navigationItem.rightBarButtonItem = doneButton
     }
-
+    
     
     // MARK: - Rendering
     
