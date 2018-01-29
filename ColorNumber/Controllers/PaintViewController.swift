@@ -27,6 +27,9 @@ class PaintViewController: UIViewController {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemHeight = view.frame.height/14 - 5
         layout.itemSize = CGSize(width: itemHeight, height: itemHeight)
+        renderingImage()
+        self.updateZoomSettings(animated: true)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +39,12 @@ class PaintViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
         PixelModel.size = CGSize(width: 10, height: 10)
-        renderingImage()
+        Coordinate.offSet = UIOffset.zero
         MapIntensityColor.checkIfCompleteGame()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-            self.updateZoomSettings(animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
