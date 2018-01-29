@@ -38,10 +38,12 @@ extension PixelImageView {
     }
     
     func reloadData() {
+        isLoading = true
         createPixelMatrixIfNeed()
         for pixelAnatomic in pixelStack {
             pixelModels[pixelAnatomic.row][pixelAnatomic.col].fillColorNumber = pixelAnatomic.fillColorNumber
         }
+        isLoading = false
     }
     
 }

@@ -50,6 +50,7 @@ class PixelModel: Equatable {
     private var _fillColorNumber : Int? {
         didSet {
             pixelAnatomic.fillColorNumber = _fillColorNumber
+            DataService.share.selectedImage?.pixelStack.append(pixelAnatomic.makeCopy())
 
             if let fillNumber = fillColorNumber  {
                 if fillNumber == intensityNumber {
@@ -57,14 +58,12 @@ class PixelModel: Equatable {
                     drawWhenFillRight()
                     DataService.share.selectedImage!.patternColors[intensityNumber].count -= 1
                         // insert To Stack
-                        DataService.share.selectedImage?.pixelStack.append(pixelAnatomic)
                 } else {
                     // Sai
                     drawWhenFillWrong(at: fillNumber)
                     if oldValue != nil {
                         DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
                             // Remove from Stack
-                            DataService.share.selectedImage?.pixelStack.remove(object:pixelAnatomic)
                     }
                 }
             } else {
@@ -73,7 +72,6 @@ class PixelModel: Equatable {
                 if oldValue == intensityNumber { //dang dung tay di
                     DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
                         // Remove from Stack
-                        DataService.share.selectedImage?.pixelStack.remove(object:pixelAnatomic)
                 }
             }
         }

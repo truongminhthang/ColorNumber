@@ -34,12 +34,15 @@ class PixelImageView : UIView {
     subscript (rowIndex: Int, heightIndex:Int) -> PixelModel {
         return pixelModels[rowIndex][heightIndex]
     }
+    var isLoading: Bool = false
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
     var pixelModels: [[PixelModel]] = []
     var pixelStack: [PixelAnatomic] = [] {
         didSet {
-            saveEntity()
+            if isLoading == false {
+                saveEntity()
+            }
         }
     }
     
