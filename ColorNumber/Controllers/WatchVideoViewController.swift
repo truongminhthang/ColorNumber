@@ -54,7 +54,7 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         super.viewDidAppear(animated)
         let isWidthGreaterThanHeight =  numberOfColumn > numberOfRow
         let pixelWidthHeight = container.frame.size.width / (isWidthGreaterThanHeight ? numberOfColumn : numberOfRow)
-        Pixel.size = CGSize(width: pixelWidthHeight, height: pixelWidthHeight)
+        PixelModel.size = CGSize(width: pixelWidthHeight, height: pixelWidthHeight)
 
         if isWidthGreaterThanHeight {
             // Move down
@@ -153,7 +153,7 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
             let layer = CALayer()
             layer.backgroundColor = DataService.share.selectedImage!.patternColors[pixelView.pixelStack[index].intensityNumber].color.uiColor.cgColor
             layer.opacity = 0
-            layer.frame = CGRect(origin: forExport ? coordinate.originVideo : coordinate.originPoint , size: Pixel.size)
+            layer.frame = CGRect(origin: forExport ? coordinate.originVideo : coordinate.originPoint , size: PixelModel.size)
             let triggerTime = Double(index) * duration + startTime
             let animation = displayAnimation(beginTime: triggerTime)
             layer.add(animation, forKey: "opacity")

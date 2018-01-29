@@ -15,7 +15,7 @@ class MapIntensityColor {
         didSet {
             if count == 0 {
                 NotificationCenter.default.post(name: .fillColorDone, object: colorOrder)
-                checkIfCompleteGame()
+                MapIntensityColor.checkIfCompleteGame()
             } else {
                 NotificationCenter.default.post(name: .fillColorNotDone, object: colorOrder)
             }
@@ -32,8 +32,8 @@ class MapIntensityColor {
             pixels.forEach{$0.isEmpharse = isEmpharse}
         }
     }
-    var pixels : [Pixel] = []
-    func addFixel(_ pixel: Pixel) {
+    var pixels : [PixelModel] = []
+    func addFixel(_ pixel: PixelModel) {
         guard pixel.intensityNumber == colorOrder else { return }
         count += 1
         let color = pixel.color
@@ -48,7 +48,7 @@ class MapIntensityColor {
         colorOrder = order
     }
     
-    func checkIfCompleteGame(){
+    static func checkIfCompleteGame(){
         var isComplete = true
         for  patternColor in AppDelegate.shared.patternColors {
             if patternColor.count != 0 {

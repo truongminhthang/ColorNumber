@@ -35,8 +35,9 @@ class PaintViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
-        Pixel.size = CGSize(width: 10, height: 10)
+        PixelModel.size = CGSize(width: 10, height: 10)
         renderingImage()
+        MapIntensityColor.checkIfCompleteGame()
     }
     
     override func viewDidAppear(_ animated: Bool) {

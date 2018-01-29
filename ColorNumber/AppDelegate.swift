@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var patternColors: [MapIntensityColor] = []
     
-    func arrangePatternColor(pixel: Pixel) {
+    func arrangePatternColor(pixel: PixelModel) {
         guard patternColors.count > 0 else { return }
-        guard pixel.intensityNumber < Pixel.intensityToDisable else { return }
+        guard pixel.intensityNumber < PixelModel.intensityToDisable else { return }
         patternColors[pixel.intensityNumber].addFixel(pixel)
     }
 

@@ -42,7 +42,7 @@
 		98B5E595200F5F6D009E2080 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B5E594200F5F6D009E2080 /* NotificationKey.swift */; };
 		98F9D6652008E34C00843FC8 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F9D6642008E34C00843FC8 /* PhotoViewController.swift */; };
 		E285055C200531BE00279D6D /* PaintSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E285055B200531BE00279D6D /* PaintSection.swift */; };
-		E2A5941F200503D300049078 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941C200503D300049078 /* Pixel.swift */; };
+		E2A5941F200503D300049078 /* PixelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5941C200503D300049078 /* PixelModel.swift */; };
 		FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */; };
 		FF8EBF9E1FF1E5DE004341AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8EBF9C1FF1E5DE004341AB /* Main.storyboard */; };
 		FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF8EBF9F1FF1E5DE004341AB /* ColorNumber.xcdatamodeld */; };
@@ -86,7 +86,7 @@
 		98B5E594200F5F6D009E2080 /* NotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
 		98F9D6642008E34C00843FC8 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E285055B200531BE00279D6D /* PaintSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintSection.swift; sourceTree = "<group>"; };
-		E2A5941C200503D300049078 /* Pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		E2A5941C200503D300049078 /* PixelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelModel.swift; sourceTree = "<group>"; };
 		FF8EBF951FF1E5DE004341AB /* ColorNumber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNumber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8EBF981FF1E5DE004341AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF8EBF9D1FF1E5DE004341AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				98760178200C3B7C0011228C /* PixelImageView.swift */,
-				E2A5941C200503D300049078 /* Pixel.swift */,
+				E2A5941C200503D300049078 /* PixelModel.swift */,
 				98B5E58E200F5E4F009E2080 /* MapIntensityColor.swift */,
 				98B5E590200F5E7C009E2080 /* Color.swift */,
 				98B5E592200F5E9E009E2080 /* Coordinate.swift */,
@@ -343,7 +343,7 @@
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */,
 				3B22F7E71FF35EE300A30505 /* WatchVideoViewController.swift in Sources */,
-				E2A5941F200503D300049078 /* Pixel.swift in Sources */,
+				E2A5941F200503D300049078 /* PixelModel.swift in Sources */,
 				3B5D20C21FF38FF600B1744C /* CustomTabbarController.swift in Sources */,
 				98B5E593200F5E9E009E2080 /* Coordinate.swift in Sources */,
 				3B22F7BF1FF3435200A30505 /* MyGallaryViewController.swift in Sources */,

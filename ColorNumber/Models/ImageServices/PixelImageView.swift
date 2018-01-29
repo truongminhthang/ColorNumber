@@ -23,18 +23,17 @@ class PixelImageView : UIView {
     var numberOfColumn: Int
     var numberOfRow: Int
     var patternColors : [MapIntensityColor] = {
-        return (0..<Pixel.intensityToDisable).map{index in
+        return (0..<PixelModel.intensityToDisable).map{index in
             MapIntensityColor(order: index)
         }
     }()
-    subscript (rowIndex: Int, heightIndex:Int) -> Pixel {
-        return pixelsNumber[rowIndex][heightIndex]
+    subscript (rowIndex: Int, heightIndex:Int) -> PixelModel {
+        return pixelModels[rowIndex][heightIndex]
     }
     var colorView: UIView = UIView()
     var numberView: UIView = UIView()
-    var pixelsNumber : [[Pixel]] = []
-    var pixelColor: [[Pixel]] = []
-    var pixelStack: [Pixel] = []
+    var pixelModels: [[PixelModel]] = []
+    var pixelStack: [PixelModel] = []
     
     var zoomScaleForRemovingColor : CGFloat = 0.5
     var zoomScaleForRemovingTextLabel: CGFloat = 0.8
@@ -92,11 +91,10 @@ class PixelImageView : UIView {
         self.image = image
         let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
         editedImage = rotatedImage.cropImageIfNeed(PixelImageView.maxImageSize)
-        
         self.numberOfColumn = Int(editedImage.size.width)
         self.numberOfRow = Int(editedImage.size.height)
-        let width = (editedImage.size.width) * Pixel.size.width
-        let height = (editedImage.size.height) * Pixel.size.height
+        let width = (editedImage.size.width) * PixelModel.size.width
+        let height = (editedImage.size.height) * PixelModel.size.height
         let imageSize = CGRect(origin: .zero, size: CGSize(width: width, height: height))
         
         super.init(frame: imageSize)
@@ -112,29 +110,26 @@ class PixelImageView : UIView {
     }
     
     func createPixelMatrixIfNeed() {
-        guard pixelsNumber.count == 0 else { return }
+        guard pixelModels.count == 0 else { return }
+        let rotatedImage = image.imageWithFixedOrientation() // Rotate first because the orientation is lost when resizing.
+        editedImage = rotatedImage.cropImageIfNeed(PixelImageView.maxImageSize)
         let dataProvider = editedImage.cgImage?.dataProvider
         let pixelData    = dataProvider?.data
         let pixelPointer = CFDataGetBytePtr(pixelData)
         let bytesPerPixel = 4
+        pixelModels = []
         for row in (0..<self.numberOfRow) {
-            pixelsNumber.append([])
-            pixelColor.append([])
+            pixelModels.append([])
             for col in (0..<self.numberOfColumn) {
                 let offset = ((self.numberOfColumn * row) + col) * bytesPerPixel
                 let coordinate = Coordinate(col: col, row: row)
-                let numberPixel = Pixel(pointer: pixelPointer!, offset: offset, coordinate: coordinate, type: .number)
-                let colorPixel = numberPixel.makeDuplicate()
-                AppDelegate.shared.arrangePatternColor(pixel: numberPixel)
-                AppDelegate.shared.arrangePatternColor(pixel: colorPixel)
-                numberView.addSubview(numberPixel)
-                colorView.addSubview(colorPixel)
-                pixelsNumber[row].append(numberPixel)
-                pixelColor[row].append(colorPixel)
+                let pixelModel = PixelModel(pointer: pixelPointer!, offset: offset, coordinate: coordinate)
+                AppDelegate.shared.arrangePatternColor(pixel: pixelModel)
+                numberView.addSubview(pixelModel.numberLabel)
+                colorView.addSubview(pixelModel.colorLabel)
+                pixelModels[row].append(pixelModel)
             }
-        }
-        AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
-        
+        }        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -170,11 +165,10 @@ class PixelImageView : UIView {
         }
     }
     private func draw(atPoint point: CGPoint) {
-        let y = Int(point.y / Pixel.size.height)
-        let x = Int(point.x / Pixel.size.width)
-        guard x < self.pixelsNumber[0].count && y < self.pixelsNumber.count && y >= 0 && x >= 0 else { return }
-        pixelsNumber[y][x].fillColorNumber = selectedColorNumber
-        pixelColor[y][x].fillColorNumber = selectedColorNumber
+        let y = Int(point.y / PixelModel.size.height)
+        let x = Int(point.x / PixelModel.size.width)
+        guard x < self.pixelModels[0].count && y < self.pixelModels.count && y >= 0 && x >= 0 else { return }
+        pixelModels[y][x].fillColorNumber = selectedColorNumber
     }
 }
 

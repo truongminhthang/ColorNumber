@@ -186,6 +186,8 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         if let image = DataService.share.selectedImage {
             AppDelegate.shared.patternColors = image.patternColors
             image.createPixelMatrixIfNeed()
+            AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
+
         }
         self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
     }

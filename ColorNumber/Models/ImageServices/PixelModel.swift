@@ -10,14 +10,9 @@ import UIKit
 /** Represents the memory address of a pixel. */
 typealias PixelPointer = UnsafePointer<UInt8>
 
-enum PixelType {
-    case number, color
-}
-
 /** A point in an image converted to an ASCII character. */
-class Pixel : UILabel {
+class PixelModel: Equatable {
     /** The number of bytes a pixel occupies. 1 byte per channel (RGBA). */
-    private var type: PixelType
     static var size = CGSize(width: 10, height: 10)
     let maxIntensity :Double = 11
     static let intensityToDisable = 10
@@ -28,15 +23,26 @@ class Pixel : UILabel {
     private var intensity: Double
     var intensityNumber : Int = 0
     
+    var numberLabel: UILabel
+    var colorLabel: UILabel
+    
     var isEmpharse: Bool = false {
         didSet {
             if isEmpharse {
-                 effectBackgroundColor = UIColor.green
+                if fillColorNumber == nil {
+                    // Chua set mau
+                    colorLabel.backgroundColor = UIColor.green
+                    numberLabel.backgroundColor = UIColor.green
+                }
             } else {
-                if type == .color {
-                    effectBackgroundColor = grayColor
-                } else if type == .number {
-                    effectBackgroundColor = UIColor.clear
+                // Da set roi thi set lai mau da set
+                if let fillNumber = fillColorNumber  {
+                    colorLabel.backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.uiColor
+                    numberLabel.backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.uiColor
+                } else {
+                    // chua set mau thi set mau Gray Color
+                    colorLabel.backgroundColor = grayColor
+                    numberLabel.backgroundColor = UIColor.clear
                 }
             }
         }
@@ -48,19 +54,15 @@ class Pixel : UILabel {
                     // Dung
                     drawWhenFillRight()
                     DataService.share.selectedImage!.patternColors[intensityNumber].count -= 1
-                    if self.type == .color {
                         // insert To Stack
                         DataService.share.selectedImage?.pixelStack.append(self)
-                    }
                 } else {
                     // Sai
                     drawWhenFillWrong(at: fillNumber)
                     if oldValue != nil {
                         DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
-                        if self.type == .color {
                             // Remove from Stack
                             DataService.share.selectedImage?.pixelStack.remove(object:self)
-                        }
                     }
                 }
             } else {
@@ -68,10 +70,8 @@ class Pixel : UILabel {
                 setupBorderAndText()
                 if oldValue == intensityNumber { //dang dung tay di
                     DataService.share.selectedImage!.patternColors[intensityNumber].count += 1
-                    if self.type == .color {
                         // Remove from Stack
                         DataService.share.selectedImage?.pixelStack.remove(object:self)
-                    }
                 }
             }
         }
@@ -80,14 +80,14 @@ class Pixel : UILabel {
     // Test case 1:  dung -> sai -> xoa             cout ko doi            : pass
     // Test case 2:  dung -> xoa -> sai             cout ko doi             : pass
     // Test case 3:  sai ->  dung -> xoa            count ko doi             : pass
-        // Test case 5: xoa -> dung -> sai            count ko doi              : pass
+    // Test case 5: xoa -> dung -> sai            count ko doi              : pass
     // Test case 4:  sai -> xoa  -> dung             count - 1              : pass
     // Test case 6: xoa -> sai -> dung            count - 1                  : pass
-
-
+    
+    
     var fillColorNumber : Int? {
         set {
-            if intensityNumber < Pixel.intensityToDisable && _fillColorNumber != newValue {
+            if intensityNumber < PixelModel.intensityToDisable && _fillColorNumber != newValue {
                 _fillColorNumber = newValue
             }
         }
@@ -97,61 +97,43 @@ class Pixel : UILabel {
         
     }
     
-    var effectBackgroundColor: UIColor? {
-        set {
-            guard _fillColorNumber == nil else {return}
-            backgroundColor = newValue
-        }
-        get {
-           
-            return backgroundColor
-        }
-    }
-    
     func drawWhenFillRight() {
-        text = ""
-        backgroundColor = DataService.share.selectedImage!.patternColors[_fillColorNumber!].color.uiColor
-        layer.borderColor = nil
-        layer.borderWidth = 0
+        numberLabel.text = ""
+        numberLabel.backgroundColor = DataService.share.selectedImage!.patternColors[_fillColorNumber!].color.uiColor
+        colorLabel.backgroundColor = DataService.share.selectedImage!.patternColors[_fillColorNumber!].color.uiColor
+        numberLabel.layer.borderColor = nil
+        numberLabel.layer.borderWidth = 0
     }
     
     func drawWhenFillWrong(at fillNumber: Int) {
-        backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.tranperentColor
-        text = "\(intensityNumber)"
+        numberLabel.backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.tranperentColor
+        colorLabel.backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.uiColor
+        numberLabel.text = "\(intensityNumber)"
     }
     
-   
-        
-    init(color: Color, coordinate: Coordinate, intensity: Double, type: PixelType) {
-        self.type = type
+    
+    
+    init(color: Color, coordinate: Coordinate, intensity: Double) {
         self.coordinate = coordinate
         self.color = color
         self.intensity = intensity
         self.intensityNumber = Int(intensity * maxIntensity)
-        let frame = CGRect(origin: coordinate.originPoint, size: Pixel.size)
+        let frame = CGRect(origin: coordinate.originPoint, size: PixelModel.size)
         grayColor = UIColor.black.withAlphaComponent(1-CGFloat(intensityNumber)/CGFloat(maxIntensity))
-        
-        super.init(frame: frame)
+        numberLabel = UILabel(frame: frame)
+        colorLabel = UILabel(frame: frame)
         setupBorderAndText()
     }
     
-    convenience init(pointer: PixelPointer, offset: Int, coordinate: Coordinate, type: PixelType) {
+    convenience init(pointer: PixelPointer, offset: Int, coordinate: Coordinate) {
         let red   =  pointer[offset + 0]
         let green =  pointer[offset + 1]
         let blue  =  pointer[offset + 2]
         let color = Color(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
-        let intensity = Pixel.calculateIntensity(red: red, green: green, blue: blue)
-        self.init(color: color, coordinate: coordinate, intensity: intensity, type: type)
+        let intensity = PixelModel.calculateIntensity(red: red, green: green, blue: blue)
+        self.init(color: color, coordinate: coordinate, intensity: intensity)
     }
     
-    convenience init(_ pixel: Pixel) {
-        self.init(color: pixel.color, coordinate: pixel.coordinate, intensity: pixel.intensity, type: .color)
-    }
-    
-    func makeDuplicate() -> Pixel
-    {
-        return Pixel(self)
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -174,32 +156,35 @@ class Pixel : UILabel {
     }
     
     func setupBorderAndText() {
-        switch type {
-        case .number:
-            if intensityNumber >= Pixel.intensityToDisable {
-                layer.borderColor = UIColor.lightGray.cgColor
-                layer.borderWidth = 0.1
-                text = ""
-            } else {
-                layer.borderColor = UIColor.black.cgColor
-                layer.borderWidth = 0.1
-                text = String(intensityNumber)
-            }
-            effectBackgroundColor = UIColor.clear
-        case .color:
-            if intensityNumber >= Pixel.intensityToDisable {
-                effectBackgroundColor = UIColor.white
-            } else {
-                effectBackgroundColor = grayColor
-            }
-
-            text = ""
-        }
-        self.textAlignment = .center
-        self.font = UIFont.systemFont(ofSize: 5)
+        setupColorLabel()
+        setupNumberLabel()
     }
     
-    static func ==(lhs: Pixel, rhs: Pixel) -> Bool {
+    func setupColorLabel() {
+        if intensityNumber >= PixelModel.intensityToDisable {
+            colorLabel.backgroundColor = UIColor.white
+        } else {
+            colorLabel.backgroundColor = grayColor
+        }
+        colorLabel.text = ""
+    }
+    
+    func setupNumberLabel() {
+        if intensityNumber >= PixelModel.intensityToDisable {
+            numberLabel.layer.borderColor = UIColor.lightGray.cgColor
+            numberLabel.layer.borderWidth = 0.1
+            numberLabel.text = ""
+        } else {
+            numberLabel.layer.borderColor = UIColor.black.cgColor
+            numberLabel.layer.borderWidth = 0.1
+            numberLabel.text = String(intensityNumber)
+        }
+        numberLabel.backgroundColor = UIColor.clear
+        numberLabel.textAlignment = .center
+        numberLabel.font = UIFont.systemFont(ofSize: 5)
+    }
+    
+    static func ==(lhs: PixelModel, rhs: PixelModel) -> Bool {
         return (lhs.coordinate.col == rhs.coordinate.col) && (lhs.coordinate.row == rhs.coordinate.row)
     }
     
