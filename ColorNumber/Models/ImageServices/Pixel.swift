@@ -1,5 +1,5 @@
 //
-//  Pixel.swift
+//  PixelModel.swift
 //  ColorNumber
 //
 //  Created by Chung-Sama on 2018/01/08.
@@ -7,7 +7,7 @@
 //
 
 import UIKit
-/** Represents the memory address of a pixel. */
+/** Represents the memory address of a PixelModel. */
 typealias PixelPointer = UnsafePointer<UInt8>
 
 enum PixelType {
@@ -15,7 +15,7 @@ enum PixelType {
 }
 
 /** A point in an image converted to an ASCII character. */
-class Pixel : UILabel {
+class PixelModel {
     /** The number of bytes a pixel occupies. 1 byte per channel (RGBA). */
     private var type: PixelType
     static var size = CGSize(width: 10, height: 10)
@@ -27,7 +27,8 @@ class Pixel : UILabel {
     var grayColor: UIColor
     private var intensity: Double
     var intensityNumber : Int = 0
-    
+    var label: UILabel
+    var layer: CALayer
     var isEmpharse: Bool = false {
         didSet {
             if isEmpharse {
@@ -87,7 +88,7 @@ class Pixel : UILabel {
 
     var fillColorNumber : Int? {
         set {
-            if intensityNumber < Pixel.intensityToDisable && _fillColorNumber != newValue {
+            if intensityNumber < PixelModel.intensityToDisable && _fillColorNumber != newValue {
                 _fillColorNumber = newValue
             }
         }
@@ -100,24 +101,24 @@ class Pixel : UILabel {
     var effectBackgroundColor: UIColor? {
         set {
             guard _fillColorNumber == nil else {return}
-            backgroundColor = newValue
+            label.backgroundColor = newValue
         }
         get {
            
-            return backgroundColor
+            return label.backgroundColor
         }
     }
     
     func drawWhenFillRight() {
-        text = ""
-        backgroundColor = DataService.share.selectedImage!.patternColors[_fillColorNumber!].color.uiColor
-        layer.borderColor = nil
-        layer.borderWidth = 0
+        label.text = ""
+        label.backgroundColor = DataService.share.selectedImage!.patternColors[_fillColorNumber!].color.uiColor
+        label.layer.borderColor = nil
+        label.layer.borderWidth = 0
     }
     
     func drawWhenFillWrong(at fillNumber: Int) {
-        backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.tranperentColor
-        text = "\(intensityNumber)"
+        label.backgroundColor = DataService.share.selectedImage!.patternColors[fillNumber].color.tranperentColor
+        label.text = "\(intensityNumber)"
     }
     
    
@@ -128,10 +129,10 @@ class Pixel : UILabel {
         self.color = color
         self.intensity = intensity
         self.intensityNumber = Int(intensity * maxIntensity)
-        let frame = CGRect(origin: coordinate.originPoint, size: Pixel.size)
+        let frame = CGRect(origin: coordinate.originPoint, size: PixelModel.size)
+        label = UILabel(frame: frame)
+        layer.frame = frame
         grayColor = UIColor.black.withAlphaComponent(1-CGFloat(intensityNumber)/CGFloat(maxIntensity))
-        
-        super.init(frame: frame)
         setupBorderAndText()
     }
     
@@ -140,17 +141,8 @@ class Pixel : UILabel {
         let green =  pointer[offset + 1]
         let blue  =  pointer[offset + 2]
         let color = Color(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue))
-        let intensity = Pixel.calculateIntensity(red: red, green: green, blue: blue)
+        let intensity = PixelModel.calculateIntensity(red: red, green: green, blue: blue)
         self.init(color: color, coordinate: coordinate, intensity: intensity, type: type)
-    }
-    
-    convenience init(_ pixel: Pixel) {
-        self.init(color: pixel.color, coordinate: pixel.coordinate, intensity: pixel.intensity, type: .color)
-    }
-    
-    func makeDuplicate() -> Pixel
-    {
-        return Pixel(self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -176,7 +168,7 @@ class Pixel : UILabel {
     func setupBorderAndText() {
         switch type {
         case .number:
-            if intensityNumber >= Pixel.intensityToDisable {
+            if intensityNumber >= PixelModel.intensityToDisable {
                 layer.borderColor = UIColor.lightGray.cgColor
                 layer.borderWidth = 0.1
                 text = ""
@@ -187,7 +179,7 @@ class Pixel : UILabel {
             }
             effectBackgroundColor = UIColor.clear
         case .color:
-            if intensityNumber >= Pixel.intensityToDisable {
+            if intensityNumber >= PixelModel.intensityToDisable {
                 effectBackgroundColor = UIColor.white
             } else {
                 effectBackgroundColor = grayColor
@@ -199,7 +191,7 @@ class Pixel : UILabel {
         self.font = UIFont.systemFont(ofSize: 5)
     }
     
-    static func ==(lhs: Pixel, rhs: Pixel) -> Bool {
+    static func ==(lhs: Pixel, rhs: PixelModel) -> Bool {
         return (lhs.coordinate.col == rhs.coordinate.col) && (lhs.coordinate.row == rhs.coordinate.row)
     }
     
