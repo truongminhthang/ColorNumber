@@ -17,7 +17,7 @@ class PhotoViewController: UIViewController {
     }
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
 
     var imageTaken: UIImage?
     var monoFilterName: String = "CIPhotoEffectMono"
@@ -31,6 +31,14 @@ class PhotoViewController: UIViewController {
         //imageView.image = imageTaken
         imageView.image = filterImage(image: imageTaken!, scale: scale!)
       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,7 +76,7 @@ class PhotoViewController: UIViewController {
         return resultImage!
     }
     
-    @IBAction func cancelButton(_ sender: UIButton) {
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -79,6 +87,14 @@ class PhotoViewController: UIViewController {
         scale = reverseValue
         imageView.image = filterImage(image: imageTaken!, scale: scale!)
     }
-
-    
+    @IBAction func renderingPixelImage(_ sender: UIButton) {
+        let vc = PaintViewController.instance
+        let pixelImageView = PixelImageView(image: imageTaken!)
+        AppDelegate.shared.patternColors = pixelImageView.patternColors
+        pixelImageView.reloadData()
+        DataService.share.updateSelectedImage(pixelImage: pixelImageView)
+        vc.pixelImageView = pixelImageView
+        AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

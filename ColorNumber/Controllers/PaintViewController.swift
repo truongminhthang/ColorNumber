@@ -10,6 +10,11 @@ import UIKit
 
 class PaintViewController: UIViewController {
     
+    static var instance : PaintViewController {
+        let storyboard = UIStoryboard(name: "Paint", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "PaintViewController") as! PaintViewController
+    }
+    
     var pixelImageView: PixelImageView? = DataService.share.selectedImage
     
     @IBOutlet weak var collectionView: UICollectionView!

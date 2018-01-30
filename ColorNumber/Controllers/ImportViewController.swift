@@ -266,13 +266,14 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         guard let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)") }
         let photoVC = PhotoViewController.instance
+        let navigationController = UINavigationController(rootViewController: photoVC)
         photoVC.imageTaken = selectedImage
         photoVC.scale = scale
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
         DispatchQueue.main.async {
-            self.present(photoVC, animated: true, completion: nil)
+            self.present(navigationController, animated: true, completion: nil)
         }
     }
     
