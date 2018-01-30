@@ -11,6 +11,9 @@ import Photos
 
 class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var saveCameraRollButton: UIButton!
+    @IBOutlet weak var shareInstagramButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
     let pixelImageView = DataService.share.selectedImage
     var duration = 0.05
     var numberOfColumn :CGFloat = 0.0
@@ -22,7 +25,6 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first! as String
         return  URL(fileURLWithPath: path)
     }()
-
     
     var localBlankVideoPath: URL {
         get {
@@ -70,15 +72,6 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         play()
     }
     
-    @IBAction func fill() {
-        guard let pixelView = pixelImageView else {return}
-        let endingTime = 2.5
-        
-        videoService.makeBlankVideo(blankImage: #imageLiteral(resourceName: "whiteBg"), videoSize: container.bounds.size, outputPath: localBlankVideoPath, duration: duration * Double(pixelView.pixelStack.count) + endingTime) { () -> Void in
-            print("localBlankVideoPath : \(self.localBlankVideoPath)")
-            self.exportVideo()
-        }
-    }
     @IBAction func play() {
         if container.layer.sublayers != nil {
             for layer in container.layer.sublayers! {
@@ -89,55 +82,30 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         container.layer.addSublayer(layer)
     }
     
-    //MARK: share Video
-    @IBAction func shareVideoService(_ sender: UIButton) {
-        let videoToShare = [videoService]
-        let activityViewController = UIActivityViewController(activityItems: videoToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        // services no use
-//        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook]
-        self.present(activityViewController, animated: true, completion: nil)
+    //MARK: More
+    @IBAction func more(_ sender: UIButton) {
+        moreButton.animate { [unowned self] sucess in
+            self.saveVideo(isSaveCameraRoll: false)
+            self.moreButton.isEnabled = false
+        }
     }
     
-
+    //MARK: Save Instagram
+    var isShareInstagram: Bool = false
+    @IBAction func shareInstagram(_ sender: UIButton) {
+        isShareInstagram = true
+        shareInstagramButton.animate { [unowned self] sucess in
+            self.shareInstagramButton.isEnabled = false
+            self.saveVideo(isSaveCameraRoll: true)
+        }
+    }
+    
     //MARK: Save video to library
     @IBAction func saveVideoLibrary(_ sender: UIButton) {
-
-        PHPhotoLibrary.shared().performChanges({
-            // Anh xem phần atFileURL giup em
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.localVideoPath)
-        }) { saved, error in
-            if saved {
-                let fetchOptions = PHFetchOptions()
-                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-
-                // After uploading we fetch the PHAsset for most recent video and then get its current location url
-                let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
-                PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
-                    let newObj = avurlAsset as! AVURLAsset
-                    print(newObj.url)
-                    // This is the URL we need now to access the video from gallery directly.
-                })
-            }
+        saveCameraRollButton.animate { [unowned self] sucess in
+            self.saveCameraRollButton.isEnabled = false
+            self.saveVideo(isSaveCameraRoll: true)
         }
-        
-        // Set image url asset library image camera
-//        func saveVideo(videoURL: URL, completion: @escaping (String) -> Void) {
-//            var placeHolder: PHObjectPlaceholder? = nil
-//            PHPhotoLibrary.shared().performChanges({
-//                let creationRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.localVideoPath)
-//                placeHolder = creationRequest?.placeholderForCreatedAsset!
-//            }, completionHandler: { success, error in
-//                guard success, let placeholder = placeHolder else {
-//                    return
-//                }
-//                let localID = placeholder.localIdentifier
-//                let assetID = localID.replacingOccurrences(of: "/.*", with: "", options: [.regularExpression], range: nil)
-//                let ext = "mp4"
-//                let assetURLStr = "assets-library://asset/asset.\(ext)?id=\(assetID)&ext=\(ext)"
-//                completion(assetURLStr)
-//            })
-//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -163,10 +131,46 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     }
     
     
-    func exportVideo() {
+    func shareVideo(with url: URL) {
+        let activityItems = [url]
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.popoverPresentationController?.sourceRect = self.view.frame
+        // services no use
+        activityViewController.excludedActivityTypes = [ .postToTwitter, .postToFacebook, .airDrop , .postToWeibo]
+        moreButton.isEnabled = true
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func shareInstagram(with url: URL) {
+        let caption = "Đăng lên Instagram"
+        let instagramString = "instagram://library?AssetPath=\(url.absoluteString.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!)&InstagramCaption=\(caption.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!)"
+        let instagramURL = URL(string: instagramString)
+
+        if UIApplication.shared.canOpenURL(instagramURL!) {
+            UIApplication.shared.open(instagramURL!, options: [:], completionHandler: nil)
+        } else {
+            print("Instagram app not installed.")
+        }
+        shareInstagramButton.isEnabled = true
+        isShareInstagram = false
+    }
+    
+    func saveVideo(isSaveCameraRoll: Bool) {
+        guard let pixelView = pixelImageView else {return}
+        let endingTime = 2.5
+        
+        videoService.makeBlankVideo(blankImage: #imageLiteral(resourceName: "whiteBg"), videoSize: container.bounds.size, outputPath: localBlankVideoPath, duration: duration * Double(pixelView.pixelStack.count) + endingTime) { () -> Void in
+//            print("localBlankVideoPath : \(self.localBlankVideoPath)")
+            self.exportVideo(isSaveCameraRoll)
+        }
+    }
+    func exportVideo(_ isSaveCameraRoll: Bool) {
         let input = VideoExportInput()
         videoID = NSUUID().uuidString
+        
         input.videoPath = self.localVideoPath
+        input.isSaveCameraRoll = isSaveCameraRoll
         
         let asset = AVAsset(url: self.localBlankVideoPath)
         input.videoAsset = asset
@@ -191,8 +195,7 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         animation.isRemovedOnCompletion = false
         return animation
     }
-    private func playVideo() {
-        let url = self.localVideoPath
+    private func playVideo(with url: URL) {
         let player = AVPlayer(url: url)
         self.playerViewController = AVPlayerViewController()
         self.playerViewController!.player = player
@@ -201,10 +204,19 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         }
     }
     
-    func videoExportServiceExportSuccess() {
+    func videoExportServiceExportSuccess(with url: URL, and isSaveCameraRoll: Bool) {
         print("sucess")
-        DispatchQueue.main.async {
-            self.playVideo()
+        if isSaveCameraRoll {
+            DispatchQueue.main.async {
+                if self.isShareInstagram {
+                    self.shareInstagram(with: url)
+                } else {
+                    self.playVideo(with: url)
+                    self.saveCameraRollButton.isEnabled = true
+                }
+            }
+        } else {
+            shareVideo(with: url)
         }
     }
     

@@ -78,7 +78,7 @@ extension LibraryViewController {
     
     @objc func feedback(_ recogznier: UITapGestureRecognizer) {
         self.feedbackLb.animate { (complete) in
-            print("Feedback")
+            
         }
     }
     

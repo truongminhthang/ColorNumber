@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rqN-e5-t8F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rqN-e5-t8F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -213,22 +213,25 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YRY-71-JGe">
                                         <rect key="frame" x="93" y="48.5" width="190" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH9-Ci-Sxb">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH9-Ci-Sxb">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <state key="normal" title="LƯU" image="save"/>
+                                                <state key="normal" image="save"/>
                                                 <connections>
                                                     <action selector="saveVideoLibrary:" destination="wJQ-Ti-JNV" eventType="touchUpInside" id="h6R-Pa-ktk"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-yg-xwn">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-yg-xwn">
                                                 <rect key="frame" x="70" y="0.0" width="50" height="50"/>
-                                                <state key="normal" title="INSTAGRAM" image="shareInstagram"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4J-V1-hlL">
-                                                <rect key="frame" x="140" y="0.0" width="50" height="50"/>
-                                                <state key="normal" title="KHÁC" image="share"/>
+                                                <state key="normal" image="shareInstagram"/>
                                                 <connections>
-                                                    <action selector="shareVideoService:" destination="wJQ-Ti-JNV" eventType="touchUpInside" id="yak-n6-vwX"/>
+                                                    <action selector="shareInstagram:" destination="wJQ-Ti-JNV" eventType="touchUpInside" id="aIl-RC-4YG"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4J-V1-hlL">
+                                                <rect key="frame" x="140" y="0.0" width="50" height="50"/>
+                                                <state key="normal" image="share"/>
+                                                <connections>
+                                                    <action selector="more:" destination="wJQ-Ti-JNV" eventType="touchUpInside" id="kxm-CT-je8"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -267,6 +270,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="container" destination="fcN-GE-9B8" id="nIV-Ws-WKR"/>
+                        <outlet property="moreButton" destination="M4J-V1-hlL" id="BcF-eM-ha1"/>
+                        <outlet property="saveCameraRollButton" destination="xH9-Ci-Sxb" id="7nR-Ft-T9s"/>
+                        <outlet property="shareInstagramButton" destination="D4a-yg-xwn" id="l02-Wg-kev"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ezi-Y2-Fy1" userLabel="First Responder" sceneMemberID="firstResponder"/>

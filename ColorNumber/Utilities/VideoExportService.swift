@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Photos
 
 class VideoExportService: NSObject {
     weak var delegate: VideoExportServiceDelegate?
@@ -83,8 +84,8 @@ class VideoExportService: NSObject {
             self.progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.timerTick), userInfo: nil, repeats: true)
         }
         
-        self.exporter.exportAsynchronously { [weak self]() -> Void in
-            self?.finishExportAtFileUrl(url: url!)
+        self.exporter.exportAsynchronously { [unowned self]() -> Void in
+            self.finishExportAtFileUrl(url: url!)
         }
     }
     
@@ -98,13 +99,41 @@ class VideoExportService: NSObject {
         DispatchQueue.main.async {
             self.progressTimer?.invalidate()
             if self.exporter.status == AVAssetExportSessionStatus.completed {
-                self.delegate?.videoExportServiceExportSuccess()
+                if self.input.isSaveCameraRoll {
+                    self.saveVideo(videoURL: url, completion: { [unowned self] urlAssest in
+                        self.delegate?.videoExportServiceExportSuccess(with: urlAssest, and: true)
+                    })
+                } else {
+                    self.delegate?.videoExportServiceExportSuccess(with: url, and: false)
+                }
             }
             else {
                 self.delegate?.videoExportServiceExportFailedWithError(error: self.exporter.error! as NSError)
             }
         }
         
+    }
+    
+    
+    //  Save video to library image camera
+    private func saveVideo(videoURL: URL, completion: @escaping (URL) -> Void ) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
+        }) { saved, error in
+            if saved {
+                let fetchOptions = PHFetchOptions()
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+                
+                // After uploading we fetch the PHAsset for most recent video and then get its current location url
+                
+                let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
+                PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
+                    let newObj = avurlAsset as! AVURLAsset
+                    // This is the URL we need now to access the video from gallery directly.
+                    completion(newObj.url)
+                })
+            }
+        }
     }
     
     private func audioParamsForTrack(track: AVAssetTrack, volume: Float) -> AVAudioMixInputParameters {
