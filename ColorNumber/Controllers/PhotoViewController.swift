@@ -16,21 +16,15 @@ class PhotoViewController: UIViewController {
         return storyboard.instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
     }
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var changeLevelOfDifficult: UISlider!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
-
+    
     var imageTaken: UIImage?
-    var monoFilterName: String = "CIPhotoEffectMono"
-    var pixelFilterName: String = "CIPixellate"
-    var scale: Int?
-    var fakeLayer: CALayer?
-    var monoLayer: CALayer?
-    var layerView: UIImageView?
+    var scale = 15
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //imageView.image = imageTaken
-        imageView.image = filterImage(image: imageTaken!, scale: scale!)
-      
+        changeLevelOfDifficult.value = Float(scale)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,56 +33,70 @@ class PhotoViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        scaleImage(scale: scale)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    func filterImage(image: UIImage, scale: Int) -> UIImage {
-        var resultImage = imageTaken
-        let softwareContext = CIContext(options: [kCIContextUseSoftwareRenderer: true])
-        var imageToDisplay: CIImage? = imageTaken?.ciImage
-        if let pixelFilter = CIFilter(name: pixelFilterName) {
-            if let ciImage = resultImage?.ciImage {
-                pixelFilter.setValue(ciImage, forKey: kCIInputImageKey)
-                pixelFilter.setValue(scale, forKey: "inputScale")
-            } else {
-                pixelFilter.setValue(CIImage(image: resultImage!), forKey: kCIInputImageKey)
-                pixelFilter.setValue(scale, forKey: "inputScale")
-  
+    
+    func scaleImage(scale: Int) {
+        if imageTaken != nil {
+            let height = imageTaken!.size.height
+            let width = imageTaken!.size.width
+            let sizeCrop = width > height ? CGSize(width: height, height: height) : CGSize(width: width, height: width)
+            var resultImage = imageTaken!.imageWithFixedOrientation().cropImageIfNeed(sizeCrop)
+            let softwareContext = CIContext(options: [kCIContextUseSoftwareRenderer: true])
+            var imageToDisplay = resultImage.ciImage
+            if let pixelFilter = CIFilter(name: "CIPixellate") {
+                if let ciImage = resultImage.ciImage {
+                    pixelFilter.setValue(ciImage, forKey: kCIInputImageKey)
+                    pixelFilter.setValue(scale, forKey: "inputScale")
+                } else {
+                    pixelFilter.setValue(CIImage(image: resultImage), forKey: kCIInputImageKey)
+                    pixelFilter.setValue(scale, forKey: "inputScale")
+                    
+                }
+                imageToDisplay = pixelFilter.outputImage
             }
-            imageToDisplay = pixelFilter.outputImage
-        }
-        
-        if let monoFilter = CIFilter(name: monoFilterName) {
-            if let ciImage = imageToDisplay {
-                monoFilter.setValue(ciImage, forKey: kCIInputImageKey)
-            } else {
-                monoFilter.setValue(CIImage(image: resultImage!), forKey: kCIInputImageKey)
+            
+            if let monoFilter = CIFilter(name: "CIPhotoEffectMono") {
+                if let ciImage = imageToDisplay {
+                    monoFilter.setValue(ciImage, forKey: kCIInputImageKey)
+                } else {
+                    monoFilter.setValue(CIImage(image: resultImage), forKey: kCIInputImageKey)
+                }
+                imageToDisplay = monoFilter.outputImage
+                
             }
-            imageToDisplay = monoFilter.outputImage
-
+            if let imageToDisplay = imageToDisplay {
+                let cgImage = softwareContext.createCGImage(imageToDisplay, from: imageToDisplay.extent.integral)
+                resultImage = UIImage(cgImage: cgImage!)
+            }
+            imageView.image = resultImage
         }
-        if let imageToDisplay = imageToDisplay {
-            let cgImage = softwareContext.createCGImage(imageToDisplay, from: imageToDisplay.extent.integral)
-            resultImage = UIImage(cgImage: cgImage!)
-        }
-        return resultImage!
+    }
+    
+    func checkCropImageWithScale(image: UIImage) -> UIImage {
+        let height = image.size.height
+        let width = image.size.width
+        let sizeCrop = width > height ? CGSize(width: height, height: height) : CGSize(width: width, height: width)
+        return image.imageWithFixedOrientation().cropImageIfNeed(sizeCrop)
     }
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func sliderValueChange(_ sender: UISlider) {
+    @IBAction func changeLevelOfDifficult(_ sender: UISlider) {
         let currentValue = Int(sender.value)
         
         let reverseValue = (Int(sender.maximumValue) - currentValue) + Int(sender.minimumValue)
         scale = reverseValue
-        imageView.image = filterImage(image: imageTaken!, scale: scale!)
+        scaleImage(scale: scale)
     }
     @IBAction func renderingPixelImage(_ sender: UIButton) {
-        let pixelImageView = PixelImageView(image: imageTaken!)
+        let pixelImageView = PixelImageView(image: checkCropImageWithScale(image: imageTaken!))
         DataService.share.addImageCreatedByUser(pixelImage: pixelImageView)
         AppDelegate.shared.patternColors = pixelImageView.patternColors
         pixelImageView.reloadData()
@@ -96,3 +104,4 @@ class PhotoViewController: UIViewController {
         performSegue(withIdentifier: "showPaintVC", sender: nil)
     }
 }
+

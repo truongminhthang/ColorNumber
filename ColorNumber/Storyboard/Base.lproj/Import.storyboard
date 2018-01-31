@@ -21,9 +21,18 @@
                         <subviews>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tt-jx-biX">
                                 <rect key="frame" x="0.0" y="98" width="320" height="320"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7OP-bV-dFD">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.17270780459999999" green="0.17270780459999999" blue="0.17270780459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0tt-jx-biX" secondAttribute="height" id="7w5-jG-Ydr"/>
+                                    <constraint firstItem="7OP-bV-dFD" firstAttribute="top" secondItem="0tt-jx-biX" secondAttribute="top" id="KSe-x3-qgs"/>
+                                    <constraint firstAttribute="trailing" secondItem="7OP-bV-dFD" secondAttribute="trailing" id="S5i-DB-hBR"/>
+                                    <constraint firstItem="7OP-bV-dFD" firstAttribute="leading" secondItem="0tt-jx-biX" secondAttribute="leading" id="jH9-mm-bWt"/>
+                                    <constraint firstAttribute="bottom" secondItem="7OP-bV-dFD" secondAttribute="bottom" id="xT8-PI-kJI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4v-RU-hyu">
@@ -36,7 +45,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <state key="normal" image="gallery"/>
                                                 <connections>
-                                                    <action selector="pickImageFromLB:" destination="W4n-Om-04t" eventType="touchUpInside" id="CZu-Ix-aDz"/>
+                                                    <action selector="electedImageFromLibrary:" destination="W4n-Om-04t" eventType="touchUpInside" id="wOA-oX-evi"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LzN-fq-YHG">
@@ -52,14 +61,14 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="takePhoto:" destination="W4n-Om-04t" eventType="touchUpInside" id="sJS-bR-6YG"/>
+                                                    <action selector="takePhoto:" destination="W4n-Om-04t" eventType="touchUpInside" id="pMq-hb-oX5"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8h-Zh-WeZ">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="50"/>
                                                 <state key="normal" image="switch camera"/>
                                                 <connections>
-                                                    <action selector="switchCamera:" destination="W4n-Om-04t" eventType="touchUpInside" id="a3S-mt-GgB"/>
+                                                    <action selector="switchCamera:" destination="W4n-Om-04t" eventType="touchUpInside" id="s58-JU-W4x"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -70,7 +79,7 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="21M-6S-Vec">
                                         <rect key="frame" x="50" y="18" width="218.5" height="31"/>
                                         <connections>
-                                            <action selector="sliderValueChanged:" destination="W4n-Om-04t" eventType="valueChanged" id="zZU-fh-TCi"/>
+                                            <action selector="changeLevelOfDifficult:" destination="W4n-Om-04t" eventType="valueChanged" id="bQh-Wv-oHC"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8w-Js-WJJ">
@@ -115,21 +124,50 @@
                     <navigationItem key="navigationItem" id="Th2-Lf-Hzz">
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="Tiu-xB-L1m">
                             <connections>
-                                <action selector="backTappedWithSender:" destination="W4n-Om-04t" id="AVt-xv-34F"/>
+                                <action selector="backTappedWithSender:" destination="W4n-Om-04t" id="bBi-Qv-nOt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="cameraView" destination="0tt-jx-biX" id="fPb-9G-vpc"/>
-                        <outlet property="pickImageBT" destination="n1o-a1-OTJ" id="0Pb-XM-91l"/>
-                        <outlet property="slider" destination="21M-6S-Vec" id="QrJ-35-YXt"/>
-                        <outlet property="switchCameraBt" destination="G8h-Zh-WeZ" id="wje-fw-pSh"/>
+                        <outlet property="changeLevelOfDifficult" destination="21M-6S-Vec" id="WU9-Ue-XsO"/>
+                        <outlet property="imageView" destination="7OP-bV-dFD" id="pBr-Ch-bHU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYM-GI-qLx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="150" y="266.19718309859155"/>
+        </scene>
+        <!--Detail View Coltroller-->
+        <scene sceneID="YyP-ZP-TRY">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewColtroller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kfz-cd-WQ2" customClass="DetailViewColtroller" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BFN-5b-zwg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LSS-2k-CmO">
+                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LSS-2k-CmO" secondAttribute="height" id="KJs-CW-A1N"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LSS-2k-CmO" firstAttribute="centerX" secondItem="BFN-5b-zwg" secondAttribute="centerX" id="04K-lg-ORq"/>
+                            <constraint firstItem="LSS-2k-CmO" firstAttribute="centerY" secondItem="BFN-5b-zwg" secondAttribute="centerY" id="pti-fi-FCv"/>
+                            <constraint firstItem="LSS-2k-CmO" firstAttribute="width" secondItem="BFN-5b-zwg" secondAttribute="width" id="tuy-H2-jOh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lif-aM-4kE"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="LSS-2k-CmO" id="YT4-a7-iSc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DOj-wg-0hL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1655" y="-493"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="mfp-K3-WlJ">
@@ -160,7 +198,7 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="fcg-q4-Ssg">
                                         <rect key="frame" x="65.5" y="7" width="189" height="31"/>
                                         <connections>
-                                            <action selector="sliderValueChange:" destination="dwn-ks-FtZ" eventType="valueChanged" id="naF-O1-f7r"/>
+                                            <action selector="changeLevelOfDifficult:" destination="dwn-ks-FtZ" eventType="valueChanged" id="Q5X-yY-VAT"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJz-Ym-CAg">
@@ -217,7 +255,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="renderingPixelImage:" destination="dwn-ks-FtZ" eventType="touchUpInside" id="3ok-b2-ixJ"/>
+                                            <action selector="renderingPixelImage:" destination="dwn-ks-FtZ" eventType="touchUpInside" id="bEq-ch-LIN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -241,15 +279,15 @@
                     <navigationItem key="navigationItem" id="j74-yl-Owh">
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="60T-am-EcV">
                             <connections>
-                                <action selector="cancelButton:" destination="dwn-ks-FtZ" id="h1U-2X-WSy"/>
+                                <action selector="cancelButton:" destination="dwn-ks-FtZ" id="gpg-vj-xWh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cancelButton" destination="60T-am-EcV" id="edt-20-TYP"/>
+                        <outlet property="changeLevelOfDifficult" destination="fcg-q4-Ssg" id="ZtE-PV-weN"/>
                         <outlet property="imageView" destination="nU5-WN-d7S" id="kZQ-WT-Pn8"/>
-                        <outlet property="slider" destination="fcg-q4-Ssg" id="qI9-Ll-3z7"/>
                         <segue destination="Dcr-H1-Hrj" kind="presentation" identifier="showPaintVC" id="FWd-Ts-My7"/>
                     </connections>
                 </viewController>

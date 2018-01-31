@@ -8,239 +8,209 @@
 
 import UIKit
 import AVFoundation
-import CoreVideo
 import CoreImage
 
-class ImportViewController: UIViewController, UIImagePickerControllerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, UINavigationControllerDelegate {
+import UIKit
+import AVFoundation
+import CoreImage
+
+class ImportViewController: UIViewController, UINavigationControllerDelegate {
     
-    var captureSession = AVCaptureSession()
-    var backCamera: AVCaptureDevice?
-    var frontCamera: AVCaptureDevice?
-    var currentCamera: AVCaptureDevice?
-    var photoOutput : AVCapturePhotoOutput?
-    var videoInput: AVCaptureInput?
-    var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
-    var monoLayer: CALayer?
-    var monoFilterName: String = "CIPhotoEffectMono"
-    var pixelFilterName: String = "CIPixellate"
-    var pixelFilter: CIFilter?
-    var monoFilter: CIFilter?
-    var scale: Int? = 30
-    var ciImage: CIImage?
-    @IBOutlet weak var switchCameraBt: UIButton!
-    @IBOutlet weak var cameraView: UIView!
-    @IBOutlet weak var pickImageBT: UIButton!
-    @IBOutlet weak var slider: UISlider!
-    var isTakePhoto: Bool = false
-    private let sessionQueue = DispatchQueue(label: "session queue")
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var changeLevelOfDifficult: UISlider!
+    
+    var imageToSave = UIImage()
+    var stillImageOutput: AVCapturePhotoOutput!
+    var photoEffectMonoLayer = CALayer()
+    var session = AVCaptureSession()
+    var aVCaptureDeviceInput: AVCaptureDeviceInput?
+    var scale = 30
+    var isCaptureImage: Bool = false
+    var isFrontCamera: Bool = true {
+        didSet {
+            if aVCaptureDeviceInput != nil {
+                session.removeInput(aVCaptureDeviceInput!)
+            }
+            if isFrontCamera {
+                authorizationCaptureDevice(with: .front)
+            } else {
+                authorizationCaptureDevice(with: .back)
+            }
+        }
+    }
+    let imageFlippedForRightToLeftLayoutDirection: Int32 = 5
     lazy var context: CIContext = {
         let eaglContext = EAGLContext(api: EAGLRenderingAPI.openGLES2)
         let options = [kCIContextWorkingColorSpace:NSNull()]
         return CIContext(eaglContext: eaglContext!, options: options)
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        authorizationCaptureDevice()
-    }
-    
-    func authorizationCaptureDevice() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .authorized:
-            break
-            
-        case .notDetermined:
-            sessionQueue.suspend()
-            AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
-                if !granted {
-                    self.setupResult = .notAuthorized
-                }
-                self.sessionQueue.resume()
-            })
-            
-        default:
-            setupResult = .notAuthorized
-        }
-    }
-    
-    func liveCamera() {
-        sessionQueue.async {
-            switch self.setupResult {
-            case .success:
-                self.setupDevice()
-                self.setupCaptureSession()
-                self.setupPreviewLayer()
-                self.startingRunningCaptureSession()
-                
-            case .notAuthorized:
-                DispatchQueue.main.async {
-                    self.switchCameraBt.isEnabled = false
-                    showAlertToOpenSetting(title: "Color Number", message: "Color Number doesn't have permission to use the camera, please change privacy settings")
-                }
-                
-            case .configurationFailed:
-                self.switchCameraBt.isEnabled = false
-                DispatchQueue.main.async {
-                    let alertMsg = "Alert message when something goes wrong during capture session configuration"
-                    let message = NSLocalizedString("Unable to capture media", comment: alertMsg)
-                    showAlert(vc: self, title: "Color Number", message: message)
-                }
-            }
-        }
+        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.post(name: .hideTabBar, object: nil)
-        liveCamera()
+        isFrontCamera = true
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
-        
-        self.captureSession.stopRunning()
         super.viewWillDisappear(animated)
+        session.stopRunning()
     }
-    
-    private enum SessionSetupResult {
-        case success
-        case notAuthorized
-        case configurationFailed
-    }
-    
-    private var setupResult: SessionSetupResult = .success
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func setupCaptureSession() {
-        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+    // MARK: - Actions
+    @IBAction func takePhoto(_ sender: UIButton) {
+        isCaptureImage = true
+        sender.isUserInteractionEnabled = false
     }
-    func setupDevice() {
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
-        let devices = deviceDiscoverySession.devices
-        for device in devices {
-            if device.position == AVCaptureDevice.Position.back {
-                backCamera = device
-            } else if device.position == AVCaptureDevice.Position.front{
-                frontCamera = device
-            }
-        }
-        currentCamera = frontCamera
-        setupInputOutput()
+    @IBAction func changeLevelOfDifficult(_ sender: UISlider) {
+        let currentValue = Int(sender.value)
+        let reverseValue = (Int(sender.maximumValue) - currentValue) + Int(sender.minimumValue)
+        scale = reverseValue
+    }
+    @IBAction func backTapped(sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: .backToHome, object: nil)
         
     }
-    func setupInputOutput() {
-        guard setupResult == .success && currentCamera != nil else {return}
-        captureSession.sessionPreset = AVCaptureSession.Preset.photo
-        
-        do {
-            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
-            if captureSession.canAddInput(captureDeviceInput) {
-                captureSession.addInput(captureDeviceInput)
-            }
-            
-            if #available(iOS 11.0, *) {
-                photoOutput?.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
-            } else {
-                // Fallback on earlier versions
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func setupPreviewLayer() {
-        self.cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        self.cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
-        monoLayer = CALayer()
-
-        DispatchQueue.main.async {[unowned self] in
-            self.cameraPreviewLayer?.frame = self.cameraView.bounds
-            let monoFrame = self.cameraPreviewLayer?.bounds.insetBy(dx: -10, dy: -10)
-            self.monoLayer?.frame = monoFrame ?? .zero
-            self.cameraView.layer.insertSublayer(self.cameraPreviewLayer!, at: 0)
-            self.cameraView?.layer.sublayers?.append(self.monoLayer!)
-        }
-    }
-    
-    func startingRunningCaptureSession() {
-        captureSession.startRunning()
-        let dataOutput = AVCaptureVideoDataOutput()
-        dataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value:kCVPixelFormatType_32BGRA)]
-        dataOutput.alwaysDiscardsLateVideoFrames = true
-        
-        if captureSession.canAddOutput(dataOutput) {
-            captureSession.addOutput(dataOutput)
-        }
-        
-        captureSession.commitConfiguration()
-        
-        
-        let queue = DispatchQueue(label: "captureQueue")
-        dataOutput.setSampleBufferDelegate(self, queue: queue)
-    }
-    
-    @IBAction func switchCamera(_ sender: UIButton) {
-        //Change camera source
-        
-        
-        let session = self.captureSession
-        //Indicate that some changes will be made to the session
-        //Remove existing input
-        guard let currentCameraInput:AVCaptureInput = session.inputs.first else { return }
-        session.beginConfiguration()
-        self.switchCameraBt.isEnabled = false
-        session.removeInput(currentCameraInput)
-        
-        //Get new input
-        var newCamera:AVCaptureDevice! = nil
-        if let input = currentCameraInput as? AVCaptureDeviceInput {
-            if (input.device.position == .back) {
-                newCamera = self.frontCamera
-            }
-            else {
-                newCamera = self.backCamera
-            }
-        }
-        
-        //Add input to session
-        var err: NSError?
-        var newVideoInput: AVCaptureDeviceInput!
-        do {
-            newVideoInput = try AVCaptureDeviceInput(device: newCamera)
-        } catch let err1 as NSError {
-            err = err1
-            newVideoInput = nil
-        }
-        
-        if(newVideoInput == nil || err != nil) {
-            print("Error creating capture device input: \(err!.localizedDescription)")
-        }
-        else {
-            session.addInput(newVideoInput)
-        }
-        
-        //Commit all the configuration changes at once
-        session.commitConfiguration()
-        
-        self.switchCameraBt.isEnabled = true
-        
-    }
-    
-    
-    @IBAction func pickImageFromLB(_ sender: UIButton) {
+    @IBAction func electedImageFromLibrary(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
-        
     }
-    //MARK: UIImagePickerControllerDelegate
+    @IBAction func switchCamera(_ sender: UIButton) {
+        session.stopRunning()
+        isFrontCamera = !isFrontCamera
+    }
+}
+// MARK : - Configure AVCapture
+extension ImportViewController {
+    func authorizationCaptureDevice(with device: AVCaptureDevice.Position) {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            configureCamera(with: device)
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: {[unowned self] granted in
+                if !granted {
+                    self.cameraDeviceNotDetermined()
+                } else {
+                    DispatchQueue.main.async {[unowned self] in
+                        self.configureCamera(with: device)
+                    }
+                }
+            })
+        default:
+            cameraDeviceConfigurationFailed(isErrorDevice: false)
+        }
+    }
+    func configureCamera(with device: AVCaptureDevice.Position) {
+        session.sessionPreset = .photo
+        stillImageOutput = AVCapturePhotoOutput()
+        let videoDataOutput = AVCaptureVideoDataOutput()
+        videoDataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "Buffer Queue", qos: .userInteractive, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil))
+        videoDataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value:kCVPixelFormatType_32BGRA)]
+        videoDataOutput.alwaysDiscardsLateVideoFrames = true
+        let cameraDevices = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
+        var cameraDevice: AVCaptureDevice?
+        
+        for cameraDv in cameraDevices.devices {
+            if cameraDv.position == device {
+                cameraDevice = cameraDv
+                break
+            }
+        }
+        do {
+            if cameraDevice == nil {
+                cameraDeviceConfigurationFailed(isErrorDevice: true)
+            } else {
+                let captureDeviceInput = try AVCaptureDeviceInput(device: cameraDevice!)
+                aVCaptureDeviceInput = captureDeviceInput
+                configureAVCaptureSession(captureDeviceInput: captureDeviceInput, with: videoDataOutput)
+            }
+        }
+        catch {
+            print("Error occured \(error)")
+            return
+        }
+    }
+    
+    func configureAVCaptureSession(captureDeviceInput: AVCaptureDeviceInput,with videoDataOutput: AVCaptureVideoDataOutput) {
+        if session.canAddInput(captureDeviceInput) {
+            session.addInput(captureDeviceInput)
+            if session.canAddOutput(stillImageOutput) {
+                session.addOutput(stillImageOutput)
+            }
+            if session.canAddOutput(videoDataOutput) {
+                session.addOutput(videoDataOutput)
+            }
+            let captureVideoLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.init(session: session)
+            captureVideoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            imageView.layer.addSublayer(captureVideoLayer)
+            captureVideoLayer.frame = imageView.bounds
+            session.startRunning()
+            captureVideoLayer.addSublayer(photoEffectMonoLayer)
+            photoEffectMonoLayer.frame = imageView.bounds.insetBy(dx: -20, dy: -20)
+        }
+    }
+    func cameraDeviceNotDetermined() {
+        DispatchQueue.main.async {
+            showAlertToOpenSetting(title: "Color Number", message: "Color Number doesn't have permission to use the camera, please change privacy settings")
+        }
+    }
+    func cameraDeviceConfigurationFailed(isErrorDevice: Bool) {
+        DispatchQueue.main.async {
+            let alertMsg = "Alert message when something goes wrong during capture session configuration"
+            let message = NSLocalizedString("Unable to capture media", comment: alertMsg)
+            showAlert(title: "Color Number", message: message, completeHandler: {[unowned self] in
+                if !isErrorDevice {
+                    self.cameraDeviceNotDetermined()
+                } else {
+                    self.isFrontCamera = !self.isFrontCamera
+                }
+            })
+        }
+    }
+}
+// MARK : - AVCaptureVideoDataOutputSampleBufferDelegate
+extension ImportViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        let outputCIImage = CIImage(cvImageBuffer: pixelBuffer).oriented(forExifOrientation: imageFlippedForRightToLeftLayoutDirection)
+        if let outputMonoCIPixellate = outputCIImage.monoCIPixellate(with: scale) {
+            let cgImageMono = context.createCGImage(outputMonoCIPixellate, from: outputMonoCIPixellate.extent)
+            DispatchQueue.main.sync {
+                photoEffectMonoLayer.contents = cgImageMono
+            }
+        }
+        if isCaptureImage {
+            captureImage(photoSampleBuffer: sampleBuffer)
+            isCaptureImage = false
+        }
+    }
+    func captureImage(photoSampleBuffer: CMSampleBuffer) {
+        let vc = PhotoViewController.instance
+        vc.imageTaken = UIImage(sampleBuffer: photoSampleBuffer)
+        vc.scale = scale
+        DispatchQueue.main.async {
+            let navigationController = UINavigationController(rootViewController: vc)
+            self.present(navigationController, animated: true, completion: nil)
+        }
+    }
+}
+
+//MARK: - UIImagePickerControllerDelegate
+
+extension ImportViewController: UIImagePickerControllerDelegate {
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)
@@ -248,82 +218,12 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)") }
-        let photoVC = PhotoViewController.instance
-        let navigationController = UINavigationController(rootViewController: photoVC)
-        photoVC.imageTaken = selectedImage
-        photoVC.scale = scale
-        
         // Dismiss the picker.
-        dismiss(animated: true, completion: nil)
-        DispatchQueue.main.async {
+        dismiss(animated: true) { [unowned self] in
+            let vc = PhotoViewController.instance
+            vc.imageTaken = selectedImage
+            let navigationController = UINavigationController(rootViewController: vc)
             self.present(navigationController, animated: true, completion: nil)
         }
     }
-    
-    //MARK: Take a Photo
-    @IBAction func takePhoto(_ sender: UIButton) {
-        isTakePhoto = true
-    }
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)!
-        var outputImage = CIImage(cvImageBuffer: imageBuffer)
-        let transform = getOrientation()
-        outputImage = outputImage.transformed(by: transform)
-        ciImage = outputImage
-        addPixelFilter(outputImage: outputImage, scale: scale!)
-        outputImage = (self.pixelFilter?.outputImage)!
-        addMonoFilter(outputImage: outputImage)
-        outputImage = (self.monoFilter?.outputImage)!
-        let cgImage = self.context.createCGImage(outputImage, from: outputImage.extent)
-        DispatchQueue.main.sync {
-            monoLayer?.contents = cgImage
-        }
-        if isTakePhoto == true {
-            takeAPhoto(sampleBuffer: sampleBuffer)
-        }
-    }
-    func takeAPhoto(sampleBuffer: CMSampleBuffer) {
-        isTakePhoto = false
-            let photoVC =  PhotoViewController.instance
-            photoVC.imageTaken = UIImage(ciImage: ciImage!)
-            photoVC.scale = scale
-            DispatchQueue.main.async {
-                self.present(photoVC, animated: true, completion: nil)
-            }
-        
-    }
-    func addPixelFilter(outputImage: Any?, scale: Int ) {
-        self.pixelFilter = CIFilter(name: pixelFilterName)
-        self.pixelFilter?.setValue(outputImage, forKey: kCIInputImageKey)
-        self.pixelFilter?.setValue(scale, forKey: "inputScale")
-    }
-    func addMonoFilter(outputImage: Any? ) {
-        self.monoFilter = CIFilter(name: monoFilterName)
-        self.monoFilter?.setValue(outputImage, forKey: kCIInputImageKey)
-    }
-    
-    
-    func getOrientation() -> CGAffineTransform {
-        let angle: CGFloat = -CGFloat.pi/2
-        if let latestInput = captureSession.inputs.first as? AVCaptureDeviceInput {
-            let camPosition = latestInput.device.position
-            return(camPosition == .front) ? CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(scaleX: -1, y: 1)) : CGAffineTransform(rotationAngle: angle)
-        }
-        return CGAffineTransform(rotationAngle: angle)
-    }
-    deinit {
-        print("!")
-    }
-    @IBAction func sliderValueChanged(_ sender: UISlider) {
-        let currentValue = Int(sender.value)
-        let reverseValue = (Int(sender.maximumValue) - currentValue) + Int(sender.minimumValue)
-        scale = reverseValue
-    }
-    
-    @IBAction func backTapped(sender: UIBarButtonItem) {
-        NotificationCenter.default.post(name: .backToHome, object: nil)
-        
-    }
 }
-
