@@ -12,8 +12,6 @@ import CoreData
 
 class LibraryViewController: UIViewController {
     
-    @IBOutlet weak var addThree: UIImageView!
-    @IBOutlet weak var watchVideo: UIImageView!
     @IBOutlet weak var reviewLb: DesignableLabel!
     @IBOutlet weak var feedbackLb: DesignableLabel!
     @IBOutlet weak var tableView: UITableView!
@@ -49,6 +47,7 @@ class LibraryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         //MARK: Reload row have selected
         tableView.reloadData()
     }
@@ -60,10 +59,6 @@ class LibraryViewController: UIViewController {
     
     // MARK: Setup view
     func setupView() {
-        let tapWatchVideoImage = UITapGestureRecognizer.init(target: self, action: #selector(self.watchVideo(_:)))
-        watchVideo.addGestureRecognizer(tapWatchVideoImage)
-        let tapAddThree = UITapGestureRecognizer.init(target: self, action: #selector(self.addThree(_:)))
-        addThree.addGestureRecognizer(tapAddThree)
         let tapReview = UITapGestureRecognizer.init(target: self, action: #selector(self.review(_:)))
         reviewLb.addGestureRecognizer(tapReview)
         let tapFeedback = UITapGestureRecognizer.init(target: self, action: #selector(self.feedback(_:)))
@@ -76,7 +71,7 @@ class LibraryViewController: UIViewController {
             case "showDetailLibrary":
                 let vc = segue.destination as? DetailLibraryViewController
                 vc?.indexFromLibrary = tableView.indexPathForSelectedRow?.row
-            case "showPaitnVC":
+            case "showPaintVC":
                 break
         default:
             fatalError("not segue")
@@ -139,7 +134,7 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
             AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
 
         }
-        self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
+        self.performSegue(withIdentifier: "showPaintVC", sender: nil)
     }
     
     

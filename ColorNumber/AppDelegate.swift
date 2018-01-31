@@ -24,6 +24,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard pixel.intensityNumber < PixelModel.intensityToDisable else { return }
         patternColors[pixel.intensityNumber].addFixel(pixel)
     }
+    var isFakeModeApp : Bool = true
+    var isDashboardDisplay: Bool = false
+    
+    var reachability: Reachability! = {
+        guard let reachability = Reachability(hostname: "google.com") else {
+            return nil
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: .reachabilityChanged, object: reachability)
+        return reachability
+    }()
+    
+    @objc func reachabilityChanged() {
+        switch reachability.connection {
+        case .none:
+            showAlertToOpenSetting(title: "Cellular Data is Turned Off", message: "Turn on cellular data and allow app to access or use Wi-Fi to access data.")
+        case .wifi:
+            break
+        case .cellular:
+            break
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

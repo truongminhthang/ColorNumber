@@ -60,10 +60,7 @@ extension LibraryViewController {
     
     // MARK: Action Navigation view
     @objc func watchVideo(_ recogznier: UITapGestureRecognizer) {
-        
-        watchVideo.animate { (complete) in
-            
-        }
+       
     }
     
     @objc func addThree(_ recogznier: UITapGestureRecognizer) {

@@ -11,7 +11,6 @@ import UIKit
 class DetailLibraryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var titleHead: UILabel!
     var numbersOfItemInRow: CGFloat = 2
     var itemPadding: CGFloat = 10
     var indexFromLibrary: Int?
@@ -31,9 +30,9 @@ class DetailLibraryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
         if let select = indexFromLibrary {
-            titleHead.text = DataService.share.categories[select].titleHeader
-            titleHead.textColor = DataService.share.categories[select].colorTitle
+            title = DataService.share.categories[select].titleHeader
         }
     }
     
@@ -78,7 +77,7 @@ extension DetailLibraryViewController: UICollectionViewDataSource, UICollectionV
                 AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
                 
             }
-            self.performSegue(withIdentifier: "showPaitnVC", sender: nil)
+            self.performSegue(withIdentifier: "showPaintVC", sender: nil)
         }
     }
 }

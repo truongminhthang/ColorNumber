@@ -30,6 +30,10 @@
 		981895A4201F7825002F4AC9 /* ListImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 981895A3201F7825002F4AC9 /* ListImage.plist */; };
 		981895A6201F7B55002F4AC9 /* PlistServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981895A5201F7B55002F4AC9 /* PlistServices.swift */; };
 		981895A9201F7F65002F4AC9 /* LibraryViewController+Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981895A8201F7F65002F4AC9 /* LibraryViewController+Review.swift */; };
+		982185202020505B00F907F1 /* GoogleAdsMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9821851F2020505B00F907F1 /* GoogleAdsMob.swift */; };
+		98218523202050BB00F907F1 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982185212020508A00F907F1 /* GoogleMobileAds.framework */; };
+		98218525202050ED00F907F1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98218524202050EC00F907F1 /* Reachability.swift */; };
+		98218527202051E600F907F1 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98218526202051E600F907F1 /* Alert.swift */; };
 		9841AA1220163AB0002D5639 /* Gallary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9841AA1020163AB0002D5639 /* Gallary.storyboard */; };
 		984ACB4D2018767C00A135EF /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984ACB492018767B00A135EF /* VideoService.swift */; };
 		984ACB4E2018767C00A135EF /* VideoExportInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984ACB4A2018767B00A135EF /* VideoExportInput.swift */; };
@@ -78,6 +82,10 @@
 		981895A3201F7825002F4AC9 /* ListImage.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ListImage.plist; sourceTree = "<group>"; };
 		981895A5201F7B55002F4AC9 /* PlistServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistServices.swift; sourceTree = "<group>"; };
 		981895A8201F7F65002F4AC9 /* LibraryViewController+Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibraryViewController+Review.swift"; sourceTree = "<group>"; };
+		9821851F2020505B00F907F1 /* GoogleAdsMob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAdsMob.swift; sourceTree = "<group>"; };
+		982185212020508A00F907F1 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		98218524202050EC00F907F1 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		98218526202051E600F907F1 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		9841AA1120163AB0002D5639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Gallary.storyboard; sourceTree = "<group>"; };
 		984ACB492018767B00A135EF /* VideoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
 		984ACB4A2018767B00A135EF /* VideoExportInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoExportInput.swift; sourceTree = "<group>"; };
@@ -109,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98218523202050BB00F907F1 /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +150,9 @@
 		3B22F7B41FF341AA00A30505 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				98218524202050EC00F907F1 /* Reachability.swift */,
+				9821851F2020505B00F907F1 /* GoogleAdsMob.swift */,
+				982185212020508A00F907F1 /* GoogleMobileAds.framework */,
 				984ACB512018778400A135EF /* VideoSupporter */,
 				5C76248620021BA500404D73 /* UIColor+Extention.swift */,
 				3B22F7AF1FF340C400A30505 /* ScrollingTabBarUtils.swift */,
@@ -151,6 +163,7 @@
 				3B5D20BF1FF38BC900B1744C /* UIImage+Extention.swift */,
 				3B5D20C11FF38FF600B1744C /* CustomTabbarController.swift */,
 				981895A5201F7B55002F4AC9 /* PlistServices.swift */,
+				98218526202051E600F907F1 /* Alert.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -194,6 +207,13 @@
 				981895A8201F7F65002F4AC9 /* LibraryViewController+Review.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		98218522202050BB00F907F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		984ACB512018778400A135EF /* VideoSupporter */ = {
@@ -252,6 +272,7 @@
 			children = (
 				FF8EBF971FF1E5DE004341AB /* ColorNumber */,
 				FF8EBF961FF1E5DE004341AB /* Products */,
+				98218522202050BB00F907F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -360,6 +381,7 @@
 			files = (
 				98B5E58F200F5E4F009E2080 /* MapIntensityColor.swift in Sources */,
 				984ACB502018767C00A135EF /* VideoExportServiceDelegate.swift in Sources */,
+				98218525202050ED00F907F1 /* Reachability.swift in Sources */,
 				98760179200C3B7C0011228C /* PixelImageView.swift in Sources */,
 				FF8EBFA11FF1E5DE004341AB /* ColorNumber.xcdatamodeld in Sources */,
 				5C39E58D2002161A00993E40 /* LibraryCollectionViewCell.swift in Sources */,
@@ -375,6 +397,7 @@
 				3B5D20C01FF38BC900B1744C /* UIImage+Extention.swift in Sources */,
 				3B22F7EB1FF3637500A30505 /* UIStoryboard+Extension.swift in Sources */,
 				E285055C200531BE00279D6D /* PaintSection.swift in Sources */,
+				98218527202051E600F907F1 /* Alert.swift in Sources */,
 				5647BACE2005281F00100FD3 /* ColorItem.swift in Sources */,
 				3B22F7B71FF3422E00A30505 /* LibraryViewController.swift in Sources */,
 				5C39E593200216F600993E40 /* DataLibrary.swift in Sources */,
@@ -393,6 +416,7 @@
 				FF8EBF991FF1E5DE004341AB /* AppDelegate.swift in Sources */,
 				984ACB4F2018767C00A135EF /* VideoExportService.swift in Sources */,
 				3B22F7B01FF340C400A30505 /* ScrollingTabBarUtils.swift in Sources */,
+				982185202020505B00F907F1 /* GoogleAdsMob.swift in Sources */,
 				98F9D6652008E34C00843FC8 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +590,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ColorNumber/Utilities",
+				);
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -585,6 +613,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ColorNumber/Utilities",
+				);
 				INFOPLIST_FILE = ColorNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

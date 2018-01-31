@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tt-jx-biX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="418"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="338"/>
                                 <color key="backgroundColor" red="0.17270780459999999" green="0.17270780459999999" blue="0.17270780459999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4v-RU-hyu">
@@ -105,7 +105,7 @@
                             <constraint firstItem="0tt-jx-biX" firstAttribute="trailing" secondItem="Ghj-nx-gAg" secondAttribute="trailing" id="6B7-8b-vbE"/>
                             <constraint firstItem="0tt-jx-biX" firstAttribute="leading" secondItem="Ghj-nx-gAg" secondAttribute="leading" id="Vta-nC-MaD"/>
                             <constraint firstItem="g4v-RU-hyu" firstAttribute="leading" secondItem="qe6-dY-pm2" secondAttribute="leading" id="eVn-3I-Wpe"/>
-                            <constraint firstItem="0tt-jx-biX" firstAttribute="top" secondItem="Ghj-nx-gAg" secondAttribute="top" id="swT-h3-foW"/>
+                            <constraint firstItem="0tt-jx-biX" firstAttribute="top" secondItem="Ghj-nx-gAg" secondAttribute="top" constant="80" id="swT-h3-foW"/>
                             <constraint firstItem="g4v-RU-hyu" firstAttribute="top" secondItem="0tt-jx-biX" secondAttribute="bottom" id="zQN-Pg-t11"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qe6-dY-pm2"/>
