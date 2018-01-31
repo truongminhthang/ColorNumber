@@ -83,6 +83,12 @@ class DataService{
         }
     }
     
+    func addImageCreatedByUser(pixelImage: PixelImageView) {
+        guard pixelImageViews.count > 0 else {return}
+        pixelImageViews[0].insert(pixelImage, at: 0)
+        selectedIndexPath = IndexPath(item: 0, section: 0)
+    }
+    
     func updateEditedImageView() {
         _editedImageView = pixelImageViews.flatMap{$0}.filter{$0.pixelStack.count != 0}
         NotificationCenter.default.post(name: .updateEditedImages, object: nil)

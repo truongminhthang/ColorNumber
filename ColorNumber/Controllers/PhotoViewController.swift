@@ -88,13 +88,11 @@ class PhotoViewController: UIViewController {
         imageView.image = filterImage(image: imageTaken!, scale: scale!)
     }
     @IBAction func renderingPixelImage(_ sender: UIButton) {
-        let vc = PaintViewController.instance
         let pixelImageView = PixelImageView(image: imageTaken!)
+        DataService.share.addImageCreatedByUser(pixelImage: pixelImageView)
         AppDelegate.shared.patternColors = pixelImageView.patternColors
         pixelImageView.reloadData()
-        DataService.share.updateSelectedImage(pixelImage: pixelImageView)
-        vc.pixelImageView = pixelImageView
         AppDelegate.shared.patternColors = AppDelegate.shared.patternColors.filter { $0.pixels.count != 0}
-        self.navigationController?.pushViewController(vc, animated: true)
+        performSegue(withIdentifier: "showPaintVC", sender: nil)
     }
 }

@@ -20,7 +20,6 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     var photoOutput : AVCapturePhotoOutput?
     var videoInput: AVCaptureInput?
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
-    var fakeLayer: CALayer?
     var monoLayer: CALayer?
     var monoFilterName: String = "CIPhotoEffectMono"
     var pixelFilterName: String = "CIPixellate"
@@ -39,8 +38,14 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         let options = [kCIContextWorkingColorSpace:NSNull()]
         return CIContext(eaglContext: eaglContext!, options: options)
     }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        authorizationCaptureDevice()
+    }
+    
+    func authorizationCaptureDevice() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             break
@@ -52,16 +57,14 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
                     self.setupResult = .notAuthorized
                 }
                 self.sessionQueue.resume()
-                
             })
             
         default:
             setupResult = .notAuthorized
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.post(name: .hideTabBar, object: nil)
+    
+    func liveCamera() {
         sessionQueue.async {
             switch self.setupResult {
             case .success:
@@ -73,20 +76,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
             case .notAuthorized:
                 DispatchQueue.main.async {
                     self.switchCameraBt.isEnabled = false
-                    let changePrivacySetting = "Color Number doesn't have permission to use the camera, please change privacy settings"
-                    let message = NSLocalizedString(changePrivacySetting, comment: "Alert message when the user has denied access to the camera")
-                    let alertController = UIAlertController(title: "Color Number", message: message, preferredStyle: .alert)
-                    
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
-                                                            style: .cancel,
-                                                            handler: nil))
-                    
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"),
-                                                            style: .`default`,
-                                                            handler: { _ in
-                                                                UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
-                    }))
-                    self.present(alertController, animated: true, completion: nil)
+                    showAlertToOpenSetting(title: "Color Number", message: "Color Number doesn't have permission to use the camera, please change privacy settings")
                 }
                 
             case .configurationFailed:
@@ -94,17 +84,16 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
                 DispatchQueue.main.async {
                     let alertMsg = "Alert message when something goes wrong during capture session configuration"
                     let message = NSLocalizedString("Unable to capture media", comment: alertMsg)
-                    let alertController = UIAlertController(title: "Color Number", message: message, preferredStyle: .alert)
-                    
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
-                                                            style: .cancel,
-                                                            handler: nil))
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                    
+                    showAlert(vc: self, title: "Color Number", message: message)
                 }
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.post(name: .hideTabBar, object: nil)
+        liveCamera()
     }
     override func viewWillDisappear(_ animated: Bool) {
         
@@ -162,27 +151,22 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
             print(error)
         }
     }
+    
     func setupPreviewLayer() {
-
         self.cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
         self.cameraPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.cameraPreviewLayer?.connection?.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
-        fakeLayer = CALayer()
         monoLayer = CALayer()
 
-        DispatchQueue.main.async {
-            self.cameraPreviewLayer?.frame = self.cameraView.frame
-            self.monoLayer?.frame = CGRect(x: (self.cameraPreviewLayer?.frame.origin.x)! - 10.0, y:  (self.cameraPreviewLayer?.frame.origin.y)! - 10.0, width: (self.cameraPreviewLayer?.frame.width)! + 50, height: (self.cameraPreviewLayer?.frame.height)! + 50)
-            self.fakeLayer?.frame = CGRect(x: (self.cameraPreviewLayer?.frame.origin.x)! - 10.0, y:  (self.cameraPreviewLayer?.frame.origin.y)! - 10.0 , width: (self.cameraPreviewLayer?.frame.width)! + 50, height: (self.cameraPreviewLayer?.frame.height)! + 50)
+        DispatchQueue.main.async {[unowned self] in
+            self.cameraPreviewLayer?.frame = self.cameraView.bounds
+            let monoFrame = self.cameraPreviewLayer?.bounds.insetBy(dx: -10, dy: -10)
+            self.monoLayer?.frame = monoFrame ?? .zero
             self.cameraView.layer.insertSublayer(self.cameraPreviewLayer!, at: 0)
-            self.cameraView?.layer.sublayers?.append(self.fakeLayer!)
             self.cameraView?.layer.sublayers?.append(self.monoLayer!)
-           
         }
-        
-        
-        
     }
+    
     func startingRunningCaptureSession() {
         captureSession.startRunning()
         let dataOutput = AVCaptureVideoDataOutput()
@@ -294,7 +278,6 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         let cgImage = self.context.createCGImage(outputImage, from: outputImage.extent)
         DispatchQueue.main.sync {
             monoLayer?.contents = cgImage
-            fakeLayer?.contents = cgImage
         }
         if isTakePhoto == true {
             takeAPhoto(sampleBuffer: sampleBuffer)
