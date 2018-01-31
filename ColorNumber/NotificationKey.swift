@@ -14,6 +14,12 @@ extension Notification.Name {
     static let gameCompleted                 = Notification.Name("gameCompleted")
     static let loadSampleComplete                 = Notification.Name("loadSampleComplete")
     static let updateEditedImages              = Notification.Name("updateEditedImages")
+    static let showTabBar              = Notification.Name("showTabBar")
+    static let hideTabBar              = Notification.Name("hideTabBar")
+    static let backToHome              = Notification.Name("backToHome")
+
+
+    
 
 
 }

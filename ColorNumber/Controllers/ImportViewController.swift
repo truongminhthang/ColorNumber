@@ -61,6 +61,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.post(name: .hideTabBar, object: nil)
         sessionQueue.async {
             switch self.setupResult {
             case .success:
@@ -143,9 +144,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         
     }
     func setupInputOutput() {
-        if setupResult != .success {
-            return
-        }
+        guard setupResult == .success && currentCamera != nil else {return}
         captureSession.sessionPreset = AVCaptureSession.Preset.photo
         
         do {
@@ -303,7 +302,7 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
     }
     func takeAPhoto(sampleBuffer: CMSampleBuffer) {
         isTakePhoto = false
-            let photoVC = UIStoryboard(name: "Import", bundle: nil).instantiateViewController(withIdentifier: "PhotoVC") as! PhotoViewController
+            let photoVC =  PhotoViewController.instance
             photoVC.imageTaken = UIImage(ciImage: ciImage!)
             photoVC.scale = scale
             DispatchQueue.main.async {
@@ -337,6 +336,11 @@ class ImportViewController: UIViewController, UIImagePickerControllerDelegate, A
         let currentValue = Int(sender.value)
         let reverseValue = (Int(sender.maximumValue) - currentValue) + Int(sender.minimumValue)
         scale = reverseValue
+    }
+    
+    @IBAction func backTapped(sender: UIBarButtonItem) {
+        NotificationCenter.default.post(name: .backToHome, object: nil)
+        
     }
 }
 

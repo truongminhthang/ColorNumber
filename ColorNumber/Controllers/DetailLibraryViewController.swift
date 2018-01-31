@@ -31,6 +31,8 @@ class DetailLibraryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        NotificationCenter.default.post(name: .showTabBar, object: 0)
+
         if let select = indexFromLibrary {
             title = DataService.share.categories[select].titleHeader
         }

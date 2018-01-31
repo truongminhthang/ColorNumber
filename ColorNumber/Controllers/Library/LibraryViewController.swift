@@ -48,6 +48,7 @@ class LibraryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        NotificationCenter.default.post(name: .showTabBar, object: 0)
         //MARK: Reload row have selected
         tableView.reloadData()
     }

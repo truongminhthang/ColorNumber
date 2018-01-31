@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W4n-Om-04t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fNm-QU-hhm">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Import-->
+        <!--Import View Controller-->
         <scene sceneID="N0h-LA-Vuo">
             <objects>
-                <viewController id="W4n-Om-04t" customClass="ImportViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImportViewController" id="W4n-Om-04t" customClass="ImportViewController" customModule="ColorNumber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ghj-nx-gAg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,8 +110,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qe6-dY-pm2"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Import" image="ic_importdark" id="Hwt-wo-7Kc"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" id="Th2-Lf-Hzz">
+                        <barButtonItem key="leftBarButtonItem" image="ic_back" id="Tiu-xB-L1m">
+                            <connections>
+                                <action selector="backTappedWithSender:" destination="W4n-Om-04t" id="AVt-xv-34F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cameraView" destination="0tt-jx-biX" id="fPb-9G-vpc"/>
                         <outlet property="pickImageBT" destination="n1o-a1-OTJ" id="0Pb-XM-91l"/>
@@ -121,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYM-GI-qLx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-247.5" y="266.19718309859155"/>
+            <point key="canvasLocation" x="150" y="266.19718309859155"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="mfp-K3-WlJ">
@@ -245,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wec-cY-lIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1253" y="280"/>
+            <point key="canvasLocation" x="1650" y="279.92957746478874"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zAW-Gy-H3a">
@@ -263,7 +269,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jU-bJ-2fC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501" y="280"/>
+            <point key="canvasLocation" x="898.125" y="279.92957746478874"/>
+        </scene>
+        <!--Import-->
+        <scene sceneID="fI7-zQ-3Ea">
+            <objects>
+                <navigationController storyboardIdentifier="NavImport" automaticallyAdjustsScrollViewInsets="NO" id="fNm-QU-hhm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Import" image="ic_importdark" id="Hwt-wo-7Kc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TRb-PP-H39">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="W4n-Om-04t" kind="relationship" relationship="rootViewController" id="u8e-DJ-zrH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F75-1b-1J5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-583" y="252"/>
         </scene>
     </scenes>
     <resources>

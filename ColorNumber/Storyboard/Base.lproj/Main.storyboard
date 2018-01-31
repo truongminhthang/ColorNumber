@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="-243" y="185"/>
         </scene>
-        <!--Import-->
+        <!--NavImport-->
         <scene sceneID="Bmu-Ej-yBW">
             <objects>
-                <viewControllerPlaceholder storyboardName="Import" id="yAG-yl-cfZ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Import" referencedIdentifier="NavImport" id="yAG-yl-cfZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Y7q-ca-lUX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3o6-Q3-QzV" userLabel="First Responder" sceneMemberID="firstResponder"/>

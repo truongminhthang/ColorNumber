@@ -46,6 +46,7 @@ class MyGallaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NotificationCenter.default.post(name: .showTabBar, object: 2)
         DataService.share.updateEditedImageView()
     }
 
