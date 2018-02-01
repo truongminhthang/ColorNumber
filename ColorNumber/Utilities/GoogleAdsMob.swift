@@ -22,7 +22,7 @@ struct BannerViewSize {
     static var height = CGFloat((UIDevice.current.userInterfaceIdiom == .pad ? 90 : 50))
 }
 //MARK: - Create GoogleAdMob Class
-class GoogleAdMob: NSObject, GADInterstitialDelegate {
+class GoogleAdMob: NSObject {
     
     static let sharedInstance : GoogleAdMob = GoogleAdMob()
     
@@ -39,7 +39,9 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
             guard !isTestMode else {return}
 
             guard AppDelegate.shared.reachability.connection != .none else {return}
-
+            if bannerView == nil {
+                createBannerView()
+            }
             if isBannerDisplay {
                 self.bannerView?.isHidden = false
             }
@@ -57,7 +59,6 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     
     override init() {
         super.init()
-        createBannerView()
         self.createInterstitial()
     }
     
@@ -68,6 +69,7 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
             self.perform(#selector(createBannerView), with: nil, afterDelay: 0.5)
         } else {
+            bannerView?.removeFromSuperview()
             bannerView = GADBannerView(frame: CGRect(
                 x:0 ,
                 y:BannerViewSize.screenHeight,
@@ -107,19 +109,22 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
             createInterstitial()
         }
     }
-    //MARK: - GADInterstitial Delegate
+   
+}
+
+// MARK: - GADInterstitialDelegate
+
+extension GoogleAdMob: GADInterstitialDelegate {
+    
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-       showInterstitial()
+        showInterstitial()
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         
     }
     func interstitialWillDismissScreen(_ ad: GADInterstitial) {
-        if !AppDelegate.shared.isDashboardDisplay {
-            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(showBanner), object: nil)
-            self.perform(#selector(showBanner), with: nil, afterDelay: 0.1)
-        }
+        
     }
     func interstitialWillPresentScreen(_ ad: GADInterstitial) {
         
@@ -132,6 +137,7 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
         
     }
     func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+        print("\(error.description)")
         
     }
 }
@@ -162,6 +168,8 @@ extension GoogleAdMob: GADBannerViewDelegate {
     }
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         
-        print("adView")
+        print("\(error.description)")
+        bannerView.removeFromSuperview()
+        
     }
 }

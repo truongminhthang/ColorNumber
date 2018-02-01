@@ -46,6 +46,7 @@ class PaintViewController: UIViewController {
         PixelModel.size = CGSize(width: 10, height: 10)
         PixelAnatomic.offSet = UIOffset.zero
         MapIntensityColor.checkIfCompleteGame()
+        GoogleAdMob.sharedInstance.isBannerDisplay = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -121,6 +122,7 @@ class PaintViewController: UIViewController {
     }
     
     @IBAction func dismissVC(_ sender: Any) {
+        GoogleAdMob.sharedInstance.showInterstitial()
         dismiss(animated: true, completion: nil)
     }
 }

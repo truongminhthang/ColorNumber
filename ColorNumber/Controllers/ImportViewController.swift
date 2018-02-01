@@ -53,6 +53,7 @@ class ImportViewController: UIViewController, UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isFrontCamera = true
+        NotificationCenter.default.post(name: .hideTabBar, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -150,13 +151,15 @@ extension ImportViewController {
             if session.canAddOutput(videoDataOutput) {
                 session.addOutput(videoDataOutput)
             }
+            let frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width))
             let captureVideoLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.init(session: session)
             captureVideoLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            captureVideoLayer.frame = frame
             imageView.layer.addSublayer(captureVideoLayer)
-            captureVideoLayer.frame = imageView.bounds
+            
             session.startRunning()
+            photoEffectMonoLayer.frame = frame.insetBy(dx: -20, dy: -20)
             captureVideoLayer.addSublayer(photoEffectMonoLayer)
-            photoEffectMonoLayer.frame = imageView.bounds.insetBy(dx: -20, dy: -20)
         }
     }
     func cameraDeviceNotDetermined() {

@@ -20,6 +20,11 @@ class CustomTabbarController: UITabBarController {
         registerNotification()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        GoogleAdMob.sharedInstance.isBannerDisplay = false
+    }
+    
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(showTabBar), name: .showTabBar , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(hideTabBar), name: .hideTabBar , object: nil)
