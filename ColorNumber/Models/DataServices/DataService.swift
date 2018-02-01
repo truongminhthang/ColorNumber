@@ -56,7 +56,7 @@ class DataService{
         }
     }
     
-    var pixelImageViews: [[PixelImageView]] = Array(repeating: [], count: 4)
+    var pixelImageViews: [[PixelImageView]] = Array(repeating: [], count: 12)
     
     private var _editedImageView: [PixelImageView]?
     
@@ -85,8 +85,12 @@ class DataService{
     
     func addImageCreatedByUser(pixelImage: PixelImageView) {
         guard pixelImageViews.count > 0 else {return}
-        pixelImageViews[0].insert(pixelImage, at: 0)
-        selectedIndexPath = IndexPath(item: 0, section: 0)
+        if pixelImageViews.count == 12 {
+            pixelImageViews.append([])
+        }
+        pixelImageViews[12].insert(pixelImage, at: 0)
+        selectedIndexPath = IndexPath(item: 0, section: 12)
+        AppDelegate.saveContext()
     }
     
     func updateEditedImageView() {
@@ -147,12 +151,12 @@ class DataService{
     
     
     func loadSample() {
-        pixelImageViews = Array(repeating: [], count: 4)
+        pixelImageViews = Array(repeating: [], count: 12)
         let imageDictionaries = PlistServices().getDictionaryFrom(plist: "ListImage.plist")?["Images"] as! [JSON]
         for dict in imageDictionaries {
             let imageString = dict["name"] as! String
             let image = UIImage(named: imageString)
-            let category = dict["categoryID"] as! String
+            let category = dict["category"] as! String
             let pixelImageView = PixelImageView(image: image!, categoryID: category)
             pixelImageView.createEntity()
             pixelImageViews[Int(category) ?? 0].append(pixelImageView)

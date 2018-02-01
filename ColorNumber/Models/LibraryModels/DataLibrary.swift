@@ -15,9 +15,9 @@ class Category {
     var titleHeader: String = ""
     var colorTitle: UIColor = UIColor.color(fromHexString: "#000000")    
     init?(dict: JSON) {
-        guard let iconHeader = dict["iconHeader"] as? String,
-            let titleHeader = dict["titleHeader"] as? String,
-            let colorHead = dict["colorTitle"] as? String
+        guard let iconHeader = dict["icon"] as? String,
+            let titleHeader = dict["title"] as? String,
+            let colorHead = dict["color"] as? String
         else { return nil }
         self.iconHeader = UIImage(named: iconHeader)
         self.titleHeader = titleHeader
@@ -25,6 +25,3 @@ class Category {
     }
     
 }
-
-//class image
-

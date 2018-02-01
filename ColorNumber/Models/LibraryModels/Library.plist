@@ -5,36 +5,108 @@
 	<key>ImageLibrary</key>
 	<array>
 		<dict>
-			<key>colorTitle</key>
+			<key>color</key>
 			<string>#5C1DDA</string>
-			<key>iconHeader</key>
-			<string>ic_trending</string>
-			<key>titleHeader</key>
-			<string>Trending Pictures</string>
+			<key>icon</key>
+			<string>ic_animals</string>
+			<key>title</key>
+			<string>Animals </string>
 		</dict>
 		<dict>
-			<key>colorTitle</key>
+			<key>color</key>
 			<string>#41A9BD</string>
-			<key>iconHeader</key>
+			<key>icon</key>
+			<string>ic_chibi</string>
+			<key>title</key>
+			<string>Chibi</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F9</string>
+			<key>icon</key>
+			<string>ic_coin</string>
+			<key>title</key>
+			<string>Coin</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F10</string>
+			<key>icon</key>
+			<string>ic_dragonBall</string>
+			<key>title</key>
+			<string>Dragon ball</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F11</string>
+			<key>icon</key>
+			<string>ic_food</string>
+			<key>title</key>
+			<string>Food</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F12</string>
+			<key>icon</key>
+			<string>ic_games</string>
+			<key>title</key>
+			<string>Games</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F13</string>
+			<key>icon</key>
 			<string>ic_holiday</string>
-			<key>titleHeader</key>
+			<key>title</key>
 			<string>Holiday</string>
 		</dict>
 		<dict>
-			<key>colorTitle</key>
-			<string>#1C63F9</string>
-			<key>iconHeader</key>
+			<key>color</key>
+			<string>#1C63F14</string>
+			<key>icon</key>
 			<string>ic_people</string>
-			<key>titleHeader</key>
+			<key>title</key>
 			<string>People</string>
 		</dict>
 		<dict>
-			<key>colorTitle</key>
-			<string>#F92A00</string>
-			<key>iconHeader</key>
-			<string>ic_food</string>
-			<key>titleHeader</key>
-			<string>Food</string>
+			<key>color</key>
+			<string>#1C63F15</string>
+			<key>icon</key>
+			<string>ic_pokemon</string>
+			<key>title</key>
+			<string>Pokemon</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F16</string>
+			<key>icon</key>
+			<string>ic_sticker</string>
+			<key>title</key>
+			<string>Sticker</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F17</string>
+			<key>icon</key>
+			<string>ic_trending_pictures</string>
+			<key>title</key>
+			<string>Trending pictures</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#1C63F18</string>
+			<key>icon</key>
+			<string>ic_work</string>
+			<key>title</key>
+			<string>Work</string>
+		</dict>
+		<dict>
+			<key>color</key>
+			<string>#5C1DDA</string>
+			<key>icon</key>
+			<string>ic_user</string>
+			<key>title</key>
+			<string>User&apos;s picture</string>
 		</dict>
 	</array>
 </dict>

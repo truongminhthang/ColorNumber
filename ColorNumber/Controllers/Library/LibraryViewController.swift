@@ -86,7 +86,7 @@ class LibraryViewController: UIViewController {
 extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataService.share.categories.count
+        return DataService.share.categories.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
