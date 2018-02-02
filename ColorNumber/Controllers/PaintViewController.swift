@@ -148,7 +148,7 @@ extension PaintViewController: UIScrollViewDelegate {
         let scale       = min(scaleWidth, scaleHeight)
         pixelImageView!.zoomScaleForRemovingColor = scale
         scrollView.minimumZoomScale = scale
-        scrollView.setZoomScale(scale, animated: animated)
+        scrollView.setZoomScale(scale, animated: animated)                                               
     }
     func setCenterScrollView(_ scrollView: UIScrollView,_ subView: UIView?) {
         if subView != nil {

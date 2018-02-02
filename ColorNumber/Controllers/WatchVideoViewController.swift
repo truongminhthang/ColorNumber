@@ -15,7 +15,7 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
     @IBOutlet weak var shareInstagramButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     let pixelImageView = DataService.share.selectedImage
-    var duration = 0.05
+    var duration = 0.025
     var numberOfColumn :CGFloat = 0.0
     var numberOfRow : CGFloat = 0.0
     
@@ -161,7 +161,6 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         let endingTime = 2.5
         
         videoService.makeBlankVideo(blankImage: #imageLiteral(resourceName: "whiteBg"), videoSize: container.bounds.size, outputPath: localBlankVideoPath, duration: duration * Double(pixelView.pixelStack.count) + endingTime) { () -> Void in
-//            print("localBlankVideoPath : \(self.localBlankVideoPath)")
             self.exportVideo(isSaveCameraRoll)
         }
     }

@@ -20,7 +20,7 @@ class PixelImageView : UIView {
     var isEdited = false
     var image : UIImage
     var croppedImage =  UIImage()
-    private var captureImage: UIImage?
+    var captureImage: UIImage?
     var displayImage : UIImage {
         get {
             return captureImage ?? image
@@ -108,9 +108,11 @@ class PixelImageView : UIView {
     
     func capture() {
         _selectedColorNumber = nil
-        colorView.alpha = 1
+        colorView.alpha = 0.7
+        colorView.frame = self.bounds
         numberView.alpha = 0
         captureImage = UIImage(view: colorView)
+        saveEntity()
     }
     
     func createPixelMatrixIfNeed() {

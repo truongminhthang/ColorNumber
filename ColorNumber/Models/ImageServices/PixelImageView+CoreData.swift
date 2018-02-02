@@ -27,6 +27,7 @@ extension PixelImageView {
         let result = try? AppDelegate.context.fetch(fetchRequest)
         guard let entity = result?.first else {return }
         entity.pixelStack = pixelStack
+        entity.currentImage = captureImage
         AppDelegate.saveContext()
     }
     
@@ -35,6 +36,7 @@ extension PixelImageView {
         self.id = imageEntity.id
         self.categoryID = imageEntity.categoryID
         self.pixelStack = imageEntity.pixelStack ?? []
+        self.captureImage = imageEntity.currentImage
     }
     
     func reloadData() {
