@@ -34,7 +34,7 @@ class GoogleAdMob: NSObject {
     private var interstitialAds: GADInterstitial!
     private var bannerView: GADBannerView?
     
-    var isTestMode = true
+    var isTestMode = false
     //MARK: - Variable
     var isBannerDisplay = false {
         didSet {
@@ -50,7 +50,7 @@ class GoogleAdMob: NSObject {
             
             UIView.animate(withDuration: 0.3, animations: {
                 self.bannerView?.transform = CGAffineTransform(translationX: 0,
-                                                               y: self.isBannerDisplay ? -BannerViewSize.height : BannerViewSize.height)
+                                                               y: self.isBannerDisplay ? -BannerViewSize.height - 60 : BannerViewSize.height)
             }, completion: { (success) in
                 if !self.isBannerDisplay {
                     self.bannerView?.isHidden = true
