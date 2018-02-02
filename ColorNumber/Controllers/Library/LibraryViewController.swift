@@ -16,7 +16,7 @@ class LibraryViewController: UIViewController {
     @IBOutlet weak var feedbackLb: DesignableLabel!
     @IBOutlet weak var tableView: UITableView!
     var pixelImageViews = DataService.share.pixelImageViews
-    let numbersOfItemInRow :CGFloat = 2
+    var numbersOfItemInRow :CGFloat = 3
     let itemPadding: CGFloat = 10
     
     // MARK: - Life Cycle
@@ -29,8 +29,12 @@ class LibraryViewController: UIViewController {
         setupView()
         registerNotification()
         _ = DataService.share.fetchedResultsController
+        if UIScreen.main.bounds.size.width > 450 {
+            numbersOfItemInRow = 4
+        }
+        print(UIScreen.main.bounds.size)
     }
-    
+
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification), name: .loadSampleComplete, object: nil)
     }
@@ -104,7 +108,9 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let heightCell = view.frame.height / 2
+        let itemSize = (UIScreen.main.bounds.width - itemPadding /*left*/ - itemPadding /*right*/ - itemPadding * (numbersOfItemInRow - 1)) / numbersOfItemInRow
+        let collectionViewHeight = 2 * (itemSize + 2 * itemPadding)
+        let heightCell = (collectionViewHeight*3/17) + collectionViewHeight + 12
         return heightCell
     }
     

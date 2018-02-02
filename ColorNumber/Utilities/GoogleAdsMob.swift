@@ -30,10 +30,9 @@ class GoogleAdMob: NSObject {
     
     private var isInitializeBannerView = false
     private var isInitializeInterstitial = false
-    
+    private var paddingIPX: CGFloat = 0
     private var interstitialAds: GADInterstitial!
     private var bannerView: GADBannerView?
-    var isCustomBanner: Bool = false
     var isTestMode = false
     //MARK: - Variable
     var isBannerDisplay = false {
@@ -47,10 +46,12 @@ class GoogleAdMob: NSObject {
             if isBannerDisplay {
                 self.bannerView?.isHidden = false
             }
-            let customTranslationY: CGFloat = isCustomBanner ? 60 : 0
+            if UIScreen.main.bounds.size == CGSize(width: 375.0, height: 812.0) {
+                paddingIPX = 35
+            }
             UIView.animate(withDuration: 0.3, animations: {
                 self.bannerView?.transform = CGAffineTransform(translationX: 0,
-                                                               y: self.isBannerDisplay ? -BannerViewSize.height - customTranslationY : BannerViewSize.height)
+                                                               y: self.isBannerDisplay ? (-BannerViewSize.height - self.paddingIPX) : BannerViewSize.height)
             }, completion: { (success) in
                 if !self.isBannerDisplay {
                     self.bannerView?.isHidden = true

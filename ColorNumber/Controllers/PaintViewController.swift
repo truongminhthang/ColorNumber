@@ -17,6 +17,7 @@ class PaintViewController: UIViewController {
     
     var pixelImageView: PixelImageView? = DataService.share.selectedImage
     
+    @IBOutlet weak var spaceShowBanner: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var doneButton: UIBarButtonItem!
        
@@ -28,6 +29,9 @@ class PaintViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIScreen.main.bounds.width > 450 {
+            spaceShowBanner.constant = 90
+        }
         registerNotification()
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemHeight = view.frame.height/14 - 5
@@ -46,7 +50,6 @@ class PaintViewController: UIViewController {
         PixelModel.size = CGSize(width: 10, height: 10)
         PixelAnatomic.offSet = UIOffset.zero
         MapIntensityColor.checkIfCompleteGame()
-        GoogleAdMob.sharedInstance.isCustomBanner = false
         GoogleAdMob.sharedInstance.isBannerDisplay = true
     }
     
@@ -56,9 +59,9 @@ class PaintViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        GoogleAdMob.sharedInstance.isBannerDisplay = false
         pixelImageView?.capture()
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -37,7 +37,10 @@ class DetailLibraryViewController: UIViewController {
             title = DataService.share.categories[select].titleHeader
         }
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        GoogleAdMob.sharedInstance.showInterstitial()
+    }
     /*
     // MARK: - Navigation
 
