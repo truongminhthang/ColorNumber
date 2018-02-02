@@ -77,7 +77,7 @@ extension MyGallaryViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LibraryCollectionViewCell", for: indexPath) as! LibraryCollectionViewCell
-        cell.imageIcon.image = DataService.share.editedImageView[indexPath.row].image
+        cell.imageIcon.image = DataService.share.editedImageView[indexPath.row].displayImage
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

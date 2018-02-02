@@ -24,7 +24,8 @@ class DataService{
     
     //MARK: data
     private var _categories: [Category]!
-    
+    static let numberOfCategory = 12
+
     var categories: [Category]{
         set{
             _categories = newValue
@@ -56,7 +57,7 @@ class DataService{
         }
     }
     
-    var pixelImageViews: [[PixelImageView]] = Array(repeating: [], count: 12)
+    var pixelImageViews: [[PixelImageView]] = Array(repeating: [], count: DataService.numberOfCategory)
     
     private var _editedImageView: [PixelImageView]?
     
@@ -127,6 +128,7 @@ class DataService{
                     DataService.share.loadSample()
                     try _fetchedResultsController!.performFetch()
                 } else {
+                    objects.forEach {print("\($0.categoryID ?? "")")}
                     pixelImageViews = []
                     for sectionIndex in 0..<(_fetchedResultsController!.sections?.count ?? 0) {
                         pixelImageViews.append([])
@@ -151,7 +153,7 @@ class DataService{
     
     
     func loadSample() {
-        pixelImageViews = Array(repeating: [], count: 12)
+        pixelImageViews = Array(repeating: [], count: DataService.numberOfCategory)
         let imageDictionaries = PlistServices().getDictionaryFrom(plist: "ListImage.plist")?["Images"] as! [JSON]
         for dict in imageDictionaries {
             let imageString = dict["name"] as! String
@@ -159,7 +161,9 @@ class DataService{
             let category = dict["category"] as! String
             let pixelImageView = PixelImageView(image: image!, categoryID: category)
             pixelImageView.createEntity()
-            pixelImageViews[Int(category) ?? 0].append(pixelImageView)
+            if let categoryIndex = Int(category) {
+                pixelImageViews[categoryIndex].append(pixelImageView)
+            }
         }
         AppDelegate.saveContext()
         NotificationCenter.default.post(name: .loadSampleComplete, object: nil)
