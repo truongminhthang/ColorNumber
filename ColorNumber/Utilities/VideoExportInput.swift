@@ -22,7 +22,5 @@ class VideoExportInput: NSObject {
     var videoPath: URL!
     
     var animationLayer: CALayer?
-    
-    var isSaveCameraRoll: Bool!
 }
 

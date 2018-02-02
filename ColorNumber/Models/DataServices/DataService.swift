@@ -128,7 +128,6 @@ class DataService{
                     DataService.share.loadSample()
                     try _fetchedResultsController!.performFetch()
                 } else {
-                    objects.forEach {print("\($0.categoryID ?? "")")}
                     pixelImageViews = []
                     for sectionIndex in 0..<(_fetchedResultsController!.sections?.count ?? 0) {
                         pixelImageViews.append([])

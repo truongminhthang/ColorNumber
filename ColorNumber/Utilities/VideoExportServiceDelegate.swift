@@ -9,7 +9,7 @@
 import Foundation
 
 protocol VideoExportServiceDelegate: class {
-    func videoExportServiceExportSuccess(with url: URL, localIdentifier: String, and isSaveCameraRoll: Bool)
+    func videoExportServiceExportSuccess(with url: URL)
     func videoExportServiceExportFailedWithError(error: NSError)
     func videoExportServiceExportProgress(progress: Float)
 }

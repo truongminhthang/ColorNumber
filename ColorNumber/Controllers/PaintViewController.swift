@@ -46,6 +46,7 @@ class PaintViewController: UIViewController {
         PixelModel.size = CGSize(width: 10, height: 10)
         PixelAnatomic.offSet = UIOffset.zero
         MapIntensityColor.checkIfCompleteGame()
+        GoogleAdMob.sharedInstance.isCustomBanner = false
         GoogleAdMob.sharedInstance.isBannerDisplay = true
     }
     

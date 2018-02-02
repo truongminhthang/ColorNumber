@@ -99,39 +99,10 @@ class VideoExportService: NSObject {
         DispatchQueue.main.async {
             self.progressTimer?.invalidate()
             if self.exporter.status == AVAssetExportSessionStatus.completed {
-                if self.input.isSaveCameraRoll {
-                    self.saveVideo(videoURL: url, completion: { [unowned self] urlAssest, localIdentifier in
-                        self.delegate?.videoExportServiceExportSuccess(with: urlAssest, localIdentifier: localIdentifier, and: true)
-                    })
-                } else {
-                    self.delegate?.videoExportServiceExportSuccess(with: url, localIdentifier: "nil", and: false)
-                }
+                self.delegate?.videoExportServiceExportSuccess(with: url)
             }
             else {
                 self.delegate?.videoExportServiceExportFailedWithError(error: self.exporter.error! as NSError)
-            }
-        }
-    }
-    
-    
-    //  Save video to library image camera
-    private func saveVideo(videoURL: URL, completion: @escaping (URL, String) -> Void ) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
-        }) { saved, error in
-            if saved {
-                let fetchOptions = PHFetchOptions()
-                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-                
-                // After uploading we fetch the PHAsset for most recent video and then get its current location url
-                
-                let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions).lastObject
-                PHImageManager().requestAVAsset(forVideo: fetchResult!, options: nil, resultHandler: { (avurlAsset, audioMix, dict) in
-                    let newObj = avurlAsset as! AVURLAsset
-                    let localIdentifier = fetchResult!.localIdentifier
-                    // This is the URL we need now to access the video from gallery directly.
-                    completion(newObj.url, localIdentifier)
-                })
             }
         }
     }

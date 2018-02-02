@@ -211,7 +211,7 @@
                                 <rect key="frame" x="0.0" y="521" width="375" height="146"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YRY-71-JGe">
-                                        <rect key="frame" x="93" y="48.5" width="190" height="50"/>
+                                        <rect key="frame" x="93" y="46" width="190" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH9-Ci-Sxb">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -240,10 +240,21 @@
                                             <constraint firstAttribute="height" constant="50" id="hcN-T1-TTs"/>
                                         </constraints>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhA-Ec-S06">
+                                        <rect key="frame" x="0.0" y="46" width="375" height="49.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.61039282570422537" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="YRY-71-JGe" firstAttribute="centerY" secondItem="TqM-N7-WX0" secondAttribute="centerY" id="DDZ-Ar-thf"/>
+                                    <constraint firstAttribute="trailing" secondItem="vhA-Ec-S06" secondAttribute="trailing" id="0se-G6-gG5"/>
+                                    <constraint firstItem="YRY-71-JGe" firstAttribute="bottom" secondItem="vhA-Ec-S06" secondAttribute="bottom" id="Oyc-nu-WnR"/>
+                                    <constraint firstItem="YRY-71-JGe" firstAttribute="top" secondItem="vhA-Ec-S06" secondAttribute="top" id="To8-tv-3kx"/>
+                                    <constraint firstAttribute="bottom" secondItem="YRY-71-JGe" secondAttribute="bottom" constant="50" id="bu7-O6-wCZ"/>
+                                    <constraint firstItem="vhA-Ec-S06" firstAttribute="leading" secondItem="TqM-N7-WX0" secondAttribute="leading" id="eeb-hQ-7tb"/>
                                     <constraint firstItem="YRY-71-JGe" firstAttribute="centerX" secondItem="TqM-N7-WX0" secondAttribute="centerX" id="jdo-NE-tZH"/>
                                 </constraints>
                             </view>
@@ -269,6 +280,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="alertLabel" destination="vhA-Ec-S06" id="67N-Zd-8ed"/>
                         <outlet property="container" destination="fcN-GE-9B8" id="nIV-Ws-WKR"/>
                         <outlet property="moreButton" destination="M4J-V1-hlL" id="BcF-eM-ha1"/>
                         <outlet property="saveCameraRollButton" destination="xH9-Ci-Sxb" id="7nR-Ft-T9s"/>
