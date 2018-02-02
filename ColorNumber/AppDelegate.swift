@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard pixel.intensityNumber < PixelModel.intensityToDisable else { return }
         patternColors[pixel.intensityNumber].addFixel(pixel)
     }
-    var isFakeModeApp : Bool = true
-    var isDashboardDisplay: Bool = false
     
     var reachability: Reachability! = {
         guard let reachability = Reachability(hostname: "google.com") else {

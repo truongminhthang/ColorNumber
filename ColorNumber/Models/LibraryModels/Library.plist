@@ -6,6 +6,14 @@
 	<array>
 		<dict>
 			<key>color</key>
+			<string>#1C63F17</string>
+			<key>icon</key>
+			<string>ic_trending_pictures</string>
+			<key>title</key>
+			<string>Trending pictures</string>
+		</dict>
+		<dict>
+			<key>color</key>
 			<string>#5C1DDA</string>
 			<key>icon</key>
 			<string>ic_animals</string>
@@ -83,14 +91,6 @@
 			<string>ic_sticker</string>
 			<key>title</key>
 			<string>Sticker</string>
-		</dict>
-		<dict>
-			<key>color</key>
-			<string>#1C63F17</string>
-			<key>icon</key>
-			<string>ic_trending_pictures</string>
-			<key>title</key>
-			<string>Trending pictures</string>
 		</dict>
 		<dict>
 			<key>color</key>

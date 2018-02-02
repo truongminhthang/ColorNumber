@@ -156,7 +156,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="Q8N-a1-9pG">
-                                                            <rect key="frame" x="340" y="15" width="20" height="40"/>
+                                                            <rect key="frame" x="346" y="25" width="14" height="20"/>
                                                         </imageView>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ihc-oh-JDn">
                                                             <rect key="frame" x="0.0" y="60" width="375" height="339.5"/>
@@ -182,10 +182,10 @@
                                                                                         <real key="value" value="5"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                        <real key="value" value="1"/>
+                                                                                        <real key="value" value="0.0"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </imageView>
@@ -214,13 +214,12 @@
                                                         <constraint firstAttribute="trailing" secondItem="ihc-oh-JDn" secondAttribute="trailing" id="FVt-Dt-Ta1"/>
                                                         <constraint firstItem="roe-hG-PLx" firstAttribute="height" secondItem="VP1-hv-frg" secondAttribute="height" multiplier="0.1" id="HgM-kt-lb0"/>
                                                         <constraint firstItem="Q8N-a1-9pG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g1O-nL-epI" secondAttribute="trailing" constant="10" id="JU6-Uz-UT9"/>
-                                                        <constraint firstItem="Q8N-a1-9pG" firstAttribute="top" secondItem="VP1-hv-frg" secondAttribute="top" constant="15" id="K7g-gs-vdt"/>
+                                                        <constraint firstItem="Q8N-a1-9pG" firstAttribute="top" secondItem="VP1-hv-frg" secondAttribute="top" constant="25" id="K7g-gs-vdt"/>
                                                         <constraint firstItem="ihc-oh-JDn" firstAttribute="leading" secondItem="VP1-hv-frg" secondAttribute="leading" id="Yns-5F-Sw4"/>
                                                         <constraint firstAttribute="trailing" secondItem="Q8N-a1-9pG" secondAttribute="trailing" constant="15" id="Yw6-hr-Rah"/>
                                                         <constraint firstItem="g1O-nL-epI" firstAttribute="centerY" secondItem="Q8N-a1-9pG" secondAttribute="centerY" id="czs-L1-eiA"/>
                                                         <constraint firstItem="roe-hG-PLx" firstAttribute="leading" secondItem="VP1-hv-frg" secondAttribute="leading" constant="15" id="gA8-Oe-HFb"/>
                                                         <constraint firstItem="ihc-oh-JDn" firstAttribute="height" secondItem="VP1-hv-frg" secondAttribute="height" multiplier="0.85" id="gKi-8W-xmV"/>
-                                                        <constraint firstItem="Q8N-a1-9pG" firstAttribute="width" secondItem="roe-hG-PLx" secondAttribute="width" multiplier="0.5" id="hYb-61-pLm"/>
                                                         <constraint firstAttribute="bottom" secondItem="ihc-oh-JDn" secondAttribute="bottom" id="jkr-ui-cCf"/>
                                                         <constraint firstItem="g1O-nL-epI" firstAttribute="leading" secondItem="roe-hG-PLx" secondAttribute="trailing" constant="10" id="wrp-vx-LCN"/>
                                                     </constraints>
@@ -381,6 +380,6 @@
         <image name="ic_trending" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SC3-8y-b19"/>
+        <segue reference="fWo-nB-1v7"/>
     </inferredMetricsTieBreakers>
 </document>

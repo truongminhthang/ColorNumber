@@ -9,20 +9,22 @@
 import UIKit
 import GoogleMobileAds
 
-//MARK: - Google Ads Unit ID
-struct GoogleAdsUnitID {
-    static var strBannerAdsID = "ca-app-pub-1435684048935421/1990778996"
-    static var strInterstitialAdsID = "ca-app-pub-1435684048935421/7918441836"
-}
 
-//MARK: - Banner View Size
-struct BannerViewSize {
-    static var screenWidth = UIScreen.main.bounds.size.width
-    static var screenHeight = UIScreen.main.bounds.size.height
-    static var height = CGFloat((UIDevice.current.userInterfaceIdiom == .pad ? 90 : 50))
-}
 //MARK: - Create GoogleAdMob Class
 class GoogleAdMob: NSObject {
+    
+    //MARK: - Google Ads Unit ID
+    struct GoogleAdsUnitID {
+        static var strBannerAdsID = "ca-app-pub-1435684048935421/1990778996"
+        static var strInterstitialAdsID = "ca-app-pub-1435684048935421/7918441836"
+    }
+    
+    //MARK: - Banner View Size
+    struct BannerViewSize {
+        static var screenWidth = UIScreen.main.bounds.size.width
+        static var screenHeight = UIScreen.main.bounds.size.height
+        static var height = CGFloat((UIDevice.current.userInterfaceIdiom == .pad ? 90 : 50))
+    }
     
     static let sharedInstance : GoogleAdMob = GoogleAdMob()
     
@@ -32,7 +34,7 @@ class GoogleAdMob: NSObject {
     private var interstitialAds: GADInterstitial!
     private var bannerView: GADBannerView?
     
-    var isTestMode = false
+    var isTestMode = true
     //MARK: - Variable
     var isBannerDisplay = false {
         didSet {
