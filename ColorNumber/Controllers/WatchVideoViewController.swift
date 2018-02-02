@@ -142,11 +142,11 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    func shareInstagram(with url: URL) {
+    func shareInstagram(with localIdentifier: String) {
         let caption = "Đăng lên Instagram"
-        let instagramString = "instagram://library?AssetPath=\(url.absoluteString.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!)&InstagramCaption=\(caption.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!)"
+        let instagramString = "instagram://library?LocalIdentifier=\(localIdentifier)&InstagramCaption=\(caption.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!)"
         let instagramURL = URL(string: instagramString)
-
+        
         if UIApplication.shared.canOpenURL(instagramURL!) {
             UIApplication.shared.open(instagramURL!, options: [:], completionHandler: nil)
         } else {
@@ -203,12 +203,12 @@ class WatchVideoViewController: UIViewController, VideoExportServiceDelegate {
         }
     }
     
-    func videoExportServiceExportSuccess(with url: URL, and isSaveCameraRoll: Bool) {
+    func videoExportServiceExportSuccess(with url: URL, localIdentifier: String, and isSaveCameraRoll: Bool) {
         print("sucess")
         if isSaveCameraRoll {
             DispatchQueue.main.async {
                 if self.isShareInstagram {
-                    self.shareInstagram(with: url)
+                    self.shareInstagram(with: localIdentifier)
                 } else {
                     self.playVideo(with: url)
                     self.saveCameraRollButton.isEnabled = true
