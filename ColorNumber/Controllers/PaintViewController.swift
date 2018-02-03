@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class PaintViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class PaintViewController: UIViewController {
     
     var pixelImageView: PixelImageView? = DataService.share.selectedImage
     
+    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var spaceShowBanner: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var doneButton: UIBarButtonItem!
@@ -50,7 +52,7 @@ class PaintViewController: UIViewController {
         PixelModel.size = CGSize(width: 10, height: 10)
         PixelAnatomic.offSet = UIOffset.zero
         MapIntensityColor.checkIfCompleteGame()
-        GoogleAdMob.sharedInstance.isBannerDisplay = true
+        displayBanner()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +61,6 @@ class PaintViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GoogleAdMob.sharedInstance.isBannerDisplay = false
         pixelImageView?.capture()
     }
     override func didReceiveMemoryWarning() {
@@ -126,7 +127,6 @@ class PaintViewController: UIViewController {
     }
     
     @IBAction func dismissVC(_ sender: Any) {
-        GoogleAdMob.sharedInstance.showInterstitial()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -190,5 +190,31 @@ extension PaintViewController: UICollectionViewDelegate,UICollectionViewDataSour
         else {
             pixelImageView?.selectedColorNumber = AppDelegate.shared.patternColors[indexPath.row - 1].colorOrder
         }
+    }
+}
+extension PaintViewController: GADBannerViewDelegate {
+    
+    func displayBanner() {
+        guard AppDelegate.shared.reachability.connection != .none else {return}
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bannerView.rootViewController = self
+            bannerView.delegate = self
+            bannerView.load(GADRequest())
+    }
+    
+    // MARK: - GADBannerViewDelegate methods
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Banner loaded successfully")
+        // Reposition the banner ad to create a slide down effect
+        let translateTransform = CGAffineTransform(translationX: 0, y: bannerView.bounds.size.height)
+        bannerView.transform = translateTransform
+        UIView.animate(withDuration: 0.5) {
+            bannerView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
+        bannerView.backgroundColor = UIColor.clear
     }
 }

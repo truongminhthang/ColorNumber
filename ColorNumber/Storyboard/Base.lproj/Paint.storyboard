@@ -20,6 +20,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXF-Ky-HPm">
+                                <rect key="frame" x="0.0" y="24" width="375" height="646.66666666666663"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Jjb-VX-w6j" id="WDX-U7-vBJ"/>
+                                </connections>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOj-4i-cEk">
                                 <rect key="frame" x="0.0" y="670" width="375" height="58"/>
                                 <subviews>
@@ -144,21 +150,23 @@
                                     <constraint firstAttribute="bottom" secondItem="mz7-zB-hXN" secondAttribute="bottom" id="wfT-gj-OCV"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXF-Ky-HPm">
-                                <rect key="frame" x="0.0" y="24" width="375" height="646.66666666666663"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Jjb-VX-w6j" id="WDX-U7-vBJ"/>
-                                </connections>
-                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNh-6l-A6K" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="728" width="375" height="84"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lXF-Ky-HPm" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="5kk-Y2-DZZ"/>
+                            <constraint firstItem="HNh-6l-A6K" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="794-ux-zQq"/>
                             <constraint firstItem="fOj-4i-cEk" firstAttribute="top" secondItem="lXF-Ky-HPm" secondAttribute="bottom" id="He9-wh-QOw"/>
+                            <constraint firstAttribute="bottom" secondItem="HNh-6l-A6K" secondAttribute="bottom" id="KJz-gU-4AL"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="bottom" secondItem="fOj-4i-cEk" secondAttribute="bottom" constant="50" id="OHO-rg-YYf"/>
+                            <constraint firstItem="HNh-6l-A6K" firstAttribute="top" secondItem="fOj-4i-cEk" secondAttribute="bottom" id="Pks-c3-lrp"/>
                             <constraint firstItem="fOj-4i-cEk" firstAttribute="height" secondItem="6uZ-Qq-nsJ" secondAttribute="height" multiplier="1/14" id="VBi-gV-hIl"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="fOj-4i-cEk" secondAttribute="trailing" id="g2B-cB-3R5"/>
                             <constraint firstItem="fOj-4i-cEk" firstAttribute="leading" secondItem="hVm-ZS-mha" secondAttribute="leading" id="h3H-9c-LG1"/>
+                            <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="HNh-6l-A6K" secondAttribute="trailing" id="nQ3-OS-SoV"/>
                             <constraint firstItem="hVm-ZS-mha" firstAttribute="trailing" secondItem="lXF-Ky-HPm" secondAttribute="trailing" id="o5I-tl-s3s"/>
                             <constraint firstItem="lXF-Ky-HPm" firstAttribute="top" secondItem="hVm-ZS-mha" secondAttribute="top" constant="-64" id="pMs-ct-fDP"/>
                         </constraints>
@@ -173,6 +181,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bannerView" destination="HNh-6l-A6K" id="SaW-M9-y45"/>
                         <outlet property="collectionView" destination="mz7-zB-hXN" id="ukc-Ln-Xqa"/>
                         <outlet property="doneButton" destination="JPM-eZ-R59" id="I64-f1-FoL"/>
                         <outlet property="scrollView" destination="lXF-Ky-HPm" id="zEo-je-ha0"/>

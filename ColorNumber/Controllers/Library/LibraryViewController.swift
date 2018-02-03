@@ -32,7 +32,6 @@ class LibraryViewController: UIViewController {
         if UIScreen.main.bounds.size.width > 450 {
             numbersOfItemInRow = 4
         }
-        print(UIScreen.main.bounds.size)
     }
 
     func registerNotification() {
@@ -55,6 +54,13 @@ class LibraryViewController: UIViewController {
         NotificationCenter.default.post(name: .showTabBar, object: 0)
         //MARK: Reload row have selected
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UserDefaults.standard.bool(forKey: "FirstRunApp") == false {
+            GoogleAdMob.sharedInstance.showInterstitial()
+        }
     }
     
     override func didReceiveMemoryWarning() {

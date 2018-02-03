@@ -60,10 +60,6 @@ class ImportViewController: UIViewController, UINavigationControllerDelegate {
         super.viewWillDisappear(animated)
         session.stopRunning()
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        GoogleAdMob.sharedInstance.showInterstitial()
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -81,7 +77,6 @@ class ImportViewController: UIViewController, UINavigationControllerDelegate {
     }
     @IBAction func backTapped(sender: UIBarButtonItem) {
         NotificationCenter.default.post(name: .backToHome, object: nil)
-        
     }
     @IBAction func electedImageFromLibrary(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()

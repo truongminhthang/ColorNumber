@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -49,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.object(forKey: "FirstRunApp") == nil {
             UserDefaults.standard.set(true, forKey: "FirstRunApp")
         }
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-3940256099942544/2934735716")
         return true
     }
 
@@ -74,7 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         reachabilityChanged()
         if UserDefaults.standard.bool(forKey: "FirstRunApp") == false {
             GoogleAdMob.sharedInstance.showInterstitial()
-            GoogleAdMob.sharedInstance.isBannerDisplay = false
         }
     }
 

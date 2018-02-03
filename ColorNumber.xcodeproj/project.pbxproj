@@ -138,8 +138,8 @@
 		3B22F7B21FF3417E00A30505 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */,
 				981895A7201F7F3B002F4AC9 /* Library */,
+				5C76248820021C3C00404D73 /* DetailLibraryViewController.swift */,
 				3B22F7BE1FF3435200A30505 /* MyGallaryViewController.swift */,
 				3B22F7E61FF35EE300A30505 /* WatchVideoViewController.swift */,
 				98708CA1200EFC70009D544E /* PaintViewController.swift */,

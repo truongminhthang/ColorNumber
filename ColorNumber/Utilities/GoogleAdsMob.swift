@@ -15,85 +15,18 @@ class GoogleAdMob: NSObject {
     
     //MARK: - Google Ads Unit ID
     struct GoogleAdsUnitID {
-        static var strBannerAdsID = "ca-app-pub-1435684048935421/1990778996"
         static var strInterstitialAdsID = "ca-app-pub-1435684048935421/7918441836"
     }
     
-    //MARK: - Banner View Size
-    struct BannerViewSize {
-        static var screenWidth = UIScreen.main.bounds.size.width
-        static var screenHeight = UIScreen.main.bounds.size.height
-        static var height = CGFloat((UIDevice.current.userInterfaceIdiom == .pad ? 90 : 50))
-    }
-    
     static let sharedInstance : GoogleAdMob = GoogleAdMob()
-    
-    private var isInitializeBannerView = false
     private var isInitializeInterstitial = false
-    private var paddingIPX: CGFloat = 0
     private var interstitialAds: GADInterstitial!
-    private var bannerView: GADBannerView?
-    var isTestMode = false
-    //MARK: - Variable
-    var isBannerDisplay = false {
-        didSet {
-            guard !isTestMode else {return}
 
-            guard AppDelegate.shared.reachability.connection != .none else {return}
-            if bannerView == nil {
-                createBannerView()
-            }
-            if isBannerDisplay {
-                self.bannerView?.isHidden = false
-            }
-            if UIScreen.main.bounds.size == CGSize(width: 375.0, height: 812.0) {
-                paddingIPX = 35
-            }
-            UIView.animate(withDuration: 0.3, animations: {
-                self.bannerView?.transform = CGAffineTransform(translationX: 0,
-                                                               y: self.isBannerDisplay ? (-BannerViewSize.height - self.paddingIPX) : BannerViewSize.height)
-            }, completion: { (success) in
-                if !self.isBannerDisplay {
-                    self.bannerView?.isHidden = true
-                }
-            })
-        }
-    }
+    var isTestMode = false
     
     override init() {
         super.init()
         self.createInterstitial()
-    }
-    
-    @objc private func createBannerView() {
-        guard !isTestMode else {return}
-        guard AppDelegate.shared.reachability.connection != .none else {return}
-        if UIApplication.shared.keyWindow?.rootViewController == nil {
-            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
-            self.perform(#selector(createBannerView), with: nil, afterDelay: 0.5)
-        } else {
-            bannerView?.removeFromSuperview()
-            bannerView = GADBannerView(frame: CGRect(
-                x:0 ,
-                y:BannerViewSize.screenHeight,
-                width:BannerViewSize.screenWidth,
-                height:BannerViewSize.height))
-            self.bannerView?.adUnitID = GoogleAdsUnitID.strBannerAdsID
-            self.bannerView?.rootViewController = UIApplication.shared.keyWindow?.rootViewController
-            self.bannerView?.delegate = self
-            self.bannerView?.backgroundColor = UIColor.clear
-            self.bannerView?.load(GADRequest())
-            
-            UIApplication.shared.keyWindow?.addSubview(bannerView!)
-        }
-    }
-    
-    func toogleBanner() {
-        isBannerDisplay = !isBannerDisplay
-    }
-    
-    @objc func showBanner() {
-        isBannerDisplay = true
     }
     
     private func createInterstitial() {
@@ -131,7 +64,6 @@ extension GoogleAdMob: GADInterstitialDelegate {
     }
     func interstitialWillPresentScreen(_ ad: GADInterstitial) {
         
-        self.isBannerDisplay = false
     }
     func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
         
@@ -145,34 +77,3 @@ extension GoogleAdMob: GADInterstitialDelegate {
     }
 }
 
-// MARK: - GADBannerViewDelegate
-
-extension GoogleAdMob: GADBannerViewDelegate {
-    
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        
-        print("adViewDidReceiveAd")
-    }
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        
-        print("adViewDidDismissScreen")
-    }
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        
-        print("adViewWillDismissScreen")
-    }
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        
-        print("adViewWillPresentScreen")
-    }
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        
-        print("adViewWillLeaveApplication")
-    }
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        
-        print("\(error.description)")
-        bannerView.removeFromSuperview()
-        
-    }
-}

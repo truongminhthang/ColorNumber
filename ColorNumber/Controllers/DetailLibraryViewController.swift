@@ -39,8 +39,8 @@ class DetailLibraryViewController: UIViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        GoogleAdMob.sharedInstance.showInterstitial()
     }
+    
     /*
     // MARK: - Navigation
 
