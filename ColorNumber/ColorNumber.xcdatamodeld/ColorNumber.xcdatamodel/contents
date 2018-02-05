@@ -2,9 +2,9 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PixelImageEntity" representedClassName="PixelImageEntity" syncable="YES" codeGenerationType="class">
         <attribute name="categoryID" attributeType="String" syncable="YES"/>
-        <attribute name="currentImage" optional="YES" attributeType="Transformable" customClassName="UIImage" syncable="YES"/>
+        <attribute name="currentImage" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="image" attributeType="Transformable" customClassName="UIImage" syncable="YES"/>
+        <attribute name="image" attributeType="Transformable" syncable="YES"/>
         <attribute name="pixelStack" optional="YES" attributeType="Transformable" customClassName="[PixelAnatomic]" syncable="YES"/>
     </entity>
     <elements>

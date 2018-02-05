@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import MessageUI
 
 // MARK: - <#Mark#>
 
@@ -75,8 +76,26 @@ extension LibraryViewController {
     
     @objc func feedback(_ recogznier: UITapGestureRecognizer) {
         self.feedbackLb.animate { (complete) in
-            
+            self.sendEmail()
         }
     }
     
+}
+extension LibraryViewController: MFMailComposeViewControllerDelegate {
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["paul@hackingwithswift.com"])
+            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 }

@@ -32,11 +32,11 @@ extension PixelImageView {
     }
     
     convenience init(imageEntity: PixelImageEntity) {
-        self.init(image: imageEntity.image!, categoryID: "")
+        self.init(image: imageEntity.image as! UIImage, categoryID: "")
         self.id = imageEntity.id
         self.categoryID = imageEntity.categoryID
         self.pixelStack = imageEntity.pixelStack ?? []
-        self.captureImage = imageEntity.currentImage
+        self.captureImage = imageEntity.currentImage as? UIImage
     }
     
     func reloadData() {
